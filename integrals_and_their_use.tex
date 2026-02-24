@@ -1,0 +1,1456 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+%% --- Bibliography (biblatex + biber) ---
+\usepackage[backend=biber,
+            style=alphabetic,
+            sorting=nyt,
+            maxbibnames=6,
+            backref=true]{biblatex}
+\addbibresource{references.bib}
+
+%% --- Index (single hierarchical index) ---
+\usepackage{imakeidx}
+\makeindex[title=Index, intoc, columns=2]
+
+\usepackage{hyperref}
+
+% Suppress LaTeX automatic section numbering so only the
+% explicit Gradshteyn-Ryzhik numbers appear in headings.
+\setcounter{secnumdepth}{-1}
+
+% Allow page breaks between consecutive headings (no body text).
+% Without this, LaTeX suppresses breaks after headings, causing
+% massive vbox overflow when headings appear back-to-back.
+\makeatletter
+\renewcommand{\@afterheading}{}
+\makeatother
+\raggedbottom
+
+\begin{document}
+
+%% ============================================================
+%% 0  Introduction
+%% ============================================================
+\section{0\quad Introduction}
+
+\subsection{0.1\quad Finite Sums}
+\subsubsection{0.11\quad Progressions}
+\subsubsection{0.12\quad Sums of powers of natural numbers}
+\subsubsection{0.13\quad Sums of reciprocals of natural numbers}
+\subsubsection{0.14\quad Sums of products of reciprocals of natural numbers}
+\subsubsection{0.15\quad Sums of the binomial coefficients}
+
+\subsection{0.2\quad Numerical Series and Infinite Products}
+\subsubsection{0.21\quad The convergence of numerical series}
+\subsubsection{0.22\quad Convergence tests}
+\subsubsection{0.23--0.24\quad Examples of numerical series}
+\subsubsection{0.25\quad Infinite products}
+\subsubsection{0.26\quad Examples of infinite products}
+
+\subsection{0.3\quad Functional Series}
+\subsubsection{0.30\quad Definitions and theorems}
+\subsubsection{0.31\quad Power series}
+\subsubsection{0.32\quad Fourier series}
+\subsubsection{0.33\quad Asymptotic series}
+
+\subsection{0.4\quad Certain Formulas from Differential Calculus}
+\subsubsection{0.41\quad Differentiation of a definite integral with respect to a parameter}
+\subsubsection{0.42\quad The nth derivative of a product (Leibniz's rule)}
+\subsubsection{0.43\quad The nth derivative of a composite function}
+\subsubsection{0.44\quad Integration by substitution}
+
+%% ============================================================
+%% 1  Elementary Functions
+%% ============================================================
+\section{1\quad Elementary Functions}
+
+\subsection{1.1\quad Power of Binomials}
+\subsubsection{1.11\quad Power series}
+\subsubsection{1.12\quad Series of rational fractions}
+
+\subsection{1.2\quad The Exponential Function}
+\subsubsection{1.21\quad Series representation}
+\subsubsection{1.22\quad Functional relations}
+\subsubsection{1.23\quad Series of exponentials}
+
+\subsection{1.3--1.4\quad Trigonometric and Hyperbolic Functions}
+\subsubsection{1.30\quad Introduction}
+\subsubsection{1.31\quad The basic functional relations}
+\subsubsection{1.32\quad The representation of powers of trigonometric and hyperbolic functions in terms of functions of multiples of the argument (angle)}
+\subsubsection{1.33\quad The representation of trigonometric and hyperbolic functions of multiples of the argument (angle) in terms of powers of these functions}
+\subsubsection{1.34\quad Certain sums of trigonometric and hyperbolic functions}
+\subsubsection{1.35\quad Sums of powers of trigonometric functions of multiple angles}
+\subsubsection{1.36\quad Sums of products of trigonometric functions of multiple angles}
+\subsubsection{1.37\quad Sums of tangents of multiple angles}
+\subsubsection{1.38\quad Sums leading to hyperbolic tangents and cotangents}
+\subsubsection{1.39\quad The representation of cosines and sines of multiples of the angle as finite products}
+\subsubsection{1.41\quad The expansion of trigonometric and hyperbolic functions in power series}
+\subsubsection{1.42\quad Expansion in series of simple fractions}
+\subsubsection{1.43\quad Representation in the form of an infinite product}
+\subsubsection{1.44--1.45\quad Trigonometric (Fourier) series}
+\subsubsection{1.46\quad Series of products of exponential and trigonometric functions}
+\subsubsection{1.47\quad Series of hyperbolic functions}
+\subsubsection{1.48\quad Lobachevskiy's ``Angle of Parallelism'' $\Pi(x)$}
+\subsubsection{1.49\quad The hyperbolic amplitude (the Gudermannian) $\operatorname{gd} x$}
+
+\subsection{1.5\quad The Logarithm}
+\subsubsection{1.51\quad Series representation}
+\subsubsection{1.52\quad Series of logarithms (cf.\ 1.431)}
+
+\subsection{1.6\quad The Inverse Trigonometric and Hyperbolic Functions}
+\subsubsection{1.61\quad The domain of definition}
+\subsubsection{1.62--1.63\quad Functional relations}
+\subsubsection{1.64\quad Series representations}
+
+%% ============================================================
+%% 2  Indefinite Integrals of Elementary Functions
+%% ============================================================
+\section{2\quad Indefinite Integrals of Elementary Functions}
+
+\subsection{2.0\quad Introduction}
+\subsubsection{2.00\quad General remarks}
+\subsubsection{2.01\quad The basic integrals}
+\subsubsection{2.02\quad General formulas}
+
+\subsection{2.1\quad Rational Functions}
+\subsubsection{2.10\quad General integration rules}
+\subsubsection{2.11--2.13\quad Forms containing the binomial $a + bx^k$}
+\subsubsection{2.14\quad Forms containing the binomial $1\pm x^n$}
+\subsubsection{2.15\quad Forms containing pairs of binomials: $a + bx$ and $\alpha +\beta x$}
+\subsubsection{2.16\quad Forms containing the trinomial $a + bx^k + cx^{2k}$}
+\subsubsection{2.17\quad Forms containing the quadratic trinomial $a + bx + cx^2$ and powers of $x$}
+\subsubsection{2.18\quad Forms containing the quadratic trinomial $a + bx + cx^2$ and the binomial $\alpha +\beta x$}
+
+\subsection{2.2\quad Algebraic Functions}
+\subsubsection{2.20\quad Introduction}
+\subsubsection{2.21\quad Forms containing the binomial $a + bx^k$ and $\sqrt{x}$}
+\subsubsection{2.22--2.23\quad Forms containing $\sqrt[n]{(a + bx)^k}$}
+\subsubsection{2.24\quad Forms containing $\sqrt{a + bx}$ and the binomial $\alpha +\beta x$}
+\subsubsection{2.25\quad Forms containing $\sqrt{a + bx + cx^2}$}
+\subsubsection{2.26\quad Forms containing $\sqrt{a + bx + cx^2}$ and integral powers of $x$}
+\subsubsection{2.27\quad Forms containing $\sqrt{a + cx^2}$ and integral powers of $x$}
+\subsubsection{2.28\quad Forms containing $\sqrt{a + bx + cx^2}$ and first- and second-degree polynomials}
+\subsubsection{2.29\quad Integrals that can be reduced to elliptic or pseudo-elliptic integrals}
+
+\subsection{2.3\quad The Exponential Function}
+\subsubsection{2.31\quad Forms containing $e^{ax}$}
+\subsubsection{2.32\quad The exponential combined with rational functions of $x$}
+
+\subsection{2.4\quad Hyperbolic Functions}
+\subsubsection{2.41--2.43\quad Powers of $\sinh x$, $\cosh x$, $\tanh x$, and $\coth x$}
+\subsubsection{2.44--2.45\quad Rational functions of hyperbolic functions}
+\subsubsection{2.46\quad Algebraic functions of hyperbolic functions}
+\subsubsection{2.47\quad Combinations of hyperbolic functions and powers}
+\subsubsection{2.48\quad Combinations of hyperbolic functions, exponentials, and powers}
+
+\subsection{2.5--2.6\quad Trigonometric Functions}
+\subsubsection{2.50\quad Introduction}
+\subsubsection{2.51--2.52\quad Powers of trigonometric functions}
+\subsubsection{2.53--2.54\quad Sines and cosines of multiple angles and of linear and more complicated functions of the argument}
+\subsubsection{2.55--2.56\quad Rational functions of the sine and cosine}
+\subsubsection{2.57\quad Integrals containing $\sqrt{a\pm b\sin x}$ or $\sqrt{a\pm b\cos x}$}
+\subsubsection{2.58--2.62\quad Integrals reducible to elliptic and pseudo-elliptic integrals}
+\subsubsection{2.63--2.65\quad Products of trigonometric functions and powers}
+\subsubsection{2.66\quad Combinations of trigonometric functions and exponentials}
+\subsubsection{2.67\quad Combinations of trigonometric and hyperbolic functions}
+
+\subsection{2.7\quad Logarithms and Inverse-Hyperbolic Functions}
+\subsubsection{2.71\quad The logarithm}
+\subsubsection{2.72--2.73\quad Combinations of logarithms and algebraic functions}
+\subsubsection{2.74\quad Inverse hyperbolic functions}
+
+\subsection{2.8\quad Inverse Trigonometric Functions}
+\subsubsection{2.81\quad Arcsines and arccosines}
+\subsubsection{2.82\quad The arcsecant, the arccosecant, the arctangent, and the arccotangent}
+\subsubsection{2.83\quad Combinations of arcsine or arccosine and algebraic functions}
+\subsubsection{2.84\quad Combinations of the arcsecant and arccosecant with powers of $x$}
+\subsubsection{2.85\quad Combinations of the arctangent and arccotangent with algebraic functions}
+
+%% ============================================================
+%% 3--4  Definite Integrals of Elementary Functions
+%% ============================================================
+\section{3--4\quad Definite Integrals of Elementary Functions}
+
+\subsection{3.0\quad Introduction}
+\subsubsection{3.01\quad Theorems of a general nature}
+\subsubsection{3.02\quad Change of variable in a definite integral}
+\subsubsection{3.03\quad General formulas}
+\subsubsection{3.04\quad Improper integrals}
+\subsubsection{3.05\quad The principal values of improper integrals}
+
+\subsection{3.1--3.2\quad Power and Algebraic Functions}
+\subsubsection{3.11\quad Rational functions}
+\subsubsection{3.12\quad Products of rational functions and expressions that can be reduced to square roots of first- and second-degree polynomials}
+\subsubsection{3.13--3.17\quad Expressions that can be reduced to square roots of third- and fourth-degree polynomials and their products with rational functions}
+\subsubsection{3.18\quad Expressions that can be reduced to fourth roots of second-degree polynomials and their products with rational functions}
+\subsubsection{3.19--3.23\quad Combinations of powers of $x$ and powers of binomials of the form $(\alpha +\beta x)$}
+\subsubsection{3.24--3.27\quad Powers of $x$, of binomials of the form $\alpha +\beta x^{p}$ and of polynomials in $x$}
+
+\subsection{3.3--3.4\quad Exponential Functions}
+\subsubsection{3.31\quad Exponential functions}
+\subsubsection{3.32--3.34\quad Exponentials of more complicated arguments}
+\subsubsection{3.35\quad Combinations of exponentials and rational functions}
+\subsubsection{3.36--3.37\quad Combinations of exponentials and algebraic functions}
+\subsubsection{3.38--3.39\quad Combinations of exponentials and arbitrary powers}
+\subsubsection{3.41--3.44\quad Combinations of rational functions of powers and exponentials}
+\subsubsection{3.45\quad Combinations of powers and algebraic functions of exponentials}
+\subsubsection{3.46--3.48\quad Combinations of exponentials of more complicated arguments and powers}
+
+\subsection{3.5\quad Hyperbolic Functions}
+\subsubsection{3.51\quad Hyperbolic functions}
+\subsubsection{3.52--3.53\quad Combinations of hyperbolic functions and algebraic functions}
+\subsubsection{3.54\quad Combinations of hyperbolic functions and exponentials}
+\subsubsection{3.55--3.56\quad Combinations of hyperbolic functions, exponentials, and powers}
+
+\subsection{3.6--4.1\quad Trigonometric Functions}
+\subsubsection{3.61\quad Rational functions of sines and cosines and trigonometric functions of multiple angles}
+\subsubsection{3.62\quad Powers of trigonometric functions}
+\subsubsection{3.63\quad Powers of trigonometric functions and trigonometric functions of linear functions}
+\subsubsection{3.64--3.65\quad Powers and rational functions of trigonometric functions}
+\subsubsection{3.66\quad Forms containing powers of linear functions of trigonometric functions}
+\subsubsection{3.67\quad Square roots of expressions containing trigonometric functions}
+\subsubsection{3.68\quad Various forms of powers of trigonometric functions}
+\subsubsection{3.69--3.71\quad Trigonometric functions of more complicated arguments}
+\subsubsection{3.72--3.74\quad Combinations of trigonometric and rational functions}
+\subsubsection{3.75\quad Combinations of trigonometric and algebraic functions}
+\subsubsection{3.76--3.77\quad Combinations of trigonometric functions and powers}
+\subsubsection{3.78--3.81\quad Rational functions of $x$ and of trigonometric functions}
+\subsubsection{3.82--3.83\quad Powers of trigonometric functions combined with other powers}
+\subsubsection{3.84\quad Integrals containing $\sqrt{1 - k^{2}\sin^{2}x}$, $\sqrt{1 - k^{2}\cos^{2}x}$, and similar expressions}
+\subsubsection{3.85--3.88\quad Trigonometric functions of more complicated arguments combined with powers}
+\subsubsection{3.89--3.91\quad Trigonometric functions and exponentials}
+\subsubsection{3.92\quad Trigonometric functions of more complicated arguments combined with exponentials}
+\subsubsection{3.93\quad Trigonometric and exponential functions of trigonometric functions}
+\subsubsection{3.94--3.97\quad Combinations involving trigonometric functions, exponentials, and powers}
+\subsubsection{3.98--3.99\quad Combinations of trigonometric and hyperbolic functions}
+\subsubsection{4.11--4.12\quad Combinations involving trigonometric and hyperbolic functions and powers}
+\subsubsection{4.13\quad Combinations of trigonometric and hyperbolic functions and exponentials}
+\subsubsection{4.14\quad Combinations of trigonometric and hyperbolic functions, exponentials, and powers}
+
+\subsection{4.2--4.4\quad Logarithmic Functions}
+\subsubsection{4.21\quad Logarithmic functions}
+\subsubsection{4.22\quad Logarithms of more complicated arguments}
+\subsubsection{4.23\quad Combinations of logarithms and rational functions}
+\subsubsection{4.24\quad Combinations of logarithms and algebraic functions}
+\subsubsection{4.25\quad Combinations of logarithms and powers}
+\subsubsection{4.26--4.27\quad Combinations involving powers of the logarithm and other powers}
+\subsubsection{4.28\quad Combinations of rational functions of $\ln x$ and powers}
+\subsubsection{4.29--4.32\quad Combinations of logarithmic functions of more complicated arguments and powers}
+\subsubsection{4.33--4.34\quad Combinations of logarithms and exponentials}
+\subsubsection{4.35--4.36\quad Combinations of logarithms, exponentials, and powers}
+\subsubsection{4.37\quad Combinations of logarithms and hyperbolic functions}
+\subsubsection{4.38--4.41\quad Logarithms and trigonometric functions}
+\subsubsection{4.42--4.43\quad Combinations of logarithms, trigonometric functions, and powers}
+\subsubsection{4.44\quad Combinations of logarithms, trigonometric functions, and exponentials}
+
+\subsection{4.5\quad Inverse Trigonometric Functions}
+\subsubsection{4.51\quad Inverse trigonometric functions}
+\subsubsection{4.52\quad Combinations of arcsines, arccosines, and powers}
+\subsubsection{4.53--4.54\quad Combinations of arctangents, arccotangents, and powers}
+\subsubsection{4.55\quad Combinations of inverse trigonometric functions and exponentials}
+\subsubsection{4.56\quad A combination of the arctangent and a hyperbolic function}
+\subsubsection{4.57\quad Combinations of inverse and direct trigonometric functions}
+\subsubsection{4.58\quad A combination involving an inverse and a direct trigonometric function and a power}
+\subsubsection{4.59\quad Combinations of inverse trigonometric functions and logarithms}
+
+\subsection{4.6\quad Multiple Integrals}
+\subsubsection{4.60\quad Change of variables in multiple integrals}
+\subsubsection{4.61\quad Change of the order of integration and change of variables}
+\subsubsection{4.62\quad Double and triple integrals with constant limits}
+\subsubsection{4.63--4.64\quad Multiple integrals}
+
+%% ============================================================
+%% 5  Indefinite Integrals of Special Functions
+%% ============================================================
+\section{5\quad Indefinite Integrals of Special Functions}
+
+\subsection{5.1\quad Elliptic Integrals and Functions}
+\subsubsection{5.11\quad Complete elliptic integrals}
+\subsubsection{5.12\quad Elliptic integrals}
+\subsubsection{5.13\quad Jacobian elliptic functions}
+\subsubsection{5.14\quad Weierstrass elliptic functions}
+
+\subsection{5.2\quad The Exponential Integral Function}
+\subsubsection{5.21\quad The exponential integral function}
+\subsubsection{5.22\quad Combinations of the exponential integral function and powers}
+\subsubsection{5.23\quad Combinations of the exponential integral and the exponential}
+
+\subsection{5.3\quad The Sine Integral and the Cosine Integral}
+
+\subsection{5.4\quad The Probability Integral and Fresnel Integrals}
+
+\subsection{5.5\quad Bessel Functions}
+
+%% ============================================================
+%% 6--7  Definite Integrals of Special Functions
+%% ============================================================
+\section{6--7\quad Definite Integrals of Special Functions}
+
+\subsection{6.1\quad Elliptic Integrals and Functions}
+\subsubsection{6.11\quad Forms containing $F(x,k)$}
+\subsubsection{6.12\quad Forms containing $E(x,k)$}
+\subsubsection{6.13\quad Integration of elliptic integrals with respect to the modulus}
+\subsubsection{6.14--6.15\quad Complete elliptic integrals}
+\subsubsection{6.16\quad The theta function}
+\subsubsection{6.17\quad Generalized elliptic integrals}
+
+\subsection{6.2--6.3\quad The Exponential Integral Function and Functions Generated by It}
+\subsubsection{6.21\quad The logarithm integral}
+\subsubsection{6.22--6.23\quad The exponential integral function}
+\subsubsection{6.24--6.26\quad The sine integral and cosine integral functions}
+\subsubsection{6.27\quad The hyperbolic sine integral and hyperbolic cosine integral functions}
+\subsubsection{6.28--6.31\quad The probability integral}
+\subsubsection{6.32\quad Fresnel integrals}
+
+\subsection{6.4\quad The Gamma Function and Functions Generated by It}
+
+The gamma function $\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}\,dt$ and the
+family of special functions it generates pervade both pure mathematics and
+mathematical physics.  Gradshteyn \& Ryzhik sections 6.41--6.47 catalogue
+the integral identities; the annotations below describe the problems to which
+those identities apply.
+
+%% -------------------------------------------------------------------
+\subsubsection{6.41\quad The gamma function}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Dimensional regularisation in quantum field theory.}%
+  \index{quantum field theory!dimensional regularisation}%
+  \index{dimensional regularisation|see{quantum field theory}}%
+  \index{Feynman integrals!one-loop scalar integral}%
+  \index{renormalisation!ultraviolet divergences}%
+  One-loop Feynman integrals in $d=4-2\varepsilon$ dimensions evaluate to
+  ratios of gamma functions; for instance the scalar tadpole gives
+  \[
+    \int\!\frac{d^{d}k}{(2\pi)^{d}}\,
+      \frac{1}{(k^{2}+m^{2})^{n}}
+    =\frac{1}{(4\pi)^{d/2}}\,
+      \frac{\Gamma(n-d/2)}{\Gamma(n)}\,
+      \Bigl(\frac{1}{m^{2}}\Bigr)^{\!n-d/2}.
+  \]
+  Ultraviolet divergences appear as poles of $\Gamma(\varepsilon)$ at
+  $\varepsilon=0$ and are absorbed by renormalisation counterterms
+  \cite{tHooftVeltman1972,BolliniGiambiagi1972}.
+
+\item \textbf{Volume of the $n$-sphere and solid angles.}%
+  \index{n-sphere@$n$-sphere!volume}%
+  \index{solid angle}%
+  \index{Stefan--Boltzmann law}%
+  \index{phase space!volumes in particle physics}%
+  The volume of the unit $n$-ball and the surface area of~$S^{n-1}$ are
+  \[
+    V_{n}=\frac{\pi^{n/2}}{\Gamma(n/2+1)},
+    \qquad
+    S_{n-1}=\frac{2\pi^{n/2}}{\Gamma(n/2)}.
+  \]
+  These arise every time a $d$-dimensional integral is converted to polar
+  coordinates---scattering cross-sections, the Stefan--Boltzmann law, and
+  phase-space volumes in particle physics.
+
+\item \textbf{Black-body radiation and Bose--Einstein integrals.}%
+  \index{black-body radiation}%
+  \index{Bose--Einstein integrals}%
+  \index{cosmic microwave background}%
+  \index{Debye model!phonon specific heat}%
+  \index{Stefan--Boltzmann constant|see{Stefan--Boltzmann law}}%
+  The Stefan--Boltzmann constant derives from
+  $\int_{0}^{\infty}x^{3}(e^{x}-1)^{-1}\,dx=\Gamma(4)\,\zeta(4)=\pi^{4}/15$.
+  More generally, $\int_{0}^{\infty}x^{s-1}(e^{x}-1)^{-1}\,dx
+  =\Gamma(s)\,\zeta(s)$ controls the energy density of the cosmic microwave
+  background and the Debye model of phonon specific heat.
+
+\item \textbf{Coulomb phase shifts.}%
+  \index{Coulomb scattering!phase shifts}%
+  \index{Sommerfeld parameter}%
+  \index{Gamow penetration factor}%
+  \index{nuclear physics!alpha decay}%
+  \index{thermonuclear reactions}%
+  In charged-particle scattering the Coulomb phase shift is
+  $\sigma_{\ell}=\arg\Gamma(\ell+1+i\eta)$, where $\eta$ is the Sommerfeld
+  parameter.  The identity
+  $|\Gamma(i\eta)|^{2}=\pi/[\eta\sinh(\pi\eta)]$ governs
+  the Gamow penetration factor in nuclear alpha-decay theory and
+  thermonuclear reaction rates in stellar interiors.
+
+\item \textbf{The Veneziano amplitude and the birth of string theory.}%
+  \index{Veneziano amplitude}%
+  \index{string theory!Veneziano amplitude}%
+  \index{beta function (Euler)}%
+  \index{Regge behaviour}%
+  \index{Mandelstam variables}%
+  Veneziano's 1968 meson scattering amplitude
+  $B(s,t)=\Gamma(s)\Gamma(t)/\Gamma(s+t)$, with $s,t$ linear in Mandelstam
+  variables, reproduces crossing symmetry and Regge behaviour
+  \cite{Veneziano1968}.  The gamma-function poles at non-positive integers
+  correspond to the infinite tower of string resonances.
+
+\item \textbf{Selberg integral and random matrix theory.}%
+  \index{Selberg integral}%
+  \index{random matrix theory!eigenvalue distributions}%
+  \index{log-gas}%
+  \index{Calogero--Sutherland system}%
+  The partition function of the log-gas \cite{MehtaDyson1963} is the Selberg
+  integral \cite{Selberg1944}, a product of gamma functions that governs
+  GUE/GOE/GSE eigenvalue distributions and the Calogero--Sutherland
+  integrable system.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Functional equation of the Riemann zeta function.}%
+  \index{Riemann zeta function!functional equation}%
+  \index{Jacobi theta function}%
+  \index{Mellin transform!of Jacobi theta function}%
+  The completed zeta function
+  $\xi(s)=\pi^{-s/2}\Gamma(s/2)\,\zeta(s)$ satisfies $\xi(s)=\xi(1-s)$.
+  The gamma factor encodes the archimedean place in the Euler product over
+  primes; the proof uses the Mellin transform of the Jacobi theta function.
+
+\item \textbf{Weierstrass product and entire function theory.}%
+  \index{Weierstrass product}%
+  \index{Hadamard factorisation theorem}%
+  \index{entire functions!finite order}%
+  \index{zeta-regularised determinants}%
+  $1/\Gamma(z)=z\,e^{\gamma z}\prod_{n=1}^{\infty}(1+z/n)\,e^{-z/n}$ is
+  the prototype for the Hadamard factorisation theorem and underlies the
+  theory of zeta-regularised determinants.
+
+\item \textbf{Interpolation of the factorial.}%
+  \index{Bohr--Mollerup theorem}%
+  \index{factorial!interpolation}%
+  \index{fractional calculus!binomial coefficient}%
+  \index{hypergeometric series!generalised}%
+  By the Bohr--Mollerup theorem, $\Gamma$ is the unique log-convex extension
+  of $n!$ to real and complex arguments.  The binomial coefficient
+  $\binom{\alpha}{k}=\Gamma(\alpha+1)/[\Gamma(k+1)\Gamma(\alpha-k+1)]$ for
+  non-integer~$\alpha$ is essential in fractional calculus and generalised
+  hypergeometric series.
+
+\item \textbf{Spectral zeta-regularised determinants.}%
+  \index{spectral zeta function}%
+  \index{Laplacian!on compact manifold}%
+  \index{quantum gravity!one-loop}%
+  \index{Ray--Singer analytic torsion}%
+  For a positive self-adjoint operator~$A$ (e.g.\ the Laplacian on a compact
+  Riemannian manifold), $\det'(A)=\exp(-\zeta_{A}'(0))$ is computed via the
+  Mellin transform $\lambda^{-s}=\Gamma(s)^{-1}\int_{0}^{\infty}
+  t^{s-1}e^{-\lambda t}\,dt$.  This is central to one-loop quantum gravity
+  and the Ray--Singer analytic torsion.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{6.42\quad Combinations of the gamma function, the exponential, and powers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Schwinger proper-time parametrisation.}%
+  \index{Schwinger parametrisation}%
+  \index{proper time}%
+  \index{Feynman integrals!Schwinger parametrisation}%
+  \index{quantum electrodynamics (QED)}%
+  \index{quantum chromodynamics (QCD)}%
+  The identity
+  \[
+    \frac{1}{(k^{2}+m^{2})^{n}}
+    =\frac{1}{\Gamma(n)}\int_{0}^{\infty}\alpha^{n-1}\,
+      e^{-\alpha(k^{2}+m^{2})}\,d\alpha
+  \]
+  converts momentum-space Feynman propagators into Gaussian integrals over
+  proper-time parameters \cite{Schwinger1951}.  Multi-loop calculations in
+  QED and QCD chain multiple such parametrisations, producing integrands of
+  products $\alpha_{i}^{n_{i}-1}$ times exponentials---exactly the class of
+  integrals in G\&R~6.42.
+
+\item \textbf{Mellin--Barnes integrals for scattering amplitudes.}%
+  \index{Mellin--Barnes integrals}%
+  \index{scattering amplitudes!Mellin--Barnes representation}%
+  \index{method of brackets}%
+  Feynman integrals are frequently represented as Mellin--Barnes contour
+  integrals
+  \[
+    I=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+      \frac{\Gamma(a+s)\,\Gamma(b-s)}{\Gamma(c+s)}\,z^{-s}\,ds,
+  \]
+  i.e.\ products and ratios of gamma functions multiplied by exponentials and
+  powers.  The ``method of brackets'' \cite{GonzalezMoll2010} systematises
+  such evaluations, extending Ramanujan's Master Theorem.
+
+\item \textbf{Hawking radiation.}%
+  \index{Hawking radiation}%
+  \index{black hole!thermodynamics}%
+  \index{Bogoliubov coefficients}%
+  The Bogoliubov coefficients near a black-hole horizon involve
+  $|\Gamma(i\omega/\kappa)|^{2}=\pi/[\omega\sinh(\pi\omega/\kappa)]$,
+  producing the thermal Hawking spectrum at temperature
+  $T_{H}=\hbar\kappa/(2\pi k_{B})$ \cite{Hawking1975}.
+
+\item \textbf{Maxwell--Boltzmann moment integrals.}%
+  \index{Maxwell--Boltzmann distribution!moments}%
+  \index{transport coefficients!viscosity}%
+  \index{transport coefficients!thermal conductivity}%
+  \index{stellar structure}%
+  The $n$-th moment of the Maxwell speed distribution is
+  $\langle v^{n}\rangle\propto(k_{B}T/m)^{n/2}\,\Gamma\!\bigl(\frac{n+3}{2}\bigr)$.
+  These moments yield transport coefficients---viscosity, thermal
+  conductivity---and appear in stellar structure equations.
+
+\item \textbf{Statistical mechanics partition functions.}%
+  \index{partition function!ideal gas}%
+  \index{Gibbs factor}%
+  \index{density of states}%
+  \index{Bose gas}%
+  \index{Fermi gas}%
+  The Gibbs factor $N!=\Gamma(N+1)$ corrects for particle
+  indistinguishability, and the density of states
+  $g(\varepsilon)\propto\varepsilon^{d/2-1}/\Gamma(d/2)$ is a
+  gamma-exponential-power combination that shapes the thermodynamics of
+  ideal Bose and Fermi gases.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Ramanujan's Master Theorem.}%
+  \index{Ramanujan's Master Theorem}%
+  \index{method of brackets|see{Ramanujan's Master Theorem}}%
+  If $f(x)=\sum_{k=0}^{\infty}\varphi(k)(-x)^{k}/k!$, then
+  $\int_{0}^{\infty}x^{s-1}f(x)\,dx=\Gamma(s)\,\varphi(-s)$.
+  This result (rigorised by Hardy \cite{Hardy1920}) is the prototype for the
+  integrals in G\&R~6.42 and underpins the modern method of brackets.
+
+\item \textbf{Mellin transform theory.}%
+  \index{Mellin transform!theory}%
+  \index{Perron's formula}%
+  \index{analytic number theory!Perron's formula}%
+  The Mellin transform of $e^{-x}$ is $\Gamma(s)$ itself.  More generally,
+  Mellin transforms of functions built from exponentials and powers produce
+  gamma-function combinations.  Mellin inversion and the Parseval-type
+  identity (used in analytic number theory, e.g.\ Perron's formula) rely on
+  the analytic properties of~$\Gamma(s)$.
+
+\item \textbf{Watson's lemma and asymptotic expansions.}%
+  \index{Watson's lemma}%
+  \index{asymptotic expansion!Laplace-type}%
+  \index{Stirling's series}%
+  Watson's lemma gives the large-$|z|$ asymptotic expansion of
+  $\int_{0}^{\infty}t^{\lambda-1}e^{-zt}\phi(t)\,dt$: each term
+  contributes $\Gamma(\lambda+n)/z^{\lambda+n}$, making the gamma function
+  the organising structure for all Laplace-type asymptotic series, including
+  Stirling's series.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{6.43\quad Combinations of the gamma function and trigonometric functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Euler's reflection formula and quantum scattering.}%
+  \index{Euler's reflection formula}%
+  \index{Gamow penetration factor}%
+  \index{thermonuclear reactions}%
+  \index{stellar physics!thermonuclear reactions}%
+  The identity $\Gamma(z)\Gamma(1-z)=\pi/\sin(\pi z)$ is the prototypical
+  gamma-trigonometric combination.  In charged-particle scattering,
+  $|\Gamma(i\eta)|^{2}=\pi/[\eta\sinh(\pi\eta)]$ gives the Gamow
+  penetration factor for thermonuclear reactions in stellar interiors.
+
+\item \textbf{Regge poles and partial-wave amplitudes.}%
+  \index{Regge theory!poles}%
+  \index{partial-wave amplitude}%
+  \index{angular momentum!complex continuation}%
+  \index{Sommerfeld--Watson transform}%
+  In Regge theory the partial-wave amplitude, continued to complex angular
+  momentum~$\ell$, takes the form
+  $\beta(t)\,\Gamma(1-\alpha(t))/\sin(\pi\alpha(t))\,(-s)^{\alpha(t)}$
+  ---a product of gamma and trigonometric functions of the Regge
+  trajectory~$\alpha(t)$ \cite{Regge1959}.  This structure is inherited by
+  the Veneziano amplitude and modern string amplitudes.
+
+\item \textbf{Gutzwiller trace formula.}%
+  \index{Gutzwiller trace formula}%
+  \index{quantum billiards}%
+  \index{semiclassical mechanics!periodic orbits}%
+  In semiclassical quantum mechanics, the density of energy levels in
+  quantum billiards is expressed as a sum over classical periodic orbits
+  involving gamma-trigonometric combinations, via the functional equation of
+  spectral $L$-functions \cite{Gutzwiller1990}.
+
+\item \textbf{Fourier transforms of power laws and L\'{e}vy distributions.}%
+  \index{Levy stable distributions@L\'evy stable distributions}%
+  \index{fractional diffusion}%
+  \index{turbulence!Kolmogorov spectrum}%
+  \index{Fourier transform!of power laws}%
+  The Fourier transform of $|x|^{-\alpha}$ involves
+  $\Gamma((d-\alpha)/2)/\Gamma(\alpha/2)$, with intermediate steps yielding
+  $\Gamma(s)\cos(\pi s/2)$.  These appear in the theory of L\'{e}vy stable
+  distributions, fractional diffusion equations, and turbulence theory
+  (Kolmogorov spectrum).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler's sine product and entire function theory.}%
+  \index{Euler's sine product}%
+  \index{entire functions!finite order}%
+  \index{Hadamard factorisation theorem}%
+  $\sin(\pi z)/(\pi z)=\prod_{n=1}^{\infty}(1-z^{2}/n^{2})$, combined
+  with the Weierstrass product for~$\Gamma(z)$, yields the reflection
+  formula.  This circle of ideas is foundational for the theory of entire
+  functions of finite order and the Hadamard factorisation theorem.
+
+\item \textbf{Dirichlet $L$-function functional equations.}%
+  \index{Dirichlet $L$-functions!functional equation}%
+  \index{Langlands programme}%
+  \index{automorphic $L$-functions}%
+  The completed $L$-function involves gamma factors
+  $\Gamma((s+a)/2)\,\pi^{-(s+a)/2}$, which pair with $\cos(\pi s/2)$ or
+  $\sin(\pi s/2)$ through the duplication and reflection formulas.  This
+  structure extends to automorphic $L$-functions in the Langlands programme.
+
+\item \textbf{Ramanujan's integral identities.}%
+  \index{Ramanujan's integral identities}%
+  The identity $\int_{0}^{\infty}x^{s-1}/(1+x)\,dx=\pi/\sin(\pi s)
+  =\Gamma(s)\Gamma(1-s)$ is the simplest of many gamma-trigonometric
+  evaluations in Ramanujan's notebooks, rigorised by Hardy
+  \cite{Hardy1920}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{6.44\quad The logarithm of the gamma function\textsuperscript{*}}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stirling's approximation and the thermodynamic limit.}%
+  \index{Stirling's approximation}%
+  \index{thermodynamic limit}%
+  \index{entropy!free energy}%
+  \index{chemical potential}%
+  \index{Bernoulli numbers!Stirling series}%
+  \index{finite-size scaling}%
+  \index{nucleation theory}%
+  \index{Sackur--Tetrode equation}%
+  The expansion
+  $\ln\Gamma(z)\sim z\ln z-z-\tfrac{1}{2}\ln z+\tfrac{1}{2}\ln(2\pi)
+  +\sum_{k=1}^{\infty}B_{2k}/[2k(2k-1)\,z^{2k-1}]$ (with Bernoulli
+  numbers $B_{2k}$) is the workhorse of statistical mechanics: every
+  computation of entropy, free energy, or chemical potential for $N$
+  particles passes through $\ln N!\approx N\ln N-N$.  More refined forms
+  appear in finite-size scaling, nucleation theory, and the Sackur--Tetrode
+  equation for ideal-gas entropy.
+
+\item \textbf{Entropy of the Gamma distribution and Bayesian inference.}%
+  \index{gamma distribution!differential entropy}%
+  \index{Bayesian inference!ELBO}%
+  \index{variational inference}%
+  \index{maximum entropy}%
+  The differential entropy of a $\mathrm{Gamma}(\alpha,\theta)$ random
+  variable is $H=\alpha+\ln\theta+\ln\Gamma(\alpha)+(1-\alpha)\,\psi(\alpha)$.
+  This expression appears in variational inference (ELBO computations),
+  Bayesian model comparison, and the maximum-entropy characterisation of the
+  gamma distribution.
+
+\item \textbf{Free energy of random matrix ensembles.}%
+  \index{random matrix theory!free energy}%
+  \index{topological expansion}%
+  \index{moduli spaces!Riemann surfaces}%
+  \index{intersection numbers}%
+  The large-$n$ expansion of $\ln Z_{n}(\beta)$ (from the Selberg integral
+  partition function) using the Stirling expansion of $\ln\Gamma$ yields the
+  topological expansion of random matrix theory, with coefficients related
+  to intersection numbers on moduli spaces of Riemann surfaces.
+
+\item \textbf{One-loop effective actions in QFT.}%
+  \index{effective action!one-loop}%
+  \index{Barnes $G$-function}%
+  \index{conformal field theory}%
+  \index{functional determinants}%
+  The one-loop effective action
+  $\Gamma^{(1)}=-\tfrac{1}{2}\ln\det(-\nabla^{2}+m^{2})=-\tfrac{1}{2}\zeta_{A}'(0)$
+  involves $\ln\Gamma$ through the spectral zeta function.  The Barnes
+  $G$-function (built from $\int\ln\Gamma$) appears in functional
+  determinants on spheres and in conformal field theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Raabe's formula.}%
+  \index{Raabe's formula}%
+  \index{Kummer's Fourier series}%
+  \index{Riemann zeta function!derivative at zero}%
+  $\int_{0}^{1}\ln\Gamma(x)\,dx=\tfrac{1}{2}\ln(2\pi)$ \cite{Raabe1843},
+  a fundamental identity connected to
+  $\zeta'(0)=-\tfrac{1}{2}\ln(2\pi)$.  Kummer's Fourier series for
+  $\ln\Gamma(x)$ on $(0,1)$ expresses it in terms of $\ln\sin(\pi x)$ and a
+  cosine series with coefficients involving $\ln k$.
+
+\item \textbf{The Barnes $G$-function and multiple gamma functions.}%
+  \index{Barnes $G$-function}%
+  \index{multiple gamma functions}%
+  \index{Glaisher--Kinkelin constant}%
+  \index{Casimir energy!curved manifolds}%
+  \index{Laplacian!determinant on $S^n$}%
+  $G(z+1)=\Gamma(z)\,G(z)$; its logarithm is built from iterated integrals
+  of $\ln\Gamma$.  Applications include: determinants of Laplacians on
+  $S^{n}$ \cite{Vardi1988,OsgoodPhillipsSarnak1988}, the Glaisher--Kinkelin
+  constant $A=e^{1/12-\zeta'(-1)}$, and exact Casimir energies on curved
+  manifolds.
+
+\item \textbf{The Riemann--Siegel theta function.}%
+  \index{Riemann--Siegel theta function}%
+  \index{Riemann zeta function!zeros on critical line}%
+  $\vartheta(t)=\arg\Gamma(\tfrac{1}{4}+\tfrac{it}{2})
+  -\tfrac{t}{2}\ln\pi$ governs the phase of $\zeta(\tfrac{1}{2}+it)$ on
+  the critical line.  Computing high zeros of $\zeta(s)$ requires accurate
+  evaluation of $\ln\Gamma$ at complex arguments via the Stirling series.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{6.45\quad The incomplete gamma function}
+
+The lower and upper incomplete gamma functions are
+\[
+  \gamma(s,x)=\int_{0}^{x}t^{s-1}e^{-t}\,dt,
+  \qquad
+  \Gamma(s,x)=\int_{x}^{\infty}t^{s-1}e^{-t}\,dt,
+\]
+so that $\gamma(s,x)+\Gamma(s,x)=\Gamma(s)$.  The regularised forms are
+$P(s,x)=\gamma(s,x)/\Gamma(s)$ and $Q(s,x)=\Gamma(s,x)/\Gamma(s)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Chi-squared distribution and experimental physics.}%
+  \index{chi-squared distribution}%
+  \index{goodness-of-fit test}%
+  \index{particle physics!statistics}%
+  The CDF of the $\chi^{2}$ distribution with $k$ degrees of freedom is
+  $F(x;k)=P(k/2,\,x/2)=\gamma(k/2,\,x/2)/\Gamma(k/2)$.  Every
+  goodness-of-fit $p$-value in experimental particle physics invokes the
+  regularised incomplete gamma function.
+
+\item \textbf{Poisson process cumulative probabilities.}%
+  \index{Poisson process}%
+  \index{radioactive decay!counting statistics}%
+  \index{queuing theory}%
+  $P(X\leq k)=Q(k+1,\lambda)=\Gamma(k+1,\lambda)/\Gamma(k+1)$, connecting
+  the incomplete gamma function to counting statistics in nuclear and
+  particle physics detectors, radioactive decay counting, and queuing
+  theory.
+
+\item \textbf{The error function and Gaussian integrals.}%
+  \index{error function}%
+  \index{tunnelling (quantum)}%
+  \index{signal processing!Gaussian noise}%
+  \index{diffusion!random media}%
+  $\operatorname{erf}(x)=\gamma(\tfrac{1}{2},x^{2})/\sqrt{\pi}$ is a
+  special case.  It appears in quantum-mechanical tunnelling probabilities,
+  Gaussian noise analysis in signal processing, and diffusion in random
+  media.
+
+\item \textbf{Heat conduction and diffusion.}%
+  \index{heat equation}%
+  \index{heat conduction!semi-infinite rod}%
+  \index{Debye model!specific heat}%
+  The fundamental solution of the heat equation in a semi-infinite rod with
+  specific boundary conditions involves the incomplete gamma function.
+  Generalised forms appear in thermal models of laser-heated biological
+  tissue and in the $n$-dimensional Debye function for specific heat of
+  solids.
+
+\item \textbf{Nakagami fading in wireless communications.}%
+  \index{Nakagami fading}%
+  \index{wireless communications!outage probability}%
+  The outage probability over a Nakagami-$m$ fading channel is
+  $P_{\mathrm{out}}=P(m,\,m\gamma_{\mathrm{th}}/\bar{\gamma})$, the
+  regularised incomplete gamma function \cite{AlouiniGoldsmith1999}.  This
+  is the standard analytical framework for outage analysis in 4G/5G systems.
+
+\item \textbf{Radiative transfer and the exponential integral.}%
+  \index{exponential integral}%
+  \index{radiative transfer!Chandrasekhar equations}%
+  \index{stellar atmospheres}%
+  \index{neutron transport}%
+  The exponential integral $E_{n}(x)=x^{n-1}\Gamma(1-n,x)$ appears in the
+  Chandrasekhar equations for stellar atmospheres \cite{Chandrasekhar1960},
+  neutron transport theory, and electromagnetic wave attenuation in lossy
+  media.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Generalised exponential integral and Mittag-Leffler function.}%
+  \index{Mittag-Leffler function}%
+  \index{fractional calculus!anomalous diffusion}%
+  \index{exponential integral!generalised}%
+  The incomplete gamma function is the building block for
+  $E_{p}(z)=z^{p-1}\Gamma(1-p,z)$ at complex~$p$.  The three-parameter
+  Mittag-Leffler function, central to fractional calculus and anomalous
+  diffusion, can be expressed through incomplete gamma functions in certain
+  parameter ranges.
+
+\item \textbf{Uniform asymptotic expansions.}%
+  \index{asymptotic expansion!uniform (Temme)}%
+  \index{chi-squared distribution!quantile computation}%
+  Temme \cite{Temme1979,Temme1996} developed uniform asymptotic expansions
+  of $Q(a,x)$ for large~$a$ valid uniformly in $x/a$, bridging the
+  transition region around $x=a$.  These expansions form the basis for
+  high-precision numerical computation of chi-squared quantiles in standard
+  mathematical libraries.
+
+\item \textbf{Analytic combinatorics.}%
+  \index{analytic combinatorics}%
+  \index{saddle-point method}%
+  \index{generating functions}%
+  In the Flajolet--Sedgewick framework \cite{FlajoletSedgewick2009}, the
+  saddle-point method applied to generating functions involving~$e^{z}$
+  naturally produces incomplete gamma integrals.  The number of permutations
+  and partitions with restricted cycle structure often reduces to such
+  integrals after contour deformation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{6.46--6.47\quad The function $\psi(x)$}
+
+The digamma function $\psi(x)=\Gamma'(x)/\Gamma(x)=d\ln\Gamma(x)/dx$ and
+the higher polygamma functions
+$\psi^{(n)}(x)=d^{\,n+1}\ln\Gamma(x)/dx^{n+1}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Renormalisation constants in QFT.}%
+  \index{renormalisation!constants in QFT}%
+  \index{Euler--Mascheroni constant}%
+  \index{fine-structure constant!running}%
+  \index{photon self-energy}%
+  In dimensional regularisation, $\Gamma(\varepsilon)=1/\varepsilon
+  -\gamma_{E}+O(\varepsilon)$, where the Euler--Mascheroni constant is
+  $\gamma_{E}=-\psi(1)$.  More generally, expanding $\Gamma(n+\varepsilon)$
+  about integer~$n$ yields $\psi(n)$ and $\psi^{(k)}(n)$ in the finite
+  parts of renormalised Green functions.  These digamma values appear
+  explicitly in the running of the fine-structure constant $\alpha(\mu)$
+  through the one-loop photon self-energy.
+
+\item \textbf{Feynman diagram evaluation.}%
+  \index{Feynman integrals!digamma and polygamma series}%
+  \index{Gauss's digamma theorem}%
+  \index{Standard Model!higher-order corrections}%
+  Feynman parameter integrals evaluate to linear combinations of $\psi(p/q)$
+  at rational arguments, which by Gauss's digamma theorem reduce to
+  elementary functions \cite{Coffey2005}.  Polygamma values
+  $\psi^{(n)}(1/2)$, $\psi^{(n)}(1/3)$, etc.\ appear at two-loop and
+  three-loop order in the Standard Model.
+
+\item \textbf{The Casimir effect and zeta regularisation.}%
+  \index{Casimir effect}%
+  \index{Hurwitz zeta function!and digamma}%
+  \index{Epstein zeta function}%
+  \index{zeta regularisation}%
+  The derivative $\partial_{a}\zeta'(0,a)=\psi(a)$ connects the digamma
+  function to the Hurwitz zeta function.  The Epstein zeta function for
+  rectangular cavities involves polygamma functions in its Laurent
+  expansion.
+
+\item \textbf{Harmonic sums in QCD.}%
+  \index{harmonic numbers}%
+  \index{harmonic sums!nested}%
+  \index{DGLAP splitting functions}%
+  \index{anomalous dimensions}%
+  \index{quantum chromodynamics (QCD)!anomalous dimensions}%
+  \index{multiple polylogarithms}%
+  At positive integers, $\psi(n+1)=H_{n}-\gamma_{E}$, where
+  $H_{n}=\sum_{k=1}^{n}1/k$ is the $n$-th harmonic number.  The nested
+  harmonic sums $S_{a_{1},a_{2},\ldots}(n)$ that appear in DGLAP splitting
+  functions and anomalous dimensions at higher loop orders are expressible
+  in terms of polygamma functions and multiple polylogarithms.
+
+\item \textbf{Fisher information and information geometry.}%
+  \index{Fisher information}%
+  \index{information geometry}%
+  \index{trigamma function}%
+  \index{natural gradient}%
+  For a $\mathrm{Gamma}(\alpha,\theta)$ distribution, the Fisher information
+  has $I_{\alpha\alpha}=\psi^{(1)}(\alpha)$ (the trigamma function).  The
+  natural gradient in parameter estimation \cite{Amari1998} uses the inverse
+  Fisher information metric, making the trigamma function central to
+  efficient optimisation of gamma-family models in machine learning and
+  Bayesian statistics.
+
+\item \textbf{Maximum likelihood estimation for the Gamma distribution.}%
+  \index{maximum likelihood estimation!gamma distribution}%
+  \index{gamma distribution!MLE}%
+  \index{survival analysis}%
+  \index{hydrology}%
+  \index{insurance mathematics}%
+  The MLE equation for the shape parameter~$\alpha$ requires solving the
+  transcendental equation
+  $\psi(\hat{\alpha})-\ln\hat{\alpha}
+  =\overline{\ln x}-\ln\bar{x}$.
+  This appears throughout survival analysis, hydrology, queuing theory, and
+  insurance mathematics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Summation of rational series.}%
+  \index{rational series!summation via digamma}%
+  \index{partial fractions!and digamma}%
+  Any convergent series $\sum P(n)/Q(n)$ with $\deg Q>\deg P+1$ evaluates
+  as a finite linear combination of $\psi$ and $\psi^{(n)}$ at the roots
+  of~$Q$, via partial fractions and the identity $\psi(z+1)-\psi(z)=1/z$.
+
+\item \textbf{The Hurwitz zeta function.}%
+  \index{Hurwitz zeta function!polygamma relation}%
+  \index{Lerch zeta function}%
+  \index{Gauss's digamma theorem}%
+  The identity $\psi^{(m)}(z)=(-1)^{m+1}\,m!\,\zeta(m+1,z)$ for $m\geq 1$
+  connects G\&R~6.46--6.47 to the entire theory of Hurwitz and Lerch zeta
+  functions.  At rational arguments, Gauss's digamma theorem and the
+  Hurwitz formula give closed-form evaluations involving $\ln(2\pi)$,
+  $\pi\cot$, and $\pi\csc$ terms.
+
+\item \textbf{Bernoulli numbers and asymptotic expansions.}%
+  \index{Bernoulli numbers!asymptotic expansion of digamma}%
+  \index{perturbation series!large-order behaviour}%
+  $\psi(z)\sim\ln z-1/(2z)-\sum_{k=1}^{\infty}B_{2k}/(2k\,z^{2k})$ for
+  large~$|z|$.  These expansions are essential for numerical computation and
+  govern the large-order behaviour of perturbation series in quantum
+  mechanics and QFT.
+
+\item \textbf{Gauss's digamma theorem and arithmetic.}%
+  \index{Chowla--Selberg formula}%
+  \index{class numbers!imaginary quadratic fields}%
+  \index{algebraic number theory}%
+  Special values $\psi(p/q)$ at rational arguments are connected to class
+  numbers of imaginary quadratic fields through the Chowla--Selberg formula,
+  linking the integrals of G\&R~6.46--6.47 to deep algebraic number theory.
+\end{enumerate}
+
+\subsection{6.5--6.7\quad Bessel Functions}
+\subsubsection{6.51\quad Bessel functions}
+\subsubsection{6.52\quad Bessel functions combined with $x$ and $x^{2}$}
+\subsubsection{6.53--6.54\quad Combinations of Bessel functions and rational functions}
+\subsubsection{6.55\quad Combinations of Bessel functions and algebraic functions}
+\subsubsection{6.56--6.58\quad Combinations of Bessel functions and powers}
+\subsubsection{6.59\quad Combinations of powers and Bessel functions of more complicated arguments}
+\subsubsection{6.61\quad Combinations of Bessel functions and exponentials}
+\subsubsection{6.62--6.63\quad Combinations of Bessel functions, exponentials, and powers}
+\subsubsection{6.64\quad Combinations of Bessel functions of more complicated arguments, exponentials, and powers}
+\subsubsection{6.65\quad Combinations of Bessel and exponential functions of more complicated arguments and powers}
+\subsubsection{6.66\quad Combinations of Bessel, hyperbolic, and exponential functions}
+\subsubsection{6.67--6.68\quad Combinations of Bessel and trigonometric functions}
+\subsubsection{6.69--6.74\quad Combinations of Bessel and trigonometric functions and powers}
+\subsubsection{6.75\quad Combinations of Bessel, trigonometric, and exponential functions and powers}
+\subsubsection{6.76\quad Combinations of Bessel, trigonometric, and hyperbolic functions}
+\subsubsection{6.77\quad Combinations of Bessel functions and the logarithm, or arctangent}
+\subsubsection{6.78\quad Combinations of Bessel and other special functions}
+\subsubsection{6.79\quad Integration of Bessel functions with respect to the order}
+
+\subsection{6.8\quad Functions Generated by Bessel Functions}
+\subsubsection{6.81\quad Struve functions}
+\subsubsection{6.82\quad Combinations of Struve functions, exponentials, and powers}
+\subsubsection{6.83\quad Combinations of Struve and trigonometric functions}
+\subsubsection{6.84--6.85\quad Combinations of Struve and Bessel functions}
+\subsubsection{6.86\quad Lommel functions}
+\subsubsection{6.87\quad Thomson functions}
+
+\subsection{6.9\quad Mathieu Functions}
+\subsubsection{6.91\quad Mathieu functions}
+\subsubsection{6.92\quad Combinations of Mathieu, hyperbolic, and trigonometric functions}
+\subsubsection{6.93\quad Combinations of Mathieu and Bessel functions}
+\subsubsection{6.94\quad Relationships between eigenfunctions of the Helmholtz equation in different coordinate systems}
+
+\subsection{7.1--7.2\quad Associated Legendre Functions}
+\subsubsection{7.11\quad Associated Legendre functions}
+\subsubsection{7.12--7.13\quad Combinations of associated Legendre functions and powers}
+\subsubsection{7.14\quad Combinations of associated Legendre functions, exponentials, and powers}
+\subsubsection{7.15\quad Combinations of associated Legendre and hyperbolic functions}
+\subsubsection{7.16\quad Combinations of associated Legendre functions, powers, and trigonometric functions}
+\subsubsection{7.17\quad A combination of an associated Legendre function and the probability integral}
+\subsubsection{7.18\quad Combinations of associated Legendre and Bessel functions}
+\subsubsection{7.19\quad Combinations of associated Legendre functions and functions generated by Bessel functions}
+\subsubsection{7.21\quad Integration of associated Legendre functions with respect to the order}
+\subsubsection{7.22\quad Combinations of Legendre polynomials, rational functions, and algebraic functions}
+\subsubsection{7.23\quad Combinations of Legendre polynomials and powers}
+\subsubsection{7.24\quad Combinations of Legendre polynomials and other elementary functions}
+\subsubsection{7.25\quad Combinations of Legendre polynomials and Bessel functions}
+
+\subsection{7.3--7.4\quad Orthogonal Polynomials}
+\subsubsection{7.31\quad Combinations of Gegenbauer polynomials $C_{n}^{\nu}(x)$ and powers}
+\subsubsection{7.32\quad Combinations of Gegenbauer polynomials $C_{n}^{\nu}(x)$ and elementary functions}
+\subsubsection{7.325\textsuperscript{*}\quad Complete System of Orthogonal Step Functions}
+\subsubsection{7.33\quad Combinations of the polynomials $C_{n}^{\nu}(x)$ and Bessel functions; Integration of Gegenbauer functions with respect to the index}
+\subsubsection{7.34\quad Combinations of Chebyshev polynomials and powers}
+\subsubsection{7.35\quad Combinations of Chebyshev polynomials and elementary functions}
+\subsubsection{7.36\quad Combinations of Chebyshev polynomials and Bessel functions}
+\subsubsection{7.37--7.38\quad Hermite polynomials}
+\subsubsection{7.39\quad Jacobi polynomials}
+\subsubsection{7.41--7.42\quad Laguerre polynomials}
+
+\subsection{7.5\quad Hypergeometric Functions}
+\subsubsection{7.51\quad Combinations of hypergeometric functions and powers}
+\subsubsection{7.52\quad Combinations of hypergeometric functions and exponentials}
+\subsubsection{7.53\quad Hypergeometric and trigonometric functions}
+\subsubsection{7.54\quad Combinations of hypergeometric and Bessel functions}
+
+\subsection{7.6\quad Confluent Hypergeometric Functions}
+\subsubsection{7.61\quad Combinations of confluent hypergeometric functions and powers}
+\subsubsection{7.62--7.63\quad Combinations of confluent hypergeometric functions and exponentials}
+\subsubsection{7.64\quad Combinations of confluent hypergeometric and trigonometric functions}
+\subsubsection{7.65\quad Combinations of confluent hypergeometric functions and Bessel functions}
+\subsubsection{7.66\quad Combinations of confluent hypergeometric functions, Bessel functions, and powers}
+\subsubsection{7.67\quad Combinations of confluent hypergeometric functions, Bessel functions, exponentials, and powers}
+\subsubsection{7.68\quad Combinations of confluent hypergeometric functions and other special functions}
+\subsubsection{7.69\quad Integration of confluent hypergeometric functions with respect to the index}
+
+\subsection{7.7\quad Parabolic Cylinder Functions}
+\subsubsection{7.71\quad Parabolic cylinder functions}
+\subsubsection{7.72\quad Combinations of parabolic cylinder functions, powers, and exponentials}
+\subsubsection{7.73\quad Combinations of parabolic cylinder and hyperbolic functions}
+\subsubsection{7.74\quad Combinations of parabolic cylinder and trigonometric functions}
+\subsubsection{7.75\quad Combinations of parabolic cylinder and Bessel functions}
+\subsubsection{7.76\quad Combinations of parabolic cylinder functions and confluent hypergeometric functions}
+\subsubsection{7.77\quad Integration of a parabolic cylinder function with respect to the index}
+
+\subsection{7.8\quad Meijer's and MacRobert's Functions (G and E)}
+\subsubsection{7.81\quad Combinations of the functions G and E and the elementary functions}
+\subsubsection{7.82\quad Combinations of the functions G and E and Bessel functions}
+\subsubsection{7.83\quad Combinations of the functions G and E and other special functions}
+
+%% ============================================================
+%% 8--9  Special Functions
+%% ============================================================
+\section{8--9\quad Special Functions}
+
+\subsection{8.1\quad Elliptic Integrals and Functions}
+\subsubsection{8.11\quad Elliptic integrals}
+\subsubsection{8.12\quad Functional relations between elliptic integrals}
+\subsubsection{8.13\quad Elliptic functions}
+\subsubsection{8.14\quad Jacobian elliptic functions}
+\subsubsection{8.15\quad Properties of Jacobian elliptic functions and functional relationships between them}
+\subsubsection{8.16\quad The Weierstrass function $\wp(u)$}
+\subsubsection{8.17\quad The functions $\zeta(u)$ and $\sigma(u)$}
+\subsubsection{8.18--8.19\quad Theta functions}
+
+\subsection{8.2\quad The Exponential Integral Function and Functions Generated by It}
+\subsubsection{8.21\quad The exponential integral function $\operatorname{Ei}(x)$}
+\subsubsection{8.22\quad The hyperbolic sine integral $\operatorname{shi} x$ and the hyperbolic cosine integral $\operatorname{chi} x$}
+\subsubsection{8.23\quad The sine integral and the cosine integral: $\operatorname{si} x$ and $\operatorname{ci} x$}
+\subsubsection{8.24\quad The logarithm integral $\operatorname{li}(x)$}
+\subsubsection{8.25\quad The probability integral $\Phi(x)$, the Fresnel integrals $S(x)$ and $C(x)$, the error function $\operatorname{erf}(x)$, and the complementary error function $\operatorname{erfc}(x)$}
+\subsubsection{8.26\quad Lobachevskiy's function $L(x)$}
+
+\subsection{8.3\quad Euler's Integrals of the First and Second Kinds}
+\subsubsection{8.31\quad The gamma function (Euler's integral of the second kind): $\Gamma(z)$}
+\subsubsection{8.32\quad Representation of the gamma function as series and products}
+\subsubsection{8.33\quad Functional relations involving the gamma function}
+\subsubsection{8.34\quad The logarithm of the gamma function}
+\subsubsection{8.35\quad The incomplete gamma function}
+\subsubsection{8.36\quad The psi function $\psi(x)$}
+\subsubsection{8.37\quad The function $\beta(x)$}
+\subsubsection{8.38\quad The beta function (Euler's integral of the first kind): $\operatorname{B}(x,y)$}
+\subsubsection{8.39\quad The incomplete beta function $\operatorname{B}_x(p,q)$}
+
+\subsection{8.4--8.5\quad Bessel Functions and Functions Associated with Them}
+\subsubsection{8.40\quad Definitions}
+\subsubsection{8.41\quad Integral representations of the functions $J_{\nu}(z)$ and $N_{\nu}(z)$}
+\subsubsection{8.42\quad Integral representations of the functions $H_{\nu}^{(1)}(z)$ and $H_{\nu}^{(2)}(z)$}
+\subsubsection{8.43\quad Integral representations of the functions $I_{\nu}(z)$ and $K_{\nu}(z)$}
+\subsubsection{8.44\quad Series representation}
+\subsubsection{8.45\quad Asymptotic expansions of Bessel functions}
+\subsubsection{8.46\quad Bessel functions of order equal to an integer plus one-half}
+\subsubsection{8.47--8.48\quad Functional relations}
+\subsubsection{8.49\quad Differential equations leading to Bessel functions}
+\subsubsection{8.51--8.52\quad Series of Bessel functions}
+\subsubsection{8.53\quad Expansion in products of Bessel functions}
+\subsubsection{8.54\quad The zeros of Bessel functions}
+\subsubsection{8.55\quad Struve functions}
+\subsubsection{8.56\quad Thomson functions and their generalizations}
+\subsubsection{8.57\quad Lommel functions}
+\subsubsection{8.58\quad Anger and Weber functions $J_{\nu}(z)$ and $\mathbf{E}_{\nu}(z)$}
+\subsubsection{8.59\quad Neumann's and Schl\"afli's polynomials: $O_{n}(z)$ and $S_{n}(z)$}
+
+\subsection{8.6\quad Mathieu Functions}
+\subsubsection{8.60\quad Mathieu's equation}
+\subsubsection{8.61\quad Periodic Mathieu functions}
+\subsubsection{8.62\quad Recursion relations for the coefficients $A_{2r}^{(2n)}$, $A_{2r+1}^{(2n+1)}$, $B_{2r+1}^{(2n+1)}$, $B_{2r+2}^{(2n+2)}$}
+\subsubsection{8.63\quad Mathieu functions with a purely imaginary argument}
+\subsubsection{8.64\quad Non-periodic solutions of Mathieu's equation}
+\subsubsection{8.65\quad Mathieu functions for negative $q$}
+\subsubsection{8.66\quad Representation of Mathieu functions as series of Bessel functions}
+\subsubsection{8.67\quad The general theory}
+
+\subsection{8.7--8.8\quad Associated Legendre Functions}
+\subsubsection{8.70\quad Introduction}
+\subsubsection{8.71\quad Integral representations}
+\subsubsection{8.72\quad Asymptotic series for large values of $|\nu|$}
+\subsubsection{8.73--8.74\quad Functional relations}
+\subsubsection{8.75\quad Special cases and particular values}
+\subsubsection{8.76\quad Derivatives with respect to the order}
+\subsubsection{8.77\quad Series representation}
+\subsubsection{8.78\quad The zeros of associated Legendre functions}
+\subsubsection{8.79\quad Series of associated Legendre functions}
+\subsubsection{8.81\quad Associated Legendre functions with integer indices}
+\subsubsection{8.82--8.83\quad Legendre functions}
+\subsubsection{8.84\quad Conical functions}
+\subsubsection{8.85\quad Toroidal functions}
+
+\subsection{8.9\quad Orthogonal Polynomials}
+\subsubsection{8.90\quad Introduction}
+\subsubsection{8.91\quad Legendre polynomials}
+\subsubsection{8.919\quad Series of products of Legendre and Chebyshev polynomials}
+\subsubsection{8.92\quad Series of Legendre polynomials}
+\subsubsection{8.93\quad Gegenbauer polynomials $C_{n}^{\lambda}(t)$}
+\subsubsection{8.94\quad The Chebyshev polynomials $T_{n}(x)$ and $U_{n}(x)$}
+\subsubsection{8.95\quad The Hermite polynomials $H_{n}(x)$}
+\subsubsection{8.96\quad Jacobi's polynomials}
+\subsubsection{8.97\quad The Laguerre polynomials}
+
+\subsection{9.1\quad Hypergeometric Functions}
+\subsubsection{9.10\quad Definition}
+\subsubsection{9.11\quad Integral representations}
+\subsubsection{9.12\quad Representation of elementary functions in terms of a hypergeometric functions}
+\subsubsection{9.13\quad Transformation formulas and the analytic continuation of functions defined by hypergeometric series}
+\subsubsection{9.14\quad A generalized hypergeometric series}
+\subsubsection{9.15\quad The hypergeometric differential equation}
+\subsubsection{9.16\quad Riemann's differential equation}
+\subsubsection{9.17\quad Representing the solutions to certain second-order differential equations using a Riemann scheme}
+\subsubsection{9.18\quad Hypergeometric functions of two variables}
+\subsubsection{9.19\quad A hypergeometric function of several variables}
+
+\subsection{9.2\quad Confluent Hypergeometric Functions}
+\subsubsection{9.20\quad Introduction}
+\subsubsection{9.21\quad The functions $\Phi(\alpha,\gamma;z)$ and $\Psi(\alpha,\gamma;z)$}
+\subsubsection{9.22--9.23\quad The Whittaker functions $M_{\lambda,\mu}(z)$ and $W_{\lambda,\mu}(z)$}
+\subsubsection{9.24--9.25\quad Parabolic cylinder functions $D_{p}(z)$}
+\subsubsection{9.26\quad Confluent hypergeometric series of two variables}
+
+\subsection{9.3\quad Meijer's $G$-Function}
+\subsubsection{9.30\quad Definition}
+\subsubsection{9.31\quad Functional relations}
+\subsubsection{9.32\quad A differential equation for the G-function}
+\subsubsection{9.33\quad Series of G-functions}
+\subsubsection{9.34\quad Connections with other special functions}
+
+\subsection{9.4\quad MacRobert's $E$-Function}
+\subsubsection{9.41\quad Representation by means of multiple integrals}
+\subsubsection{9.42\quad Functional relations}
+
+\subsection{9.5\quad Riemann's Zeta Functions $\zeta(z,q)$ and $\zeta(z)$, and the Functions $\Phi(z,s,v)$ and $\xi(s)$}
+\subsubsection{9.51\quad Definition and integral representations}
+\subsubsection{9.52\quad Representation as a series or as an infinite product}
+\subsubsection{9.53\quad Functional relations}
+\subsubsection{9.54\quad Singular points and zeros}
+\subsubsection{9.55\quad The Lerch function $\Phi(z,s,v)$}
+\subsubsection{9.56\quad The function $\xi(s)$}
+
+\subsection{9.6\quad Bernoulli Numbers and Polynomials, Euler Numbers}
+\subsubsection{9.61\quad Bernoulli numbers}
+\subsubsection{9.62\quad Bernoulli polynomials}
+\subsubsection{9.63\quad Euler numbers}
+\subsubsection{9.64\quad The functions $\nu(x)$, $\nu(x,\alpha)$, $\mu(x,\beta)$, $\mu(x,\beta,\alpha)$, and $\lambda(x,y)$}
+\subsubsection{9.65\quad Euler polynomials}
+
+\subsection{9.7\quad Constants}
+\subsubsection{9.71\quad Bernoulli numbers}
+\subsubsection{9.72\quad Euler numbers}
+\subsubsection{9.73\quad Euler's and Catalan's constants}
+\subsubsection{9.74\quad Stirling numbers}
+
+%% ============================================================
+%% 10  Vector Field Theory
+%% ============================================================
+\section{10\quad Vector Field Theory}
+
+\subsection{10.1--10.8\quad Vectors, Vector Operators, and Integral Theorems}
+\subsubsection{10.11\quad Products of vectors}
+\subsubsection{10.12\quad Properties of scalar product}
+\subsubsection{10.13\quad Properties of vector product}
+\subsubsection{10.14\quad Differentiation of vectors}
+\subsubsection{10.21\quad Operators grad, div, and curl}
+\subsubsection{10.31\quad Properties of the operator $\nabla$}
+\subsubsection{10.41\quad Solenoidal fields}
+\subsubsection{10.51--10.61\quad Orthogonal curvilinear coordinates}
+\subsubsection{10.71--10.72\quad Vector integral theorems}
+\subsubsection{10.81\quad Integral rate of change theorems}
+
+%% ============================================================
+%% 11  Algebraic Inequalities
+%% ============================================================
+\section{11\quad Algebraic Inequalities}
+
+\subsection{11.1--11.3\quad General Algebraic Inequalities}
+\subsubsection{11.11\quad Algebraic inequalities involving real numbers}
+\subsubsection{11.21\quad Algebraic inequalities involving complex numbers}
+\subsubsection{11.31\quad Inequalities for sets of complex numbers}
+
+%% ============================================================
+%% 12  Integral Inequalities
+%% ============================================================
+\section{12\quad Integral Inequalities}
+
+\subsection{12.11\quad Mean Value Theorems}
+\subsubsection{12.111\quad First mean value theorem}
+\subsubsection{12.112\quad Second mean value theorem}
+\subsubsection{12.113\quad First mean value theorem for infinite integrals}
+\subsubsection{12.114\quad Second mean value theorem for infinite integrals}
+
+\subsection{12.21\quad Differentiation of Definite Integral Containing a Parameter}
+\subsubsection{12.211\quad Differentiation when limits are finite}
+\subsubsection{12.212\quad Differentiation when a limit is infinite}
+
+\subsection{12.31\quad Integral Inequalities}
+\subsubsection{12.311\quad Cauchy-Schwarz-Buniakowsky inequality for integrals}
+\subsubsection{12.312\quad H\"older's inequality for integrals}
+\subsubsection{12.313\quad Minkowski's inequality for integrals}
+\subsubsection{12.314\quad Chebyshev's inequality for integrals}
+\subsubsection{12.315\quad Young's inequality for integrals}
+\subsubsection{12.316\quad Steffensen's inequality for integrals}
+\subsubsection{12.317\quad Gram's inequality for integrals}
+\subsubsection{12.318\quad Ostrowski's inequality for integrals}
+
+\subsection{12.41\quad Convexity and Jensen's Inequality}
+\subsubsection{12.411\quad Jensen's inequality}
+\subsubsection{12.412\quad Carleman's inequality for integrals}
+
+\subsection{12.51\quad Fourier Series and Related Inequalities}
+\subsubsection{12.511\quad Riemann-Lebesgue lemma}
+\subsubsection{12.512\quad Dirichlet lemma}
+\subsubsection{12.513\quad Parseval's theorem for trigonometric Fourier series}
+\subsubsection{12.514\quad Integral representation of the $n^{\text{th}}$ partial sum}
+\subsubsection{12.515\quad Generalized Fourier series}
+\subsubsection{12.516\quad Bessel's inequality for generalized Fourier series}
+\subsubsection{12.517\quad Parseval's theorem for generalized Fourier series}
+
+%% ============================================================
+%% 13  Matrices and Related Results
+%% ============================================================
+\section{13\quad Matrices and Related Results}
+
+\subsection{13.11--13.12\quad Special Matrices}
+\subsubsection{13.111\quad Diagonal matrix}
+\subsubsection{13.112\quad Identity matrix and null matrix}
+\subsubsection{13.113\quad Reducible and irreducible matrices}
+\subsubsection{13.114\quad Equivalent matrices}
+\subsubsection{13.115\quad Transpose of a matrix}
+\subsubsection{13.116\quad Adjoint matrix}
+\subsubsection{13.117\quad Inverse matrix}
+\subsubsection{13.118\quad Trace of a matrix}
+\subsubsection{13.119\quad Symmetric matrix}
+\subsubsection{13.120\quad Skew-symmetric matrix}
+\subsubsection{13.121\quad Triangular matrices}
+\subsubsection{13.122\quad Orthogonal matrices}
+\subsubsection{13.123\quad Hermitian transpose of a matrix}
+\subsubsection{13.124\quad Hermitian matrix}
+\subsubsection{13.125\quad Unitary matrix}
+\subsubsection{13.126\quad Eigenvalues and eigenvectors}
+\subsubsection{13.127\quad Nilpotent matrix}
+\subsubsection{13.128\quad Idempotent matrix}
+\subsubsection{13.129\quad Positive definite}
+\subsubsection{13.130\quad Non-negative definite}
+\subsubsection{13.131\quad Diagonally dominant}
+
+\subsection{13.21\quad Quadratic Forms}
+\subsubsection{13.211\quad Sylvester's law of inertia}
+\subsubsection{13.212\quad Rank}
+\subsubsection{13.213\quad Signature}
+\subsubsection{13.214\quad Positive definite and semidefinite quadratic form}
+\subsubsection{13.215\quad Basic theorems on quadratic forms}
+
+\subsection{13.31\quad Differentiation of Matrices}
+
+\subsection{13.41\quad The Matrix Exponential}
+\subsubsection{13.411\quad Basic properties}
+
+%% ============================================================
+%% 14  Determinants
+%% ============================================================
+\section{14\quad Determinants}
+
+\subsection{14.11\quad Expansion of Second- and Third-Order Determinants}
+\subsection{14.12\quad Basic Properties}
+\subsection{14.13\quad Minors and Cofactors of a Determinant}
+\subsection{14.14\quad Principal Minors}
+\subsection{14.15\textsuperscript{*}\quad Laplace Expansion of a Determinant}
+\subsection{14.16\quad Jacobi's Theorem}
+\subsection{14.17\quad Hadamard's Theorem}
+\subsection{14.18\quad Hadamard's Inequality}
+\subsection{14.21\quad Cramer's Rule}
+
+\subsection{14.31\quad Some Special Determinants}
+\subsubsection{14.311\quad Vandermonde's determinant (alternant)}
+\subsubsection{14.312\quad Circulants}
+\subsubsection{14.313\quad Jacobian determinant}
+\subsubsection{14.314\quad Hessian determinants}
+\subsubsection{14.315\quad Wronskian determinants}
+\subsubsection{14.316\quad Properties}
+\subsubsection{14.317\quad Gram-Kowalewski theorem on linear dependence}
+
+%% ============================================================
+%% 15  Norms
+%% ============================================================
+\section{15\quad Norms}
+
+\subsection{15.1--15.9\quad Vector Norms}
+\subsubsection{15.11\quad General Properties}
+\subsubsection{15.21\quad Principal Vector Norms}
+\subsubsection{15.211\quad The norm $\|\mathbf{x}\|_{1}$}
+\subsubsection{15.212\quad The norm $\|\mathbf{x}\|_{2}$ (Euclidean or $L_{2}$ norm)}
+\subsubsection{15.213\quad The norm $\|\mathbf{x}\|_{\infty}$}
+\subsubsection{15.31\quad Matrix Norms}
+\subsubsection{15.311\quad General properties}
+\subsubsection{15.312\quad Induced norms}
+\subsubsection{15.313\quad Natural norm of unit matrix}
+\subsubsection{15.41\quad Principal Natural Norms}
+\subsubsection{15.411\quad Maximum absolute column sum norm}
+\subsubsection{15.412\quad Spectral norm}
+\subsubsection{15.413\quad Maximum absolute row sum norm}
+\subsubsection{15.51\quad Spectral Radius of a Square Matrix}
+\subsubsection{15.511\quad Inequalities concerning matrix norms and the spectral radius}
+\subsubsection{15.512\quad Deductions from Gerschgorin's theorem (see 15.814)}
+\subsubsection{15.61\quad Inequalities Involving Eigenvalues of Matrices}
+\subsubsection{15.611\quad Cayley-Hamilton theorem}
+\subsubsection{15.612\quad Corollaries}
+\subsubsection{15.71\quad Inequalities for the Characteristic Polynomial}
+\subsubsection{15.711\quad Named and unnamed inequalities}
+\subsubsection{15.712\quad Parodi's theorem}
+\subsubsection{15.713\quad Corollary of Brauer's theorem}
+\subsubsection{15.714\quad Ballieu's theorem}
+\subsubsection{15.715\quad Routh-Hurwitz theorem}
+
+\subsection{15.81--15.82\quad Named Theorems on Eigenvalues}
+\subsubsection{15.811\quad Schur's inequalities}
+\subsubsection{15.812\quad Sturmian separation theorem}
+\subsubsection{15.813\quad Poincar\'e's separation theorem}
+\subsubsection{15.814\quad Gerschgorin's theorem}
+\subsubsection{15.815\quad Brauer's theorem}
+\subsubsection{15.816\quad Perron's theorem}
+\subsubsection{15.817\quad Frobenius theorem}
+\subsubsection{15.818\quad Perron--Frobenius theorem}
+\subsubsection{15.819\quad Wielandt's theorem}
+\subsubsection{15.820\quad Ostrowski's theorem}
+\subsubsection{15.821\quad First theorem due to Lyapunov}
+\subsubsection{15.822\quad Second theorem due to Lyapunov}
+
+\subsection{15.823\quad Hermitian matrices and diophantine relations involving circular functions of rational angles due to Calogero and Perelomov}
+
+\subsection{15.91\quad Variational Principles}
+\subsubsection{15.911\quad Rayleigh quotient}
+\subsubsection{15.912\quad Basic theorems}
+
+%% ============================================================
+%% 16  Ordinary Differential Equations
+%% ============================================================
+\section{16\quad Ordinary Differential Equations}
+
+\subsection{16.1--16.9\quad Results Relating to the Solution of Ordinary Differential Equations}
+
+\subsubsection{16.11\quad First-Order Equations}
+\subsubsection{16.111\quad Solution of a first-order equation}
+\subsubsection{16.112\quad Cauchy problem}
+\subsubsection{16.113\quad Approximate solution to an equation}
+\subsubsection{16.114\quad Lipschitz continuity of a function}
+
+\subsubsection{16.21\quad Fundamental Inequalities and Related Results}
+\subsubsection{16.211\quad Gronwall's lemma}
+\subsubsection{16.212\quad Comparison of approximate solutions of a differential equation}
+
+\subsubsection{16.31\quad First-Order Systems}
+\subsubsection{16.311\quad Solution of a system of equations}
+\subsubsection{16.312\quad Cauchy problem for a system}
+\subsubsection{16.313\quad Approximate solution to a system}
+\subsubsection{16.314\quad Lipschitz continuity of a vector}
+\subsubsection{16.315\quad Comparison of approximate solutions of a system}
+\subsubsection{16.316\quad First-order linear differential equation}
+\subsubsection{16.317\quad Linear systems of differential equations}
+
+\subsubsection{16.41\quad Some Special Types of Elementary Differential Equations}
+\subsubsection{16.411\quad Variables separable}
+\subsubsection{16.412\quad Exact differential equations}
+\subsubsection{16.413\quad Conditions for an exact equation}
+\subsubsection{16.414\quad Homogeneous differential equations}
+
+\subsubsection{16.51\quad Second-Order Equations}
+\subsubsection{16.511\quad Adjoint and self-adjoint equations}
+\subsubsection{16.512\quad Abel's identity}
+\subsubsection{16.513\quad Lagrange identity}
+\subsubsection{16.514\quad The Riccati equation}
+\subsubsection{16.515\quad Solutions of the Riccati equation}
+\subsubsection{16.516\quad Solution of a second-order linear differential equation}
+
+\subsubsection{16.61--16.62\quad Oscillation and Non-Oscillation Theorems for Second-Order Equations}
+\subsubsection{16.611\quad First basic comparison theorem}
+\subsubsection{16.622\quad Second basic comparison theorem}
+\subsubsection{16.623\quad Interlacing of zeros}
+\subsubsection{16.624\quad Sturm separation theorem}
+\subsubsection{16.625\quad Sturm comparison theorem}
+\subsubsection{16.626\quad Szeg\"o's comparison theorem}
+\subsubsection{16.627\quad Picone's identity}
+\subsubsection{16.628\quad Sturm-Picone theorem}
+\subsubsection{16.629\quad Oscillation on the half line}
+
+\subsubsection{16.71\quad Two Related Comparison Theorems}
+\subsubsection{16.711\quad Theorem 1}
+\subsubsection{16.712\quad Theorem 2}
+
+\subsubsection{16.81--16.82\quad Non-Oscillatory Solutions}
+\subsubsection{16.811\quad Kneser's non-oscillation theorem}
+\subsubsection{16.822\quad Comparison theorem for non-oscillation}
+\subsubsection{16.823\quad Necessary and sufficient conditions for non-oscillation}
+
+\subsubsection{16.91\quad Some Growth Estimates for Solutions of Second-Order Equations}
+\subsubsection{16.911\quad Strictly increasing and decreasing solutions}
+\subsubsection{16.912\quad General result on dominant and subdominant solutions}
+\subsubsection{16.913\quad Estimate of dominant solution}
+\subsubsection{16.914\quad A theorem due to Lyapunov}
+
+\subsubsection{16.92\quad Boundedness Theorems}
+\subsubsection{16.921\quad All solutions of the equation}
+\subsubsection{16.922\quad If all solutions of the equation}
+\subsubsection{16.923\quad If $a(x)\to \infty$ monotonically as $x\to \infty$, then all solutions of}
+\subsubsection{16.924\quad Consider the equation}
+
+\subsubsection{16.93\quad Growth of maxima of $|y|$}
+
+%% ============================================================
+%% 17  Fourier, Laplace, and Mellin Transforms
+%% ============================================================
+\section{17\quad Fourier, Laplace, and Mellin Transforms}
+
+\subsection{17.1--17.4\quad Integral Transforms}
+\subsubsection{17.11\quad Laplace transform}
+\subsubsection{17.12\quad Basic properties of the Laplace transform}
+\subsubsection{17.13\quad Table of Laplace transform pairs}
+\subsubsection{17.21\quad Fourier transform}
+\subsubsection{17.22\quad Basic properties of the Fourier transform}
+\subsubsection{17.23\quad Table of Fourier transform pairs}
+\subsubsection{17.24\quad Table of Fourier transform pairs for spherically symmetric functions}
+\subsubsection{17.31\quad Fourier sine and cosine transforms}
+\subsubsection{17.32\quad Basic properties of the Fourier sine and cosine transforms}
+\subsubsection{17.33\quad Table of Fourier sine transforms}
+\subsubsection{17.34\quad Table of Fourier cosine transforms}
+\subsubsection{17.35\quad Relationships between transforms}
+\subsubsection{17.41\quad Mellin transform}
+\subsubsection{17.42\quad Basic properties of the Mellin transform}
+\subsubsection{17.43\quad Table of Mellin transforms}
+
+%% ============================================================
+%% 18  The z-Transform
+%% ============================================================
+\section{18\quad The $z$-Transform}
+
+\subsection{18.1--18.3\quad Definition, Bilateral, and Unilateral $z$-Transforms}
+\subsubsection{18.1\quad Definitions}
+\subsubsection{18.2\quad Bilateral $z$-transform}
+\subsubsection{18.3\quad Unilateral $z$-transform}
+
+%% ============================================================
+%% Back Matter
+%% ============================================================
+
+\printbibliography[heading=bibintoc, title={Bibliography}]
+
+\printindex
+
+\end{document}
