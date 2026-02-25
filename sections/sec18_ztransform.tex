@@ -1,0 +1,516 @@
+%% Section 18 — The z-Transform
+\section{18\quad The $z$-Transform}
+
+The $z$-transform is the discrete-time counterpart of the Laplace
+transform.  Given a sequence $\{x[n]\}$, it associates a function of
+the complex variable $z$ whose analytic properties encode the
+asymptotic, stability, and spectral characteristics of the original
+sequence.  The transform was popularised in engineering by Ragazzini
+and Zadeh in the 1950s for sampled-data control systems, but its
+mathematical roots lie in the theory of generating functions developed
+by Euler and de~Moivre.  In the language of G\&R, the $z$-transform
+translates the discrete sums and series of Sections~0--1 into the
+complex-variable framework of Sections~8--9, providing a bridge between
+combinatorial identities and contour integral representations.
+
+\subsection{18.1--18.3\quad Definition, Bilateral, and Unilateral $z$-Transforms}
+
+%% -------------------------------------------------------------------
+\subsubsection{18.1\quad Definitions}
+
+The $z$-transform of a sequence $\{x[n]\}_{n=-\infty}^{\infty}$ is the
+Laurent series
+\[
+  X(z)=\mathcal{Z}\{x[n]\}=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n},
+\]
+which converges in an annular region of the complex plane called the
+\emph{region of convergence} (ROC): $r_{-}<|z|<r_{+}$.  The ROC
+determines uniqueness: two distinct sequences may share the same
+algebraic expression for $X(z)$ but differ in their ROC.  The inverse
+$z$-transform recovers the sequence via a contour integral in the ROC:
+\[
+  x[n]=\frac{1}{2\pi i}\oint_{\mathcal{C}}X(z)\,z^{n-1}\,dz,
+\]
+where $\mathcal{C}$ is a simple closed contour encircling the origin
+within the ROC.  When $z=e^{i\omega}$ lies on the unit circle and
+belongs to the ROC, $X(e^{i\omega})$ reduces to the discrete-time
+Fourier transform (DTFT) of $\{x[n]\}$.  The fundamental properties of
+the $z$-transform---linearity, time shifting
+($\mathcal{Z}\{x[n-k]\}=z^{-k}X(z)$), convolution
+($\mathcal{Z}\{x*y\}=X(z)Y(z)$), and the initial and final value
+theorems---mirror those of the Laplace transform (Section~17.11) under
+the substitution $z=e^{sT}$, where $T$ is the sampling period.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Discrete-time signal processing and sampling.}%
+  \index{z-transform@$z$-transform!definition}%
+  \index{sampling theorem!z-transform@$z$-transform}%
+  \index{discrete-time Fourier transform}%
+  \index{Shannon--Nyquist theorem}%
+  When a continuous-time signal $x(t)$ is sampled at intervals $T$, the
+  sequence $x[n]=x(nT)$ has a $z$-transform related to the Laplace
+  transform of $x(t)$ by $X(z)\big|_{z=e^{sT}}=\frac{1}{T}
+  \sum_{k=-\infty}^{\infty}X_{L}(s+ik\omega_{s})$, where
+  $\omega_{s}=2\pi/T$.  The Shannon--Nyquist theorem---requiring
+  $\omega_{s}>2\omega_{\max}$ to avoid aliasing---is the condition for
+  the DTFT $X(e^{i\omega})$ to faithfully represent the continuous
+  spectrum.  Every modern ADC (analog-to-digital converter) implicitly
+  invokes this mapping.
+
+\item \textbf{Digital filter design: IIR and FIR filters.}%
+  \index{digital filter!IIR}%
+  \index{digital filter!FIR}%
+  \index{transfer function!discrete-time}%
+  \index{pole-zero diagram}%
+  A causal linear time-invariant (LTI) discrete-time system is
+  characterised by its transfer function $H(z)=Y(z)/X(z)$, a rational
+  function of $z$.  An infinite impulse response (IIR) filter has poles
+  inside the unit circle for stability; a finite impulse response (FIR)
+  filter has all poles at $z=0$ (all-zero design).  Filter design
+  methods---bilinear transform, impulse invariance, windowed
+  sinc---all operate in the $z$-domain, placing poles and zeros to
+  sculpt the frequency response $H(e^{i\omega})$.
+
+\item \textbf{Discrete-time control systems and plant discretisation.}%
+  \index{discrete-time control}%
+  \index{zero-order hold}%
+  \index{Jury stability criterion}%
+  \index{root locus!discrete-time}%
+  In digital control, continuous plant dynamics $G(s)$ are discretised
+  via zero-order hold to obtain the pulse transfer function $G(z)$.
+  Stability requires all closed-loop poles to lie inside the unit disk
+  $|z|<1$---the discrete analogue of the left half-plane condition for
+  $s$.  The Jury stability criterion and the discrete root locus
+  technique are the $z$-domain counterparts of the Routh--Hurwitz
+  criterion and the $s$-domain root locus.
+
+\item \textbf{Numerical ODE solver stability analysis.}%
+  \index{numerical methods!ODE stability}%
+  \index{A-stability}%
+  \index{root locus!numerical methods}%
+  \index{multistep methods!characteristic polynomial}%
+  The stability of a linear multistep method for
+  $y'=\lambda y$ is analysed by substituting the trial solution
+  $y_{n}=z^{n}$ into the difference equation, yielding a characteristic
+  polynomial $\rho(z)-h\lambda\sigma(z)=0$.  The method is
+  zero-stable if all roots of $\rho(z)$ satisfy $|z|\leq 1$ (with
+  simple roots on the unit circle).  The boundary locus method plots
+  $h\lambda=\rho(e^{i\theta})/\sigma(e^{i\theta})$ to determine the
+  region of absolute stability---a direct application of
+  $z$-transform analysis to numerical analysis.
+
+\item \textbf{Lattice vibrations and phonon dispersion.}%
+  \index{lattice vibrations}%
+  \index{phonon!dispersion relation}%
+  \index{tight-binding model}%
+  In a one-dimensional monatomic lattice with nearest-neighbour
+  coupling, the equation of motion $m\ddot{u}_{n}=\kappa(u_{n+1}
+  -2u_{n}+u_{n-1})$ has solutions $u_{n}(t)=Ae^{i(\omega t-qna)}$.
+  Substituting the $z$-transform ansatz $U(z)=\sum u_{n}z^{-n}$
+  converts the difference equation into
+  $(z+z^{-1}-2+m\omega^{2}/\kappa)U(z)=0$, yielding the dispersion
+  relation $\omega^{2}=(4\kappa/m)\sin^{2}(qa/2)$.  The same algebraic
+  structure appears in tight-binding electronic band theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Generating functions and analytic combinatorics.}%
+  \index{generating function!ordinary}%
+  \index{analytic combinatorics}%
+  \index{singularity analysis}%
+  \index{z-transform@$z$-transform!generating function equivalence}%
+  The ordinary generating function $f(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$
+  is $X(z)$ evaluated at $z=1/x$ (up to index convention).  The
+  singularity analysis programme of Flajolet and
+  Sedgewick~\cite{FlajoletSedgewick2009} extracts asymptotics of
+  $a_{n}$ from the location and type of the dominant singularity of
+  $f(x)$: a simple pole at $x=1/\alpha$ gives $a_{n}\sim C\alpha^{n}$,
+  an algebraic singularity $(1-\alpha x)^{-\beta}$ gives
+  $a_{n}\sim C\alpha^{n}n^{\beta-1}/\Gamma(\beta)$.  In the
+  $z$-transform language, these are statements about the ROC boundary.
+
+\item \textbf{Laurent series and residue calculus.}%
+  \index{Laurent series!z-transform@$z$-transform}%
+  \index{residue theorem!inverse $z$-transform}%
+  \index{partial fraction expansion}%
+  The inverse $z$-transform via contour integration is a direct
+  application of the residue theorem (Section~8):
+  $x[n]=\sum_{k}\mathrm{Res}[X(z)z^{n-1},z_{k}]$ where the sum is
+  over poles inside $\mathcal{C}$.  For rational $X(z)$, partial
+  fraction decomposition reduces the inversion to a table lookup of
+  standard $z$-transform pairs, exactly paralleling the Laplace
+  inversion technique of Section~17.12.
+
+\item \textbf{Difference equations and linear recurrences.}%
+  \index{difference equations!z-transform@$z$-transform solution}%
+  \index{linear recurrence!characteristic equation}%
+  \index{Fibonacci sequence!generating function}%
+  The $z$-transform converts a linear constant-coefficient difference
+  equation $\sum_{k=0}^{N}a_{k}x[n-k]=\sum_{k=0}^{M}b_{k}u[n-k]$ into
+  the algebraic equation $A(z)X(z)=B(z)U(z)+\text{(initial conditions)}$,
+  where $A(z)=\sum a_{k}z^{-k}$.  The Fibonacci recurrence
+  $F_{n}=F_{n-1}+F_{n-2}$ yields
+  $F(z)=z/(z^{2}-z-1)$; partial fractions give the Binet formula
+  $F_{n}=(\varphi^{n}-\hat{\varphi}^{n})/\sqrt{5}$ with
+  $\varphi=(1+\sqrt{5})/2$.
+
+\item \textbf{Discrete convolution and polynomial multiplication.}%
+  \index{convolution!discrete}%
+  \index{polynomial multiplication!z-transform@$z$-transform}%
+  \index{Cauchy product}%
+  The convolution theorem
+  $\mathcal{Z}\{x*y\}=X(z)Y(z)$ shows that discrete convolution
+  corresponds to polynomial (or formal power series) multiplication.
+  This is the algebraic foundation of the fast Fourier transform
+  (FFT): evaluate $X$ and $Y$ at roots of unity, multiply pointwise,
+  and interpolate, achieving $O(n\log n)$ complexity for polynomial
+  multiplication.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{18.2\quad Bilateral $z$-transform}
+
+The bilateral (or two-sided) $z$-transform
+\[
+  X(z)=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n}
+\]
+treats sequences defined on all of $\mathbb{Z}$.  Its ROC is an open
+annulus $r_{-}<|z|<r_{+}$, and the transform is analytic in that
+region.  Distinct ROCs for the same algebraic expression correspond to
+different sequences: for example, $X(z)=z/(z-a)$ with ROC $|z|>|a|$
+gives the causal sequence $x[n]=a^{n}u[n]$, whereas the same $X(z)$
+with ROC $|z|<|a|$ gives the anticausal sequence $x[n]=-a^{n}u[-n-1]$
+(where $u[n]$ is the unit step).  The bilateral transform is the
+natural setting for non-causal systems, two-sided convolutions, and
+sequences arising from doubly-infinite lattice models.  Key properties
+include the time-reversal rule $\mathcal{Z}\{x[-n]\}=X(1/z)$ (with
+inverted ROC) and the multiplication property
+$\mathcal{Z}\{a^{n}x[n]\}=X(z/a)$ (ROC scaled by $|a|$).  The
+bilateral transform also admits a Parseval-type relation:
+\[
+  \sum_{n=-\infty}^{\infty}x[n]\overline{y[n]}
+  =\frac{1}{2\pi i}\oint_{\mathcal{C}}X(z)\,\bar{Y}(1/\bar{z})\,
+  \frac{dz}{z},
+\]
+which provides an inner product on $\ell^{2}(\mathbb{Z})$ expressed as
+a contour integral.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Discrete Green's functions on infinite lattices.}%
+  \index{Green's function!discrete}%
+  \index{lattice Green's function}%
+  \index{random walk!lattice}%
+  \index{bilateral $z$-transform!Green's function}%
+  The lattice Green's function $G[n]$ satisfying
+  $(E-H_{\text{lat}})G[n]=\delta[n]$ on a one-dimensional tight-binding
+  chain is most naturally computed via the bilateral $z$-transform,
+  which handles the two-sided spatial extent.  The poles of
+  $G(z)=(z^{2}-(E/t)z+1)^{-1}$ at $|z|=1$ give the continuous spectrum
+  (band), while poles off the unit circle correspond to evanescent
+  (bound) states.  In the random walk interpretation, $G[n]$ is the
+  expected number of visits to site~$n$ starting from the origin.
+
+\item \textbf{Non-causal Wiener filtering.}%
+  \index{Wiener filter!non-causal}%
+  \index{bilateral $z$-transform!Wiener filter}%
+  \index{power spectral density}%
+  \index{minimum mean-square error}%
+  The optimal non-causal Wiener filter for estimating a signal $s[n]$
+  from noisy observations $x[n]=s[n]+w[n]$ is
+  $H_{\mathrm{opt}}(z)=S_{sx}(z)/S_{xx}(z)$, where $S_{sx}$ and
+  $S_{xx}$ are the cross- and auto-power spectral densities expressed as
+  bilateral $z$-transforms of correlation sequences.  Because the filter
+  has both causal and anticausal components, its impulse response
+  $h[n]$ extends to $n<0$, requiring the bilateral framework.
+  Restricting to causal filters leads to the Wiener--Hopf factorisation
+  problem.
+
+\item \textbf{LFSR sequences and stream cipher cryptanalysis.}%
+  \index{LFSR!z-transform@$z$-transform analysis}%
+  \index{stream cipher!LFSR}%
+  \index{feedback polynomial}%
+  \index{Berlekamp--Massey algorithm}%
+  A linear feedback shift register (LFSR) with characteristic
+  polynomial $p(z)=1+c_{1}z^{-1}+\cdots+c_{L}z^{-L}$ generates a
+  periodic binary sequence whose $z$-transform is
+  $S(z)=q(z)/p(z)$, a rational function.  The Berlekamp--Massey
+  algorithm recovers the minimal polynomial $p(z)$ from $2L$ output
+  bits---this is essentially a Pad\'{e} approximation problem in the
+  $z$-domain.  In stream cipher cryptanalysis, the algebraic structure
+  of $S(z)$ reveals the LFSR length and taps, motivating the use of
+  nonlinear combiners to destroy the rational structure.
+
+\item \textbf{Two-sided lattice models in statistical mechanics.}%
+  \index{transfer matrix!z-transform@$z$-transform}%
+  \index{Ising model!transfer matrix}%
+  \index{partition function!lattice}%
+  \index{bilateral $z$-transform!statistical mechanics}%
+  The partition function of the one-dimensional Ising model
+  $Z=\sum_{\{s_{n}\}}\exp\bigl(\beta J\sum_{n}s_{n}s_{n+1}
+  +\beta h\sum_{n}s_{n}\bigr)$ can be written as a trace of transfer
+  matrices $Z=\mathrm{tr}(\mathbf{T}^{N})$.  For infinite chains, the
+  bilateral $z$-transform of the spin--spin correlation function
+  $\langle s_{0}s_{n}\rangle$ is a rational function of $z$ whose poles
+  yield the correlation length $\xi=-1/\ln|\lambda_{2}/\lambda_{1}|$,
+  where $\lambda_{1,2}$ are the transfer matrix eigenvalues.
+
+\item \textbf{Scattering on discrete structures.}%
+  \index{scattering matrix!discrete}%
+  \index{transmission line!discrete model}%
+  \index{impedance matching!discrete}%
+  A layered medium or periodically loaded transmission line is modelled
+  by a discrete scattering problem: the wave amplitudes $a[n]$ and
+  $b[n]$ (forward and backward) satisfy a recursion governed by the
+  local reflection coefficient $\Gamma[n]$.  The bilateral
+  $z$-transform of the scattering matrix converts this recursion into a
+  matrix polynomial equation, whose factorisation yields the
+  Schur--Levinson algorithm for layer stripping and impedance
+  reconstruction from reflection data.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Doubly-infinite Laurent series and function theory.}%
+  \index{Laurent series!doubly-infinite}%
+  \index{annulus of convergence}%
+  \index{analytic continuation!z-transform@$z$-transform}%
+  The bilateral $z$-transform is a Laurent series
+  $X(z)=\sum_{n=-\infty}^{\infty}c_{n}z^{-n}$ converging in an annulus.
+  The theory of Laurent series in complex analysis (Section~8) guarantees
+  that $X(z)$ is analytic in the ROC and that the coefficients are
+  recovered by $c_{n}=(2\pi i)^{-1}\oint X(z)z^{n-1}\,dz$.  Different
+  annuli of convergence yield different analytic continuations of the same
+  formal series, providing a clean framework for distinguishing causal
+  and anticausal sequences.
+
+\item \textbf{Spectral theory of bilateral shift operators.}%
+  \index{shift operator!bilateral}%
+  \index{spectral theory!shift operator}%
+  \index{Hardy space!bilateral}%
+  The bilateral shift $S:\ell^{2}(\mathbb{Z})\to\ell^{2}(\mathbb{Z})$
+  defined by $(Sx)[n]=x[n-1]$ is a unitary operator whose spectral
+  decomposition is $S=\int_{0}^{2\pi}e^{i\theta}\,dE_{\theta}$.
+  The bilateral $z$-transform intertwines $S$ with multiplication by
+  $z^{-1}$ on $L^{2}(\mathbb{T})$ (the unit circle), providing the
+  concrete spectral representation.  The spectral theorem for unitary
+  operators on $\ell^{2}(\mathbb{Z})$ is thus equivalent to the
+  Fourier series on $\mathbb{T}$.
+
+\item \textbf{Toeplitz operators and Wiener--Hopf factorisation.}%
+  \index{Toeplitz operator}%
+  \index{Wiener--Hopf factorisation}%
+  \index{Szeg\"o's theorem}%
+  \index{Toeplitz determinant}%
+  A Toeplitz matrix $T_{N}=(t_{j-k})_{j,k=0}^{N-1}$ has symbol
+  $t(z)=\sum_{n=-\infty}^{\infty}t_{n}z^{-n}$, the bilateral
+  $z$-transform of the sequence $\{t_{n}\}$.  Szeg\H{o}'s strong limit
+  theorem gives $\det T_{N}\sim G^{N}\cdot E$ as $N\to\infty$, where
+  $G=\exp\bigl((2\pi)^{-1}\int_{0}^{2\pi}\ln t(e^{i\theta})\,
+  d\theta\bigr)$ and the constant $E$ involves the Wiener--Hopf
+  factors $t(z)=t_{+}(z)t_{-}(z)$ (splitting into causal and anticausal
+  parts).  This asymptotic formula appears in random matrix theory and
+  the two-dimensional Ising model.
+
+\item \textbf{Discrete Hilbert transform and analytic signals.}%
+  \index{Hilbert transform!discrete}%
+  \index{analytic signal!discrete}%
+  \index{Hardy space!$H^{2}$ of the disk}%
+  The projection of $X(z)=\sum_{n=-\infty}^{\infty}c_{n}z^{-n}$ onto
+  the causal part $X_{+}(z)=\sum_{n=0}^{\infty}c_{n}z^{-n}$ is realised
+  by the discrete Hilbert transform on the unit circle.  The space of
+  causal sequences with finite energy is the Hardy space
+  $H^{2}(\mathbb{D})$: functions analytic inside the unit disk with
+  square-integrable boundary values.  The Riesz projection theorem
+  guarantees that this splitting is bounded on $L^{2}(\mathbb{T})$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{18.3\quad Unilateral $z$-transform}
+
+The unilateral (or one-sided) $z$-transform restricts the summation to
+$n\geq 0$:
+\[
+  X^{+}(z)=\sum_{n=0}^{\infty}x[n]\,z^{-n}.
+\]
+This is the standard form in engineering applications, since causal
+systems produce output only for $n\geq 0$.  The ROC of $X^{+}(z)$ is
+always the exterior of a disk, $|z|>r_{+}$, and $X^{+}(z)\to x[0]$
+as $|z|\to\infty$.  The chief advantage over the bilateral transform is
+the natural incorporation of initial conditions: the time-advance
+property reads
+\[
+  \mathcal{Z}^{+}\{x[n+1]\}=z\,X^{+}(z)-z\,x[0],
+  \qquad
+  \mathcal{Z}^{+}\{x[n+2]\}=z^{2}X^{+}(z)-z^{2}x[0]-z\,x[1],
+\]
+and in general $\mathcal{Z}^{+}\{x[n+k]\}=z^{k}X^{+}(z)
+-\sum_{m=0}^{k-1}z^{k-m}x[m]$.  The initial value theorem
+$x[0]=\lim_{z\to\infty}X^{+}(z)$ and the final value theorem
+$\lim_{n\to\infty}x[n]=\lim_{z\to 1}(z-1)X^{+}(z)$ (when the limit
+exists and $(z-1)X^{+}(z)$ has no poles on or outside the unit circle)
+are the discrete counterparts of the Laplace-domain initial and final
+value theorems.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Recurrent neural network analysis and training.}%
+  \index{recurrent neural network!z-transform@$z$-transform}%
+  \index{backpropagation through time}%
+  \index{vanishing gradient!z-transform@$z$-transform interpretation}%
+  \index{echo state network}%
+  A linear recurrent neural network layer with hidden state
+  $\mathbf{h}[n]=\mathbf{A}\mathbf{h}[n-1]+\mathbf{B}\mathbf{x}[n]$
+  and output $\mathbf{y}[n]=\mathbf{C}\mathbf{h}[n]$ has transfer
+  function $\mathbf{H}(z)=\mathbf{C}(z\mathbf{I}-\mathbf{A})^{-1}
+  \mathbf{B}$, a matrix-valued rational function.  The eigenvalues of
+  $\mathbf{A}$ are the poles; the vanishing gradient problem corresponds
+  to $|\lambda_{\max}(\mathbf{A})|<1$ (all poles strictly inside the
+  unit disk), which causes exponential decay of gradients during
+  backpropagation through time.  Echo state networks operate near the
+  ``edge of stability'' $|\lambda_{\max}|\approx 1$ to maintain long
+  memory while preserving stability.
+
+\item \textbf{Digital PID controllers and discretisation.}%
+  \index{PID controller!discrete}%
+  \index{Tustin transformation}%
+  \index{anti-windup}%
+  \index{z-transform@$z$-transform!control system design}%
+  The continuous PID controller $C(s)=K_{p}+K_{i}/s+K_{d}s$ is
+  discretised to $C(z)$ via the Tustin (bilinear) transformation
+  $s=\frac{2}{T}\frac{z-1}{z+1}$, yielding
+  $C(z)=K_{p}+\frac{K_{i}T}{2}\frac{z+1}{z-1}
+  +\frac{2K_{d}}{T}\frac{z-1}{z+1}$.
+  The unilateral $z$-transform naturally handles the integrator state
+  (initial condition of the running sum) and facilitates anti-windup
+  analysis by tracking the pole at $z=1$ from the integral term.  Modern
+  embedded controllers implement $C(z)$ directly as a difference equation
+  in fixed-point arithmetic.
+
+\item \textbf{Kalman filter state estimation.}%
+  \index{Kalman filter!z-transform@$z$-transform}%
+  \index{state estimation!discrete}%
+  \index{Riccati equation!discrete}%
+  The discrete-time Kalman filter for the state-space system
+  $\mathbf{x}[n+1]=\mathbf{F}\mathbf{x}[n]+\mathbf{G}\mathbf{w}[n]$,
+  $\mathbf{y}[n]=\mathbf{H}\mathbf{x}[n]+\mathbf{v}[n]$ produces an
+  optimal state estimate $\hat{\mathbf{x}}[n|n]$ whose error dynamics
+  are governed by the transfer function
+  $(z\mathbf{I}-(\mathbf{I}-\mathbf{K}\mathbf{H})\mathbf{F})^{-1}
+  \mathbf{K}$.  The steady-state Kalman gain $\mathbf{K}$ is obtained
+  from the discrete algebraic Riccati equation, and stability requires
+  that $(\mathbf{I}-\mathbf{K}\mathbf{H})\mathbf{F}$ have all
+  eigenvalues inside the unit disk---a spectral condition naturally
+  expressed in the $z$-domain.
+
+\item \textbf{Numerical stability of finite-difference schemes.}%
+  \index{finite-difference scheme!stability}%
+  \index{von Neumann stability analysis}%
+  \index{CFL condition}%
+  \index{amplification factor}%
+  Von Neumann stability analysis of a finite-difference scheme for a PDE
+  inserts the Fourier mode $u_{j}^{n}=g^{n}e^{ik j\Delta x}$ into the
+  scheme, where $g$ is the amplification factor.  Interpreting $g$ as
+  $z$ in the temporal direction, stability requires $|z|\leq 1$ for all
+  spatial wave numbers $k$.  For the explicit FTCS scheme applied to the
+  diffusion equation, this yields the CFL condition $\alpha=D\Delta
+  t/(\Delta x)^{2}\leq 1/2$.  Implicit schemes (Crank--Nicolson) are
+  analysed similarly: the resulting $z$-domain transfer function
+  $g(k)=(1-\alpha\sin^{2}(k\Delta x/2))/(1+\alpha\sin^{2}(k\Delta x/2))$
+  satisfies $|g|\leq 1$ unconditionally.
+
+\item \textbf{Quantum computing: discrete-time quantum walks.}%
+  \index{quantum walk!discrete-time}%
+  \index{Hadamard coin}%
+  \index{z-transform@$z$-transform!quantum walk}%
+  A discrete-time quantum walk on the integer lattice uses a coin
+  operator $\mathbf{C}$ (e.g., the Hadamard matrix) and a conditional
+  shift $\mathbf{S}$, giving the evolution operator $\mathbf{U}=
+  \mathbf{S}(\mathbf{C}\otimes\mathbf{I})$.  The $z$-transform of the
+  position amplitude $\psi[n,t]$ in the spatial variable~$n$ converts
+  the walk dynamics into a matrix recurrence in the time variable,
+  whose spectral analysis reveals the ballistic spreading
+  $\sigma(t)\sim t$ (contrasting with the diffusive $\sigma\sim\sqrt{t}$
+  of the classical random walk).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Probability generating functions and branching processes.}%
+  \index{probability generating function}%
+  \index{branching process}%
+  \index{extinction probability}%
+  \index{z-transform@$z$-transform!probability theory}%
+  The probability generating function (PGF) of a non-negative
+  integer-valued random variable $N$ is $G(z)=\mathbb{E}[z^{N}]
+  =\sum_{k=0}^{\infty}p_{k}z^{k}$, which is the unilateral
+  $z$-transform of $\{p_{k}\}$ evaluated at $1/z$.  For a
+  Galton--Watson branching process with offspring PGF $G(z)$, the
+  PGF of the $n$th generation size is the $n$-fold iterate
+  $G_{n}(z)=G(G(\cdots G(z)\cdots))$.  The extinction probability
+  is the smallest fixed point of $G(z)=z$ in $[0,1]$, and criticality
+  ($G'(1)=1$) separates subcritical from supercritical regimes.  Moments
+  are computed by differentiation: $\mathbb{E}[N]=G'(1)$,
+  $\mathrm{Var}(N)=G''(1)+G'(1)-[G'(1)]^{2}$.
+
+\item \textbf{Operational calculus for difference equations with
+  initial conditions.}%
+  \index{operational calculus!discrete}%
+  \index{initial value problem!difference equations}%
+  \index{z-transform@$z$-transform!initial conditions}%
+  The unilateral $z$-transform provides an operational calculus for
+  linear difference equations exactly analogous to the Laplace transform
+  for ODEs (Section~16).  The initial conditions appear explicitly in
+  the transformed equation, and the particular solution is obtained by
+  algebraic manipulation followed by inversion.  For the second-order
+  recurrence $x[n+2]+ax[n+1]+bx[n]=f[n]$ with $x[0]=c_{0}$,
+  $x[1]=c_{1}$, the transform yields
+  $X^{+}(z)=\frac{F^{+}(z)+(z^{2}+az)c_{0}+zc_{1}}{z^{2}+az+b}$,
+  and the solution is recovered by partial fractions and table lookup.
+
+\item \textbf{Moment generating properties and asymptotic enumeration.}%
+  \index{moment generating function!discrete}%
+  \index{asymptotic enumeration}%
+  \index{Darboux's theorem!transfer}%
+  For a combinatorial sequence $\{a_{n}\}$ counted by the generating
+  function $A(z)=\sum a_{n}z^{n}$, the Darboux transfer theorem
+  extracts asymptotics from the behaviour of $A(z)$ near its dominant
+  singularity.  If $A(z)\sim C(1-z/\rho)^{-\alpha}$ as $z\to\rho$
+  (with $\rho$ the radius of convergence), then
+  $a_{n}\sim C\rho^{-n}n^{\alpha-1}/\Gamma(\alpha)$.  This ``transfer''
+  from singularity type to coefficient asymptotics is the combinatorial
+  analogue of Tauberian theorems for the Laplace transform and is the
+  main tool of analytic combinatorics~\cite{FlajoletSedgewick2009}.
+
+\item \textbf{Generating functions for orthogonal polynomial sequences.}%
+  \index{orthogonal polynomials!generating function}%
+  \index{Chebyshev polynomials!generating function}%
+  \index{three-term recurrence}%
+  \index{z-transform@$z$-transform!orthogonal polynomials}%
+  Classical orthogonal polynomials satisfy three-term recurrences
+  $p_{n+1}(x)=(A_{n}x+B_{n})p_{n}(x)-C_{n}p_{n-1}(x)$, and their
+  generating functions $G(x,z)=\sum_{n=0}^{\infty}p_{n}(x)z^{n}$ are
+  unilateral $z$-transforms in disguise.  For Chebyshev polynomials of
+  the first kind, $\sum_{n=0}^{\infty}T_{n}(x)z^{n}
+  =(1-xz)/(1-2xz+z^{2})$, a rational function in $z$ whose poles at
+  $z=x\pm\sqrt{x^{2}-1}$ encode the asymptotic behaviour of $T_{n}(x)$
+  for large $n$.  The $z$-transform framework unifies recurrence
+  relations, generating functions, and asymptotic analysis of special
+  function sequences catalogued throughout G\&R.
+
+\item \textbf{Discrete Laplace and Borel transforms.}%
+  \index{Borel summation!discrete}%
+  \index{discrete Laplace transform}%
+  \index{formal power series!summability}%
+  The unilateral $z$-transform can be viewed as a discrete Laplace
+  transform via the substitution $z=e^{s}$:
+  $X^{+}(e^{s})=\sum_{n=0}^{\infty}x[n]e^{-ns}$, which is a Dirichlet
+  series when $x[n]=a(n)$ is an arithmetic function.  The Borel
+  summation method assigns values to divergent formal power series
+  $\sum a_{n}z^{n}$ by computing $\sum(a_{n}/n!)z^{n}$ (convergent by
+  construction) and then applying a Laplace-type integral.  The discrete
+  analogue uses the $z$-transform to resum divergent sequences, connecting
+  to the theory of asymptotic series and moment problems.
+\end{enumerate}

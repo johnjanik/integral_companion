@@ -1,0 +1,1467 @@
+%% Section 17 — Fourier, Laplace, and Mellin Transforms
+\section{17\quad Fourier, Laplace, and Mellin Transforms}
+
+\subsection{17.1--17.4\quad Integral Transforms}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.11\quad Laplace transform}
+
+The Laplace transform converts a function $f(t)$ defined for $t\geq 0$ into
+a function of a complex variable $s$ via
+$\mathcal{L}\{f\}(s)=F(s)=\int_{0}^{\infty}e^{-st}f(t)\,dt$.
+The integral converges in a half-plane $\operatorname{Re}s>\sigma_{0}$,
+where $\sigma_{0}$ is the abscissa of convergence.  The inverse transform
+is given by the Bromwich integral
+$f(t)=\frac{1}{2\pi i}\int_{\gamma-i\infty}^{\gamma+i\infty}e^{st}F(s)\,ds$
+along a vertical contour in the region of convergence.  The Laplace
+transform is the principal tool for reducing linear ordinary differential
+equations with constant coefficients to algebraic equations, and for
+analysing the stability and transient response of dynamical systems.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Control theory and transfer functions.}%
+  \index{Laplace transform!control theory}%
+  \index{transfer function}%
+  \index{feedback systems!stability}%
+  \index{Bode plot}%
+  The Laplace transform converts a linear time-invariant system
+  $\sum a_{k}y^{(k)}=\sum b_{k}u^{(k)}$ into the transfer function
+  $H(s)=Y(s)/U(s)=B(s)/A(s)$, a rational function of~$s$ whose poles
+  determine stability (all poles in $\operatorname{Re}s<0$) and whose
+  frequency response $H(i\omega)$ is displayed in Bode and Nyquist plots.
+  The entire classical theory of PID control, root locus, and state-space
+  methods rests on this transformation.
+
+\item \textbf{Circuit analysis and impedance.}%
+  \index{Laplace transform!circuit analysis}%
+  \index{impedance!Laplace domain}%
+  \index{RLC circuits}%
+  In the $s$-domain, resistors have impedance $R$, capacitors $1/(sC)$,
+  and inductors $sL$.  Kirchhoff's laws become algebraic equations in~$s$,
+  and the transient response to an arbitrary input is obtained by
+  partial-fraction expansion and inverse transformation.  The natural
+  frequencies of an RLC circuit are the poles of the impedance function.
+
+\item \textbf{Radioactive decay chains.}%
+  \index{radioactive decay!Laplace transform}%
+  \index{Bateman equations}%
+  \index{nuclear physics!decay chains}%
+  The Bateman equations $dN_{i}/dt=-\lambda_{i}N_{i}+\lambda_{i-1}N_{i-1}$
+  for a decay chain $A\to B\to C\to\cdots$ are solved by Laplace
+  transform: $N_{i}(s)$ involves partial fractions with poles at
+  $s=-\lambda_{k}$, and the inverse transform gives the classic Bateman
+  solution as a sum of exponentials.
+
+\item \textbf{Viscoelasticity and the standard linear solid.}%
+  \index{viscoelasticity!Laplace transform}%
+  \index{creep compliance}%
+  \index{relaxation modulus}%
+  \index{standard linear solid}%
+  The constitutive equations of linear viscoelasticity (Maxwell, Kelvin--Voigt,
+  standard linear solid) become algebraic relations between stress and
+  strain in the Laplace domain.  The creep compliance $J(t)$ and relaxation
+  modulus $G(t)$ are related by $\hat{J}(s)\hat{G}(s)=1/s^{2}$, a simple
+  algebraic identity in the $s$-domain that is a convolution equation in
+  the time domain.
+
+\item \textbf{Moment generating functions and probability.}%
+  \index{moment generating function}%
+  \index{Laplace transform!probability}%
+  \index{exponential distribution!Laplace transform}%
+  The moment generating function $M_{X}(t)=\mathbb{E}[e^{tX}]$ is
+  essentially the two-sided Laplace transform of the probability density
+  evaluated at $-t$.  For non-negative random variables, $M_{X}(-s)$
+  is the Laplace transform of the density.  Moments are recovered as
+  $\mathbb{E}[X^{n}]=M_{X}^{(n)}(0)=(-1)^{n}F^{(n)}(0)$.  The
+  convolution theorem then proves that the moment generating function of
+  a sum of independent random variables is the product of individual
+  moment generating functions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Operational calculus and the Heaviside method.}%
+  \index{operational calculus}%
+  \index{Heaviside!operational method}%
+  \index{Mikusinski operational calculus}%
+  Heaviside's operational calculus---treating $d/dt$ as an algebraic
+  quantity $p$---is made rigorous by the Laplace transform: $p$
+  becomes~$s$, and the operational rules (partial fractions, expansion
+  theorems) follow from the properties of the transform.  Mikusi\'{n}ski's
+  algebraic approach constructs a field of operators by Cauchy quotients
+  of convolution rings, providing an alternative rigorous foundation.
+
+\item \textbf{Tauberian theorems and asymptotic analysis.}%
+  \index{Tauberian theorems!Laplace transform}%
+  \index{asymptotic analysis!Laplace transform}%
+  \index{Abelian theorems}%
+  \index{Karamata's Tauberian theorem}%
+  Abelian theorems relate the behaviour of $f(t)$ as $t\to\infty$ to that
+  of $F(s)$ as $s\to 0^{+}$, and Tauberian theorems provide the converse
+  under regularity conditions.  Karamata's Tauberian theorem is fundamental
+  in analytic number theory and probability: if $F(s)\sim s^{-\rho}L(1/s)$
+  with $L$ slowly varying, then
+  $\int_{0}^{t}f(u)\,du\sim t^{\rho}L(t)/\Gamma(\rho+1)$.
+
+\item \textbf{Uniqueness and the Lerch--Widder theorem.}%
+  \index{Lerch's theorem!uniqueness}%
+  \index{Widder's theorem}%
+  \index{completely monotone functions}%
+  Lerch's theorem guarantees that the Laplace transform is injective on
+  functions continuous almost everywhere: if $F(s)=G(s)$ for all
+  $\operatorname{Re}s>\sigma_{0}$, then $f=g$ a.e.  Widder's theorem
+  characterises completely monotone functions as Laplace transforms of
+  non-negative measures, connecting to Bernstein functions and
+  L\'{e}vy processes.
+
+\item \textbf{Laplace transform and the resolvent of semigroups.}%
+  \index{operator semigroup!Laplace transform}%
+  \index{resolvent operator}%
+  \index{Hille--Yosida theorem}%
+  For a strongly continuous semigroup $\{T(t)\}_{t\geq 0}$ on a Banach
+  space, the resolvent $(sI-A)^{-1}=\int_{0}^{\infty}e^{-st}T(t)\,dt$
+  is the Laplace transform of the semigroup.  The Hille--Yosida theorem
+  characterises the generators of such semigroups through growth conditions
+  on the resolvent, forming the mathematical backbone of evolution equations
+  in PDEs and stochastic processes.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.12\quad Basic properties of the Laplace transform}
+
+The operational properties of the Laplace transform---linearity, shifting,
+scaling, differentiation, and integration rules---convert differential and
+integral equations into algebraic ones.  The key properties are:
+differentiation becomes multiplication ($\mathcal{L}\{f'\}=sF(s)-f(0)$),
+convolution becomes multiplication
+($\mathcal{L}\{f*g\}=F(s)G(s)$), and time delay becomes
+exponential multiplication
+($\mathcal{L}\{f(t-a)u(t-a)\}=e^{-as}F(s)$).  These properties, listed
+in G\&R~17.12, are the foundation of every engineering application of
+the Laplace transform.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Initial and final value theorems in control systems.}%
+  \index{initial value theorem}%
+  \index{final value theorem}%
+  \index{steady-state response}%
+  \index{step response!final value}%
+  The initial value theorem $f(0^{+})=\lim_{s\to\infty}sF(s)$ and
+  final value theorem $\lim_{t\to\infty}f(t)=\lim_{s\to 0}sF(s)$ (when
+  the limit exists) allow direct extraction of transient and steady-state
+  behaviour from the $s$-domain representation without inverting the
+  transform.  These are used routinely to check step-response settling
+  values and initial jumps in control engineering.
+
+\item \textbf{Convolution and linear system response.}%
+  \index{convolution!Laplace transform}%
+  \index{impulse response!convolution}%
+  \index{Green's function!Laplace transform}%
+  The output of a linear time-invariant system is
+  $y(t)=(h*u)(t)=\int_{0}^{t}h(t-\tau)u(\tau)\,d\tau$, where $h$ is the
+  impulse response.  The convolution theorem transforms this to
+  $Y(s)=H(s)U(s)$, reducing the computation of system response to
+  multiplication.  The impulse response $h(t)$ is itself the Green's function
+  of the differential operator.
+
+\item \textbf{Differentiation rule and the $s$-domain ODE.}%
+  \index{differentiation!Laplace transform}%
+  \index{ODE!Laplace transform solution}%
+  \index{initial conditions!Laplace transform}%
+  The rule $\mathcal{L}\{f^{(n)}\}=s^{n}F(s)-\sum_{k=0}^{n-1}s^{n-1-k}f^{(k)}(0)$
+  automatically incorporates initial conditions into the algebraic
+  equation.  For a second-order system
+  $my''+cy'+ky=f(t)$, the transform gives
+  $(ms^{2}+cs+k)Y(s)=F(s)+(\text{initial conditions})$,
+  solved by partial fractions.
+
+\item \textbf{$s$-shifting and damped oscillations.}%
+  \index{$s$-shifting!Laplace transform}%
+  \index{damped oscillations}%
+  \index{frequency shifting}%
+  \index{modulation theorem}%
+  The $s$-shifting property $\mathcal{L}\{e^{at}f(t)\}=F(s-a)$ shifts
+  poles in the $s$-plane.  A damped sinusoid
+  $e^{-\alpha t}\sin(\omega t)$ has transform
+  $\omega/((s+\alpha)^{2}+\omega^{2})$, with poles at
+  $s=-\alpha\pm i\omega$ encoding both the damping rate and natural
+  frequency directly in the pole locations.
+
+\item \textbf{Integration rule and cumulative response.}%
+  \index{integration!Laplace transform}%
+  \index{integral equations!Laplace transform}%
+  \index{Abel integral equation}%
+  The rule $\mathcal{L}\{\int_{0}^{t}f(\tau)\,d\tau\}=F(s)/s$ converts
+  Volterra integral equations of convolution type into algebraic equations.
+  The Abel integral equation $g(x)=\int_{0}^{x}f(t)(x-t)^{-1/2}\,dt$
+  is solved by Laplace transform using
+  $G(s)=F(s)\cdot\Gamma(1/2)/s^{1/2}$, yielding
+  $f(t)=(1/\pi)\,d/dt\int_{0}^{t}g(\tau)(t-\tau)^{-1/2}\,d\tau$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Convolution algebras and Banach algebras.}%
+  \index{convolution algebra}%
+  \index{Banach algebra!$L^{1}$}%
+  \index{Titchmarsh convolution theorem}%
+  The space $L^{1}(\mathbb{R}^{+})$ with convolution as multiplication
+  forms a commutative Banach algebra without identity.  The Laplace
+  transform is a homomorphism from this algebra to an algebra of analytic
+  functions.  The Titchmarsh convolution theorem states that if $f*g=0$
+  on $[0,T]$, then $f=0$ on $[0,a]$ and $g=0$ on $[0,b]$ for some
+  $a+b\geq T$.
+
+\item \textbf{Generating functions and combinatorics.}%
+  \index{generating functions!Laplace connection}%
+  \index{exponential generating function}%
+  \index{Borel summation}%
+  The exponential generating function
+  $\hat{f}(z)=\sum a_{n}z^{n}/n!$ is the Borel sum associated with
+  the formal power series $\sum a_{n}z^{n}$.  The Borel summation method
+  uses the Laplace transform to assign values to divergent series:
+  $\sum a_{n}z^{n}\to\int_{0}^{\infty}e^{-t}\hat{f}(tz)\,dt$, connecting
+  asymptotic analysis to the theory of integral transforms.
+
+\item \textbf{Stieltjes transform and moment problems.}%
+  \index{Stieltjes transform}%
+  \index{moment problem!Stieltjes}%
+  \index{continued fractions!Stieltjes transform}%
+  The Stieltjes transform $S(s)=\int_{0}^{\infty}f(t)/(s+t)\,dt$ is the
+  iterated Laplace transform: $S(s)=\mathcal{L}\{\mathcal{L}\{f\}\}(s)$.
+  It arises in the Stieltjes moment problem---determining a measure from
+  its moments $\mu_{n}=\int t^{n}d\mu(t)$---and is connected to
+  continued fraction expansions of analytic functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.13\quad Table of Laplace transform pairs}
+
+The table of Laplace transform pairs in G\&R~17.13 collects the standard
+correspondences between time-domain functions and their $s$-domain
+representations.  The most fundamental pairs include the exponential
+$e^{at}\leftrightarrow 1/(s-a)$, the power function
+$t^{n}\leftrightarrow n!/s^{n+1}$, and the damped sinusoids
+$e^{at}\sin(bt)\leftrightarrow b/((s-a)^{2}+b^{2})$.
+The table also contains transforms of special functions: the Bessel function
+$J_{0}(at)\leftrightarrow 1/\sqrt{s^{2}+a^{2}}$, the error function
+$\operatorname{erf}(a/\sqrt{t})\leftrightarrow e^{-a\sqrt{s}}/s$, and
+the Heaviside step function $u(t-a)\leftrightarrow e^{-as}/s$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Inverse square root and diffusion.}%
+  \index{Laplace transform pairs!diffusion}%
+  \index{heat kernel!Laplace transform}%
+  \index{diffusion equation!Green's function}%
+  The pair $1/\sqrt{\pi t}\leftrightarrow 1/\sqrt{s}$ is the fundamental
+  solution of the diffusion equation.  More generally,
+  $t^{\alpha-1}/\Gamma(\alpha)\leftrightarrow s^{-\alpha}$ (for
+  $\alpha>0$) underlies fractional calculus and anomalous diffusion
+  processes where the mean square displacement grows as $t^{\alpha}$
+  rather than linearly.
+
+\item \textbf{Bessel function pairs and wave propagation.}%
+  \index{Bessel function!Laplace transform}%
+  \index{wave propagation!cylindrical}%
+  \index{Laplace transform pairs!Bessel}%
+  The transforms of Bessel functions ($J_{\nu}$, $I_{\nu}$, $K_{\nu}$)
+  appear in cylindrical wave propagation, heat conduction in cylinders,
+  and the sommerfeld integral for antenna radiation.  The pair
+  $J_{0}(at)\leftrightarrow(s^{2}+a^{2})^{-1/2}$ is the starting point
+  for the Hankel transform via the Fourier--Bessel connection.
+
+\item \textbf{Rational function pairs and electrical engineering.}%
+  \index{Laplace transform pairs!rational functions}%
+  \index{partial fractions!circuit analysis}%
+  \index{poles and zeros}%
+  The rational pairs $1/(s-a)^{n}\leftrightarrow t^{n-1}e^{at}/(n-1)!$
+  are the backbone of circuit analysis.  Every rational transfer function
+  decomposes into partial fractions of this form, and the inverse transform
+  is read off the table.  Complex pole pairs give damped oscillations;
+  repeated poles give polynomial-times-exponential transients.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Mittag-Leffler function and fractional calculus.}%
+  \index{Mittag-Leffler function!Laplace transform}%
+  \index{fractional calculus!Laplace transform}%
+  \index{Laplace transform pairs!Mittag-Leffler}%
+  The Mittag-Leffler function
+  $E_{\alpha,\beta}(z)=\sum_{k=0}^{\infty}z^{k}/\Gamma(\alpha k+\beta)$
+  has Laplace transform
+  $\mathcal{L}\{t^{\beta-1}E_{\alpha,\beta}(\lambda t^{\alpha})\}
+  =s^{\alpha-\beta}/(s^{\alpha}-\lambda)$.  This generalises the
+  exponential pair $e^{\lambda t}\leftrightarrow 1/(s-\lambda)$ and is
+  the key to solving fractional differential equations.
+
+\item \textbf{Bernstein's theorem and completely monotone functions.}%
+  \index{Bernstein's theorem!Laplace transform}%
+  \index{completely monotone functions!characterisation}%
+  A function $f$ on $(0,\infty)$ is completely monotone
+  ($(-1)^{n}f^{(n)}\geq 0$ for all $n$) if and only if it is the Laplace
+  transform of a non-negative measure: $f(s)=\int_{0}^{\infty}e^{-st}\,d\mu(t)$.
+  This characterisation is used in probability (infinitely divisible
+  distributions) and in harmonic analysis on semigroups.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.21\quad Fourier transform}
+
+The Fourier transform decomposes a function into its frequency components:
+$\hat{f}(\omega)=\mathcal{F}\{f\}(\omega)
+=\int_{-\infty}^{\infty}f(t)\,e^{-i\omega t}\,dt$,
+with inverse $f(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(\omega)\,e^{i\omega t}\,d\omega$.
+The transform exists for $f\in L^{1}(\mathbb{R})$ and extends by density
+to $L^{2}(\mathbb{R})$ as a unitary operator (Plancherel theorem).
+Different normalisation conventions exist in the literature---G\&R uses the
+asymmetric convention with the $1/(2\pi)$ factor on the inverse.  The
+Fourier transform is arguably the single most important tool in mathematical
+physics, signal processing, and harmonic analysis.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{CT reconstruction and the Fourier slice theorem.}%
+  \index{Fourier transform!CT reconstruction}%
+  \index{Fourier slice theorem}%
+  \index{Radon transform!Fourier slice}%
+  \index{computed tomography}%
+  \index{filtered back-projection}%
+  The Fourier slice theorem (central slice theorem) states that the
+  one-dimensional Fourier transform of a parallel-beam projection of a
+  two-dimensional object at angle $\theta$ equals a slice through the
+  two-dimensional Fourier transform at the same angle:
+  $\hat{P}_{\theta}(\omega)=\hat{f}(\omega\cos\theta,\omega\sin\theta)$.
+  This is the mathematical foundation of computed tomography (CT):
+  filtered back-projection reconstructs $f(x,y)$ by collecting projections
+  at many angles and applying the inverse Fourier transform, enabling
+  medical imaging that won Cormack and Hounsfield the 1979 Nobel Prize.
+
+\item \textbf{X-ray crystallography and structure determination.}%
+  \index{X-ray crystallography}%
+  \index{Bragg diffraction}%
+  \index{structure factor}%
+  \index{phase problem!crystallography}%
+  The diffraction pattern of a crystal is the squared modulus of the
+  Fourier transform of the electron density:
+  $I(\mathbf{k})\propto|\hat{\rho}(\mathbf{k})|^{2}$.
+  The structure factor $F(\mathbf{h})=\sum_{j}f_{j}e^{2\pi i\mathbf{h}\cdot\mathbf{r}_{j}}$
+  is a discrete Fourier transform over the unit cell.  The phase
+  problem---recovering $\hat{\rho}(\mathbf{k})$ from $|\hat{\rho}(\mathbf{k})|$
+  alone---is the central challenge, solved by Patterson methods, direct
+  methods, and molecular replacement.
+
+\item \textbf{Quantum mechanics and the momentum representation.}%
+  \index{Fourier transform!quantum mechanics}%
+  \index{momentum representation}%
+  \index{uncertainty principle!Fourier}%
+  \index{wave packet}%
+  The position and momentum representations of a quantum state are
+  related by the Fourier transform:
+  $\tilde{\psi}(p)=\frac{1}{\sqrt{2\pi\hbar}}\int\psi(x)e^{-ipx/\hbar}\,dx$.
+  The Heisenberg uncertainty principle $\Delta x\,\Delta p\geq\hbar/2$
+  is a direct consequence of the Fourier uncertainty relation: a function
+  and its Fourier transform cannot both be sharply localised.
+
+\item \textbf{Signal processing and the sampling theorem.}%
+  \index{sampling theorem!Nyquist--Shannon}%
+  \index{Fourier transform!signal processing}%
+  \index{aliasing}%
+  \index{bandlimited signals}%
+  A bandlimited signal with $\hat{f}(\omega)=0$ for $|\omega|>\Omega$
+  is completely determined by samples at rate $2\Omega$ (Nyquist--Shannon
+  sampling theorem).  Aliasing occurs when the sampling rate is
+  insufficient, folding high-frequency components into lower frequencies.
+  The entire theory of digital signal processing---filtering, spectral
+  analysis, windowing---rests on the Fourier transform.
+
+\item \textbf{Optics and Fraunhofer diffraction.}%
+  \index{Fraunhofer diffraction}%
+  \index{optical Fourier transform}%
+  \index{diffraction pattern}%
+  The far-field (Fraunhofer) diffraction pattern of an aperture is the
+  Fourier transform of the aperture function: for an aperture $a(x,y)$,
+  the field at the screen is
+  $U(\xi,\eta)\propto\iint a(x,y)e^{-i(k_{x}x+k_{y}y)}\,dx\,dy$.
+  A lens performs an optical Fourier transform in its focal plane, a
+  principle exploited in spatial filtering and holography.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Harmonic analysis on locally compact abelian groups.}%
+  \index{harmonic analysis!locally compact groups}%
+  \index{Pontryagin duality}%
+  \index{character group}%
+  The Fourier transform on $\mathbb{R}$ is a special case of the
+  Pontryagin duality theory: for any locally compact abelian group $G$,
+  $\hat{f}(\chi)=\int_{G}f(g)\overline{\chi(g)}\,dg$ transforms
+  functions on $G$ to functions on the dual group $\hat{G}$.
+  For $G=\mathbb{R}$, $\hat{G}\cong\mathbb{R}$; for $G=\mathbb{Z}$,
+  $\hat{G}\cong\mathbb{T}$ (Fourier series); for $G=\mathbb{Z}/N\mathbb{Z}$,
+  $\hat{G}\cong\mathbb{Z}/N\mathbb{Z}$ (DFT).
+
+\item \textbf{Schwartz space and tempered distributions.}%
+  \index{Schwartz space}%
+  \index{tempered distributions}%
+  \index{Fourier transform!distributions}%
+  The Fourier transform is an automorphism of the Schwartz space
+  $\mathcal{S}(\mathbb{R})$ of rapidly decreasing functions, and extends
+  by duality to tempered distributions $\mathcal{S}'(\mathbb{R})$.
+  This gives rigorous meaning to $\mathcal{F}\{\delta\}=1$,
+  $\mathcal{F}\{1\}=2\pi\delta$, and the transforms of polynomials,
+  essential in PDE theory and quantum field theory.
+
+\item \textbf{Paley--Wiener theorem and analyticity.}%
+  \index{Paley--Wiener theorem}%
+  \index{entire functions of exponential type}%
+  \index{support!Fourier transform}%
+  The Paley--Wiener theorem characterises the Fourier transforms of
+  compactly supported distributions as entire functions of exponential
+  type: $f$ is supported in $[-a,a]$ if and only if $\hat{f}$ extends
+  to an entire function with $|\hat{f}(z)|\leq Ce^{a|\operatorname{Im}z|}$.
+  This connects the support of a function to the growth rate of its
+  analytic continuation.
+
+\item \textbf{Fourier analysis and PDEs.}%
+  \index{Fourier transform!PDE solution}%
+  \index{heat equation!Fourier solution}%
+  \index{dispersion relation}%
+  The Fourier transform converts constant-coefficient PDEs to algebraic
+  (or ODE) problems in the frequency variable.  The heat equation
+  $u_{t}=\alpha u_{xx}$ transforms to $\hat{u}_{t}=-\alpha\omega^{2}\hat{u}$,
+  giving $\hat{u}(\omega,t)=\hat{u}_{0}(\omega)e^{-\alpha\omega^{2}t}$
+  and the Gaussian heat kernel by inverse transform.  The dispersion
+  relation $\omega(k)$ for a wave equation determines the group and phase
+  velocities directly in Fourier space.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.22\quad Basic properties of the Fourier transform}
+
+The basic properties of the Fourier transform include linearity,
+the shift theorem $\mathcal{F}\{f(t-a)\}=e^{-ia\omega}\hat{f}(\omega)$,
+the modulation theorem
+$\mathcal{F}\{e^{i\omega_{0}t}f(t)\}=\hat{f}(\omega-\omega_{0})$,
+the scaling property $\mathcal{F}\{f(at)\}=|\!a\!|^{-1}\hat{f}(\omega/a)$,
+the convolution theorem
+$\mathcal{F}\{f*g\}=\hat{f}\cdot\hat{g}$, and Parseval's relation
+$\int|f|^{2}\,dt=(2\pi)^{-1}\int|\hat{f}|^{2}\,d\omega$.
+The differentiation property $\mathcal{F}\{f'\}=i\omega\hat{f}$ converts
+differential operators to polynomial multiplication, the central mechanism
+for solving PDEs via Fourier methods.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Convolution theorem and linear filtering.}%
+  \index{convolution theorem!Fourier}%
+  \index{linear filter!frequency domain}%
+  \index{low-pass filter}%
+  \index{transfer function!Fourier domain}%
+  The convolution theorem $\mathcal{F}\{f*g\}=\hat{f}\hat{g}$ is the
+  foundation of linear filtering: a filter with impulse response $h(t)$
+  multiplies the input spectrum by the frequency response $\hat{h}(\omega)$.
+  Low-pass, high-pass, and band-pass filters are designed by specifying
+  $\hat{h}(\omega)$, and the output is computed by inverse Fourier
+  transform.  The Fast Fourier Transform (FFT) makes this convolution
+  computationally efficient at $O(N\log N)$ cost.
+
+\item \textbf{Parseval's theorem and energy spectral density.}%
+  \index{Parseval's theorem!energy}%
+  \index{energy spectral density}%
+  \index{power spectrum}%
+  \index{Wiener--Khinchin theorem}%
+  Parseval's relation $\int|f(t)|^{2}\,dt=\frac{1}{2\pi}\int|\hat{f}(\omega)|^{2}\,d\omega$
+  states that the total energy is the same in time and frequency domains.
+  The energy spectral density $|\hat{f}(\omega)|^{2}$ describes how
+  energy is distributed across frequencies.  For stationary random
+  processes, the Wiener--Khinchin theorem identifies the power spectral
+  density as the Fourier transform of the autocorrelation function.
+
+\item \textbf{Time-frequency duality and the uncertainty principle.}%
+  \index{uncertainty principle!time-frequency}%
+  \index{Gabor limit}%
+  \index{time-frequency analysis}%
+  \index{short-time Fourier transform}%
+  The scaling property shows that compressing a signal in time expands it
+  in frequency and vice versa: $\Delta t\,\Delta\omega\geq 1/2$ (Gabor
+  limit).  This fundamental trade-off governs radar pulse design, musical
+  note resolution, and spectroscopic line widths.  The short-time Fourier
+  transform $\text{STFT}(t,\omega)=\int f(\tau)w(\tau-t)e^{-i\omega\tau}\,d\tau$
+  provides a compromise by windowing.
+
+\item \textbf{Differentiation property and spectral methods for PDEs.}%
+  \index{spectral methods!PDE}%
+  \index{pseudospectral method}%
+  \index{Fourier differentiation}%
+  Since $\mathcal{F}\{f^{(n)}\}=(i\omega)^{n}\hat{f}$, derivatives in
+  physical space become multiplications in Fourier space.  Pseudospectral
+  methods compute spatial derivatives via FFT, multiply by $(i\omega)^{n}$,
+  and transform back, achieving exponential convergence for smooth
+  solutions.  This is the standard approach in direct numerical simulation
+  of turbulence and weather prediction.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Plancherel theorem and $L^{2}$ isometry.}%
+  \index{Plancherel theorem}%
+  \index{$L^{2}$ isometry!Fourier}%
+  \index{Fourier transform!$L^{2}$ extension}%
+  The Fourier transform extends from $L^{1}\cap L^{2}$ to a unitary
+  isomorphism $\mathcal{F}:L^{2}(\mathbb{R})\to L^{2}(\mathbb{R})$
+  (Plancherel theorem).  This is the rigorous statement of Parseval's
+  relation and is the cornerstone of $L^{2}$ harmonic analysis.
+
+\item \textbf{Young's inequality and convolution estimates.}%
+  \index{Young's inequality!convolution}%
+  \index{Hausdorff--Young inequality}%
+  \index{$L^{p}$ spaces!convolution}%
+  Young's inequality $\|f*g\|_{r}\leq\|f\|_{p}\|g\|_{q}$ (with
+  $1/p+1/q=1+1/r$) controls the $L^{r}$ norm of a convolution.  The
+  Hausdorff--Young inequality $\|\hat{f}\|_{p'}\leq\|f\|_{p}$ for
+  $1\leq p\leq 2$ (with $1/p+1/p'=1$) gives the sharp mapping
+  properties of the Fourier transform between $L^{p}$ spaces, fundamental
+  in PDE regularity theory.
+
+\item \textbf{Poisson summation formula.}%
+  \index{Poisson summation formula}%
+  \index{sampling!Poisson summation}%
+  \index{theta function!Poisson summation}%
+  The Poisson summation formula
+  $\sum_{n\in\mathbb{Z}}f(n)=\sum_{n\in\mathbb{Z}}\hat{f}(2\pi n)$
+  connects sampling in the time domain to periodisation in the frequency
+  domain.  It is the tool behind the functional equation of the Jacobi
+  theta function $\theta(t)=\sum e^{-\pi n^{2}t}$, which in turn yields
+  the functional equation of the Riemann zeta function.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.23\quad Table of Fourier transform pairs}
+
+The table of Fourier transform pairs in G\&R~17.23 provides the standard
+dictionary for converting between time/space domain functions and their
+frequency representations.  The most fundamental entries are the Gaussian
+$e^{-at^{2}}\leftrightarrow\sqrt{\pi/a}\,e^{-\omega^{2}/(4a)}$ (the
+Gaussian is its own Fourier transform up to scaling), the rectangular
+pulse $\operatorname{rect}(t)\leftrightarrow\operatorname{sinc}(\omega/2)$,
+the exponential decay $e^{-a|t|}\leftrightarrow 2a/(a^{2}+\omega^{2})$
+(Lorentzian), and the delta function
+$\delta(t)\leftrightarrow 1$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gaussian wave packets and minimum uncertainty.}%
+  \index{Gaussian!Fourier transform pair}%
+  \index{minimum uncertainty state}%
+  \index{coherent state!Gaussian}%
+  The Gaussian pair $e^{-t^{2}/2\sigma^{2}}\leftrightarrow
+  \sigma\sqrt{2\pi}\,e^{-\sigma^{2}\omega^{2}/2}$ saturates the
+  uncertainty inequality $\Delta t\,\Delta\omega=1/2$.  In quantum
+  mechanics, Gaussian wave packets are the coherent states of the
+  harmonic oscillator, and in optics, Gaussian beams are the fundamental
+  modes of laser cavities.
+
+\item \textbf{Lorentzian line shape and resonance.}%
+  \index{Lorentzian!Fourier transform}%
+  \index{spectral line shape}%
+  \index{Breit--Wigner distribution}%
+  The pair $e^{-\gamma|t|}\leftrightarrow 2\gamma/(\gamma^{2}+\omega^{2})$
+  gives the Lorentzian spectral line shape, characteristic of damped
+  harmonic oscillators and resonance phenomena.  In nuclear and particle
+  physics, the Breit--Wigner distribution $|1/(E-E_{0}+i\Gamma/2)|^{2}$
+  describes unstable particle resonances.
+
+\item \textbf{Sinc function and ideal filters.}%
+  \index{sinc function!Fourier pair}%
+  \index{ideal filter!sinc reconstruction}%
+  \index{Gibbs phenomenon}%
+  The pair $\operatorname{sinc}(\pi t)\leftrightarrow\operatorname{rect}(\omega/2\pi)$
+  shows that an ideal low-pass filter has a sinc impulse response.  The
+  non-causal and slowly decaying nature of the sinc function means that
+  ideal filters are unrealisable; the Gibbs phenomenon (9\% overshoot at
+  discontinuities) is the manifestation in partial Fourier sums.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Schwartz functions as Fourier eigenfunctions.}%
+  \index{Fourier eigenfunctions}%
+  \index{Hermite functions!Fourier eigenfunctions}%
+  \index{Schwartz space!Fourier stability}%
+  The Hermite functions $h_{n}(t)=H_{n}(t)e^{-t^{2}/2}$ are
+  eigenfunctions of the Fourier transform with eigenvalues $(-i)^{n}$.
+  The Gaussian $h_{0}(t)=e^{-t^{2}/2}$ is the unique
+  $L^{2}$-normalised eigenfunction with eigenvalue~1.  The Hermite
+  expansion provides the spectral decomposition of the Fourier transform
+  as an operator on $L^{2}$.
+
+\item \textbf{Characteristic functions and probability.}%
+  \index{characteristic function!probability}%
+  \index{L\'evy continuity theorem}%
+  \index{central limit theorem!Fourier proof}%
+  The characteristic function $\varphi_{X}(\omega)=\mathbb{E}[e^{i\omega X}]
+  =\hat{f}(-\omega)$ is the Fourier transform of the probability density.
+  The L\'{e}vy continuity theorem states that convergence of
+  characteristic functions implies convergence in distribution, providing
+  the standard proof of the central limit theorem: the characteristic
+  function of a normalised sum converges to $e^{-\omega^{2}/2}$, the
+  transform of the Gaussian.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.24\quad Table of Fourier transform pairs for spherically symmetric functions}
+
+For spherically symmetric (radial) functions $f(\mathbf{x})=f(r)$ in
+$\mathbb{R}^{n}$, the $n$-dimensional Fourier transform reduces to a
+one-dimensional integral involving Bessel functions.  In three dimensions,
+$\hat{f}(k)=\frac{4\pi}{k}\int_{0}^{\infty}r\sin(kr)\,f(r)\,dr$,
+which is essentially a Fourier sine transform of $rf(r)$ divided by~$k$.
+The general formula for $\mathbb{R}^{n}$ involves the Hankel transform of
+order $\nu=n/2-1$:
+$\hat{f}(k)=(2\pi)^{n/2}k^{-\nu}\int_{0}^{\infty}r^{\nu+1}J_{\nu}(kr)\,f(r)\,dr$.
+The table in G\&R~17.24 lists the most important radial pairs, which
+appear throughout scattering theory, potential theory, and statistical
+mechanics.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Coulomb potential and scattering form factors.}%
+  \index{Coulomb potential!Fourier transform}%
+  \index{form factor!scattering}%
+  \index{Yukawa potential!Fourier transform}%
+  The fundamental pair $1/r\leftrightarrow 4\pi/k^{2}$ in three
+  dimensions is the Fourier transform of the Coulomb potential,
+  essential in electrostatics and quantum scattering.  The Yukawa
+  potential $e^{-\mu r}/r\leftrightarrow 4\pi/(k^{2}+\mu^{2})$
+  describes screened interactions.  Nuclear and particle form factors
+  $F(k)=\hat{\rho}(k)/\hat{\rho}(0)$ are the spherical Fourier transforms
+  of charge or matter distributions.
+
+\item \textbf{Born approximation and scattering cross sections.}%
+  \index{Born approximation!Fourier transform}%
+  \index{scattering amplitude!radial}%
+  \index{Rutherford scattering}%
+  In the first Born approximation, the scattering amplitude is
+  proportional to the Fourier transform of the potential:
+  $f(\theta)\propto\hat{V}(|\mathbf{k}-\mathbf{k}'|)$.  For the
+  Coulomb potential, this recovers the Rutherford scattering formula.
+  The radial Fourier transform pairs in the table provide the scattering
+  amplitudes for standard model potentials.
+
+\item \textbf{Pair correlation functions in statistical mechanics.}%
+  \index{pair correlation function}%
+  \index{structure factor!radial}%
+  \index{Ornstein--Zernike equation}%
+  The static structure factor $S(k)=1+n\hat{h}(k)$ of a fluid is related
+  to the pair correlation function $h(r)=g(r)-1$ through the spherical
+  Fourier transform.  The Ornstein--Zernike equation
+  $h(r)=c(r)+n\int c(|\mathbf{r}-\mathbf{r}'|)h(r')\,d\mathbf{r}'$
+  becomes algebraic in Fourier space: $\hat{h}(k)=\hat{c}(k)/(1-n\hat{c}(k))$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hecke--Bochner theorem and radial Fourier analysis.}%
+  \index{Hecke--Bochner theorem}%
+  \index{spherical harmonics!Fourier decomposition}%
+  \index{Hankel transform!radial Fourier}%
+  The Hecke--Bochner theorem states that if
+  $f(\mathbf{x})=f_{0}(r)Y_{\ell}^{m}(\hat{\mathbf{x}})$, then
+  $\hat{f}(\mathbf{k})=(-i)^{\ell}\hat{f}_{0}^{(\ell)}(k)Y_{\ell}^{m}(\hat{\mathbf{k}})$,
+  where $\hat{f}_{0}^{(\ell)}$ is a Hankel transform.  This separates
+  the angular and radial parts of the Fourier transform, reducing
+  multidimensional analysis to one-dimensional Hankel transforms.
+
+\item \textbf{Positive definiteness and Schoenberg's theorem.}%
+  \index{Schoenberg's theorem}%
+  \index{positive definite functions!radial}%
+  \index{radial basis functions}%
+  Schoenberg's theorem characterises continuous radial positive definite
+  functions in $\mathbb{R}^{n}$: $f(r)$ is positive definite if and only
+  if its Hankel transform is a non-negative measure.  This is the
+  foundation for radial basis function interpolation and Gaussian process
+  regression with isotropic covariance kernels.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.31\quad Fourier sine and cosine transforms}
+
+The Fourier sine and cosine transforms are the natural half-line analogues
+of the Fourier transform, defined for $t\geq 0$:
+\[
+  \mathcal{F}_{s}\{f\}(\omega)=\int_{0}^{\infty}f(t)\sin(\omega t)\,dt,\qquad
+  \mathcal{F}_{c}\{f\}(\omega)=\int_{0}^{\infty}f(t)\cos(\omega t)\,dt.
+\]
+Both are self-reciprocal: $\mathcal{F}_{s}^{-1}=(2/\pi)\mathcal{F}_{s}$
+and $\mathcal{F}_{c}^{-1}=(2/\pi)\mathcal{F}_{c}$.  The sine transform
+arises naturally from odd extensions of functions, and the cosine
+transform from even extensions.  Their principal domain of application
+is boundary value problems on the half-line and in semi-infinite
+geometries, where the choice between sine and cosine is dictated by the
+boundary condition at the origin: Dirichlet conditions select the sine
+transform, Neumann conditions select the cosine transform.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Heat conduction on a semi-infinite rod.}%
+  \index{Fourier sine transform!heat equation}%
+  \index{heat equation!semi-infinite domain}%
+  \index{Dirichlet boundary condition!sine transform}%
+  \index{Neumann boundary condition!cosine transform}%
+  The heat equation $u_{t}=\alpha u_{xx}$ on $x\geq 0$ with
+  $u(0,t)=0$ (Dirichlet) is solved by sine transform:
+  $\hat{u}_{s}(\omega,t)=\hat{u}_{s}(\omega,0)\,e^{-\alpha\omega^{2}t}$.
+  With $u_{x}(0,t)=0$ (Neumann, insulated end), the cosine transform
+  applies instead.  The choice of transform automatically encodes the
+  boundary condition.
+
+\item \textbf{Elastic half-space and contact mechanics.}%
+  \index{elastic half-space}%
+  \index{contact mechanics!Fourier transform}%
+  \index{Boussinesq problem}%
+  \index{stress distribution!half-space}%
+  The Boussinesq problem---a point load on an elastic half-space---is
+  solved by Fourier (specifically Hankel) transforms that reduce to
+  sine and cosine transforms for axially symmetric problems.  The
+  surface displacement and stress distributions are expressed as inverse
+  sine/cosine transforms of the applied load's transform, fundamental to
+  contact mechanics and geotechnical engineering.
+
+\item \textbf{Electromagnetic wave propagation in half-space.}%
+  \index{electromagnetic!half-space}%
+  \index{Sommerfeld integral}%
+  \index{antenna!ground plane}%
+  The radiation from an antenna above a conducting half-plane involves
+  Fourier sine and cosine transforms (Sommerfeld integrals) to satisfy
+  boundary conditions at the interface.  The vertical electric field
+  component uses the cosine transform (vanishing tangential $E$ at the
+  conductor), while the horizontal component uses the sine transform.
+
+\item \textbf{Potential flow around semi-infinite bodies.}%
+  \index{potential flow!semi-infinite}%
+  \index{Laplace equation!half-plane}%
+  \index{stream function!sine transform}%
+  The velocity potential and stream function for irrotational flow past
+  semi-infinite plates or wedges are computed via sine and cosine
+  transforms of the Laplace equation on half-plane domains.  The
+  Wiener--Hopf technique for mixed boundary value problems frequently
+  decomposes into paired sine and cosine transform equations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hankel transforms and the connection to Bessel functions.}%
+  \index{Hankel transform}%
+  \index{Bessel function!integral representation}%
+  \index{Fourier--Bessel transform}%
+  The Hankel transform of order $\nu$,
+  $\mathcal{H}_{\nu}\{f\}(k)=\int_{0}^{\infty}f(r)J_{\nu}(kr)\,r\,dr$,
+  generalises the sine and cosine transforms: $\mathcal{H}_{-1/2}$
+  reduces to the cosine transform and $\mathcal{H}_{1/2}$ to the sine
+  transform (up to normalisation).  The Hankel transform is self-reciprocal
+  and diagonalises the radial part of the Laplacian in cylindrical
+  coordinates.
+
+\item \textbf{Sturm--Liouville theory on the half-line.}%
+  \index{Sturm--Liouville!half-line}%
+  \index{eigenfunction expansion!half-line}%
+  \index{Weyl--Titchmarsh theory}%
+  The Fourier sine and cosine transforms are the eigenfunction expansions
+  for the operator $-d^{2}/dx^{2}$ on $[0,\infty)$ with Dirichlet and
+  Neumann boundary conditions, respectively.  The general
+  Weyl--Titchmarsh theory extends this to arbitrary Sturm--Liouville
+  operators, producing spectral measures and generalised eigenfunction
+  transforms.
+
+\item \textbf{Hardy space decomposition.}%
+  \index{Hardy space!half-line}%
+  \index{analytic signal}%
+  \index{Hilbert transform!sine-cosine}%
+  An $L^{2}$ function on the real line decomposes into analytic
+  ($H^{2}_{+}$) and anti-analytic ($H^{2}_{-}$) parts.  The sine and
+  cosine transforms of a causal function $f(t)u(t)$ are related by the
+  Hilbert transform: $\mathcal{F}_{c}\{f\}$ and $\mathcal{F}_{s}\{f\}$
+  form a Hilbert transform pair, encoding the Kramers--Kronig relations
+  of linear response theory.
+
+\item \textbf{Dual integral equations and mixed boundary problems.}%
+  \index{dual integral equations}%
+  \index{mixed boundary value problems}%
+  \index{Sneddon's method}%
+  Mixed boundary value problems (e.g., a crack in an elastic medium,
+  or an electrified disc) lead to dual integral equations involving
+  simultaneous sine or cosine transform relations on complementary
+  intervals.  Sneddon's method reduces these to Abel integral equations,
+  solvable in closed form using the properties of the sine and cosine
+  transforms.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.32\quad Basic properties of the Fourier sine and cosine transforms}
+
+The operational properties of the Fourier sine and cosine transforms
+parallel those of the full Fourier transform, with important modifications
+due to the half-line domain.  The differentiation formulas involve
+boundary values:
+$\mathcal{F}_{s}\{f''\}=-\omega^{2}\mathcal{F}_{s}\{f\}+\omega f(0)$ and
+$\mathcal{F}_{c}\{f''\}=-\omega^{2}\mathcal{F}_{c}\{f\}-f'(0)$.
+The convolution structure is more subtle than for the full Fourier
+transform: neither the sine nor cosine transform has a simple
+multiplicative convolution theorem, but specific half-range convolution
+formulas exist.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Differentiation rules and boundary value problems.}%
+  \index{differentiation!sine transform}%
+  \index{differentiation!cosine transform}%
+  \index{boundary value problem!half-line}%
+  \index{heat equation!boundary conditions}%
+  The differentiation formulas
+  $\mathcal{F}_{s}\{f''\}=-\omega^{2}\hat{f}_{s}+\omega f(0)$ and
+  $\mathcal{F}_{c}\{f''\}=-\omega^{2}\hat{f}_{c}-f'(0)$ show precisely
+  how boundary data enter the transformed equation.  For the heat equation
+  $u_{t}=\alpha u_{xx}$ on $[0,\infty)$ with $u(0,t)=g(t)$, the sine
+  transform gives $\hat{u}_{s,t}=-\alpha\omega^{2}\hat{u}_{s}
+  +\alpha\omega g(t)$, a first-order ODE in~$t$ with a forcing term
+  from the boundary.
+
+\item \textbf{Parseval relations and energy on the half-line.}%
+  \index{Parseval's theorem!sine/cosine}%
+  \index{energy!half-line}%
+  \index{spectral energy density!half-line}%
+  The Parseval relations
+  $\int_{0}^{\infty}|f(t)|^{2}\,dt=\frac{2}{\pi}\int_{0}^{\infty}|\hat{f}_{s}(\omega)|^{2}\,d\omega
+  =\frac{2}{\pi}\int_{0}^{\infty}|\hat{f}_{c}(\omega)|^{2}\,d\omega$
+  express conservation of energy on the half-line.  These are used in
+  bounding solutions of half-space problems and in stability analysis of
+  boundary layers in fluid dynamics.
+
+\item \textbf{Scaling and self-similar solutions.}%
+  \index{scaling!sine/cosine transforms}%
+  \index{self-similar solutions}%
+  \index{Barenblatt solution}%
+  The scaling property $\mathcal{F}_{s}\{f(at)\}=a^{-1}\hat{f}_{s}(\omega/a)$
+  is central to self-similar solutions of diffusion equations.  The
+  Boltzmann similarity variable $\eta=x/\sqrt{4\alpha t}$ reduces the
+  heat equation to an ODE whose solution is the error function---the
+  sine transform of a Gaussian.
+
+\item \textbf{Kramers--Kronig relations.}%
+  \index{Kramers--Kronig relations}%
+  \index{causality!sine-cosine connection}%
+  \index{dielectric function!dispersion}%
+  \index{optical constants}%
+  The Kramers--Kronig relations connect the real and imaginary parts of
+  a causal response function:
+  $\chi'(\omega)=\frac{2}{\pi}\text{P}\!\int_{0}^{\infty}\frac{\omega'\chi''(\omega')}{\omega'^{2}-\omega^{2}}\,d\omega'$
+  and its companion.  These are consequences of the fact that for a causal
+  function, the Fourier cosine and sine transforms (the real and imaginary
+  parts of the Fourier transform of a causal function) are Hilbert
+  transform pairs, enforcing analyticity in the upper half-plane.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Integral representations of special functions.}%
+  \index{integral representations!special functions}%
+  \index{gamma function!sine transform}%
+  \index{Riemann--Liouville integral}%
+  Many special function identities are expressed through sine and cosine
+  transforms.  For example,
+  $\mathcal{F}_{s}\{t^{\alpha-1}\}=\Gamma(\alpha)\sin(\pi\alpha/2)/\omega^{\alpha}$
+  for $0<\alpha<1$ gives integral representations of the gamma function,
+  and the Riemann--Liouville fractional integral
+  $I^{\alpha}f(x)=\frac{1}{\Gamma(\alpha)}\int_{0}^{x}(x-t)^{\alpha-1}f(t)\,dt$
+  is diagonalised by the Fourier sine transform.
+
+\item \textbf{Watson's lemma and asymptotic expansions.}%
+  \index{Watson's lemma!sine/cosine}%
+  \index{asymptotic expansion!oscillatory integrals}%
+  \index{Riemann--Lebesgue lemma}%
+  The asymptotic behaviour of Fourier sine and cosine integrals as
+  $\omega\to\infty$ is governed by Watson's lemma: if
+  $f(t)\sim\sum a_{n}t^{n+\lambda-1}$ as $t\to 0^{+}$, then
+  $\mathcal{F}_{s}\{f\}\sim\sum a_{n}\Gamma(n+\lambda)\sin(\pi(n+\lambda)/2)/\omega^{n+\lambda}$.
+  The Riemann--Lebesgue lemma guarantees that $\hat{f}_{s},\hat{f}_{c}\to 0$
+  as $\omega\to\infty$ for $f\in L^{1}$.
+
+\item \textbf{Completeness and the Fourier--Bessel expansion.}%
+  \index{completeness!sine/cosine}%
+  \index{Fourier--Bessel series}%
+  \index{$L^{2}[0,\infty)$}%
+  The systems $\{\sin(\omega t)\}_{\omega>0}$ and
+  $\{\cos(\omega t)\}_{\omega>0}$ are complete in $L^{2}[0,\infty)$:
+  every square-integrable function on the half-line has both a Fourier
+  sine and a Fourier cosine representation.  The discrete analogues on
+  $[0,a]$ give the Fourier sine and cosine series, and the radial
+  generalisation gives Fourier--Bessel (Dini) series on $[0,a]$ using
+  zeros of Bessel functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.33\quad Table of Fourier sine transforms}
+
+The table of Fourier sine transforms in G\&R~17.33 lists the standard pairs
+$f(t)\leftrightarrow\mathcal{F}_{s}\{f\}(\omega)$ for common functions on
+the half-line.  Key entries include
+$e^{-at}\leftrightarrow\omega/(a^{2}+\omega^{2})$,
+$t^{-1}e^{-at}\leftrightarrow\arctan(\omega/a)$,
+$1/t\leftrightarrow\pi/2$ (for all $\omega>0$), and
+$t^{\alpha-1}\leftrightarrow\Gamma(\alpha)\sin(\pi\alpha/2)/\omega^{\alpha}$
+for $0<\alpha<1$.  The sine transforms of Bessel functions and other special
+functions are also tabulated, connecting to the Hankel transform theory.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Odd-symmetry boundary problems in electrostatics.}%
+  \index{Fourier sine transform!electrostatics}%
+  \index{Laplace equation!half-plane}%
+  \index{Dirichlet problem!half-plane}%
+  The Laplace equation on a half-plane with Dirichlet data $u(0,y)=f(y)$
+  for $y>0$ is solved by sine transform in~$y$:
+  $\hat{u}_{s}(x,\omega)=\hat{f}_{s}(\omega)e^{-\omega x}$.  The pair
+  $e^{-at}\leftrightarrow\omega/(a^{2}+\omega^{2})$ gives the potential
+  due to a surface charge that decays exponentially along the boundary.
+
+\item \textbf{Torsion of prismatic bars.}%
+  \index{torsion problem!sine transform}%
+  \index{Saint-Venant torsion}%
+  \index{warping function}%
+  The Saint-Venant torsion problem for a prismatic bar of rectangular
+  cross section involves solving $\nabla^{2}\phi=-2$ with $\phi=0$ on the
+  boundary.  Fourier sine series in one variable reduce this to an ODE
+  in the other, and the table entries provide the explicit coefficients
+  of the resulting hyperbolic sine/cosine solution.
+
+\item \textbf{Pair distribution functions and neutron scattering.}%
+  \index{neutron scattering!sine transform}%
+  \index{pair distribution function!sine transform}%
+  \index{radial distribution function}%
+  The radial distribution function $g(r)$ of a liquid is related to the
+  measured structure factor $S(k)$ by a Fourier sine transform:
+  $r[g(r)-1]=\frac{1}{2\pi^{2}n}\int_{0}^{\infty}k[S(k)-1]\sin(kr)\,dk$.
+  This is the fundamental data analysis tool in neutron and X-ray
+  scattering experiments on liquids and amorphous materials.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The sine transform as an odd Fourier transform.}%
+  \index{odd extension!sine transform}%
+  \index{Fourier transform!odd functions}%
+  If $f$ is defined on $(0,\infty)$ and $f_{\text{odd}}$ is its odd
+  extension to $\mathbb{R}$, then
+  $\mathcal{F}\{f_{\text{odd}}\}(\omega)=-2i\mathcal{F}_{s}\{f\}(\omega)$.
+  This allows the sine transform table to be used for evaluating full
+  Fourier transforms of odd functions, and conversely, symmetry
+  arguments reduce certain full Fourier integrals to table look-ups
+  in the sine transform table.
+
+\item \textbf{Sine transform of power functions and Mellin connection.}%
+  \index{Mellin transform!sine connection}%
+  \index{power function!sine transform}%
+  \index{beta function!integral representation}%
+  The pair $t^{\alpha-1}\leftrightarrow\Gamma(\alpha)\sin(\pi\alpha/2)/\omega^{\alpha}$
+  connects the sine transform to the Mellin transform: evaluating the
+  Mellin transform of $\sin(\omega t)$ at $s=\alpha$ gives
+  $\Gamma(\alpha)\sin(\pi\alpha/2)/\omega^{\alpha}$, which is also
+  the analytic continuation of the integral
+  $\int_{0}^{\infty}t^{s-1}\sin t\,dt$.  These identities are
+  fundamental in the theory of Dirichlet series and the Riemann zeta
+  function.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.34\quad Table of Fourier cosine transforms}
+
+The table of Fourier cosine transforms in G\&R~17.34 provides the standard
+pairs $f(t)\leftrightarrow\mathcal{F}_{c}\{f\}(\omega)$.  Key entries
+include $e^{-at}\leftrightarrow a/(a^{2}+\omega^{2})$,
+$e^{-at^{2}}\leftrightarrow\sqrt{\pi/(4a)}\,e^{-\omega^{2}/(4a)}$
+(Gaussian), $\operatorname{sech}(\pi t/2)\leftrightarrow\operatorname{sech}(\omega)$
+(the hyperbolic secant is a fixed point of the cosine transform up to
+normalisation), and
+$t^{\alpha-1}\leftrightarrow\Gamma(\alpha)\cos(\pi\alpha/2)/\omega^{\alpha}$
+for $0<\alpha<1$.  The cosine transform table complements the sine
+transform table and shares the same applications in half-line boundary
+value problems.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Even-symmetry problems and Neumann conditions.}%
+  \index{Fourier cosine transform!Neumann condition}%
+  \index{Neumann problem!half-plane}%
+  \index{insulated boundary}%
+  For the heat equation on $[0,\infty)$ with Neumann condition
+  $u_{x}(0,t)=0$ (insulated end), the cosine transform gives
+  $\hat{u}_{c,t}=-\alpha\omega^{2}\hat{u}_{c}$, with no boundary forcing
+  term.  The pair $e^{-at^{2}}\leftrightarrow\sqrt{\pi/4a}\,e^{-\omega^{2}/4a}$
+  gives the fundamental solution directly through the cosine transform
+  table.
+
+\item \textbf{Autocorrelation and power spectral density.}%
+  \index{autocorrelation!cosine transform}%
+  \index{power spectral density!cosine transform}%
+  \index{Wiener--Khinchin!cosine form}%
+  For a real stationary process, the autocorrelation $R(\tau)$ is an even
+  function, and the Wiener--Khinchin theorem takes the form
+  $S(\omega)=2\int_{0}^{\infty}R(\tau)\cos(\omega\tau)\,d\tau
+  =2\mathcal{F}_{c}\{R\}(\omega)$.
+  The cosine transform table thus directly provides the power spectra
+  for standard autocorrelation models (exponential, Gaussian, etc.).
+
+\item \textbf{Debye model and phonon specific heat.}%
+  \index{Debye model!cosine transform}%
+  \index{phonon density of states}%
+  \index{specific heat!Debye}%
+  The phonon density of states in the Debye model involves cosine
+  transforms of lattice displacement correlation functions.  The pair
+  $e^{-at}\leftrightarrow a/(a^{2}+\omega^{2})$ gives the spectral
+  density for an exponentially decaying correlation, and the Debye
+  function $D_{n}(x)$ can be expressed through integrals closely related
+  to cosine transform pairs.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Even extension and the full Fourier transform.}%
+  \index{even extension!cosine transform}%
+  \index{Fourier transform!even functions}%
+  If $f_{\text{even}}$ is the even extension of $f$ to $\mathbb{R}$,
+  then $\mathcal{F}\{f_{\text{even}}\}=2\mathcal{F}_{c}\{f\}$.  The
+  cosine transform table provides efficient evaluation of full Fourier
+  transforms of even functions, and conversely, symmetry reduction halves
+  the computational effort in numerical Fourier analysis of even data.
+
+\item \textbf{Self-reciprocal functions.}%
+  \index{self-reciprocal function!cosine}%
+  \index{fixed points!cosine transform}%
+  \index{sech!self-reciprocal}%
+  A function $f$ satisfying $\mathcal{F}_{c}\{f\}=cf$ (up to a constant)
+  is self-reciprocal under the cosine transform.  The Gaussian
+  $e^{-t^{2}/2}$ and the function $1/\cosh(\pi t/2)$ are classical
+  examples.  Self-reciprocal functions play a role in the theory of
+  theta functions and modular forms, where the functional equation
+  $\theta(1/t)=\sqrt{t}\,\theta(t)$ is a self-reciprocality statement
+  for the Jacobi theta function under the Mellin transform.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.35\quad Relationships between transforms}
+
+The Laplace, Fourier, sine, cosine, and Mellin transforms are all members
+of a single family of integral transforms with exponential or power-law
+kernels, and there are systematic relationships connecting them.  The
+Fourier transform evaluated at imaginary argument recovers the Laplace
+transform: for $f$ supported on $[0,\infty)$,
+$F(s)=\hat{f}(-is)$.  The sine and cosine transforms are the imaginary
+and real parts of the half-line Fourier transform.  The Mellin transform
+$\mathcal{M}\{f\}(s)=\int_{0}^{\infty}t^{s-1}f(t)\,dt$ is related to
+the Laplace transform by the substitution $t=e^{-u}$:
+$\mathcal{M}\{f\}(s)=\mathcal{L}\{f(e^{-u})e^{-su}\}$ evaluated
+appropriately.  These interconnections allow transform pairs from one table
+to be translated into pairs for another.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{From Laplace to Fourier: steady-state frequency response.}%
+  \index{Laplace to Fourier!$s=i\omega$}%
+  \index{frequency response!from transfer function}%
+  \index{Bode plot!Laplace-Fourier}%
+  \index{steady-state response!frequency domain}%
+  Setting $s=i\omega$ in the transfer function $H(s)$ gives the
+  frequency response $H(i\omega)=|H(i\omega)|e^{i\phi(\omega)}$, provided
+  the system is stable (all poles in the left half-plane).  This bridge
+  between the Laplace and Fourier domains is the basis of Bode plots and
+  all frequency-domain design methods in control engineering and
+  electronic filter design.
+
+\item \textbf{Wick rotation and Euclidean quantum field theory.}%
+  \index{Wick rotation}%
+  \index{Euclidean quantum field theory}%
+  \index{imaginary time!thermal field theory}%
+  \index{Matsubara frequencies}%
+  The substitution $t\to-i\tau$ (Wick rotation) converts Minkowski
+  spacetime path integrals to Euclidean ones, essentially rotating the
+  Fourier transform variable from real to imaginary values.  In thermal
+  field theory, the Euclidean time becomes periodic with period
+  $\beta=1/(k_{B}T)$, and the continuous Fourier transform is replaced
+  by a discrete sum over Matsubara frequencies $\omega_{n}=2\pi n/\beta$.
+
+\item \textbf{Hilbert transform and causality.}%
+  \index{Hilbert transform}%
+  \index{causality!Hilbert transform}%
+  \index{analytic signal!engineering}%
+  \index{single-sideband modulation}%
+  The Hilbert transform $\mathcal{H}\{f\}(t)=\frac{1}{\pi}\text{P}\!\int_{-\infty}^{\infty}\frac{f(\tau)}{t-\tau}\,d\tau$
+  connects the cosine and sine transform components of a causal signal.
+  The analytic signal $z(t)=f(t)+i\mathcal{H}\{f\}(t)$ has a one-sided
+  Fourier transform (supported on $\omega>0$), the basis of single-sideband
+  modulation in communications and envelope detection in signal processing.
+
+\item \textbf{Two-sided Laplace transform and bilateral systems.}%
+  \index{two-sided Laplace transform}%
+  \index{bilateral systems}%
+  \index{region of convergence}%
+  The two-sided Laplace transform
+  $\int_{-\infty}^{\infty}f(t)e^{-st}\,dt$ is the Fourier transform of
+  $f(t)e^{-\sigma t}$ evaluated at $\omega$ (where $s=\sigma+i\omega$).
+  The region of convergence in the $s$-plane determines whether the
+  system is causal, anti-causal, or neither, and the intersection of
+  the ROC with the imaginary axis determines the existence of the Fourier
+  transform.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Mellin--Fourier connection and multiplicative harmonics.}%
+  \index{Mellin--Fourier connection}%
+  \index{multiplicative convolution}%
+  \index{Haar measure!multiplicative group}%
+  The substitution $t=e^{u}$ converts the Mellin transform to the
+  Fourier transform: $\mathcal{M}\{f\}(\sigma+i\omega)
+  =\mathcal{F}\{f(e^{u})e^{\sigma u}\}(\omega)$.  The Mellin convolution
+  $(f\circledast g)(x)=\int_{0}^{\infty}f(x/t)g(t)\,dt/t$ becomes
+  ordinary convolution under this substitution.  This reflects the Haar
+  measure $dt/t$ on the multiplicative group $(\mathbb{R}^{+},\times)$
+  and places the Mellin transform in the framework of harmonic analysis
+  on groups.
+
+\item \textbf{Laplace--Stieltjes transform and distribution theory.}%
+  \index{Laplace--Stieltjes transform}%
+  \index{distribution theory!transforms}%
+  \index{Fourier--Laplace transform}%
+  The Laplace--Stieltjes transform
+  $\int_{0}^{\infty}e^{-st}\,d\mu(t)$ generalises the Laplace transform
+  to measures and distributions.  The Fourier--Laplace transform
+  $\hat{u}(\zeta)=\langle u,e^{-i\zeta\cdot x}\rangle$ for
+  distributions $u\in\mathcal{E}'(\mathbb{R}^{n})$ yields entire
+  functions of exponential type, unifying the Paley--Wiener and
+  Laplace inversion theories.
+
+\item \textbf{Ramanujan's master theorem.}%
+  \index{Ramanujan's master theorem}%
+  \index{Mellin transform!series expansion}%
+  \index{analytic continuation!transform pairs}%
+  Ramanujan's master theorem states that if
+  $f(x)=\sum_{k=0}^{\infty}\frac{(-1)^{k}\varphi(k)}{k!}x^{k}$, then
+  $\int_{0}^{\infty}x^{s-1}f(x)\,dx=\Gamma(s)\varphi(-s)$.
+  This provides a powerful method for evaluating Mellin transforms (and
+  hence Fourier and Laplace transforms via the inter-transform
+  relationships) from the Taylor series expansion of the integrand,
+  connecting power series coefficients to transform values by analytic
+  continuation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.41\quad Mellin transform}
+
+The Mellin transform is defined by
+$\mathcal{M}\{f\}(s)=\int_{0}^{\infty}t^{s-1}f(t)\,dt$
+for $s$ in a vertical strip $a<\operatorname{Re}s<b$ (the fundamental
+strip), with inverse
+$f(t)=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}t^{-s}\mathcal{M}\{f\}(s)\,ds$
+for $a<c<b$.  The Mellin transform is the natural tool for problems with
+multiplicative structure: it diagonalises the operator $t\,d/dt$ (the
+generator of dilations), just as the Fourier transform diagonalises
+$d/dt$ (the generator of translations).  The Mellin transform connects
+analytic number theory, asymptotic analysis, and the special functions
+of mathematical physics.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Radiative transfer and the Milne problem.}%
+  \index{Mellin transform!radiative transfer}%
+  \index{Milne problem}%
+  \index{radiative transfer equation}%
+  \index{Chandrasekhar $H$-function}%
+  The integral equation of radiative transfer in a semi-infinite
+  atmosphere (the Milne problem) has a kernel with multiplicative
+  structure that is diagonalised by the Mellin transform.
+  Chandrasekhar's $H$-function, fundamental to astrophysical radiative
+  transfer, satisfies a nonlinear integral equation whose analysis
+  relies on Mellin transform techniques to establish existence,
+  uniqueness, and asymptotic properties.
+
+\item \textbf{Parton distribution functions in QCD.}%
+  \index{parton distribution functions}%
+  \index{DGLAP equations}%
+  \index{Mellin transform!QCD}%
+  \index{deep inelastic scattering}%
+  The DGLAP evolution equations for parton distribution functions in
+  quantum chromodynamics involve convolution integrals in the momentum
+  fraction variable~$x$.  The Mellin transform converts these to ordinary
+  differential equations in the Mellin variable~$N$:
+  $d\tilde{f}(N,Q^{2})/d\ln Q^{2}=\tilde{P}(N)\tilde{f}(N,Q^{2})$,
+  where $\tilde{P}(N)$ is the Mellin transform of the splitting function.
+  Inverse Mellin transforms then give the evolved parton distributions.
+
+\item \textbf{Gravitational lensing and the magnification distribution.}%
+  \index{gravitational lensing!Mellin transform}%
+  \index{magnification distribution}%
+  \index{strong lensing!statistics}%
+  The probability distribution of gravitational lensing magnifications
+  has a power-law tail $P(\mu)\propto\mu^{-3}$ whose moments are
+  naturally computed by the Mellin transform.  The Mellin convolution
+  structure arises because successive lensing events multiply
+  magnifications, and the total magnification distribution is the
+  Mellin convolution of individual lens distributions.
+
+\item \textbf{Dimensional regularisation in quantum field theory.}%
+  \index{dimensional regularisation!Mellin transform}%
+  \index{Feynman integrals!Mellin--Barnes}%
+  \index{Mellin--Barnes representation}%
+  Feynman loop integrals in dimensional regularisation are evaluated
+  using the Mellin--Barnes representation: propagator products
+  $1/(A_{1}^{a_{1}}\cdots A_{n}^{a_{n}})$ are written as Mellin--Barnes
+  integrals (inverse Mellin transforms of products of gamma functions),
+  reducing multi-loop integrals to contour integrals that can be
+  evaluated by residues.  This is one of the principal techniques in
+  modern perturbative quantum field theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The Riemann zeta function as a Mellin transform.}%
+  \index{Riemann zeta function!Mellin transform}%
+  \index{theta function!Mellin transform}%
+  \index{functional equation!zeta function}%
+  \index{Jacobi theta function}%
+  The completed zeta function satisfies
+  $\pi^{-s/2}\Gamma(s/2)\zeta(s)
+  =\frac{1}{2}\int_{0}^{\infty}t^{s/2-1}[\theta(t)-1]\,dt$,
+  where $\theta(t)=\sum_{n=-\infty}^{\infty}e^{-\pi n^{2}t}$ is the
+  Jacobi theta function.  This is a Mellin transform, and the functional
+  equation $\theta(1/t)=\sqrt{t}\,\theta(t)$ translates via the Mellin
+  transform into the functional equation
+  $\xi(s)=\xi(1-s)$ for the Riemann zeta function.
+
+\item \textbf{Asymptotic analysis and the Mellin--Perron formula.}%
+  \index{Mellin--Perron formula}%
+  \index{asymptotic analysis!Mellin transform}%
+  \index{algorithm analysis!Mellin}%
+  \index{harmonic sums}%
+  The Mellin--Perron formula
+  $\sum_{n\leq x}a_{n}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+  \left(\sum_{n=1}^{\infty}\frac{a_{n}}{n^{s}}\right)\frac{x^{s}}{s}\,ds$
+  expresses partial sums of Dirichlet series as inverse Mellin transforms.
+  In the analysis of algorithms, the average cost of divide-and-conquer
+  algorithms involves harmonic sums
+  $\sum_{k}f(x/b^{k})$ whose Mellin transforms are products of the form
+  $\mathcal{M}\{f\}(s)\cdot\sum_{k}b^{-ks}=\mathcal{M}\{f\}(s)/(1-b^{-s})$,
+  with poles determining the asymptotic growth rate.
+
+\item \textbf{Dirichlet series and multiplicative number theory.}%
+  \index{Dirichlet series!Mellin transform}%
+  \index{multiplicative number theory}%
+  \index{Euler product}%
+  A Dirichlet series $\sum a_{n}n^{-s}$ is the Mellin transform of
+  the sum $\sum a_{n}\delta(\log t-\log n)$.  The multiplicative
+  convolution (Dirichlet convolution) $\sum_{d|n}f(d)g(n/d)$
+  becomes pointwise multiplication of Dirichlet series.  Euler products
+  $\prod_{p}(1-a_{p}p^{-s})^{-1}$ express the multiplicative structure
+  of arithmetic functions through the Mellin transform framework.
+
+\item \textbf{Gamma function identities and special function theory.}%
+  \index{gamma function!Mellin transform pairs}%
+  \index{beta function!Mellin convolution}%
+  \index{Barnes integral}%
+  The Mellin transforms of elementary functions involve the gamma function:
+  $\mathcal{M}\{e^{-t}\}(s)=\Gamma(s)$,
+  $\mathcal{M}\{(1+t)^{-a}\}(s)=B(s,a-s)=\Gamma(s)\Gamma(a-s)/\Gamma(a)$.
+  The Barnes integral representations of hypergeometric functions
+  are Mellin--Barnes integrals---inverse Mellin transforms of products of
+  gamma functions---and provide the analytic continuation and asymptotic
+  expansion of ${_{p}F_{q}}$ functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.42\quad Basic properties of the Mellin transform}
+
+The basic properties of the Mellin transform include linearity,
+the scaling property $\mathcal{M}\{f(at)\}(s)=a^{-s}\mathcal{M}\{f\}(s)$,
+the multiplication property $\mathcal{M}\{t^{a}f(t)\}(s)=\mathcal{M}\{f\}(s+a)$,
+the differentiation rule
+$\mathcal{M}\{tf'(t)\}(s)=-s\mathcal{M}\{f\}(s)$ (assuming boundary terms
+vanish), and the Mellin convolution theorem
+$\mathcal{M}\{f\circledast g\}(s)=\mathcal{M}\{f\}(s)\cdot\mathcal{M}\{g\}(s)$,
+where $(f\circledast g)(x)=\int_{0}^{\infty}f(x/t)g(t)\,dt/t$.
+The Parseval formula is
+$\int_{0}^{\infty}f(t)\overline{g(t)}\,dt
+=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\mathcal{M}\{f\}(s)\overline{\mathcal{M}\{g\}(\bar{s})}\,ds$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Scale invariance and power-law behaviour.}%
+  \index{scale invariance!Mellin transform}%
+  \index{power-law distributions}%
+  \index{renormalisation group!scale invariance}%
+  \index{critical phenomena!scaling}%
+  The scaling property $\mathcal{M}\{f(at)\}=a^{-s}\mathcal{M}\{f\}$ shows
+  that the Mellin transform diagonalises dilations: a function that is
+  homogeneous of degree $-\alpha$ (i.e., $f(\lambda t)=\lambda^{-\alpha}f(t)$)
+  has a Mellin transform proportional to $\delta(s-\alpha)$.  This makes
+  the Mellin transform the natural tool for analysing power-law behaviour,
+  critical exponents in phase transitions, and renormalisation group flows.
+
+\item \textbf{Mellin convolution and cascade processes.}%
+  \index{Mellin convolution!cascade}%
+  \index{multiplicative processes}%
+  \index{log-normal distribution}%
+  \index{turbulent cascade}%
+  In multiplicative cascade processes---turbulent energy cascade,
+  fragmentation, and multiplicative noise---the output is a product of
+  random factors.  The distribution of the product is the Mellin
+  convolution of the individual factor distributions.  The Mellin
+  convolution theorem converts this to multiplication in Mellin space,
+  and the central limit theorem for products (yielding log-normal
+  distributions) follows from the standard CLT applied to the Mellin
+  (i.e., Fourier in the logarithmic variable) domain.
+
+\item \textbf{Differentiation rule and moment equations.}%
+  \index{Mellin differentiation!moment equations}%
+  \index{Smoluchowski equation!Mellin transform}%
+  \index{population balance equation}%
+  The rule $\mathcal{M}\{t^{k}f^{(k)}\}(s)=(-1)^{k}s(s+1)\cdots(s+k-1)\mathcal{M}\{f\}(s)$
+  converts Euler-type differential equations (with $t^{k}d^{k}/dt^{k}$
+  terms) to algebraic equations.  The Smoluchowski coagulation equation
+  and population balance equations have multiplicative kernel versions
+  that are diagonalised by the Mellin transform, yielding evolution
+  equations for the moments $M_{s}=\int_{0}^{\infty}t^{s}f(t)\,dt$.
+
+\item \textbf{Parseval formula and spectral energy in log-frequency.}%
+  \index{Parseval's theorem!Mellin}%
+  \index{log-frequency!energy distribution}%
+  \index{wavelet!Mellin transform connection}%
+  The Mellin--Parseval formula distributes the $L^{2}$ norm of a function
+  over the Mellin strip: signals with power-law spectra have their
+  energy uniformly distributed on a logarithmic frequency scale.  This
+  is closely related to the continuous wavelet transform, which is
+  essentially a Mellin correlation with the analysing wavelet, and
+  explains why wavelet analysis is natural for self-similar and
+  fractal signals.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler differential equations and the Mellin transform.}%
+  \index{Euler differential equation!Mellin}%
+  \index{equidimensional equation}%
+  \index{Mellin transform!differential equations}%
+  The Euler (equidimensional) equation
+  $\sum_{k=0}^{n}a_{k}t^{k}y^{(k)}(t)=g(t)$ has constant coefficients
+  in the operator $\theta=t\,d/dt$: it becomes
+  $\sum a_{k}\theta(\theta-1)\cdots(\theta-k+1)y=g$.  The Mellin transform
+  converts this to the algebraic equation
+  $p(s)\mathcal{M}\{y\}(s)=\mathcal{M}\{g\}(s)$ where $p(s)$
+  is a polynomial, and solutions are obtained by inverse Mellin transform
+  (contour integration picking up residues at the roots of $p$).
+
+\item \textbf{Converse mapping theorem and singularity analysis.}%
+  \index{converse mapping theorem!Mellin}%
+  \index{singularity analysis!Mellin}%
+  \index{asymptotic expansion!Mellin}%
+  The asymptotic expansion of $f(t)$ as $t\to 0^{+}$ or $t\to\infty$
+  is encoded in the poles of $\mathcal{M}\{f\}(s)$: a pole at $s=s_{0}$
+  of order $m$ contributes a term $t^{-s_{0}}(\log t)^{m-1}$ to the
+  asymptotic expansion.  This ``converse mapping theorem'' is the
+  Mellin-transform analogue of the residue theorem for Laplace inversion
+  and is the principal tool in the asymptotic analysis of harmonic sums
+  and divide-and-conquer recurrences.
+
+\item \textbf{Multiplicative number theory and Ramanujan's integral.}%
+  \index{Ramanujan's integral}%
+  \index{multiplicative functions!Mellin}%
+  \index{Perron's formula}%
+  Perron's formula $\sum_{n\leq x}a_{n}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}F(s)\frac{x^{s}}{s}\,ds$
+  (where $F(s)=\sum a_{n}n^{-s}$) is the Mellin inversion formula
+  applied to the partial sum of a Dirichlet series.  The residues of
+  $F(s)x^{s}/s$ at the poles of $F$ give the main terms in the
+  asymptotic expansion of $\sum_{n\leq x}a_{n}$, the basic method of
+  analytic number theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{17.43\quad Table of Mellin transforms}
+
+The table of Mellin transforms in G\&R~17.43 collects the fundamental pairs
+$f(t)\leftrightarrow\mathcal{M}\{f\}(s)$.  The most important entries are
+$e^{-t}\leftrightarrow\Gamma(s)$ (the defining property of the gamma
+function), $(1+t)^{-a}\leftrightarrow\Gamma(s)\Gamma(a-s)/\Gamma(a)$
+(the beta function), $e^{-t^{2}}\leftrightarrow\Gamma(s/2)/2$, and
+$\sin(t)\leftrightarrow\Gamma(s)\sin(\pi s/2)$ for $-1<\operatorname{Re}s<1$.
+The Mellin transforms of Bessel functions, hypergeometric functions, and
+theta functions are also listed, providing the gateway to the Mellin--Barnes
+integral representations used throughout special function theory and
+mathematical physics.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gamma function and statistical mechanics.}%
+  \index{gamma function!statistical mechanics}%
+  \index{partition function!Mellin transform}%
+  \index{ideal gas!partition function}%
+  The pair $e^{-t}\leftrightarrow\Gamma(s)$ appears throughout statistical
+  mechanics: the single-particle partition function of an ideal gas
+  involves $\int_{0}^{\infty}\varepsilon^{s-1}e^{-\beta\varepsilon}\,d\varepsilon
+  =\beta^{-s}\Gamma(s)$, and the thermodynamic functions (energy, entropy,
+  specific heat) are obtained by differentiation with respect to~$s$.
+  The Bose--Einstein and Fermi--Dirac integrals
+  $f_{\nu}(z)=\frac{1}{\Gamma(\nu)}\int_{0}^{\infty}\frac{t^{\nu-1}}{z^{-1}e^{t}\mp 1}\,dt$
+  are Mellin transforms that specialise to polylogarithms.
+
+\item \textbf{Mellin--Barnes integrals for Feynman diagrams.}%
+  \index{Mellin--Barnes integral!Feynman diagrams}%
+  \index{hypergeometric function!Feynman integral}%
+  \index{loop integral!Mellin--Barnes}%
+  Multi-loop Feynman integrals are systematically evaluated using
+  Mellin--Barnes representations.  The table entry
+  $(1+t)^{-a}\leftrightarrow B(s,a-s)$ is the starting point: each
+  propagator denominator is split using
+  $\frac{1}{(A+B)^{a}}=\frac{1}{\Gamma(a)}\frac{1}{2\pi i}\int
+  \Gamma(s)\Gamma(a-s)\frac{A^{-s}B^{-(a-s)}}{1}\,ds$,
+  and the resulting multi-dimensional Mellin--Barnes integrals are
+  evaluated by closing contours and summing residues.
+
+\item \textbf{Bessel function Mellin transforms and diffraction.}%
+  \index{Bessel function!Mellin transform}%
+  \index{diffraction!Mellin transform}%
+  \index{Airy pattern}%
+  The Mellin transforms of Bessel functions, such as
+  $\mathcal{M}\{J_{\nu}\}(s)
+  =2^{s-1}\Gamma((s+\nu)/2)/\Gamma((\nu-s)/2+1)$, are used in
+  computing diffraction patterns from circular apertures (the Airy
+  pattern) and in evaluating radial integrals in atomic physics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Theta function Mellin transform and $L$-functions.}%
+  \index{theta function!Mellin transform table}%
+  \index{$L$-function!Mellin transform}%
+  \index{modular form!Mellin transform}%
+  The Mellin transform of modular forms yields $L$-functions: if
+  $f(\tau)=\sum a_{n}q^{n}$ (with $q=e^{2\pi i\tau}$) is a modular form,
+  then $L(s,f)=\sum a_{n}n^{-s}=(2\pi)^{s}\Gamma(s)^{-1}\int_{0}^{\infty}f(it)t^{s-1}\,dt$.
+  The modularity of $f$ translates via the Mellin transform into the
+  functional equation of $L(s,f)$, a central theme in modern number theory.
+
+\item \textbf{Hypergeometric function representations.}%
+  \index{hypergeometric function!Mellin--Barnes integral}%
+  \index{Barnes integral!hypergeometric}%
+  \index{analytic continuation!hypergeometric}%
+  The Barnes integral representation
+  ${_{2}F_{1}}(a,b;c;z)=\frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+  \frac{1}{2\pi i}\int\frac{\Gamma(a+s)\Gamma(b+s)\Gamma(-s)}{\Gamma(c+s)}(-z)^{s}\,ds$
+  is an inverse Mellin transform of a ratio of gamma functions.  This
+  representation provides analytic continuation to $|z|>1$ and the
+  connection formulas between different solutions of the hypergeometric
+  equation, and is the prototype for Mellin--Barnes representations
+  of all ${_{p}F_{q}}$ functions.
+\end{enumerate}

@@ -1,0 +1,1503 @@
+%% ============================================================
+%% 1  Elementary Functions
+%% ============================================================
+\section{1\quad Elementary Functions}
+
+\subsection{1.1\quad Power of Binomials}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.11\quad Power series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Binomial expansion in Newtonian gravity.}%
+  \index{binomial expansion}%
+  \index{gravitational potential!multipole}%
+  \index{tidal forces}%
+  The gravitational potential of a distant mass expands as
+  $1/|\mathbf{r}-\mathbf{r}'|=\sum_{\ell=0}^{\infty}(r'/r)^{\ell}
+  P_{\ell}(\cos\gamma)/r$, derived from the binomial series
+  $(1+x)^{-1/2}$.  Tidal forces arise from the $\ell=2$ term of this
+  expansion.
+
+\item \textbf{Relativistic corrections via binomial expansion.}%
+  \index{special relativity!binomial expansion}%
+  \index{Lorentz factor}%
+  \index{kinetic energy!relativistic correction}%
+  The relativistic kinetic energy
+  $K=mc^{2}[(\gamma-1)]=mc^{2}[(1-v^{2}/c^{2})^{-1/2}-1]$ expands as
+  $\tfrac{1}{2}mv^{2}+\tfrac{3}{8}mv^{4}/c^{2}+\cdots$ via the binomial
+  series, recovering the Newtonian limit and yielding post-Newtonian
+  corrections in general relativity.
+
+\item \textbf{Fresnel diffraction and the binomial phase approximation.}%
+  \index{Fresnel diffraction}%
+  \index{binomial phase approximation}%
+  \index{paraxial optics}%
+  In Fresnel diffraction, the path length
+  $|\mathbf{r}-\mathbf{r}'|\approx z+\rho^{2}/(2z)$ uses the binomial
+  approximation $(1+x)^{1/2}\approx 1+x/2$, which defines the paraxial
+  regime of optics.
+
+\item \textbf{Keplerian orbits and perturbation theory.}%
+  \index{Keplerian orbits!perturbation}%
+  \index{celestial mechanics}%
+  \index{Laplace coefficients}%
+  The disturbing function in celestial mechanics expands the
+  inverse distance between two planets using the binomial series,
+  generating Laplace coefficients that govern planetary perturbations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Newton's generalised binomial theorem.}%
+  \index{binomial theorem!generalised}%
+  \index{Newton's binomial series}%
+  \index{Abel's theorem on power series}%
+  $(1+x)^{\alpha}=\sum_{k=0}^{\infty}\binom{\alpha}{k}x^{k}$ for $|x|<1$
+  and arbitrary $\alpha\in\mathbb{C}$.  Abel's theorem extends the identity
+  to $x=1$ when the series converges (i.e., $\mathrm{Re}(\alpha)>-1$ for
+  the case $x=1$).
+
+\item \textbf{Generating function for Catalan numbers.}%
+  \index{Catalan numbers!generating function}%
+  \index{generating functions!binomial series}%
+  $(1-4x)^{1/2}=1-2\sum_{n=1}^{\infty}\frac{1}{n}\binom{2n-2}{n-1}x^{n}$
+  yields the generating function $\sum C_{n}x^{n}=(1-\sqrt{1-4x})/(2x)$
+  for Catalan numbers, connecting the binomial series to enumerative
+  combinatorics.
+
+\item \textbf{Puiseux series and algebraic curves.}%
+  \index{Puiseux series}%
+  \index{algebraic curves!local parametrisation}%
+  \index{Newton polygon}%
+  The binomial series $(1+x)^{p/q}$ for rational exponents is a Puiseux
+  series, the local parametrisation of algebraic curves near branch points.
+  Newton's polygon method generalises this to arbitrary algebraic functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.12\quad Series of rational fractions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Partial-fraction expansions of Green's functions.}%
+  \index{Green's function!partial fractions}%
+  \index{propagator!spectral representation}%
+  \index{K\"all\'en--Lehmann representation}%
+  The spectral (K\"{a}ll\'{e}n--Lehmann) representation of a propagator
+  is $G(p^{2})=\int_{0}^{\infty}\rho(s)/(p^{2}-s+i\varepsilon)\,ds$,
+  a continuous partial-fraction decomposition.  For discrete spectra,
+  this reduces to $\sum_{n}|c_{n}|^{2}/(p^{2}-m_{n}^{2})$, a series
+  of rational fractions.
+
+\item \textbf{Mittag-Leffler expansion of the cotangent.}%
+  \index{Mittag-Leffler expansion!cotangent}%
+  \index{Matsubara frequencies}%
+  \index{thermal field theory}%
+  $\pi\cot(\pi z)=1/z+\sum_{n=1}^{\infty}2z/(z^{2}-n^{2})$ is the
+  prototypical rational-fraction series.  In thermal field theory, this
+  identity converts Matsubara frequency sums into contour integrals,
+  enabling the evaluation of finite-temperature Green's functions.
+
+\item \textbf{Breit--Wigner resonances.}%
+  \index{Breit--Wigner resonance}%
+  \index{scattering amplitude!poles}%
+  \index{resonance!particle physics}%
+  A scattering amplitude near a resonance takes the form
+  $A(E)\sim\Gamma/(E-E_{0}+i\Gamma/2)$, a single rational fraction.
+  Overlapping resonances produce sums of such terms, directly modelled
+  by partial-fraction expansions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Mittag-Leffler theorem.}%
+  \index{Mittag-Leffler theorem}%
+  \index{meromorphic functions!partial fractions}%
+  \index{principal parts}%
+  Every meromorphic function with prescribed principal parts at isolated
+  poles can be constructed as a sum of rational fractions plus an entire
+  function.  This is the analogue for meromorphic functions of the
+  Weierstrass factorisation theorem for entire functions.
+
+\item \textbf{Digamma function and rational series.}%
+  \index{digamma function!rational series}%
+  \index{partial fractions!digamma evaluation}%
+  The identity $\psi(z+1)+\gamma=\sum_{n=1}^{\infty}[1/n-1/(n+z)]$
+  shows that the digamma function is a series of rational fractions.
+  This enables the closed-form evaluation of any convergent series
+  $\sum P(n)/Q(n)$ via partial fractions.
+
+\item \textbf{Pad\'e approximants.}%
+  \index{Pad\'e approximants}%
+  \index{rational approximation!Pad\'e}%
+  \index{continued fractions!Pad\'e connection}%
+  Pad\'{e} approximants are rational functions matching a given power
+  series to maximal order.  They often converge where the Taylor series
+  diverges and are connected to continued fractions, providing the best
+  rational approximation to meromorphic functions.
+\end{enumerate}
+
+\subsection{1.2\quad The Exponential Function}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.21\quad Series representation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{The exponential function in quantum mechanics.}%
+  \index{time evolution operator}%
+  \index{Schr\"odinger equation!time evolution}%
+  \index{unitary evolution}%
+  The time evolution operator $U(t)=e^{-iHt/\hbar}=\sum_{n=0}^{\infty}
+  (-iHt/\hbar)^{n}/n!$ is the exponential of the Hamiltonian.  The
+  series representation enables the Magnus expansion and
+  Dyson series for time-dependent Hamiltonians.
+
+\item \textbf{Radioactive decay and population dynamics.}%
+  \index{radioactive decay!exponential}%
+  \index{population dynamics}%
+  \index{half-life}%
+  $N(t)=N_{0}e^{-\lambda t}$ is the universal law for first-order
+  processes.  The series $e^{-\lambda t}=\sum(-\lambda t)^{n}/n!$
+  gives short-time corrections and connects to the Poisson distribution
+  for counting statistics.
+
+\item \textbf{Boltzmann factor.}%
+  \index{Boltzmann factor}%
+  \index{statistical mechanics!Boltzmann distribution}%
+  \index{canonical ensemble}%
+  $e^{-E/k_{B}T}$ is the fundamental weight in the canonical ensemble.
+  Its Taylor expansion in $\beta=1/(k_{B}T)$ generates the high-temperature
+  expansion of statistical mechanical models.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Characterisations of $e^{x}$.}%
+  \index{exponential function!characterisations}%
+  \index{differential equation!$y'=y$}%
+  \index{functional equation!$f(x+y)=f(x)f(y)$}%
+  $e^{x}$ is uniquely determined by any of: (i) $\sum x^{n}/n!$,
+  (ii) $\lim(1+x/n)^{n}$, (iii) $y'=y$, $y(0)=1$,
+  (iv) $f(x+y)=f(x)f(y)$, $f$ continuous and non-trivial.
+  These equivalent definitions connect series, limits, ODEs, and
+  functional equations.
+
+\item \textbf{Entire function of order~1.}%
+  \index{entire functions!exponential type}%
+  \index{Paley--Wiener theorem}%
+  $e^{z}$ is an entire function of order~1 and type~1.  The Paley--Wiener
+  theorem characterises functions of exponential type as Fourier transforms
+  of compactly supported distributions.
+
+\item \textbf{The exponential map in Lie theory.}%
+  \index{exponential map!Lie groups}%
+  \index{Lie algebra!exponential map}%
+  \index{Baker--Campbell--Hausdorff formula}%
+  For a Lie group~$G$ with Lie algebra $\mathfrak{g}$, the exponential
+  map $\exp\colon\mathfrak{g}\to G$ defined by $\exp(X)=\sum X^{n}/n!$
+  connects infinitesimal and global symmetries, with the BCH formula
+  $\exp(X)\exp(Y)=\exp(X+Y+\frac{1}{2}[X,Y]+\cdots)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.22\quad Functional relations}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Composition of time evolutions.}%
+  \index{time evolution!composition}%
+  \index{group property!exponential}%
+  \index{semigroup}%
+  The functional relation $e^{a}e^{b}=e^{a+b}$ (for commuting exponents)
+  expresses the group property of time evolution:
+  $U(t_{1})U(t_{2})=U(t_{1}+t_{2})$.  For non-commuting operators, the
+  Baker--Campbell--Hausdorff formula gives corrections.
+
+\item \textbf{Addition of velocities in special relativity.}%
+  \index{rapidity!addition}%
+  \index{special relativity!velocity addition}%
+  \index{Lorentz boost}%
+  Using rapidity $\phi=\tanh^{-1}(v/c)$, Lorentz boosts compose
+  additively: $\phi_{12}=\phi_{1}+\phi_{2}$, reflecting the functional
+  relation $e^{\phi_{1}}e^{\phi_{2}}=e^{\phi_{1}+\phi_{2}}$ for the
+  boost parameter.
+
+\item \textbf{Compound interest and continuous compounding.}%
+  \index{continuous compounding}%
+  \index{financial mathematics!exponential growth}%
+  The relation $e^{r(t_{1}+t_{2})}=e^{rt_{1}}e^{rt_{2}}$ underlies the
+  no-arbitrage condition in continuous-time finance and the derivation
+  of the Black--Scholes equation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Exponential as a group homomorphism.}%
+  \index{group homomorphism!exponential}%
+  \index{exact sequence}%
+  $\exp\colon(\mathbb{C},+)\to(\mathbb{C}^{*},\times)$ is a surjective
+  group homomorphism with kernel $2\pi i\mathbb{Z}$, giving the exact
+  sequence $0\to\mathbb{Z}\to\mathbb{C}\to\mathbb{C}^{*}\to 0$.
+  This is the exponential sheaf sequence in complex geometry.
+
+\item \textbf{Euler's formula and $e^{i\pi}+1=0$.}%
+  \index{Euler's formula}%
+  \index{Euler's identity}%
+  \index{complex exponential}%
+  $e^{i\theta}=\cos\theta+i\sin\theta$ unifies the exponential with
+  trigonometric functions.  Euler's identity $e^{i\pi}+1=0$ connects
+  the five fundamental constants of mathematics.
+
+\item \textbf{Matrix exponential and linear systems.}%
+  \index{matrix exponential!linear ODE}%
+  \index{linear ODE!matrix exponential solution}%
+  For the system $\mathbf{x}'=A\mathbf{x}$, the solution is
+  $\mathbf{x}(t)=e^{At}\mathbf{x}(0)$ where $e^{At}=\sum(At)^{n}/n!$.
+  The functional relation $e^{A(s+t)}=e^{As}e^{At}$ gives the semigroup
+  property of the flow.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.23\quad Series of exponentials}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Theta functions and modular invariance in string theory.}%
+  \index{theta functions!series of exponentials}%
+  \index{modular invariance!string theory}%
+  \index{string theory!one-loop amplitude}%
+  The Jacobi theta function
+  $\vartheta_{3}(\tau)=\sum_{n=-\infty}^{\infty}e^{i\pi n^{2}\tau}$
+  is a series of exponentials (Gaussians) that is modular invariant.
+  It computes one-loop string amplitudes and governs the partition
+  function of the bosonic string.
+
+\item \textbf{Poisson summation and Ewald sums.}%
+  \index{Poisson summation formula}%
+  \index{Ewald summation}%
+  \index{lattice sums!Ewald}%
+  The Poisson summation formula $\sum f(n)=\sum\hat{f}(n)$ relates
+  a series of exponentials to its Fourier dual.  In molecular dynamics,
+  Ewald summation splits the Coulomb lattice sum into rapidly convergent
+  real-space and Fourier-space parts using Gaussian screens.
+
+\item \textbf{Matsubara sums in thermal field theory.}%
+  \index{Matsubara sums}%
+  \index{thermal field theory!imaginary time}%
+  \index{Bose--Einstein distribution}%
+  At finite temperature, Green's functions are periodic in imaginary
+  time with period $\beta=1/(k_{B}T)$, expandable as
+  $G(\tau)=\frac{1}{\beta}\sum_{n}e^{-i\omega_{n}\tau}\tilde{G}(i\omega_{n})$
+  over Matsubara frequencies $\omega_{n}=2\pi n/\beta$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Dirichlet series and $L$-functions.}%
+  \index{Dirichlet series}%
+  \index{L-functions@$L$-functions}%
+  \index{abscissa of convergence}%
+  A Dirichlet series $\sum a_{n}n^{-s}=\sum a_{n}e^{-s\ln n}$ is a
+  series of exponentials in the variable $s$.  The Riemann zeta function,
+  Dirichlet $L$-functions, and automorphic $L$-functions all have this
+  form, with convergence determined by the abscissa of convergence.
+
+\item \textbf{Laplace transforms as exponential series.}%
+  \index{Laplace transform!discrete}%
+  \index{generating functions!exponential}%
+  The $z$-transform $\sum a_{n}z^{-n}=\sum a_{n}e^{-n\ln z}$ and the
+  Laplace transform $\int f(t)e^{-st}\,dt$ are the continuous and
+  discrete versions of ``series of exponentials.''  Their inversion
+  formulas are contour integrals in the complex plane.
+
+\item \textbf{Almost periodic functions.}%
+  \index{almost periodic functions}%
+  \index{Bohr compactification}%
+  A uniformly almost periodic function is a uniform limit of finite
+  trigonometric sums $\sum a_{n}e^{i\lambda_{n}t}$ with arbitrary
+  (not necessarily commensurable) frequencies.  The theory (Bohr, 1925)
+  generalises Fourier series to functions on non-compact groups.
+\end{enumerate}
+
+\subsection{1.3--1.4\quad Trigonometric and Hyperbolic Functions}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.30\quad Introduction}
+
+\paragraph{Significance and applications.}
+\begin{enumerate}
+\item \textbf{Circular and hyperbolic functions as exponentials.}%
+  \index{trigonometric functions!Euler's formula}%
+  \index{hyperbolic functions!exponential definition}%
+  \index{Euler's formula!trigonometric definition}%
+  Euler's formula $e^{ix}=\cos x+i\sin x$ and the definitions
+  $\cosh x=(e^{x}+e^{-x})/2$, $\sinh x=(e^{x}-e^{-x})/2$ show that
+  all six trigonometric and hyperbolic functions are elementary
+  combinations of exponentials, unifying their algebraic properties
+  through the complex exponential.
+
+\item \textbf{Oscillations and waves.}%
+  \index{harmonic oscillator}%
+  \index{wave equation!sinusoidal solutions}%
+  \index{normal modes!trigonometric}%
+  Sinusoidal functions are the eigenfunctions of the second-derivative
+  operator with constant coefficients: $y''+\omega^{2}y=0$ has solutions
+  $\cos(\omega t)$ and $\sin(\omega t)$.  Every linear wave phenomenon
+  (acoustic, electromagnetic, quantum) decomposes into these modes.
+
+\item \textbf{Hyperbolic functions in relativity.}%
+  \index{rapidity}%
+  \index{Lorentz transformation!hyperbolic form}%
+  \index{hyperbolic geometry!relativity}%
+  The Lorentz boost is $x'=x\cosh\phi-ct\sinh\phi$,
+  $ct'=-x\sinh\phi+ct\cosh\phi$ with rapidity $\phi=\tanh^{-1}(v/c)$.
+  The velocity-space of special relativity is the hyperbolic plane
+  (Lobachevsky geometry), with $\cosh$ giving the Lorentz factor.
+
+\item \textbf{Catenary and minimal surfaces.}%
+  \index{catenary}%
+  \index{minimal surfaces!catenoid}%
+  \index{hyperbolic cosine!catenary}%
+  The shape of a hanging chain is $y=a\cosh(x/a)$, while the catenoid
+  (surface of revolution of a catenary) is the unique non-planar minimal
+  surface of revolution.  These are the first examples solved by the
+  calculus of variations.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.31\quad The basic functional relations}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Pythagorean identity and conservation laws.}%
+  \index{Pythagorean identity}%
+  \index{conservation of energy!harmonic oscillator}%
+  \index{Stokes parameters}%
+  $\cos^{2}\theta+\sin^{2}\theta=1$ is the conservation of energy for a
+  harmonic oscillator ($\frac{1}{2}kA^{2}\cos^{2}(\omega t)
+  +\frac{1}{2}m\omega^{2}A^{2}\sin^{2}(\omega t)=\text{const}$)
+  and the normalisation of Stokes parameters in polarisation optics.
+
+\item \textbf{Addition theorems and interference.}%
+  \index{interference!addition theorem}%
+  \index{beat frequencies}%
+  \index{superposition principle}%
+  The addition formula $\cos(\alpha-\beta)=\cos\alpha\cos\beta
+  +\sin\alpha\sin\beta$ underlies the calculation of interference
+  patterns, beat frequencies, and the product-to-sum formulas used
+  in heterodyne detection.
+
+\item \textbf{Hyperbolic identities in statistical mechanics.}%
+  \index{hyperbolic functions!statistical mechanics}%
+  \index{Ising model!transfer matrix}%
+  \index{Brillouin function}%
+  The identity $\cosh^{2}x-\sinh^{2}x=1$ appears in the transfer matrix
+  method for the Ising model, and $\coth x$ gives the Langevin and
+  Brillouin functions for paramagnetic susceptibility.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Unit circle parametrisation and topology.}%
+  \index{unit circle!parametrisation}%
+  \index{fundamental group!circle}%
+  \index{winding number}%
+  $(\cos\theta,\sin\theta)$ parametrises $S^{1}$; the map
+  $\theta\mapsto e^{i\theta}$ is the universal covering
+  $\mathbb{R}\to S^{1}$ with $\pi_{1}(S^{1})=\mathbb{Z}$.  The winding
+  number of a closed curve is an integer-valued topological invariant.
+
+\item \textbf{Hyperbolic geometry.}%
+  \index{hyperbolic geometry!trigonometric identities}%
+  \index{hyperbolic plane}%
+  \index{Poincar\'e half-plane}%
+  In the Poincar\'{e} half-plane model, geodesics satisfy the hyperbolic
+  law of cosines $\cosh c=\cosh a\cosh b-\sinh a\sinh b\cos C$,
+  the hyperbolic analogue of the planar identity.  The functional
+  relations of $\sinh$ and $\cosh$ encode the isometry group
+  $\mathrm{PSL}(2,\mathbb{R})$.
+
+\item \textbf{Chebyshev polynomials.}%
+  \index{Chebyshev polynomials!from addition theorem}%
+  \index{trigonometric identities!Chebyshev}%
+  The multiple-angle identity $\cos(n\theta)=T_{n}(\cos\theta)$
+  defines the Chebyshev polynomials of the first kind.  Their minimax
+  property ($T_{n}$ minimises the sup-norm among monic polynomials of
+  degree~$n$) is fundamental in approximation theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.32\quad The representation of powers of trigonometric and hyperbolic functions in terms of functions of multiples of the argument (angle)}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Nonlinear optics and harmonic generation.}%
+  \index{nonlinear optics!harmonic generation}%
+  \index{second harmonic generation}%
+  \index{Kerr effect}%
+  In nonlinear optics, the polarisation $P\propto\chi^{(2)}E^{2}
+  +\chi^{(3)}E^{3}+\cdots$ involves powers of
+  $E=E_{0}\cos(\omega t)$.  The identity
+  $\cos^{2}(\omega t)=\frac{1}{2}+\frac{1}{2}\cos(2\omega t)$ gives
+  second-harmonic generation (frequency doubling), and $\cos^{3}$ gives
+  third-harmonic generation and self-phase modulation.
+
+\item \textbf{Power spectra and intermodulation distortion.}%
+  \index{intermodulation distortion}%
+  \index{power spectrum}%
+  \index{RF engineering}%
+  In RF engineering, amplifier nonlinearity produces intermodulation
+  products: $\cos^{n}(\omega t)$ expanded in multiple-angle cosines
+  predicts the spurious frequencies in the output spectrum.
+
+\item \textbf{Radiation pattern of antenna arrays.}%
+  \index{antenna array!radiation pattern}%
+  \index{array factor}%
+  Powers of $\cos\theta$ arise in the radiation pattern of antenna
+  arrays with cosine illumination taper.  The decomposition into
+  harmonics determines the sidelobe levels and beamwidth.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Linearisation formulas and integration.}%
+  \index{linearisation!powers to multiple angles}%
+  \index{integration!trigonometric powers}%
+  The identities $\sin^{n}\theta=\sum a_{k}\cos(k\theta)$ or
+  $\sum b_{k}\sin(k\theta)$ (depending on parity) reduce the
+  integration of powers of trigonometric functions to elementary
+  integrals, the basis of Section~2.5.
+
+\item \textbf{Representation theory of $\mathrm{SO}(2)$.}%
+  \index{representation theory!SO(2)@$\mathrm{SO}(2)$}%
+  \index{Clebsch--Gordan coefficients!$\mathrm{SO}(2)$}%
+  The decomposition $\cos^{n}\theta=\sum c_{k}\cos(k\theta)$ is
+  the Clebsch--Gordan decomposition for the tensor product of
+  representations of $\mathrm{SO}(2)$: the $n$-fold tensor product
+  of the fundamental 2D representation decomposes into irreducibles
+  labelled by $k$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.33\quad The representation of trigonometric and hyperbolic functions of multiples of the argument (angle) in terms of powers of these functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Multipole moments in electrostatics.}%
+  \index{multipole moments!Legendre}%
+  \index{electrostatics!multipole expansion}%
+  \index{spherical harmonics!from multiple-angle formulas}%
+  $\cos(n\theta)$ and $\sin(n\theta)$ as polynomials in $\cos\theta$
+  (i.e., Chebyshev polynomials $T_{n}$ and $U_{n}$) give the angular
+  dependence of multipole moments.  This is the $m=0$ sector of the
+  full spherical harmonic expansion.
+
+\item \textbf{Bloch wave harmonics in crystals.}%
+  \index{Bloch waves!harmonics}%
+  \index{Fourier coefficients!crystal potential}%
+  The crystal potential, periodic in the lattice, has Fourier
+  components $V_{n}e^{inGx}$.  Expressing $\cos(nGx)$ and $\sin(nGx)$
+  in terms of powers of $\cos(Gx)$ connects the Fourier coefficients
+  to the local potential shape near each atom.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Chebyshev polynomials as multiple-angle functions.}%
+  \index{Chebyshev polynomials!multiple-angle definition}%
+  \index{de Moivre's theorem}%
+  De Moivre's theorem $(\cos\theta+i\sin\theta)^{n}=\cos(n\theta)
+  +i\sin(n\theta)$ gives $T_{n}(\cos\theta)=\cos(n\theta)$ and
+  $U_{n-1}(\cos\theta)\sin\theta=\sin(n\theta)$, the defining relations
+  of Chebyshev polynomials.
+
+\item \textbf{Dickson polynomials and finite fields.}%
+  \index{Dickson polynomials}%
+  \index{finite fields!permutation polynomials}%
+  The Dickson polynomial $D_{n}(x,a)$ generalises $T_{n}$ to
+  $D_{n}(x+a/x,a)=x^{n}+(a/x)^{n}$ and gives permutation polynomials
+  over finite fields, with applications to cryptography and coding theory.
+
+\item \textbf{Cyclotomic polynomials.}%
+  \index{cyclotomic polynomials}%
+  \index{roots of unity}%
+  \index{Galois theory!cyclotomic fields}%
+  The factorisation $x^{n}-1=\prod_{d|n}\Phi_{d}(x)$ is intimately
+  connected to the expression $2\cos(2\pi k/n)$ as an algebraic number.
+  The minimal polynomial of $2\cos(2\pi/n)$ is related to the cyclotomic
+  polynomial $\Phi_{n}$, linking trigonometric identities to Galois theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.34\quad Certain sums of trigonometric and hyperbolic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Diffraction gratings.}%
+  \index{diffraction grating}%
+  \index{Dirichlet kernel!diffraction}%
+  \index{spectroscopy!grating resolution}%
+  The intensity pattern of an $N$-slit grating is
+  $I\propto|\sum_{k=0}^{N-1}e^{ik\delta}|^{2}=\sin^{2}(N\delta/2)/\sin^{2}(\delta/2)$,
+  a trigonometric sum that determines the resolving power and free
+  spectral range.
+
+\item \textbf{Discrete Fourier transform.}%
+  \index{discrete Fourier transform!trig sums}%
+  \index{FFT!trig identity basis}%
+  \index{Cooley--Tukey algorithm}%
+  The orthogonality relation $\sum_{k=0}^{N-1}e^{2\pi i(m-n)k/N}=N\delta_{mn}$
+  is the foundation of the DFT and the FFT algorithm.  Sums of cosines
+  and sines at equally spaced arguments yield the discrete orthogonality.
+
+\item \textbf{Spin wave dispersion.}%
+  \index{spin waves!dispersion relation}%
+  \index{magnon}%
+  \index{Heisenberg model}%
+  The magnon dispersion relation in the Heisenberg model on a lattice
+  involves $\omega_{k}=J\sum_{\boldsymbol{\delta}}[1-\cos(\mathbf{k}\cdot\boldsymbol{\delta})]$,
+  a sum of cosines over nearest-neighbour vectors that determines
+  the spin-wave spectrum.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Fej\'er kernel and Ces\`aro summation.}%
+  \index{Fej\'er kernel}%
+  \index{Ces\`aro summation!Fourier series}%
+  The Fej\'{e}r kernel $F_{N}(\theta)=\frac{1}{N}\sum_{n=0}^{N-1}D_{n}(\theta)
+  =\frac{1}{N}\frac{\sin^{2}(N\theta/2)}{\sin^{2}(\theta/2)}$
+  is a non-negative trigonometric sum.  Fej\'{e}r's theorem: the
+  Ces\`{a}ro means of the Fourier series of a continuous function converge
+  uniformly.
+
+\item \textbf{Gauss sums and quadratic reciprocity.}%
+  \index{Gauss sums}%
+  \index{quadratic reciprocity}%
+  \index{number theory!Gauss sums}%
+  The Gauss sum $g(a,p)=\sum_{t=0}^{p-1}e^{2\pi i at^{2}/p}$ has
+  $|g|=\sqrt{p}$ and its exact evaluation yields a proof of the law of
+  quadratic reciprocity.  Generalised Gauss sums connect character sums
+  to $L$-functions.
+
+\item \textbf{Ramanujan sums.}%
+  \index{Ramanujan sums}%
+  \index{arithmetical functions!Ramanujan expansion}%
+  $c_{q}(n)=\sum_{\substack{k=1\\(k,q)=1}}^{q}e^{2\pi ikn/q}$ is a
+  trigonometric sum over integers coprime to~$q$.  Ramanujan expansions
+  $f(n)=\sum_{q}a_{q}c_{q}(n)$ represent arithmetical functions, with
+  applications in analytic number theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.35\quad Sums of powers of trigonometric functions of multiple angles}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Angular momentum coupling.}%
+  \index{angular momentum!coupling}%
+  \index{Clebsch--Gordan coefficients}%
+  \index{Wigner 3j symbols@Wigner $3j$ symbols}%
+  Products and powers of spherical harmonics decompose into sums of
+  single spherical harmonics via Clebsch--Gordan coefficients.  In the
+  $m=0$ sector, this reduces to sums of $P_{\ell}(\cos\theta)^{k}$
+  expanded in Legendre polynomials.
+
+\item \textbf{NMR line shapes.}%
+  \index{NMR!line shapes}%
+  \index{dipolar coupling}%
+  \index{magic angle spinning}%
+  In nuclear magnetic resonance, the dipolar coupling Hamiltonian
+  involves $(3\cos^{2}\theta-1)/2$ (the second Legendre polynomial).
+  Powers of this expression appear in moments of the NMR line shape,
+  and magic-angle spinning at $\theta_{m}=\cos^{-1}(1/\sqrt{3})$
+  eliminates the leading term.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Power sums of roots of unity.}%
+  \index{roots of unity!power sums}%
+  \index{Newton's identities}%
+  $\sum_{k=0}^{n-1}\cos^{m}(2\pi k/n)$ can be evaluated using Newton's
+  identities relating power sums to elementary symmetric polynomials
+  of the roots of $x^{n}-1$.
+
+\item \textbf{Moments of random trigonometric polynomials.}%
+  \index{random trigonometric polynomials}%
+  \index{Kac--Rice formula}%
+  The expected number of real zeros of $\sum a_{k}\cos(k\theta)$ with
+  random coefficients involves moments $\mathbb{E}[\cos^{2m}(k\theta)]$,
+  computed via the Kac--Rice formula using the identities of G\&R~1.35.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.36\quad Sums of products of trigonometric functions of multiple angles}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Mode coupling in nonlinear systems.}%
+  \index{mode coupling}%
+  \index{nonlinear dynamics!mode interaction}%
+  \index{three-wave interaction}%
+  Products $\cos(m\theta)\cos(n\theta)$ expand into
+  $\frac{1}{2}[\cos((m-n)\theta)+\cos((m+n)\theta)]$ (product-to-sum),
+  describing three-wave interactions in nonlinear optics, plasma physics,
+  and ocean wave theory.
+
+\item \textbf{Lock-in amplifier and phase-sensitive detection.}%
+  \index{lock-in amplifier}%
+  \index{phase-sensitive detection}%
+  \index{signal processing!homodyne}%
+  The product $\cos(\omega_{s}t)\cos(\omega_{r}t)$ yields a DC component
+  when $\omega_{s}=\omega_{r}$ (homodyne detection).  This is the
+  operating principle of the lock-in amplifier, extracting signals
+  buried in noise.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Orthogonality relations.}%
+  \index{orthogonality!trigonometric system}%
+  \index{Fourier coefficients!computation}%
+  $\int_{0}^{2\pi}\cos(m\theta)\cos(n\theta)\,d\theta=\pi\delta_{mn}$
+  (for $m,n\geq 1$) follows from the product-to-sum formula and is the
+  orthogonality that makes Fourier analysis work.
+
+\item \textbf{Convolution theorem for Fourier coefficients.}%
+  \index{convolution theorem!Fourier}%
+  \index{Dirichlet convolution!analogy}%
+  The product of two Fourier series corresponds to convolution of their
+  coefficients: $(\hat{f}\ast\hat{g})_{n}=\sum_{k}\hat{f}_{k}\hat{g}_{n-k}$.
+  This is the basis for multiplication of power series and Dirichlet series.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.37\quad Sums of tangents of multiple angles}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Phase accumulation in optical systems.}%
+  \index{phase accumulation!optics}%
+  \index{optical resonator}%
+  \index{beam propagation}%
+  In Gaussian beam optics, the Gouy phase accumulated through multiple
+  lens systems involves sums of $\arctan$ terms, related to tangent sums
+  via the identity $\tan(\arctan a+\arctan b)=(a+b)/(1-ab)$.
+
+\item \textbf{Impedance matching in cascaded networks.}%
+  \index{impedance matching}%
+  \index{transmission line!cascaded sections}%
+  \index{Smith chart}%
+  Cascaded transmission line sections contribute phase shifts that add
+  as tangent arguments.  The total input impedance involves iterated
+  tangent addition formulas.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gregory--Leibniz and Machin-type formulas for $\pi$.}%
+  \index{Machin's formula}%
+  \index{Gregory--Leibniz series}%
+  \index{pi@$\pi$!computation}%
+  Machin's formula $\pi/4=4\arctan(1/5)-\arctan(1/239)$ and its
+  generalisations use the tangent addition formula to express $\pi/4$
+  as a combination of rapidly converging arctangent series, historically
+  used for high-precision computation of~$\pi$.
+
+\item \textbf{Partial fraction expansion of $\tan(n\theta)$.}%
+  \index{tangent!multiple angle}%
+  \index{partial fractions!tangent}%
+  $\tan(n\theta)$ as a rational function of $\tan\theta$ has partial
+  fraction decomposition, yielding identities used in the evaluation of
+  trigonometric sums and products.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.38\quad Sums leading to hyperbolic tangents and cotangents}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Langevin function and paramagnetism.}%
+  \index{Langevin function}%
+  \index{paramagnetism!classical}%
+  \index{Brillouin function}%
+  The classical Langevin function $L(x)=\coth x-1/x$ describes the
+  average magnetisation of a classical spin in a magnetic field.  The
+  quantum generalisation is the Brillouin function
+  $B_{J}(x)=\frac{2J+1}{2J}\coth\frac{(2J+1)x}{2J}
+  -\frac{1}{2J}\coth\frac{x}{2J}$, a sum of hyperbolic cotangents.
+
+\item \textbf{Bose--Einstein and Fermi--Dirac distributions.}%
+  \index{Bose--Einstein distribution}%
+  \index{Fermi--Dirac distribution}%
+  \index{hyperbolic tangent!Fermi function}%
+  The Fermi function
+  $f(\varepsilon)=1/(e^{\beta(\varepsilon-\mu)}+1)
+  =\frac{1}{2}[1-\tanh(\beta(\varepsilon-\mu)/2)]$
+  and the Bose function involve $\coth$ and $\tanh$, connecting
+  quantum statistics to hyperbolic function sums.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Partial fractions of $\coth$ and the Eisenstein series.}%
+  \index{Eisenstein series}%
+  \index{hyperbolic cotangent!partial fractions}%
+  \index{modular forms!Eisenstein series}%
+  $\pi\coth(\pi z)=1/z+2z\sum_{n=1}^{\infty}1/(z^{2}+n^{2})$ is
+  the hyperbolic analogue of the Mittag-Leffler expansion.
+  Eisenstein series $G_{2k}(\tau)=\sum'(m\tau+n)^{-2k}$ are closely
+  related and generate the ring of modular forms.
+
+\item \textbf{Elliptic functions via $\coth$ sums.}%
+  \index{elliptic functions!construction via coth}%
+  \index{Weierstrass $\wp$-function}%
+  The Weierstrass $\wp$-function can be built from sums of $\coth^{2}$
+  or $\csc^{2}$ terms, reflecting the connection between elliptic and
+  trigonometric/hyperbolic functions via lattice sums.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.39\quad The representation of cosines and sines of multiples of the angle as finite products}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Normal modes of a finite chain.}%
+  \index{normal modes!finite chain}%
+  \index{phonon!finite chain}%
+  \index{characteristic frequencies}%
+  The eigenfrequencies of a chain of $N$ coupled oscillators
+  satisfy $\det(K-\omega^{2}M)=0$, which reduces to
+  $U_{N-1}(\cos\theta)=0$, where $U_{N-1}$ is a Chebyshev polynomial.
+  The roots $\theta_{k}=k\pi/N$ give the normal mode frequencies
+  through the product representation of $\sin(N\theta)$.
+
+\item \textbf{Filter design and zeros of transfer functions.}%
+  \index{filter design!poles and zeros}%
+  \index{transfer function!polynomial factorisation}%
+  \index{Butterworth filter}%
+  The Butterworth filter has $|H(\omega)|^{2}=1/(1+\omega^{2N})$; its
+  poles are roots of $\cos(N\theta)$, distributed on the unit circle.
+  The product representation gives the pole-zero factorisation directly.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Factorisation of $x^{n}-1$.}%
+  \index{cyclotomic factorisation}%
+  \index{roots of unity!product formula}%
+  $x^{n}-1=\prod_{k=0}^{n-1}(x-e^{2\pi ik/n})$ and the identity
+  $2\sin(n\theta/2)=\prod_{k=0}^{n-1}2\sin[(\theta-2\pi k/n)/2]$
+  give the product representation.  These connect to cyclotomic
+  polynomials and algebraic number theory.
+
+\item \textbf{Resultant and discriminant.}%
+  \index{resultant}%
+  \index{discriminant!polynomial}%
+  The product $\prod_{j<k}(\alpha_{j}-\alpha_{k})^{2}$ (discriminant) for
+  the roots of Chebyshev polynomials has a closed form via the finite
+  product identities of G\&R~1.39, used in estimating the condition
+  number of Vandermonde matrices.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.41\quad The expansion of trigonometric and hyperbolic functions in power series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Small-angle approximations in mechanics.}%
+  \index{small-angle approximation}%
+  \index{pendulum!simple}%
+  \index{paraxial optics!small angle}%
+  $\sin\theta\approx\theta-\theta^{3}/6$ (from the Taylor series)
+  linearises the pendulum equation and defines the paraxial regime in
+  optics.  The cubic correction gives the amplitude-dependent frequency
+  shift of the nonlinear pendulum.
+
+\item \textbf{Bernoulli numbers and quantum statistics.}%
+  \index{Bernoulli numbers!generating function}%
+  \index{Planck distribution!expansion}%
+  \index{Sommerfeld expansion}%
+  The expansion $x/(e^{x}-1)=\sum_{n=0}^{\infty}B_{n}x^{n}/n!$ (with
+  Bernoulli numbers $B_{n}$) generates the low-temperature Sommerfeld
+  expansion of the free energy and electronic specific heat of metals.
+
+\item \textbf{Magnetic susceptibility and the Curie--Weiss law.}%
+  \index{Curie--Weiss law}%
+  \index{magnetic susceptibility}%
+  Expanding $\coth x\approx 1/x+x/3-x^{3}/45+\cdots$ for small~$x$
+  gives the Curie law $\chi\propto 1/T$ for paramagnetic susceptibility,
+  with higher-order terms providing corrections.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bernoulli and Euler numbers.}%
+  \index{Bernoulli numbers!generating function}%
+  \index{Euler numbers!generating function}%
+  \index{secant and tangent numbers}%
+  The power series $x/\sin x$, $x/\tan x$, and $1/\cos x$ generate
+  Bernoulli and Euler numbers.  These are respectively related to
+  $\zeta(2k)$ and $\beta(2k+1)$ (Dirichlet beta function), connecting
+  power series coefficients to values of $L$-functions.
+
+\item \textbf{Borel summability of alternating factorials.}%
+  \index{Borel summation!tangent series}%
+  \index{asymptotic series!tangent}%
+  The Taylor series of $\tan z$ has coefficients growing as $|a_{n}|
+  \sim(2/\pi)^{n}n!$, so it diverges for $|z|>\pi/2$.  Borel summation
+  assigns meaning to the divergent series and computes $\tan z$ beyond
+  the barrier.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.42\quad Expansion in series of simple fractions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Matsubara frequency sums revisited.}%
+  \index{Matsubara sums!partial fractions}%
+  \index{thermal Green's function}%
+  \index{contour integration!Matsubara}%
+  The partial-fraction expansion
+  $\pi\cot(\pi z)=1/z+\sum_{n=1}^{\infty}2z/(z^{2}-n^{2})$
+  allows Matsubara sums $\sum_{n}g(i\omega_{n})$ to be converted to
+  contour integrals, the standard technique in thermal field theory.
+
+\item \textbf{Kramers--Kronig relations.}%
+  \index{Kramers--Kronig relations}%
+  \index{dispersion relations}%
+  \index{causal response function}%
+  The partial-fraction structure of causal response functions leads to
+  the Kramers--Kronig dispersion relations connecting the real and
+  imaginary parts of the dielectric function, optical constants, and
+  scattering amplitudes.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Mittag-Leffler theorem applied.}%
+  \index{Mittag-Leffler theorem!examples}%
+  \index{meromorphic functions!explicit expansions}%
+  The partial-fraction expansions of $\cot$, $\csc$, $\tan$, $\sec$ are
+  explicit instances of the Mittag-Leffler theorem.  They are the
+  simplest examples of building meromorphic functions from prescribed
+  poles.
+
+\item \textbf{Hurwitz zeta function evaluations.}%
+  \index{Hurwitz zeta function!partial fraction connection}%
+  \index{Clausen function}%
+  Differentiating the partial-fraction expansion of $\cot(\pi z)$ yields
+  the polygamma function, while integrating it yields $\ln\Gamma(z)$ and
+  the Clausen function $\mathrm{Cl}_{2}(\theta)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.43\quad Representation in the form of an infinite product}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Spectral determinants and quantum statistical mechanics.}%
+  \index{spectral determinant!quantum oscillator}%
+  \index{partition function!functional determinant}%
+  \index{zeta-regularised product}%
+  The infinite product $\sin(\pi z)/(\pi z)=\prod(1-z^{2}/n^{2})$ is
+  the spectral determinant of the Laplacian on a circle.
+  In quantum statistical mechanics, such products compute partition
+  functions: $Z_{\text{osc}}=\prod_{n}[2\sinh(\beta\hbar\omega_{n}/2)]^{-1}$.
+
+\item \textbf{Crystallographic structure factors.}%
+  \index{structure factor!infinite product}%
+  \index{lattice sums!product form}%
+  \index{Debye--Waller factor}%
+  The Debye--Waller factor $e^{-\langle u^{2}\rangle q^{2}/2}$ multiplying
+  Bragg peaks in X-ray scattering can be expressed via products over
+  phonon modes, connecting to the infinite-product representation of
+  $\sinh$ and its lattice generalisations.
+
+\item \textbf{Casimir energy via product regularisation.}%
+  \index{Casimir effect!product regularisation}%
+  \index{zeta regularisation!Casimir}%
+  The Casimir energy of a scalar field on $[0,L]$ is
+  $E=-\frac{1}{2}\frac{d}{ds}\big|_{s=0}\sum_{n=1}^{\infty}(n\pi/L)^{-s}$,
+  whose exponential form connects to the regularised product
+  $\prod n^{-1}\sim\sqrt{2\pi}$ (via $\zeta'(0)=-\frac{1}{2}\ln 2\pi$).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler's sine product and $\zeta(2)$.}%
+  \index{Euler's sine product!$\zeta(2)$ proof}%
+  \index{Basel problem!product proof}%
+  Taking $\ln$ of $\sin(\pi z)/(\pi z)=\prod(1-z^{2}/n^{2})$ and
+  comparing the $z^{2}$ coefficient gives $\zeta(2)=\pi^{2}/6$
+  (Euler's original proof of the Basel problem).
+
+\item \textbf{Hadamard factorisation for entire functions of finite order.}%
+  \index{Hadamard factorisation!application to trig}%
+  \index{genus!trigonometric functions}%
+  $\sin(\pi z)$ and $\cos(\pi z)$ are entire functions of order~1 and
+  genus~1.  Their canonical products are the prototypes for the Hadamard
+  factorisation theorem, linking growth rate (order) to zero distribution
+  (genus).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.44--1.45\quad Trigonometric (Fourier) series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Square wave and Gibbs phenomenon in electronics.}%
+  \index{square wave!Fourier series}%
+  \index{Gibbs phenomenon!electronics}%
+  \index{signal reconstruction}%
+  The Fourier series of a square wave
+  $f(x)=\frac{4}{\pi}\sum_{n=0}^{\infty}\frac{\sin((2n+1)x)}{2n+1}$
+  exhibits the Gibbs phenomenon: a 9\% overshoot at discontinuities.
+  This limits the bandwidth of signal reconstruction in DAC converters
+  and necessitates sigma-smoothing or Lanczos filtering.
+
+\item \textbf{Sawtooth wave and the Bernoulli periodic function.}%
+  \index{sawtooth wave}%
+  \index{Bernoulli periodic function}%
+  \index{Euler--Maclaurin formula!sawtooth}%
+  The Fourier series of the sawtooth function
+  $\{x\}-\frac{1}{2}=-\sum_{n=1}^{\infty}\frac{\sin(2\pi nx)}{\pi n}$
+  is the first Bernoulli periodic function $\tilde{B}_{1}(x)$, appearing
+  in the remainder term of the Euler--Maclaurin formula.
+
+\item \textbf{Coulomb potential in a box (Ewald method).}%
+  \index{Ewald method!Fourier series}%
+  \index{Coulomb potential!periodic}%
+  In periodic boundary conditions, the Coulomb potential is
+  $\phi(\mathbf{r})=\sum_{\mathbf{G}\neq 0}
+  \frac{4\pi q}{|\mathbf{G}|^{2}V}e^{i\mathbf{G}\cdot\mathbf{r}}$,
+  a three-dimensional Fourier series that converges only after the
+  Ewald splitting into short-range and long-range parts.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Dirichlet kernel and pointwise convergence.}%
+  \index{Dirichlet kernel!convergence}%
+  \index{Dirichlet conditions}%
+  The $N$-th partial sum of a Fourier series is
+  $(f\ast D_{N})(\theta)$ where $D_{N}=\sum_{|n|\leq N}e^{in\theta}$.
+  Pointwise convergence at a point of discontinuity converges to the
+  midpoint value under Dirichlet conditions.
+
+\item \textbf{Poisson summation formula.}%
+  \index{Poisson summation formula!proof via Fourier}%
+  \index{sampling theorem}%
+  $\sum_{n}f(n)=\sum_{n}\hat{f}(n)$ follows from evaluating the Fourier
+  series of the periodised function $\sum f(x+n)$ at $x=0$.  It is the
+  theoretical foundation for the sampling theorem and the DFT.
+
+\item \textbf{Clausen functions and polylogarithms.}%
+  \index{Clausen function}%
+  \index{polylogarithms!Fourier series}%
+  \index{Bloch--Wigner dilogarithm}%
+  The Clausen function $\mathrm{Cl}_{2}(\theta)=-\int_{0}^{\theta}\ln|2\sin(t/2)|\,dt
+  =\sum_{n=1}^{\infty}\sin(n\theta)/n^{2}$ is the imaginary part of the
+  dilogarithm on the unit circle.  The Bloch--Wigner function
+  $D(z)=\mathrm{Im}(\mathrm{Li}_{2}(z))+\arg(1-z)\ln|z|$ computes
+  volumes of hyperbolic 3-manifolds.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.46\quad Series of products of exponential and trigonometric functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Damped oscillations and resonance.}%
+  \index{damped oscillation}%
+  \index{resonance!damped}%
+  \index{quality factor}%
+  The response of a damped oscillator is
+  $x(t)=\sum_{n}A_{n}e^{-\gamma_{n}t}\cos(\omega_{n}t+\phi_{n})$,
+  a series of exponential-trigonometric products.  The quality factor
+  $Q=\omega_{0}/(2\gamma)$ determines the sharpness of each resonance
+  peak.
+
+\item \textbf{Quasi-normal modes of black holes.}%
+  \index{quasi-normal modes!black hole}%
+  \index{gravitational waves!ringdown}%
+  The ringdown gravitational wave signal from a perturbed black hole is
+  $h(t)\sim\sum A_{n}e^{-t/\tau_{n}}\cos(\omega_{n}t+\phi_{n})$,
+  a superposition of quasi-normal modes (complex-frequency oscillations)
+  that are directly observed by LIGO/Virgo.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Fourier transform of exponentially damped sinusoids.}%
+  \index{Fourier transform!damped sinusoid}%
+  \index{Lorentzian!Fourier transform}%
+  The Fourier transform of $e^{-\gamma t}\cos(\omega_{0}t)\,\Theta(t)$
+  is a Lorentzian centred at $\omega_{0}$ with width $\gamma$.  Sums
+  of such terms produce the spectral representation of meromorphic
+  functions with poles in the lower half-plane.
+
+\item \textbf{Laplace transform of oscillatory functions.}%
+  \index{Laplace transform!oscillatory}%
+  \index{transfer function!poles}%
+  $\mathcal{L}\{e^{-at}\cos(\omega t)\}=\frac{s+a}{(s+a)^{2}+\omega^{2}}$
+  gives the transfer function of a second-order system; the poles
+  $s=-a\pm i\omega$ encode the damping and frequency.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.47\quad Series of hyperbolic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Debye model and lattice dynamics.}%
+  \index{Debye model!series of $\coth$}%
+  \index{phonon!mean energy}%
+  \index{zero-point energy!phonon}%
+  The mean energy of a phonon mode is
+  $\langle E\rangle=\frac{\hbar\omega}{2}\coth(\beta\hbar\omega/2)$.
+  Summing over modes gives a series of $\coth$ terms that interpolates
+  between the classical energy $k_{B}T$ (high $T$) and zero-point energy
+  $\frac{1}{2}\hbar\omega$ (low $T$).
+
+\item \textbf{Josephson junction array.}%
+  \index{Josephson junction!array}%
+  \index{superconductivity!flux quantisation}%
+  \index{SQUID!array}%
+  The current-voltage characteristic of a series array of Josephson
+  junctions involves sums of $\sinh$ and $\cosh$ terms modulated by
+  the phase differences across each junction.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lambert series.}%
+  \index{Lambert series}%
+  \index{divisor functions}%
+  \index{number theory!Lambert series}%
+  A Lambert series $\sum a_{n}q^{n}/(1-q^{n})=\sum b_{n}q^{n}$ with
+  $b_{n}=\sum_{d|n}a_{d}$ connects to divisor functions.  Since
+  $q^{n}/(1-q^{n})=\frac{1}{2}[\coth(n\tau/2)-1]$ for $q=e^{-\tau}$,
+  these are series of hyperbolic functions in disguise.
+
+\item \textbf{Theta function identities.}%
+  \index{theta functions!identities}%
+  \index{Jacobi theta functions!$\cosh$ series}%
+  The Jacobi theta function
+  $\vartheta_{3}(0|\tau)=1+2\sum_{n=1}^{\infty}q^{n^{2}}$ can be
+  rewritten via $q=e^{-\pi/\tau}$ as a series involving
+  $\operatorname{sech}$ and $\operatorname{csch}$ terms via modular
+  transformations.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.48\quad Lobachevskiy's ``Angle of Parallelism'' $\Pi(x)$}
+
+The angle of parallelism $\Pi(x)=2\arctan(e^{-x})$ satisfies
+$\sin\Pi(x)=\operatorname{sech}(x)$,
+$\cos\Pi(x)=\tanh(x)$,
+$\tan\Pi(x)=\operatorname{csch}(x)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Anti-de Sitter space and holography.}%
+  \index{anti-de Sitter space}%
+  \index{AdS/CFT correspondence}%
+  \index{holographic principle}%
+  \index{hyperbolic geometry!AdS}%
+  In the AdS/CFT correspondence, the bulk geometry is hyperbolic
+  ($H^{d+1}$ or AdS$_{d+1}$).  The angle of parallelism encodes the
+  relationship between bulk proper distance and boundary separation,
+  governing the falloff of correlation functions in the holographic
+  boundary theory.
+
+\item \textbf{Hyperbolic neural networks.}%
+  \index{hyperbolic neural networks}%
+  \index{Poincar\'e embeddings}%
+  \index{hierarchical data representation}%
+  Poincar\'{e} embeddings (Nickel \& Kiela, 2017) represent hierarchical
+  data in hyperbolic space, where tree-like structures are naturally
+  accommodated by exponential volume growth.  The angle of parallelism
+  relates embedding distances to similarity measures.
+
+\item \textbf{Relativistic aberration of light.}%
+  \index{aberration of light}%
+  \index{relativistic beaming}%
+  The relativistic aberration formula
+  $\cos\theta'=(\cos\theta-\beta)/(1-\beta\cos\theta)$ can be
+  written as $\Pi(x')=\Pi(x+\phi)$ using the rapidity parametrisation,
+  directly connecting to the angle of parallelism.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hyperbolic trigonometry.}%
+  \index{hyperbolic trigonometry}%
+  \index{Lobachevsky geometry}%
+  \index{constant curvature!negative}%
+  In the hyperbolic plane of curvature $-1$, a right triangle with
+  hypotenuse $c$ and angle $\alpha$ satisfies
+  $\sin\alpha=\sin\Pi(a)$ where $a$ is the opposite side.
+  The entire trigonometry of the hyperbolic plane is encoded in $\Pi(x)$.
+
+\item \textbf{Ideal triangles and hyperbolic volume.}%
+  \index{ideal triangle!hyperbolic}%
+  \index{hyperbolic volume}%
+  \index{Lobachevskiy function}%
+  The area of a hyperbolic triangle with angles $\alpha,\beta,\gamma$ is
+  $\pi-\alpha-\beta-\gamma$.  The volume of hyperbolic 3-manifolds
+  involves the Lobachevskiy function
+  $\Lambda(\theta)=-\int_{0}^{\theta}\ln|2\sin t|\,dt$, closely related
+  to the angle of parallelism.
+
+\item \textbf{Uniformisation of Riemann surfaces.}%
+  \index{uniformisation theorem}%
+  \index{Riemann surfaces!hyperbolic structure}%
+  By the uniformisation theorem, every Riemann surface of genus
+  $g\geq 2$ carries a hyperbolic metric.  The angle of parallelism
+  determines the relationship between the Fuchsian group generators and
+  the geometry of the surface.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.49\quad The hyperbolic amplitude (the Gudermannian) $\operatorname{gd} x$}
+
+The Gudermannian function $\operatorname{gd}(x)=\int_{0}^{x}\operatorname{sech}t\,dt
+=2\arctan(\tanh(x/2))=\arcsin(\tanh x)=\arctan(\sinh x)$
+relates circular and hyperbolic functions without complex numbers:
+$\sin(\operatorname{gd}x)=\tanh x$, $\cos(\operatorname{gd}x)=\operatorname{sech}x$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Mercator projection.}%
+  \index{Mercator projection}%
+  \index{cartography!conformal}%
+  \index{loxodrome}%
+  The Mercator projection maps latitude $\phi$ to
+  $y=\ln\tan(\pi/4+\phi/2)=\operatorname{gd}^{-1}(\phi)$, the inverse
+  Gudermannian.  This conformal map preserves angles (essential for
+  navigation) and maps loxodromes (constant-bearing courses) to straight
+  lines.
+
+\item \textbf{Relativistic rapidity.}%
+  \index{rapidity!Gudermannian}%
+  \index{special relativity!Gudermannian}%
+  \index{proper acceleration}%
+  For a uniformly accelerated observer, the velocity
+  $v(t)=c\tanh(at/c)=c\sin(\operatorname{gd}(at/c))$ and the relation
+  between coordinate time and proper time involves the Gudermannian.
+  The maximum speed limit $v\to c$ corresponds to
+  $\operatorname{gd}\to\pi/2$.
+
+\item \textbf{Sine-Gordon solitons.}%
+  \index{sine-Gordon equation!soliton}%
+  \index{kink soliton}%
+  \index{Josephson junction!soliton}%
+  The sine-Gordon equation $\phi_{tt}-\phi_{xx}+\sin\phi=0$ has the
+  kink soliton solution $\phi(x,t)=4\arctan\exp[(x-vt)/\sqrt{1-v^{2}}]
+  =2\operatorname{gd}[(x-vt)/\sqrt{1-v^{2}}]+\pi$.
+  This describes fluxons in long Josephson junctions and dislocations in
+  crystal lattices.
+
+\item \textbf{Transmission line and soliton propagation.}%
+  \index{nonlinear transmission line}%
+  \index{soliton!electrical}%
+  In nonlinear electrical transmission lines, voltage solitons propagate
+  with profiles governed by the Gudermannian, modelling pulse propagation
+  in superconducting electronics and nonlinear waveguides.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bridge between circular and hyperbolic identities.}%
+  \index{Gudermannian!bridge function}%
+  \index{circular-hyperbolic correspondence}%
+  The Gudermannian is the unique smooth bijection $(-\infty,\infty)\to(-\pi/2,\pi/2)$
+  that interconverts all circular and hyperbolic identities:
+  $\sin\circ\operatorname{gd}=\tanh$,
+  $\tan\circ\operatorname{gd}=\sinh$,
+  $\sec\circ\operatorname{gd}=\cosh$.
+  It provides a real-variable proof of Euler's formula.
+
+\item \textbf{Schwarz--Christoffel maps.}%
+  \index{Schwarz--Christoffel mapping}%
+  \index{conformal mapping!rectangle}%
+  The conformal map from the half-plane to a semi-infinite strip involves
+  $\operatorname{gd}^{-1}(z)=\ln\tan(z/2+\pi/4)$, and the
+  Schwarz--Christoffel integral for rectangles is expressible through
+  the Gudermannian and elliptic integrals.
+
+\item \textbf{Tractrix and pursuit curves.}%
+  \index{tractrix}%
+  \index{pursuit curves}%
+  \index{involute!catenary}%
+  The tractrix (involute of the catenary) has the parametrisation
+  $x=t-\tanh t$, $y=\operatorname{sech}t$, which is naturally expressed
+  via $\operatorname{gd}$.  The tractrix is the curve of pursuit and
+  generates the pseudosphere (a surface of constant negative curvature)
+  upon revolution.
+\end{enumerate}
+
+\subsection{1.5\quad The Logarithm}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.51\quad Series representation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Entropy and the logarithm.}%
+  \index{entropy!Boltzmann--Gibbs}%
+  \index{Shannon entropy}%
+  \index{information theory!logarithm}%
+  Boltzmann entropy $S=k_{B}\ln W$ and Shannon entropy
+  $H=-\sum p_{i}\ln p_{i}$ place the logarithm at the heart of
+  thermodynamics and information theory.  The series
+  $\ln(1+x)=x-x^{2}/2+x^{3}/3-\cdots$ gives perturbative
+  corrections around equilibrium.
+
+\item \textbf{Renormalisation group logarithms.}%
+  \index{renormalisation group!logarithms}%
+  \index{running coupling constant}%
+  \index{leading logarithms}%
+  The running coupling $\alpha(\mu)=\alpha(\mu_{0})/[1+b\alpha(\mu_{0})\ln(\mu/\mu_{0})]$
+  involves the logarithm of the energy scale.  Leading, next-to-leading,
+  and higher logarithms $\ln^{k}(\mu/\mu_{0})$ organise perturbation
+  theory in QCD and electroweak theory.
+
+\item \textbf{Decibel scale and psychophysical laws.}%
+  \index{decibel scale}%
+  \index{Weber--Fechner law}%
+  \index{acoustic intensity}%
+  The decibel $10\log_{10}(I/I_{0})$ and the Weber--Fechner law
+  (perceived intensity $\propto\ln I$) reflect the logarithmic
+  sensitivity of human perception, motivating the series representation
+  for small intensity variations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The natural logarithm as an integral.}%
+  \index{natural logarithm!integral definition}%
+  \index{harmonic series!integral test}%
+  $\ln x=\int_{1}^{x}dt/t$ defines $\ln$ without reference to
+  exponentials.  The comparison $H_{n}\approx\ln n+\gamma$ connects the
+  harmonic series to the logarithm via the integral test.
+
+\item \textbf{Polylogarithms.}%
+  \index{polylogarithms!definition}%
+  \index{dilogarithm}%
+  \index{algebraic K-theory@algebraic $K$-theory}%
+  The series $\mathrm{Li}_{s}(z)=\sum_{n=1}^{\infty}z^{n}/n^{s}$
+  reduces to $-\ln(1-z)$ for $s=1$.  Higher polylogarithms $\mathrm{Li}_{2}$,
+  $\mathrm{Li}_{3}$, \ldots appear in algebraic $K$-theory, Feynman
+  integrals, and hyperbolic geometry.
+
+\item \textbf{Mercator series and the alternating harmonic series.}%
+  \index{Mercator series}%
+  \index{alternating harmonic series}%
+  $\ln 2=1-1/2+1/3-1/4+\cdots$ (the Mercator series at $x=1$) is
+  the simplest non-trivial value of a conditionally convergent series
+  and the starting point for irrationality proofs and acceleration
+  techniques.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.52\quad Series of logarithms (cf.\ 1.431)}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Free energy from eigenvalue sums.}%
+  \index{free energy!log determinant}%
+  \index{partition function!log sum}%
+  \index{random matrix theory!log potential}%
+  The free energy $F=-k_{B}T\ln Z$ for non-interacting modes is
+  $F=k_{B}T\sum_{n}\ln(1-e^{-\beta\varepsilon_{n}})$, a sum of
+  logarithms.  In random matrix theory, the log-gas energy
+  $\sum_{i<j}\ln|\lambda_{i}-\lambda_{j}|$ is a sum of logarithms of
+  eigenvalue spacings.
+
+\item \textbf{Stirling's approximation from log sums.}%
+  \index{Stirling's approximation!from log sum}%
+  \index{factorial!log sum}%
+  $\ln N!=\sum_{k=1}^{N}\ln k$ is the sum of logarithms that gives
+  Stirling's approximation $\ln N!\approx N\ln N-N$ by comparison with
+  $\int\ln x\,dx$.
+
+\item \textbf{Lyapunov exponents.}%
+  \index{Lyapunov exponents}%
+  \index{chaos!Lyapunov exponent}%
+  \index{dynamical systems!stability}%
+  The maximal Lyapunov exponent
+  $\lambda=\lim_{N\to\infty}\frac{1}{N}\sum_{k=1}^{N}\ln\|Df(x_{k})\|$
+  is a sum of logarithms of stretching factors along an orbit, measuring
+  the rate of exponential divergence (chaos).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Weierstrass product via log sums.}%
+  \index{Weierstrass product!via log sum}%
+  \index{convergence!of log series}%
+  $\ln\prod(1+a_{n})=\sum\ln(1+a_{n})$ converges absolutely when
+  $\sum|a_{n}|<\infty$, and the product equals $\exp(\sum\ln(1+a_{n}))$.
+  This is the standard technique for proving convergence of infinite
+  products.
+
+\item \textbf{Mertens' theorem.}%
+  \index{Mertens' theorem}%
+  \index{prime product!asymptotic}%
+  \index{Euler product!partial}%
+  $\sum_{p\leq x}\ln(1-1/p)^{-1}=\ln\ln x+M+O(1/\ln x)$ gives the
+  partial Euler product for $\zeta(s)$ at $s=1$.  Exponentiating yields
+  Mertens' third theorem: $\prod_{p\leq x}(1-1/p)\sim e^{-\gamma}/\ln x$.
+\end{enumerate}
+
+\subsection{1.6\quad The Inverse Trigonometric and Hyperbolic Functions}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.61\quad The domain of definition}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Scattering angles and cross sections.}%
+  \index{scattering angle}%
+  \index{cross section!angular range}%
+  \index{inverse trigonometric functions!scattering}%
+  In scattering theory, the deflection angle
+  $\Theta(b)=\pi-2b\int_{r_{\min}}^{\infty}\frac{dr}{r^{2}\sqrt{1-V(r)/E-b^{2}/r^{2}}}$
+  involves $\arcsin$ and $\arccos$ when evaluated for specific potentials.
+  The multi-valuedness of inverse trig functions reflects the distinction
+  between glory, rainbow, and orbiting scattering.
+
+\item \textbf{Signal phase and branch cuts.}%
+  \index{phase unwrapping}%
+  \index{branch cut!arctangent}%
+  \index{radar signal processing}%
+  In radar and sonar, the phase $\phi=\arctan(Q/I)$ (where $I$ and $Q$
+  are in-phase and quadrature components) has $2\pi$ ambiguity.  Phase
+  unwrapping algorithms resolve the branch cut of $\arctan$ to recover
+  continuous phase, essential for synthetic aperture radar and
+  interferometric measurements.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Riemann surfaces of inverse functions.}%
+  \index{Riemann surface!inverse trig}%
+  \index{branch points!inverse trig}%
+  \index{multi-valued functions}%
+  $\arcsin(z)=-i\ln(iz+\sqrt{1-z^{2}})$ extends to a multi-valued
+  analytic function with branch points at $z=\pm 1$.  The Riemann surface
+  of $\arcsin$ is an infinite-sheeted cover of $\mathbb{C}$, providing
+  the first examples of ramified coverings.
+
+\item \textbf{The argument function and winding number.}%
+  \index{argument function}%
+  \index{winding number!argument}%
+  $\arg(z)=\arctan(\operatorname{Im}z/\operatorname{Re}z)$ (suitably
+  defined) counts the winding number of a path around the origin.  The
+  multi-valuedness of $\arg$ is the topological obstruction to defining a
+  global logarithm on $\mathbb{C}^{*}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.62--1.63\quad Functional relations}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Velocity addition revisited.}%
+  \index{rapidity!arctanh addition}%
+  \index{velocity addition!relativistic}%
+  The relativistic velocity addition
+  $v_{12}=(v_{1}+v_{2})/(1+v_{1}v_{2}/c^{2})$ is
+  $\operatorname{arctanh}(v_{12}/c)=\operatorname{arctanh}(v_{1}/c)
+  +\operatorname{arctanh}(v_{2}/c)$, the addition formula for
+  $\operatorname{arctanh}$.
+
+\item \textbf{Impedance and reflection coefficients.}%
+  \index{reflection coefficient}%
+  \index{impedance!arctanh relation}%
+  \index{Smith chart!arctanh}%
+  In microwave engineering, the relation between impedance~$Z$ and
+  reflection coefficient $\Gamma=(Z-Z_{0})/(Z+Z_{0})$ inverts to
+  $Z=Z_{0}(1+\Gamma)/(1-\Gamma)$, a M\"{o}bius transformation.
+  The Smith chart is the graphical representation of
+  $\operatorname{arctanh}(\Gamma)$.
+
+\item \textbf{Euler angles and rotation composition.}%
+  \index{Euler angles}%
+  \index{rotation!composition}%
+  \index{gimbal lock}%
+  The arctangent addition formula underlies the composition of rotations
+  in Euler angle parametrisation and the analysis of gimbal lock in
+  aerospace engineering and robotics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Machin-type formulas.}%
+  \index{Machin's formula!arctangent addition}%
+  \index{pi@$\pi$!Machin formulas}%
+  The arctangent addition formula
+  $\arctan a+\arctan b=\arctan\frac{a+b}{1-ab}$ (when $ab<1$)
+  generates Machin-type formulas: $\pi/4=4\arctan(1/5)-\arctan(1/239)$.
+  These were the basis for all $\pi$-computation records before the
+  era of fast algorithms.
+
+\item \textbf{M\"obius transformations and the disc model.}%
+  \index{M\"obius transformation!disc model}%
+  \index{hyperbolic distance}%
+  The hyperbolic distance in the Poincar\'{e} disc is
+  $d(z,w)=\operatorname{arctanh}|T(z,w)|$ where
+  $T(z,w)=(z-w)/(1-\bar{w}z)$ is a M\"{o}bius transformation.
+  The functional relations of $\operatorname{arctanh}$ encode the
+  isometry group of the hyperbolic plane.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{1.64\quad Series representations}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gregory--Leibniz series and Monte Carlo estimation of $\pi$.}%
+  \index{Gregory--Leibniz series!$\pi$}%
+  \index{Monte Carlo!$\pi$ estimation}%
+  \index{Buffon's needle}%
+  $\arctan(1)=\pi/4=\sum_{n=0}^{\infty}(-1)^{n}/(2n+1)$ (Gregory--Leibniz)
+  is the slowest series for $\pi$.  In physics education, it connects to
+  Buffon's needle experiment and Monte Carlo estimation of areas.
+
+\item \textbf{Inverse tangent integral and ladder relations.}%
+  \index{inverse tangent integral}%
+  \index{Lewin's polylogarithm identities}%
+  The inverse tangent integral
+  $\mathrm{Ti}_{2}(x)=\sum_{n=0}^{\infty}(-1)^{n}x^{2n+1}/(2n+1)^{2}$
+  is the imaginary part of $\mathrm{Li}_{2}(ix)$ and appears in Feynman
+  diagram evaluations at two loops and in lattice Green's functions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Arctangent series and Euler's formula for $\zeta(2k+1)$.}%
+  \index{arctangent series}%
+  \index{Riemann zeta function!odd values}%
+  While $\arctan(x)=\sum(-1)^{n}x^{2n+1}/(2n+1)$ converges only for
+  $|x|\leq 1$, accelerated variants (Euler transform) converge rapidly
+  for all~$x$ and connect to odd zeta values through the identity
+  $\beta(s)=\sum(-1)^{n}(2n+1)^{-s}$.
+
+\item \textbf{BBP-type formulas.}%
+  \index{BBP formula}%
+  \index{pi@$\pi$!digit extraction}%
+  \index{spigot algorithm}%
+  The Bailey--Borwein--Plouffe formula
+  $\pi=\sum_{k=0}^{\infty}\frac{1}{16^{k}}\bigl(\frac{4}{8k+1}-\frac{2}{8k+4}
+  -\frac{1}{8k+5}-\frac{1}{8k+6}\bigr)$ derives from arctangent series
+  evaluated at specific algebraic points.  It allows extraction of
+  hexadecimal digits of~$\pi$ without computing preceding digits.
+\end{enumerate}

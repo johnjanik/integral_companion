@@ -1,0 +1,665 @@
+%% ============================================================
+%% 10  Vector Field Theory
+%% ============================================================
+\section{10\quad Vector Field Theory}
+
+\subsection{10.1--10.8\quad Vectors, Vector Operators, and Integral Theorems}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.11\quad Products of vectors}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Work, torque, and the Lorentz force.}%
+  \index{dot product!work}%
+  \index{cross product!torque}%
+  \index{Lorentz force}%
+  \index{scalar triple product}%
+  The dot product gives work $W=\mathbf{F}\cdot\mathbf{d}$, the cross
+  product gives torque $\boldsymbol{\tau}=\mathbf{r}\times\mathbf{F}$,
+  and the Lorentz force $\mathbf{F}=q(\mathbf{E}+\mathbf{v}\times\mathbf{B})$
+  combines both.  The scalar triple product
+  $\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})$ gives the volume of a
+  parallelepiped, central to crystallographic unit cell calculations.
+
+\item \textbf{Angular momentum and Poynting vector.}%
+  \index{angular momentum!cross product}%
+  \index{Poynting vector}%
+  \index{electromagnetic energy flux}%
+  $\mathbf{L}=\mathbf{r}\times\mathbf{p}$ (angular momentum) and
+  $\mathbf{S}=\mathbf{E}\times\mathbf{H}$ (Poynting vector for
+  electromagnetic energy flux) are the two most fundamental cross
+  products in physics.
+
+\item \textbf{Levi-Civita symbol and index notation.}%
+  \index{Levi-Civita symbol}%
+  \index{index notation}%
+  \index{Einstein summation convention}%
+  The vector product identities
+  $(\mathbf{a}\times\mathbf{b})\cdot(\mathbf{c}\times\mathbf{d})
+  =(\mathbf{a}\cdot\mathbf{c})(\mathbf{b}\cdot\mathbf{d})
+  -(\mathbf{a}\cdot\mathbf{d})(\mathbf{b}\cdot\mathbf{c})$ and the
+  BAC--CAB rule follow from the $\varepsilon$-$\delta$ identity
+  $\varepsilon_{ijk}\varepsilon_{ilm}=\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$,
+  the workhorse of tensor algebra in physics.
+
+\item \textbf{Clifford algebra and spinors.}%
+  \index{Clifford algebra}%
+  \index{spinors}%
+  \index{geometric algebra}%
+  The geometric product $\mathbf{a}\mathbf{b}=\mathbf{a}\cdot\mathbf{b}
+  +\mathbf{a}\wedge\mathbf{b}$ combines dot and wedge products into a
+  single algebraic structure (Clifford algebra).  Spinors arise as
+  even-grade elements, providing the mathematical foundation for
+  fermions in quantum field theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Exterior algebra and differential forms.}%
+  \index{exterior algebra}%
+  \index{differential forms}%
+  \index{wedge product}%
+  The wedge product $\mathbf{a}\wedge\mathbf{b}$ generalises the cross
+  product to arbitrary dimensions.  Differential forms
+  $\omega=\sum f_{i_{1}\cdots i_{k}}\,dx^{i_{1}}\wedge\cdots\wedge dx^{i_{k}}$
+  provide a coordinate-free framework for integration on manifolds,
+  subsuming the vector products of G\&R~10.11.
+
+\item \textbf{Lie bracket and Lie algebras.}%
+  \index{Lie bracket}%
+  \index{Lie algebra!$\mathfrak{so}(3)$}%
+  The cross product on $\mathbb{R}^{3}$ makes it a Lie algebra
+  isomorphic to $\mathfrak{so}(3)$.  The Jacobi identity
+  $\mathbf{a}\times(\mathbf{b}\times\mathbf{c})+\text{cyclic}=\mathbf{0}$
+  is the defining property of a Lie algebra.
+
+\item \textbf{Quaternions and rotations.}%
+  \index{quaternions}%
+  \index{rotations!quaternion representation}%
+  \index{Rodrigues' formula}%
+  Hamilton's quaternion product $\mathbf{q}_{1}\mathbf{q}_{2}$ encodes
+  both dot and cross products.  The rotation
+  $\mathbf{v}'=\mathbf{q}\mathbf{v}\bar{\mathbf{q}}$ gives the
+  double cover $\mathrm{SU}(2)\to\mathrm{SO}(3)$, fundamental in
+  computer graphics and attitude control.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.12\quad Properties of scalar product}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Projection and decomposition of forces.}%
+  \index{projection!scalar product}%
+  \index{force decomposition}%
+  \index{normal and tangential components}%
+  The scalar product $\mathbf{F}\cdot\hat{\mathbf{n}}$ gives the
+  component of force along direction $\hat{\mathbf{n}}$, fundamental in
+  statics, dynamics, and the resolution of forces on inclined planes,
+  joints, and constraints.
+
+\item \textbf{Inner products in quantum mechanics.}%
+  \index{inner product!quantum mechanics}%
+  \index{Hilbert space!quantum states}%
+  \index{probability amplitude}%
+  The probability amplitude $\langle\psi|\phi\rangle$ generalises the
+  scalar product to infinite-dimensional Hilbert space.  The Cauchy--Schwarz
+  inequality $|\langle\psi|\phi\rangle|^{2}\leq\langle\psi|\psi\rangle
+  \langle\phi|\phi\rangle$ underpins the uncertainty principle.
+
+\item \textbf{Metric tensor and inner products on manifolds.}%
+  \index{metric tensor!inner product}%
+  \index{Riemannian geometry}%
+  \index{general relativity!metric}%
+  The scalar product on a curved manifold is
+  $\mathbf{u}\cdot\mathbf{v}=g_{ij}u^{i}v^{j}$, where $g_{ij}$ is the
+  metric tensor.  In general relativity,
+  $ds^{2}=g_{\mu\nu}dx^{\mu}dx^{\nu}$ defines the spacetime geometry.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hilbert space axioms.}%
+  \index{Hilbert space!axioms}%
+  \index{inner product space}%
+  \index{completeness!inner product space}%
+  An inner product space satisfying completeness (every Cauchy sequence
+  converges) is a Hilbert space.  The scalar product axioms---linearity,
+  symmetry, positive-definiteness---abstract the properties of the
+  Euclidean dot product to arbitrary (possibly infinite) dimensions.
+
+\item \textbf{Gram--Schmidt orthogonalisation.}%
+  \index{Gram--Schmidt process}%
+  \index{orthonormal basis!construction}%
+  \index{QR decomposition}%
+  The Gram--Schmidt process constructs an orthonormal basis from a
+  linearly independent set using projections $\text{proj}_{\mathbf{u}}\mathbf{v}
+  =(\mathbf{v}\cdot\mathbf{u})/(\mathbf{u}\cdot\mathbf{u})\,\mathbf{u}$.
+  This is the constructive proof behind QR decomposition.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.13\quad Properties of vector product}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Magnetic force and the Hall effect.}%
+  \index{magnetic force!cross product}%
+  \index{Hall effect}%
+  \index{cyclotron motion}%
+  $\mathbf{F}=q\mathbf{v}\times\mathbf{B}$ gives the Lorentz force
+  perpendicular to both velocity and field, producing cyclotron orbits.
+  The Hall effect---voltage transverse to current in a magnetic
+  field---is a direct consequence of the cross-product geometry.
+
+\item \textbf{Vorticity and fluid mechanics.}%
+  \index{vorticity}%
+  \index{fluid mechanics!vorticity}%
+  \index{Kelvin circulation theorem}%
+  The vorticity $\boldsymbol{\omega}=\nabla\times\mathbf{v}$ is a
+  cross-product (curl) of the velocity field.  The Kelvin circulation
+  theorem $\frac{d}{dt}\oint\mathbf{v}\cdot d\mathbf{l}=0$ for
+  inviscid flow is a conservation law for vorticity flux.
+
+\item \textbf{Orientation and right-hand rule.}%
+  \index{right-hand rule}%
+  \index{orientation!physical}%
+  \index{parity violation}%
+  The cross product defines a handedness (orientation) of
+  three-dimensional space.  The distinction between right-handed and
+  left-handed coordinate systems is physical: parity violation in the
+  weak interaction means that Nature distinguishes orientations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The cross product is specific to $\mathbb{R}^{3}$ and $\mathbb{R}^{7}$.}%
+  \index{cross product!dimension restriction}%
+  \index{normed division algebras}%
+  \index{octonions}%
+  A bilinear cross product satisfying $|\mathbf{a}\times\mathbf{b}|^{2}
+  =|\mathbf{a}|^{2}|\mathbf{b}|^{2}-(\mathbf{a}\cdot\mathbf{b})^{2}$
+  exists only in dimensions 3 and 7, corresponding to the imaginary parts
+  of the quaternions and octonions (normed division algebras).
+
+\item \textbf{Oriented area and the determinant.}%
+  \index{oriented area}%
+  \index{determinant!geometric interpretation}%
+  $|\mathbf{a}\times\mathbf{b}|$ gives the area of the parallelogram
+  spanned by $\mathbf{a}$ and $\mathbf{b}$; the triple product
+  $\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})=\det[\mathbf{a},\mathbf{b},\mathbf{c}]$
+  gives the signed volume.  These are the 2-dimensional and
+  3-dimensional cases of the determinant as oriented volume.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.14\quad Differentiation of vectors}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Velocity, acceleration, and the Frenet--Serret frame.}%
+  \index{velocity!vector derivative}%
+  \index{acceleration!centripetal and tangential}%
+  \index{Frenet--Serret formulas}%
+  \index{curvature!of a curve}%
+  $\mathbf{v}=d\mathbf{r}/dt$ and $\mathbf{a}=d\mathbf{v}/dt$ decompose
+  into tangential and normal components via the Frenet--Serret frame
+  $(\mathbf{T},\mathbf{N},\mathbf{B})$:
+  $\mathbf{a}=\dot{v}\,\mathbf{T}+v^{2}\kappa\,\mathbf{N}$, where
+  $\kappa$ is the curvature.
+
+\item \textbf{Rotating reference frames and Coriolis force.}%
+  \index{rotating frame!derivative}%
+  \index{Coriolis force}%
+  \index{centrifugal force}%
+  In a rotating frame with angular velocity $\boldsymbol{\Omega}$,
+  $(d\mathbf{A}/dt)_{\text{inertial}}=(d\mathbf{A}/dt)_{\text{rot}}
+  +\boldsymbol{\Omega}\times\mathbf{A}$.
+  This gives rise to the Coriolis force $-2m\boldsymbol{\Omega}\times\mathbf{v}$
+  and centrifugal force $-m\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{r})$.
+
+\item \textbf{Covariant derivative and parallel transport.}%
+  \index{covariant derivative}%
+  \index{parallel transport}%
+  \index{connection!Levi-Civita}%
+  In curved spacetime, the ordinary derivative $d\mathbf{A}/dt$ is
+  replaced by the covariant derivative
+  $DA^{\mu}/d\tau=dA^{\mu}/d\tau+\Gamma^{\mu}_{\nu\lambda}A^{\nu}dx^{\lambda}/d\tau$
+  to account for the curvature of space.  Geodesic deviation measures
+  tidal forces through $D^{2}\xi^{\mu}/d\tau^{2}=R^{\mu}{}_{\nu\rho\sigma}u^{\nu}u^{\sigma}\xi^{\rho}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Connections on vector bundles.}%
+  \index{connection!vector bundle}%
+  \index{vector bundle}%
+  \index{gauge theory!mathematical}%
+  The covariant derivative generalises vector differentiation to sections
+  of vector bundles: $\nabla_{X}s$ for a section~$s$ along a tangent
+  vector~$X$.  In gauge theory, the gauge potential $A_{\mu}$ defines
+  the connection.
+
+\item \textbf{Lie derivative.}%
+  \index{Lie derivative}%
+  \index{flow of a vector field}%
+  \index{symmetry!Lie derivative}%
+  The Lie derivative $\mathcal{L}_{X}Y=[X,Y]$ measures how a vector
+  field~$Y$ changes along the flow of~$X$.  It is the infinitesimal
+  generator of diffeomorphisms and encodes symmetries (Killing vectors
+  satisfy $\mathcal{L}_{X}g=0$).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.21\quad Operators grad, div, and curl}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Maxwell's equations in differential form.}%
+  \index{Maxwell's equations!differential form}%
+  \index{gradient!electric potential}%
+  \index{divergence!Gauss's law}%
+  \index{curl!Faraday's law}%
+  $\nabla\cdot\mathbf{E}=\rho/\varepsilon_{0}$ (Gauss),
+  $\nabla\times\mathbf{E}=-\partial\mathbf{B}/\partial t$ (Faraday),
+  $\nabla\cdot\mathbf{B}=0$ (no monopoles),
+  $\nabla\times\mathbf{B}=\mu_{0}\mathbf{J}+\mu_{0}\varepsilon_{0}
+  \partial\mathbf{E}/\partial t$ (Amp\`{e}re--Maxwell).
+  These four equations, expressed entirely through grad, div, and curl,
+  unify all of classical electrodynamics \cite{Jackson1999}.
+
+\item \textbf{Fluid dynamics: continuity and vorticity.}%
+  \index{continuity equation!divergence}%
+  \index{vorticity!curl of velocity}%
+  \index{incompressible flow}%
+  \index{Navier--Stokes equations}%
+  $\nabla\cdot\mathbf{v}=0$ for incompressible flow;
+  $\boldsymbol{\omega}=\nabla\times\mathbf{v}$ is the vorticity.
+  The Navier--Stokes equations
+  $\partial_{t}\mathbf{v}+(\mathbf{v}\cdot\nabla)\mathbf{v}
+  =-\nabla p/\rho+\nu\nabla^{2}\mathbf{v}$ combine all three operators.
+
+\item \textbf{Gravitational and thermal gradients.}%
+  \index{gravitational field!gradient}%
+  \index{temperature gradient}%
+  \index{Fourier's law!heat conduction}%
+  $\mathbf{g}=-\nabla\Phi$ relates the gravitational field to the
+  potential, and Fourier's law $\mathbf{q}=-k\nabla T$ relates heat
+  flux to the temperature gradient.
+
+\item \textbf{Gauge invariance.}%
+  \index{gauge invariance!curl of gradient}%
+  \index{vector potential}%
+  \index{magnetic vector potential}%
+  $\nabla\times(\nabla\phi)=\mathbf{0}$ and $\nabla\cdot(\nabla\times\mathbf{A})=0$
+  are the identities behind gauge invariance: the gauge transformation
+  $\mathbf{A}\to\mathbf{A}+\nabla\chi$ leaves $\mathbf{B}=\nabla\times\mathbf{A}$
+  unchanged.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{De Rham complex.}%
+  \index{de Rham complex}%
+  \index{exact sequences}%
+  \index{Poincar\'e lemma}%
+  The sequence $C^{\infty}\xrightarrow{\mathrm{grad}}\mathfrak{X}
+  \xrightarrow{\mathrm{curl}}\mathfrak{X}
+  \xrightarrow{\mathrm{div}}C^{\infty}$ is the de Rham complex
+  $\Omega^{0}\xrightarrow{d}\Omega^{1}\xrightarrow{d}\Omega^{2}
+  \xrightarrow{d}\Omega^{3}$ in disguise.  The identities
+  $\nabla\times\nabla f=\mathbf{0}$ and $\nabla\cdot\nabla\times\mathbf{A}=0$
+  express $d^{2}=0$.
+
+\item \textbf{Hodge decomposition.}%
+  \index{Hodge decomposition}%
+  \index{Helmholtz decomposition}%
+  \index{harmonic forms}%
+  Every smooth vector field on a compact domain decomposes as
+  $\mathbf{F}=\nabla\phi+\nabla\times\mathbf{A}+\mathbf{H}$
+  (Helmholtz), where $\mathbf{H}$ is harmonic
+  ($\nabla\cdot\mathbf{H}=0$, $\nabla\times\mathbf{H}=\mathbf{0}$).
+  This is the Hodge decomposition of differential forms.
+
+\item \textbf{Laplacian and harmonic functions.}%
+  \index{Laplacian!definition}%
+  \index{harmonic functions}%
+  \index{mean value property}%
+  $\nabla^{2}f=\nabla\cdot\nabla f$ is the Laplacian.  Harmonic
+  functions ($\nabla^{2}f=0$) satisfy the mean value property and
+  maximum principle, fundamental in potential theory, complex analysis,
+  and probability (Brownian motion).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.31\quad Properties of the operator $\nabla$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Vector identities in electromagnetic theory.}%
+  \index{vector identities!electromagnetic}%
+  \index{wave equation!derivation}%
+  \index{electromagnetic wave equation}%
+  The identity $\nabla\times(\nabla\times\mathbf{E})
+  =\nabla(\nabla\cdot\mathbf{E})-\nabla^{2}\mathbf{E}$ is used to
+  derive the electromagnetic wave equation from Maxwell's equations:
+  $\nabla^{2}\mathbf{E}=\mu_{0}\varepsilon_{0}\partial^{2}\mathbf{E}/\partial t^{2}$.
+
+\item \textbf{Reynolds transport theorem.}%
+  \index{Reynolds transport theorem}%
+  \index{material derivative}%
+  \index{fluid mechanics!conservation laws}%
+  The material derivative $Df/Dt=\partial f/\partial t+(\mathbf{v}\cdot\nabla)f$
+  uses the identity $\nabla(f\mathbf{v})=f\nabla\cdot\mathbf{v}
+  +(\mathbf{v}\cdot\nabla)f$ to derive conservation laws for mass,
+  momentum, and energy in fluid mechanics.
+
+\item \textbf{Stress tensor and divergence.}%
+  \index{stress tensor!divergence}%
+  \index{Cauchy momentum equation}%
+  \index{continuum mechanics}%
+  The Cauchy momentum equation
+  $\rho\,D\mathbf{v}/Dt=\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}$
+  relates the divergence of the stress tensor to acceleration in
+  continuum mechanics.  The identity $\nabla\cdot(\phi\boldsymbol{\sigma})
+  =\phi\nabla\cdot\boldsymbol{\sigma}+\boldsymbol{\sigma}\cdot\nabla\phi$
+  is used in deriving weak formulations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Leibniz rules for differential operators.}%
+  \index{Leibniz rule!vector operators}%
+  \index{product rules!grad, div, curl}%
+  The product rules $\nabla(fg)=f\nabla g+g\nabla f$,
+  $\nabla\cdot(f\mathbf{A})=f\nabla\cdot\mathbf{A}+\mathbf{A}\cdot\nabla f$,
+  $\nabla\times(f\mathbf{A})=f\nabla\times\mathbf{A}+\nabla f\times\mathbf{A}$
+  are the vector analogues of the Leibniz rule, essential for integration
+  by parts in higher dimensions.
+
+\item \textbf{Green's identities.}%
+  \index{Green's identities}%
+  \index{self-adjointness!Laplacian}%
+  Green's first identity $\int_{V}(f\nabla^{2}g+\nabla f\cdot\nabla g)\,dV
+  =\oint_{S}f\nabla g\cdot d\mathbf{S}$ and second identity (symmetrised)
+  follow from the product rule $\nabla\cdot(f\nabla g)$ and the divergence
+  theorem.  They prove self-adjointness of the Laplacian and underpin the
+  theory of Green's functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.41\quad Solenoidal fields}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Magnetic field lines and the absence of monopoles.}%
+  \index{solenoidal field!magnetic}%
+  \index{magnetic monopole}%
+  \index{Gauss's law!magnetism}%
+  $\nabla\cdot\mathbf{B}=0$ implies $\mathbf{B}=\nabla\times\mathbf{A}$
+  for some vector potential $\mathbf{A}$.  Magnetic field lines have no
+  sources or sinks (no monopoles), forming closed loops or extending to
+  infinity.
+
+\item \textbf{Incompressible fluid flow.}%
+  \index{incompressible flow!solenoidal}%
+  \index{stream function}%
+  \index{vortex dynamics}%
+  An incompressible velocity field satisfies $\nabla\cdot\mathbf{v}=0$
+  and can be written $\mathbf{v}=\nabla\times\boldsymbol{\psi}$ (in 3D)
+  or $v_{x}=\partial\psi/\partial y$, $v_{y}=-\partial\psi/\partial x$
+  (in 2D), defining the stream function $\psi$.
+
+\item \textbf{Gauge field theory.}%
+  \index{gauge field!solenoidal condition}%
+  \index{Coulomb gauge}%
+  \index{transverse and longitudinal fields}%
+  In the Coulomb gauge $\nabla\cdot\mathbf{A}=0$, the vector potential
+  is solenoidal.  The Helmholtz decomposition separates
+  $\mathbf{A}=\mathbf{A}^{T}+\mathbf{A}^{L}$ into transverse
+  (solenoidal, physical) and longitudinal (irrotational, gauge) parts.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hodge theory and the second Betti number.}%
+  \index{Hodge theory!solenoidal fields}%
+  \index{Betti numbers}%
+  \index{divergence-free vector fields}%
+  On a compact 3-manifold, the space of harmonic solenoidal fields
+  (divergence-free and curl-free) is isomorphic to the first cohomology
+  $H^{1}(M;\mathbb{R})$.  Its dimension (the first Betti number $b_{1}$)
+  counts the ``holes'' through which a solenoidal field can thread.
+
+\item \textbf{Exact and closed forms.}%
+  \index{exact forms}%
+  \index{closed forms}%
+  \index{de Rham cohomology!solenoidal}%
+  A solenoidal field $\nabla\cdot\mathbf{F}=0$ corresponds to a closed
+  2-form $d\omega=0$.  Whether $\mathbf{F}=\nabla\times\mathbf{A}$
+  (i.e., $\omega$ is exact) depends on the topology of the domain---the
+  obstruction is measured by de Rham cohomology.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.51--10.61\quad Orthogonal curvilinear coordinates}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Separability of the Helmholtz equation.}%
+  \index{Helmholtz equation!separability}%
+  \index{separation of variables}%
+  \index{special functions!from coordinate systems}%
+  \index{Eisenhart's classification}%
+  The Helmholtz equation $\nabla^{2}u+k^{2}u=0$ separates in exactly 11
+  coordinate systems in $\mathbb{R}^{3}$ (Eisenhart, 1934).  Each system
+  produces a different family of special functions: Cartesian $\to$
+  exponentials, spherical $\to$ spherical harmonics, cylindrical $\to$
+  Bessel functions, ellipsoidal $\to$ Lam\'{e} functions, paraboloidal
+  $\to$ parabolic cylinder functions.  \emph{Sections~6--9 of G\&R
+  catalogue the integrals of these functions.}
+
+\item \textbf{Scale factors and the metric.}%
+  \index{scale factors!curvilinear}%
+  \index{line element}%
+  \index{Lam\'e coefficients}%
+  In orthogonal coordinates $(q_{1},q_{2},q_{3})$, the line element is
+  $ds^{2}=h_{1}^{2}\,dq_{1}^{2}+h_{2}^{2}\,dq_{2}^{2}+h_{3}^{2}\,dq_{3}^{2}$
+  with scale factors $h_{i}=|\partial\mathbf{r}/\partial q_{i}|$.
+  Grad, div, curl, and the Laplacian all involve the scale factors:
+  e.g., $\nabla^{2}f=\frac{1}{h_{1}h_{2}h_{3}}\sum_{i}\frac{\partial}
+  {\partial q_{i}}\!\left(\frac{h_{1}h_{2}h_{3}}{h_{i}^{2}}
+  \frac{\partial f}{\partial q_{i}}\right)$.
+
+\item \textbf{Electromagnetic boundary conditions.}%
+  \index{boundary conditions!electromagnetic}%
+  \index{waveguide modes}%
+  \index{resonant cavity}%
+  Waveguide and cavity modes are computed by solving the Helmholtz
+  equation in the coordinate system matching the boundary shape:
+  rectangular (Cartesian), circular (cylindrical), spherical (spherical).
+  The eigenmodes and eigenfrequencies are the zeros of the corresponding
+  special functions.
+
+\item \textbf{Quantum mechanical hydrogen atom.}%
+  \index{hydrogen atom!spherical coordinates}%
+  \index{Schr\"odinger equation!separation}%
+  \index{spherical harmonics!hydrogen atom}%
+  Separation of the hydrogen Schr\"{o}dinger equation in spherical
+  coordinates yields $R_{n\ell}(r)Y_{\ell}^{m}(\theta,\phi)$:
+  associated Laguerre polynomials times spherical harmonics.  Parabolic
+  coordinates give the Stark effect, and spheroidal coordinates handle
+  the $\mathrm{H}_{2}^{+}$ molecule.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Coordinate-free formulation and differential geometry.}%
+  \index{differential geometry!coordinates}%
+  \index{Riemannian manifold!local coordinates}%
+  \index{metric tensor!curvilinear}%
+  The Laplace--Beltrami operator on a Riemannian manifold
+  $\Delta f=\frac{1}{\sqrt{g}}\partial_{i}(\sqrt{g}\,g^{ij}\partial_{j}f)$
+  reduces to the curvilinear Laplacian when the metric is diagonal
+  ($g^{ij}=\delta^{ij}/h_{i}^{2}$, $\sqrt{g}=h_{1}h_{2}h_{3}$).
+
+\item \textbf{Confocal coordinate systems.}%
+  \index{confocal coordinates}%
+  \index{St\"ackel determinant}%
+  \index{integrable systems!St\"ackel}%
+  Confocal ellipsoidal coordinates are the prototypical St\"{a}ckel system:
+  the Hamilton--Jacobi equation separates, yielding integrable classical
+  systems.  The separation constants become quantum numbers in the quantum
+  version.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.71--10.72\quad Vector integral theorems}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gauss's law from the divergence theorem.}%
+  \index{divergence theorem}%
+  \index{Gauss's law!integral form}%
+  \index{electric flux}%
+  $\oint_{S}\mathbf{E}\cdot d\mathbf{S}=\int_{V}\nabla\cdot\mathbf{E}\,dV
+  =Q_{\text{enc}}/\varepsilon_{0}$ relates the electric flux through a
+  closed surface to the enclosed charge.  This is the integral form of
+  Gauss's law, one of Maxwell's equations.
+
+\item \textbf{Stokes' theorem and Faraday's law.}%
+  \index{Stokes' theorem}%
+  \index{Faraday's law!integral form}%
+  \index{electromotive force}%
+  $\oint_{C}\mathbf{E}\cdot d\mathbf{l}=\int_{S}(\nabla\times\mathbf{E})\cdot d\mathbf{S}
+  =-\frac{d}{dt}\int_{S}\mathbf{B}\cdot d\mathbf{S}$ gives the EMF
+  induced by a changing magnetic flux---Faraday's law.
+
+\item \textbf{Conservation laws and Noether's theorem.}%
+  \index{conservation laws!integral theorems}%
+  \index{Noether's theorem}%
+  \index{charge conservation}%
+  The continuity equation $\partial_{t}\rho+\nabla\cdot\mathbf{J}=0$
+  integrated over a volume gives
+  $dQ/dt=-\oint\mathbf{J}\cdot d\mathbf{S}$: charge is conserved.
+  Each continuous symmetry (Noether) gives a conserved current whose
+  divergence vanishes.
+
+\item \textbf{Gauge theories and the Atiyah--Singer index theorem.}%
+  \index{Atiyah--Singer index theorem}%
+  \index{gauge theory!topological aspects}%
+  \index{Chern class}%
+  \index{instanton!topology}%
+  The integral $\frac{1}{8\pi^{2}}\int\mathrm{tr}(F\wedge F)$
+  (the second Chern number) counts the topological charge of
+  gauge field instantons.  The Atiyah--Singer index theorem relates this
+  topological invariant to the number of zero modes of the Dirac operator,
+  connecting integral theorems to quantum anomalies.
+
+\item \textbf{De Rham cohomology and topological field theory.}%
+  \index{de Rham cohomology!physical}%
+  \index{topological field theory}%
+  \index{Aharonov--Bohm effect}%
+  The Aharonov--Bohm effect---a charged particle acquiring a phase
+  $\exp(ie\oint\mathbf{A}\cdot d\mathbf{l}/\hbar)$ around a solenoid
+  with zero external field---is a physical manifestation of non-trivial
+  de Rham cohomology: $\mathbf{B}=\nabla\times\mathbf{A}=\mathbf{0}$
+  outside, yet $\oint\mathbf{A}\cdot d\mathbf{l}\neq 0$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Generalised Stokes' theorem.}%
+  \index{Stokes' theorem!generalised}%
+  \index{differential forms!integration}%
+  \index{manifolds with boundary}%
+  $\int_{M}d\omega=\int_{\partial M}\omega$ for an $(n-1)$-form $\omega$
+  on an $n$-dimensional oriented manifold with boundary.  This single
+  formula unifies the fundamental theorem of calculus, Green's theorem,
+  the divergence theorem, and the classical Stokes' theorem.
+
+\item \textbf{De Rham's theorem.}%
+  \index{de Rham's theorem}%
+  \index{cohomology!de Rham vs.\ singular}%
+  De Rham's theorem identifies the de Rham cohomology
+  $H^{k}_{\mathrm{dR}}(M)$ (closed forms modulo exact forms) with
+  singular cohomology $H^{k}(M;\mathbb{R})$.  This connects the
+  analytical tools of differential forms to the topological invariants
+  of the manifold.
+
+\item \textbf{Gauss--Bonnet theorem.}%
+  \index{Gauss--Bonnet theorem}%
+  \index{Euler characteristic!Gauss--Bonnet}%
+  \index{curvature!total}%
+  $\int_{M}K\,dA=2\pi\chi(M)$ relates the total Gaussian curvature to
+  the Euler characteristic, the paradigmatic result connecting local
+  geometry (curvature) to global topology (Euler characteristic) via
+  an integral theorem.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{10.81\quad Integral rate of change theorems}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Reynolds transport theorem in fluid mechanics.}%
+  \index{Reynolds transport theorem!fluid mechanics}%
+  \index{control volume}%
+  \index{mass conservation!integral form}%
+  $\frac{d}{dt}\int_{V(t)}f\,dV=\int_{V}\frac{\partial f}{\partial t}\,dV
+  +\oint_{S}f\,\mathbf{v}\cdot d\mathbf{S}$ relates the rate of change of
+  a quantity in a moving control volume to local changes and flux across
+  the boundary.  This derives the integral forms of mass, momentum, and
+  energy conservation in fluid mechanics.
+
+\item \textbf{Leibniz rule for moving boundaries.}%
+  \index{Leibniz integral rule!moving boundaries}%
+  \index{shock waves!moving boundaries}%
+  \index{Stefan problem}%
+  When the integration domain moves (e.g., a shock wave, phase boundary,
+  or free surface), the Leibniz integral rule for moving boundaries gives
+  the Rankine--Hugoniot jump conditions across shocks and the Stefan
+  condition for solidification fronts.
+
+\item \textbf{Electromagnetic energy conservation (Poynting's theorem).}%
+  \index{Poynting's theorem}%
+  \index{electromagnetic energy!conservation}%
+  \index{radiation pressure}%
+  $-\frac{d}{dt}\int_{V}u\,dV=\oint_{S}\mathbf{S}\cdot d\mathbf{S}
+  +\int_{V}\mathbf{J}\cdot\mathbf{E}\,dV$ (Poynting's theorem)
+  expresses electromagnetic energy conservation: the rate of decrease of
+  field energy equals the outgoing Poynting flux plus Ohmic dissipation.
+
+\item \textbf{Kelvin's circulation theorem.}%
+  \index{Kelvin circulation theorem}%
+  \index{vortex!conservation}%
+  \index{barotropic fluid}%
+  $\frac{d}{dt}\oint_{C(t)}\mathbf{v}\cdot d\mathbf{l}=0$ for an
+  inviscid barotropic fluid: the circulation around a material loop is
+  conserved.  This is the integral rate-of-change theorem applied to the
+  velocity field along a moving contour, fundamental to vortex dynamics
+  and weather prediction.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hadamard's formula for domain variation.}%
+  \index{Hadamard's formula!domain variation}%
+  \index{shape derivative}%
+  \index{shape optimisation}%
+  The derivative of a functional $J(\Omega)=\int_{\Omega}f\,dx$ with
+  respect to domain perturbation $\Omega\to\Omega_{t}$ is
+  $dJ/dt=\int_{\partial\Omega}f\,V_{n}\,dS$ where $V_{n}$ is the
+  normal velocity of the boundary.  This is the mathematical foundation
+  of shape optimisation.
+
+\item \textbf{Variational inequalities and free boundary problems.}%
+  \index{free boundary problems}%
+  \index{variational inequalities}%
+  \index{obstacle problem}%
+  Rate-of-change theorems for integrals over time-dependent domains
+  are central to free boundary problems: the Stefan problem (phase
+  change), the obstacle problem, and optimal stopping in stochastic
+  control.
+\end{enumerate}

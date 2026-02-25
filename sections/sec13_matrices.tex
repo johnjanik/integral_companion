@@ -1,0 +1,1944 @@
+%% Section 13 — Matrices and Related Results
+\section{13\quad Matrices and Related Results}
+
+\subsection{13.11--13.12\quad Special Matrices}
+\subsubsection{13.111\quad Diagonal matrix}
+
+A diagonal matrix $D=\mathrm{diag}(d_{1},d_{2},\dots,d_{n})$ has entries
+$D_{ij}=d_{i}\delta_{ij}$.  Diagonal matrices commute, and their algebra
+is isomorphic to a direct product of fields.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Normal modes of coupled oscillators.}%
+  \index{diagonal matrix!normal modes}%
+  \index{normal modes}%
+  \index{coupled oscillators}%
+  \index{decoupling|see{diagonal matrix}}%
+  A system of $n$ coupled harmonic oscillators with mass matrix $M$ and
+  stiffness matrix $K$ is diagonalised by the normal-mode transformation
+  $\mathbf{q}=S\boldsymbol{\eta}$ such that $S^{T}KS=\mathrm{diag}
+  (\omega_{1}^{2},\dots,\omega_{n}^{2})$ and $S^{T}MS=I$.
+  The equations of motion decouple into independent oscillators
+  $\ddot{\eta}_{k}+\omega_{k}^{2}\eta_{k}=0$, each with its own
+  natural frequency.
+
+\item \textbf{Quantum numbers and simultaneous observables.}%
+  \index{diagonal matrix!quantum numbers}%
+  \index{complete set of commuting observables}%
+  \index{quantum numbers!diagonal representation}%
+  A complete set of commuting observables (CSCO)
+  $\{A_{1},\dots,A_{k}\}$ can be simultaneously diagonalised:
+  $A_{i}|\mathbf{a}\rangle=a_{i}|\mathbf{a}\rangle$.  The eigenvalue
+  tuple $(a_{1},\dots,a_{k})$ defines the quantum numbers that
+  uniquely label states, such as $(n,\ell,m_{\ell},m_{s})$ for the
+  hydrogen atom.
+
+\item \textbf{Principal moments of inertia.}%
+  \index{inertia tensor!diagonalisation}%
+  \index{principal axes}%
+  \index{rigid body dynamics!principal moments}%
+  The inertia tensor $I_{ij}=\int\rho(\mathbf{r})(r^{2}\delta_{ij}
+  -x_{i}x_{j})\,dV$ can be diagonalised by rotating to the principal
+  axes, giving $I=\mathrm{diag}(I_{1},I_{2},I_{3})$.  Euler's
+  equations $I_{1}\dot{\omega}_{1}-(I_{2}-I_{3})\omega_{2}\omega_{3}=N_{1}$
+  (and cyclic) then describe rigid body rotation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Spectral theory and functional calculus.}%
+  \index{spectral theorem!diagonal form}%
+  \index{functional calculus}%
+  \index{matrix functions!via diagonalisation}%
+  If $A=PDP^{-1}$ with $D=\mathrm{diag}(\lambda_{1},\dots,\lambda_{n})$,
+  then $f(A)=Pf(D)P^{-1}=P\,\mathrm{diag}(f(\lambda_{1}),\dots,
+  f(\lambda_{n}))P^{-1}$ for any function $f$ analytic on the spectrum.
+  This is the finite-dimensional version of the spectral theorem and
+  provides the foundation for the matrix exponential, logarithm, and
+  square root.
+
+\item \textbf{Simultaneous diagonalisation and commutativity.}%
+  \index{simultaneous diagonalisation}%
+  \index{commuting matrices}%
+  \index{abelian algebra}%
+  A set of matrices $\{A_{1},\dots,A_{k}\}$ can be simultaneously
+  diagonalised by a single invertible matrix if and only if they are all
+  diagonalisable and mutually commute: $[A_{i},A_{j}]=0$ for all
+  $i,j$.  This characterises maximal abelian subalgebras of
+  $\mathrm{Mat}_{n}(\mathbb{C})$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.112\quad Identity matrix and null matrix}
+
+The identity matrix $I_{n}$ has entries $(I_{n})_{ij}=\delta_{ij}$
+and serves as the multiplicative identity in $\mathrm{Mat}_{n}$.
+The null (zero) matrix $0_{n}$ has all entries zero and serves as the
+additive identity.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Completeness relation in quantum mechanics.}%
+  \index{identity matrix!completeness relation}%
+  \index{completeness relation}%
+  \index{resolution of the identity}%
+  \index{projection operator|see{idempotent matrix}}%
+  The resolution of the identity
+  $I=\sum_{n}|n\rangle\langle n|$ (discrete) or
+  $I=\int|x\rangle\langle x|\,dx$ (continuous) is the operator
+  version of the identity matrix.  Inserting completeness relations
+  between operators is the fundamental technique for evaluating
+  matrix elements, transition amplitudes, and path integrals.
+
+\item \textbf{Gauge identity and symmetry generators.}%
+  \index{identity matrix!gauge theory}%
+  \index{gauge group!identity element}%
+  \index{Lie group!identity element}%
+  The identity matrix is the identity element of every matrix Lie
+  group $G\subset\mathrm{GL}(n)$.  A continuous symmetry
+  transformation near the identity takes the form
+  $g=I+i\epsilon^{a}T_{a}+O(\epsilon^{2})$, where $T_{a}$ are
+  the generators of the Lie algebra $\mathfrak{g}$.
+
+\item \textbf{Null matrix and vacuum state.}%
+  \index{null matrix}%
+  \index{vacuum state}%
+  \index{annihilation operator}%
+  In the Fock space representation of quantum field theory, the
+  annihilation operator $a$ satisfies $a|0\rangle=0$; in matrix
+  representation on a truncated basis the action on the vacuum
+  produces the null vector.  The null matrix arises as the
+  representation of the zero operator on any subspace annihilated
+  by all lowering operators.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Ring theory: identity and zero elements.}%
+  \index{matrix ring}%
+  \index{ring with identity}%
+  \index{zero element!matrix ring}%
+  The set $\mathrm{Mat}_{n}(R)$ of $n\times n$ matrices over a
+  ring $R$ is itself a ring with identity $I_{n}$ and zero element
+  $0_{n}$.  The study of ideals in matrix rings leads to the
+  Artin--Wedderburn structure theorem for semisimple rings.
+
+\item \textbf{Augmented matrices and affine transformations.}%
+  \index{augmented matrix}%
+  \index{affine transformation}%
+  \index{homogeneous coordinates}%
+  Affine transformations $\mathbf{x}\mapsto A\mathbf{x}+\mathbf{b}$
+  are represented as linear maps in homogeneous coordinates:
+  $\begin{pmatrix}A&\mathbf{b}\\0&1\end{pmatrix}$, where the
+  identity in the bottom-right corner preserves the augmentation.
+  This embeds the affine group into $\mathrm{GL}(n+1)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.113\quad Reducible and irreducible matrices}
+
+A matrix representation is \emph{reducible} if it can be brought
+to block upper-triangular form by a similarity transformation, and
+\emph{irreducible} if no such transformation exists.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Irreducible representations of symmetry groups.}%
+  \index{irreducible representation}%
+  \index{symmetry group!representations}%
+  \index{Wigner--Eckart theorem}%
+  \index{selection rules|see{irreducible representation}}%
+  In quantum mechanics, the state space of a system with symmetry
+  group $G$ decomposes into irreducible representations (irreps).
+  Selection rules for transitions follow from the Wigner--Eckart
+  theorem: the matrix element $\langle\alpha'j'm'|T^{(k)}_{q}
+  |\alpha jm\rangle$ vanishes unless the Clebsch--Gordan coefficient
+  $\langle jm;kq|j'm'\rangle\neq 0$.
+
+\item \textbf{Block diagonalisation in molecular spectroscopy.}%
+  \index{reducible representation!molecular spectroscopy}%
+  \index{character table}%
+  \index{molecular vibrations}%
+  The reducible representation of a molecular point group on the
+  $3N$-dimensional displacement space is decomposed into irreps
+  using the character projection formula
+  $n_{\Gamma}=\frac{1}{|G|}\sum_{R}\chi_{\Gamma}(R)^{*}\chi(R)$.
+  Each irrep labels a symmetry species of vibrational mode, and
+  only modes transforming as the appropriate irrep are infrared or
+  Raman active.
+
+\item \textbf{Irreducibility and ergodicity in Markov chains.}%
+  \index{Markov chain!irreducible}%
+  \index{transition matrix}%
+  \index{ergodic theorem!Markov chains}%
+  A Markov chain with transition matrix $P$ is irreducible if every
+  state communicates with every other.  The Perron--Frobenius theorem
+  then guarantees a unique stationary distribution
+  $\boldsymbol{\pi}P=\boldsymbol{\pi}$, ensuring ergodicity.
+  This is the mathematical foundation of Google's PageRank algorithm.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Maschke's theorem and complete reducibility.}%
+  \index{Maschke's theorem}%
+  \index{complete reducibility}%
+  \index{semisimple algebra}%
+  Maschke's theorem states that every representation of a finite group
+  over a field of characteristic zero (or coprime to $|G|$) is
+  completely reducible: every invariant subspace has an invariant
+  complement.  This fails for modular representations (characteristic
+  dividing $|G|$), where indecomposable but reducible modules appear.
+
+\item \textbf{Schur's lemma.}%
+  \index{Schur's lemma}%
+  \index{intertwining operator}%
+  \index{irreducible representation!endomorphism}%
+  Schur's lemma states that any linear map commuting with all
+  matrices of an irreducible representation over $\mathbb{C}$ is
+  a scalar multiple of the identity: $\mathrm{End}_{G}(V)=\mathbb{C}$.
+  This fundamental result underlies the orthogonality relations for
+  characters and the classification of representations.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.114\quad Equivalent matrices}
+
+Two matrices $A$ and $B$ are \emph{equivalent} if $B=PAQ$ for
+invertible $P$ and $Q$; they are \emph{similar} if $B=P^{-1}AP$.
+Similar matrices represent the same linear map in different bases.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Change of basis in quantum mechanics.}%
+  \index{equivalent matrices!change of basis}%
+  \index{unitary transformation!change of basis}%
+  \index{Schr\"odinger and Heisenberg pictures}%
+  The transformation between Schr\"{o}dinger and Heisenberg pictures
+  is a time-dependent similarity transformation
+  $A_{H}(t)=e^{iHt/\hbar}A_{S}\,e^{-iHt/\hbar}$.  The physics
+  (eigenvalues, expectation values, transition probabilities) is
+  invariant because similar matrices share the same spectrum.
+
+\item \textbf{Normal forms in control theory.}%
+  \index{canonical forms!control theory}%
+  \index{controllability canonical form}%
+  \index{state-space representation}%
+  A linear time-invariant system $\dot{\mathbf{x}}=A\mathbf{x}
+  +B\mathbf{u}$ can be transformed to controllability canonical form
+  via $\bar{A}=T^{-1}AT$, where $T$ is built from the
+  controllability matrix $\mathcal{C}=[B,AB,\dots,A^{n-1}B]$.
+  Controllability is a similarity invariant.
+
+\item \textbf{Tensor transformations in relativity.}%
+  \index{tensor transformation law}%
+  \index{Lorentz transformation!similarity}%
+  \index{covariance!physical laws}%
+  A rank-2 tensor transforms as $T'^{\mu\nu}=\Lambda^{\mu}{}_{\alpha}
+  \Lambda^{\nu}{}_{\beta}T^{\alpha\beta}$ under Lorentz transformations.
+  The equivalence class of a tensor under these transformations encodes
+  the physical content; the trace $T^{\mu}{}_{\mu}$, determinant, and
+  eigenvalues of the mixed tensor $T^{\mu}{}_{\nu}$ are Lorentz
+  invariants.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Jordan normal form.}%
+  \index{Jordan normal form!equivalence}%
+  \index{similarity invariants}%
+  \index{elementary divisors}%
+  Every matrix over $\mathbb{C}$ is similar to a unique (up to
+  block ordering) Jordan normal form
+  $J=\mathrm{diag}(J_{n_{1}}(\lambda_{1}),\dots,
+  J_{n_{k}}(\lambda_{k}))$.
+  The Jordan form is the complete similarity invariant: two matrices
+  are similar if and only if they have the same Jordan form.
+
+\item \textbf{Rational canonical form and invariant factors.}%
+  \index{rational canonical form}%
+  \index{invariant factors}%
+  \index{Smith normal form}%
+  The rational canonical form, constructed from the invariant factors
+  of $xI-A$, is the canonical form for similarity over any field.
+  The Smith normal form of $xI-A$ over $\mathbb{F}[x]$ computes
+  these invariant factors and determines the module structure
+  $\mathbb{F}[x]/(f_{1})\oplus\cdots\oplus\mathbb{F}[x]/(f_{k})$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.115\quad Transpose of a matrix}
+
+The transpose $A^{T}$ satisfies $(A^{T})_{ij}=A_{ji}$, and
+$(AB)^{T}=B^{T}A^{T}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Reciprocity in network theory.}%
+  \index{transpose!reciprocity}%
+  \index{reciprocity!network theory}%
+  \index{impedance matrix!symmetric}%
+  For a reciprocal electrical network, the impedance matrix satisfies
+  $Z=Z^{T}$, expressing the reciprocity theorem: the transfer
+  impedance from port $i$ to port $j$ equals that from $j$ to $i$.
+  This symmetry follows from the time-reversal invariance of
+  Maxwell's equations in passive media.
+
+\item \textbf{Adjoint operators in quantum mechanics.}%
+  \index{transpose!adjoint operator}%
+  \index{Hermitian adjoint}%
+  \index{bra-ket notation!transpose}%
+  In a real vector space, the transpose is the adjoint: $\langle
+  A\mathbf{x},\mathbf{y}\rangle=\langle\mathbf{x},A^{T}\mathbf{y}
+  \rangle$.  In quantum mechanics over $\mathbb{C}$, the adjoint
+  involves both transposition and complex conjugation:
+  $A^{\dagger}=\bar{A}^{T}$, ensuring
+  $\langle A^{\dagger}\psi|\phi\rangle=\langle\psi|A\phi\rangle$.
+
+\item \textbf{Strain and stress tensors in continuum mechanics.}%
+  \index{strain tensor!symmetry}%
+  \index{stress tensor!symmetry}%
+  \index{continuum mechanics!transpose}%
+  The infinitesimal strain tensor
+  $\varepsilon_{ij}=\frac{1}{2}(\partial_{i}u_{j}+\partial_{j}u_{i})$
+  is symmetric by construction ($\varepsilon=\varepsilon^{T}$).
+  Angular momentum conservation requires the Cauchy stress tensor to be
+  symmetric: $\sigma_{ij}=\sigma_{ji}$, i.e., $\sigma=\sigma^{T}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bilinear forms and duality.}%
+  \index{bilinear form!transpose}%
+  \index{dual space}%
+  \index{transpose!bilinear form}%
+  A bilinear form $B(\mathbf{x},\mathbf{y})=\mathbf{x}^{T}A\mathbf{y}$
+  satisfies $B(\mathbf{x},\mathbf{y})=B'(\mathbf{y},\mathbf{x})$
+  where $B'$ is the form with matrix $A^{T}$.  The transpose is the
+  matrix of the dual map $A^{*}\colon V^{*}\to V^{*}$ in the dual
+  basis, so transposition is the coordinate expression of duality.
+
+\item \textbf{Left and right null spaces.}%
+  \index{null space!left and right}%
+  \index{fundamental subspaces}%
+  \index{rank-nullity theorem}%
+  The four fundamental subspaces of $A\in\mathbb{R}^{m\times n}$ are
+  $\mathrm{Col}(A)$, $\mathrm{Null}(A)$, $\mathrm{Col}(A^{T})$,
+  $\mathrm{Null}(A^{T})$, with the orthogonal decompositions
+  $\mathbb{R}^{n}=\mathrm{Col}(A^{T})\oplus\mathrm{Null}(A)$ and
+  $\mathbb{R}^{m}=\mathrm{Col}(A)\oplus\mathrm{Null}(A^{T})$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.116\quad Adjoint matrix}
+
+The classical adjoint (adjugate) $\mathrm{adj}(A)$ has entries
+$(\mathrm{adj}(A))_{ij}=(-1)^{i+j}M_{ji}$, where $M_{ji}$ is the
+$(j,i)$-minor.  It satisfies $A\,\mathrm{adj}(A)=\det(A)\,I$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Cramer's rule in circuit analysis.}%
+  \index{adjugate matrix!Cramer's rule}%
+  \index{Cramer's rule}%
+  \index{circuit analysis}%
+  Kirchhoff's laws for an electrical network give a linear system
+  $Z\mathbf{I}=\mathbf{V}$, and Cramer's rule yields
+  $I_{k}=\det(Z_{k})/\det(Z)$ where $Z_{k}$ replaces the $k$th
+  column by $\mathbf{V}$.  The numerator is a cofactor expansion
+  involving $\mathrm{adj}(Z)$, and the formula is practical for
+  symbolic analysis of small networks.
+
+\item \textbf{Inverse of the metric tensor.}%
+  \index{adjugate matrix!metric tensor}%
+  \index{metric tensor!inverse}%
+  \index{general relativity!inverse metric}%
+  In general relativity, the inverse metric $g^{\mu\nu}$ is computed
+  as $g^{\mu\nu}=\mathrm{adj}(g)^{\mu\nu}/\det(g)$.  For a
+  $4\times 4$ metric, the adjugate provides the explicit formula for
+  $g^{\mu\nu}$ without recourse to Gauss--Jordan elimination.
+
+\item \textbf{Resolvent and Green's functions.}%
+  \index{resolvent!adjugate}%
+  \index{Green's function!matrix}%
+  \index{poles of resolvent}%
+  The resolvent $(zI-A)^{-1}=\mathrm{adj}(zI-A)/\det(zI-A)$ expresses
+  the Green's function as a ratio of a matrix polynomial to the
+  characteristic polynomial.  Poles occur at the eigenvalues, and
+  the residues are the spectral projections.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cayley--Hamilton theorem.}%
+  \index{Cayley--Hamilton theorem}%
+  \index{characteristic polynomial}%
+  \index{adjugate matrix!Cayley--Hamilton}%
+  The identity $\mathrm{adj}(zI-A)=\sum_{k=0}^{n-1}B_{k}z^{k}$
+  with $B_{k}$ satisfying the Faddeev--LeVerrier recursion provides
+  a constructive proof of the Cayley--Hamilton theorem: substituting
+  $z=A$ into $\det(zI-A)=0$ yields $p(A)=0$.
+
+\item \textbf{Compound matrices and exterior algebra.}%
+  \index{compound matrix}%
+  \index{exterior algebra!adjugate}%
+  \index{adjugate matrix!exterior algebra}%
+  The adjugate of an $n\times n$ matrix is the transpose of the
+  $(n-1)$th compound matrix $C_{n-1}(A)$, whose entries are
+  $(n-1)\times(n-1)$ minors.  This connects the adjugate to the
+  action of $A$ on $\bigwedge^{n-1}V$, the $(n-1)$th exterior power.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.117\quad Inverse matrix}
+
+The inverse $A^{-1}$ exists if and only if $\det A\neq 0$, and
+satisfies $AA^{-1}=A^{-1}A=I$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Solving linear systems in computational physics.}%
+  \index{inverse matrix!linear systems}%
+  \index{LU decomposition}%
+  \index{numerical linear algebra}%
+  In practice, $A\mathbf{x}=\mathbf{b}$ is solved not by computing
+  $A^{-1}$ but by LU decomposition $A=LU$ (or Cholesky $A=LL^{T}$
+  for positive definite systems), reducing the cost from $O(n^{3})$
+  for inversion to $O(n^{3})$ with a smaller constant and better
+  numerical stability.
+
+\item \textbf{Transfer matrices in statistical mechanics.}%
+  \index{transfer matrix}%
+  \index{partition function!transfer matrix}%
+  \index{Ising model!transfer matrix}%
+  The partition function of the Ising model on a strip is
+  $Z=\mathrm{tr}(T^{N})$ where $T$ is the transfer matrix.
+  Correlation functions involve $T^{-1}$, and the correlation
+  length $\xi=-1/\ln(\lambda_{2}/\lambda_{1})$ is determined by
+  the ratio of the two largest eigenvalues.
+
+\item \textbf{Scattering matrix and its inverse.}%
+  \index{S-matrix!inverse}%
+  \index{scattering theory!inverse}%
+  \index{time reversal!S-matrix}%
+  The scattering matrix $S$ is unitary ($S^{-1}=S^{\dagger}$),
+  expressing conservation of probability (flux).  Time-reversal
+  invariance implies $S=S^{T}$, so that $S^{-1}=\bar{S}$.
+  The inverse scattering problem---reconstructing the potential from
+  $S$---is central to soliton theory and quantum inverse problems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{General linear group.}%
+  \index{general linear group}%
+  \index{matrix group}%
+  \index{GL($n$)!structure}%
+  The set of invertible $n\times n$ matrices forms the general linear
+  group $\mathrm{GL}(n,\mathbb{F})$, the largest matrix Lie group.
+  It is an open dense subset of $\mathrm{Mat}_{n}$ (complement of the
+  hypersurface $\det A=0$) and has two connected components (for
+  $\mathbb{F}=\mathbb{R}$) distinguished by $\mathrm{sgn}(\det A)$.
+
+\item \textbf{Sherman--Morrison--Woodbury formula.}%
+  \index{Sherman--Morrison formula}%
+  \index{Woodbury formula}%
+  \index{rank-one update}%
+  The formula $(A+UCV)^{-1}=A^{-1}-A^{-1}U(C^{-1}+VA^{-1}U)^{-1}
+  VA^{-1}$ updates the inverse after a low-rank perturbation.
+  This is indispensable in statistics (updating regression after
+  adding data), optimisation (quasi-Newton methods), and numerical
+  methods (bordered systems).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.118\quad Trace of a matrix}
+
+The trace $\mathrm{tr}(A)=\sum_{i}A_{ii}$ is a similarity invariant
+and equals the sum of eigenvalues: $\mathrm{tr}(A)=\sum_{i}\lambda_{i}$.
+It satisfies $\mathrm{tr}(AB)=\mathrm{tr}(BA)$ (cyclic property).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Density matrix and expectation values.}%
+  \index{trace!density matrix}%
+  \index{density matrix!trace}%
+  \index{expectation value!trace formula}%
+  In quantum statistical mechanics, the expectation value of an
+  observable $A$ in a mixed state $\rho$ is
+  $\langle A\rangle=\mathrm{tr}(\rho A)$, and the partition function
+  is $Z=\mathrm{tr}(e^{-\beta H})$.  The normalisation
+  $\mathrm{tr}(\rho)=1$ and positivity $\rho\geq 0$ define a valid
+  density matrix.
+
+\item \textbf{Wilson loops in gauge theory.}%
+  \index{Wilson loop}%
+  \index{trace!gauge invariance}%
+  \index{lattice gauge theory}%
+  \index{confinement|see{Wilson loop}}%
+  The Wilson loop $W(C)=\mathrm{tr}\,\mathcal{P}\exp\!\left(ig
+  \oint_{C}A_{\mu}\,dx^{\mu}\right)$ is a gauge-invariant observable
+  because the trace is invariant under cyclic permutations
+  (conjugation).  The area-law versus perimeter-law behaviour of
+  $\langle W(C)\rangle$ diagnoses confinement in lattice gauge theory.
+
+\item \textbf{Trace anomaly and the energy-momentum tensor.}%
+  \index{trace anomaly}%
+  \index{energy-momentum tensor!trace}%
+  \index{conformal anomaly}%
+  For a classically conformal field theory, the trace of the
+  energy-momentum tensor $T^{\mu}{}_{\mu}=0$ at the classical level.
+  Quantum corrections produce the trace anomaly
+  $\langle T^{\mu}{}_{\mu}\rangle=\frac{\beta(g)}{2g}F_{\mu\nu}
+  F^{\mu\nu}$, which governs the running of the coupling constant.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Trace as a linear functional and Killing form.}%
+  \index{trace!Killing form}%
+  \index{Killing form}%
+  \index{Lie algebra!semisimple}%
+  The Killing form $B(X,Y)=\mathrm{tr}(\mathrm{ad}_{X}\circ
+  \mathrm{ad}_{Y})$ is a bilinear form on a Lie algebra built from
+  the trace.  Cartan's criterion states that a Lie algebra is
+  semisimple if and only if the Killing form is non-degenerate.
+
+\item \textbf{Newton's identities and symmetric functions.}%
+  \index{Newton's identities}%
+  \index{symmetric functions!power sums}%
+  \index{characteristic polynomial!from traces}%
+  The power sums $p_{k}=\mathrm{tr}(A^{k})=\sum_{i}\lambda_{i}^{k}$
+  determine the characteristic polynomial via Newton's identities:
+  $ke_{k}=\sum_{j=1}^{k}(-1)^{j-1}e_{k-j}p_{j}$, where $e_{k}$
+  are the elementary symmetric polynomials of the eigenvalues.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.119\quad Symmetric matrix}
+
+A real matrix is symmetric if $A=A^{T}$.  Every real symmetric matrix
+is diagonalisable by an orthogonal matrix: $A=Q\Lambda Q^{T}$ with
+$\Lambda$ real diagonal.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Moment of inertia tensor.}%
+  \index{symmetric matrix!inertia tensor}%
+  \index{inertia tensor!symmetric}%
+  \index{Euler equations!rigid body}%
+  The inertia tensor $I_{ij}$ is symmetric by construction.
+  Diagonalising it yields the principal moments $I_{1}\leq I_{2}
+  \leq I_{3}$ and the principal axes, which determine the stability
+  of free rotation: rotation about the axis of intermediate moment
+  is unstable (tennis racket theorem).
+
+\item \textbf{Elastic stiffness tensor.}%
+  \index{elastic stiffness!symmetric}%
+  \index{Hooke's law!matrix form}%
+  \index{Voigt notation}%
+  Hooke's law $\sigma_{ij}=C_{ijkl}\varepsilon_{kl}$ in Voigt
+  notation becomes $\boldsymbol{\sigma}=C\boldsymbol{\varepsilon}$
+  with $C$ a $6\times 6$ symmetric matrix (from the symmetry of
+  the strain energy density $U=\frac{1}{2}\varepsilon_{ij}C_{ijkl}
+  \varepsilon_{kl}$).  The 21 independent components reduce further
+  with crystal symmetry.
+
+\item \textbf{Covariance matrix in data analysis.}%
+  \index{covariance matrix}%
+  \index{principal component analysis|see{eigenvalues}}%
+  \index{error ellipse}%
+  The covariance matrix $\Sigma_{ij}=\mathrm{Cov}(X_{i},X_{j})$ is
+  symmetric and positive semidefinite.  Its eigenvectors define the
+  principal components, and the eigenvalues give the variance along
+  each principal direction, forming the error ellipse (or ellipsoid)
+  of a multivariate Gaussian distribution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Spectral theorem for symmetric matrices.}%
+  \index{spectral theorem!real symmetric}%
+  \index{orthogonal diagonalisation}%
+  \index{eigenvalues!real symmetric}%
+  Every real symmetric $n\times n$ matrix has $n$ real eigenvalues
+  and an orthonormal basis of eigenvectors.  The spectral decomposition
+  $A=\sum_{i}\lambda_{i}\mathbf{q}_{i}\mathbf{q}_{i}^{T}$ is the
+  finite-dimensional prototype of the spectral theorem for
+  self-adjoint operators on Hilbert spaces.
+
+\item \textbf{Rayleigh quotient and variational characterisation.}%
+  \index{Rayleigh quotient}%
+  \index{min-max theorem}%
+  \index{Courant--Fischer theorem}%
+  The eigenvalues of a symmetric matrix satisfy the Courant--Fischer
+  min-max characterisation: $\lambda_{k}=\min_{\dim W=k}\max_{
+  \mathbf{x}\in W\setminus\{0\}}\frac{\mathbf{x}^{T}A\mathbf{x}}
+  {\mathbf{x}^{T}\mathbf{x}}$.  This variational principle is the
+  basis for the Rayleigh--Ritz method in finite element analysis.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.120\quad Skew-symmetric matrix}
+
+A real matrix is skew-symmetric if $A^{T}=-A$.  Its eigenvalues
+are purely imaginary (or zero), and every skew-symmetric matrix of
+even order has $\det A=(\mathrm{Pf}\,A)^{2}$, where $\mathrm{Pf}$
+is the Pfaffian.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Angular velocity and infinitesimal rotations.}%
+  \index{skew-symmetric matrix!angular velocity}%
+  \index{angular velocity!skew-symmetric}%
+  \index{infinitesimal rotation}%
+  \index{Lie algebra!$\mathfrak{so}(3)$}%
+  An infinitesimal rotation $R=I+\epsilon\,\Omega+O(\epsilon^{2})$
+  requires $\Omega^{T}=-\Omega$.  The $3\times 3$ skew-symmetric
+  matrix $\Omega_{ij}=-\varepsilon_{ijk}\omega_{k}$ encodes the
+  angular velocity vector $\boldsymbol{\omega}$, and the Lie algebra
+  $\mathfrak{so}(3)$ consists of all such matrices.
+
+\item \textbf{Electromagnetic field tensor.}%
+  \index{electromagnetic field tensor}%
+  \index{Faraday tensor}%
+  \index{skew-symmetric matrix!electromagnetism}%
+  The Faraday tensor $F_{\mu\nu}=-F_{\nu\mu}$ is an antisymmetric
+  $4\times 4$ matrix encoding both $\mathbf{E}$ and $\mathbf{B}$:
+  $F_{0i}=E_{i}/c$ and $F_{ij}=-\varepsilon_{ijk}B_{k}$.  The two
+  Lorentz invariants are $F_{\mu\nu}F^{\mu\nu}=2(B^{2}-E^{2}/c^{2})$
+  and $\varepsilon^{\mu\nu\rho\sigma}F_{\mu\nu}F_{\rho\sigma}
+  \propto\mathbf{E}\cdot\mathbf{B}$.
+
+\item \textbf{Symplectic structure in Hamiltonian mechanics.}%
+  \index{symplectic matrix}%
+  \index{Hamiltonian mechanics!symplectic}%
+  \index{Poisson bracket!matrix form}%
+  Hamilton's equations $\dot{z}^{i}=J^{ij}\partial H/\partial z^{j}$
+  use the symplectic matrix
+  $J=\begin{pmatrix}0&I\\-I&0\end{pmatrix}$ with $J^{T}=-J$.
+  The Poisson bracket is
+  $\{f,g\}=(\nabla f)^{T}J(\nabla g)$, and canonical
+  transformations preserve $J$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Pfaffian and matchings.}%
+  \index{Pfaffian}%
+  \index{perfect matching}%
+  \index{dimer problem}%
+  For a $2n\times 2n$ skew-symmetric matrix, the Pfaffian satisfies
+  $(\mathrm{Pf}\,A)^{2}=\det A$.  In combinatorics, the number of
+  perfect matchings of a planar graph equals the Pfaffian of the
+  skew-adjacency matrix (Kasteleyn's theorem), solving the dimer
+  problem on lattices.
+
+\item \textbf{Lie algebra $\mathfrak{so}(n)$.}%
+  \index{Lie algebra!$\mathfrak{so}(n)$}%
+  \index{orthogonal group!Lie algebra}%
+  \index{dimension formula!$\mathfrak{so}(n)$}%
+  The Lie algebra $\mathfrak{so}(n)$ of the orthogonal group
+  $\mathrm{SO}(n)$ consists of all $n\times n$ real skew-symmetric
+  matrices, with the commutator as Lie bracket.  Its dimension is
+  $n(n-1)/2$, which counts the independent rotation planes in
+  $\mathbb{R}^{n}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.121\quad Triangular matrices}
+
+An upper triangular matrix $U$ has $U_{ij}=0$ for $i>j$; lower
+triangular $L$ has $L_{ij}=0$ for $i<j$.  The eigenvalues of a
+triangular matrix are its diagonal entries.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{LU decomposition in computational physics.}%
+  \index{triangular matrix!LU decomposition}%
+  \index{LU decomposition!physics}%
+  \index{Gaussian elimination}%
+  Gaussian elimination factors $A=LU$, reducing the solution of
+  $A\mathbf{x}=\mathbf{b}$ to forward and back substitution, each
+  costing $O(n^{2})$.  With partial pivoting ($PA=LU$), this is
+  the standard algorithm for solving dense linear systems arising
+  in finite element analysis and circuit simulation.
+
+\item \textbf{Cholesky decomposition and least-squares.}%
+  \index{Cholesky decomposition}%
+  \index{least squares!Cholesky}%
+  \index{positive definite!Cholesky}%
+  A positive definite matrix $A$ has a unique factorisation
+  $A=LL^{T}$ with $L$ lower triangular and positive diagonal.
+  This is computationally half the cost of LU and is the preferred
+  method for normal equations $A^{T}A\mathbf{x}=A^{T}\mathbf{b}$ in
+  least-squares fitting of experimental data.
+
+\item \textbf{QR algorithm for eigenvalue computation.}%
+  \index{QR algorithm}%
+  \index{Schur decomposition}%
+  \index{eigenvalue computation}%
+  The QR algorithm iteratively computes the Schur form $A=QTQ^{*}$
+  with $T$ upper triangular, whose diagonal entries are the
+  eigenvalues.  This is the workhorse algorithm for dense eigenvalue
+  problems in quantum chemistry and structural mechanics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Borel subgroup and flag varieties.}%
+  \index{Borel subgroup}%
+  \index{flag variety}%
+  \index{upper triangular matrices!Borel}%
+  The group of invertible upper triangular matrices is the standard
+  Borel subgroup $B\subset\mathrm{GL}(n)$.  The quotient
+  $\mathrm{GL}(n)/B$ is the complete flag variety
+  $\mathrm{Fl}(1,2,\dots,n;\mathbb{F}^{n})$, parametrising nested
+  sequences of subspaces $V_{1}\subset V_{2}\subset\cdots\subset V_{n}$.
+
+\item \textbf{Nilpotent radical and solvable Lie algebras.}%
+  \index{nilpotent radical}%
+  \index{solvable Lie algebra}%
+  \index{Lie's theorem}%
+  Lie's theorem states that every representation of a solvable Lie
+  algebra over $\mathbb{C}$ can be put in upper triangular form.
+  The strictly upper triangular matrices form the nilpotent radical of
+  the Borel subalgebra, and they generate the unipotent subgroup.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.122\quad Orthogonal matrices}
+
+An orthogonal matrix satisfies $Q^{T}Q=QQ^{T}=I$ and $\det Q=\pm 1$.
+The set of orthogonal matrices with $\det Q=+1$ forms the special
+orthogonal group $\mathrm{SO}(n)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Rotation group and rigid body dynamics.}%
+  \index{orthogonal matrix!rotation}%
+  \index{rotation group SO(3)}%
+  \index{Euler angles}%
+  \index{rigid body!rotation matrix}%
+  Every rotation in $\mathbb{R}^{3}$ is represented by a matrix
+  $R\in\mathrm{SO}(3)$ parametrised by Euler angles
+  $(\phi,\theta,\psi)$: $R=R_{z}(\phi)R_{x}(\theta)R_{z}(\psi)$.
+  The orthogonality $R^{T}R=I$ preserves lengths and angles, as
+  required for rigid body motion.  The topology of $\mathrm{SO}(3)
+  \cong\mathbb{RP}^{3}$ (with $\pi_{1}=\mathbb{Z}_{2}$) leads
+  to the ``plate trick'' and the need for spin-$\tfrac{1}{2}$
+  representations.
+
+\item \textbf{Normal modes and orthogonal transformations.}%
+  \index{orthogonal matrix!normal modes}%
+  \index{normal mode analysis}%
+  \index{phonons!orthogonal diagonalisation}%
+  The normal-mode transformation $\mathbf{q}=Q\boldsymbol{\eta}$
+  with $Q$ orthogonal simultaneously diagonalises the kinetic and
+  potential energy matrices for a system with $M=I$ (mass-weighted
+  coordinates).  Each column of $Q$ is a normal-mode eigenvector,
+  and the transformation preserves the total energy.
+
+\item \textbf{Lorentz group and pseudo-orthogonal matrices.}%
+  \index{Lorentz group}%
+  \index{pseudo-orthogonal matrix}%
+  \index{SO(3,1)|see{Lorentz group}}%
+  The Lorentz group $\mathrm{SO}(3,1)$ consists of matrices preserving
+  the Minkowski metric $\eta=\mathrm{diag}(-1,1,1,1)$:
+  $\Lambda^{T}\eta\Lambda=\eta$.  Boosts are pseudo-rotations
+  in spacetime, with rapidity playing the role of angle.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Orthogonal group as a compact Lie group.}%
+  \index{orthogonal group!compact Lie group}%
+  \index{Haar measure}%
+  \index{compact Lie group!O($n$)}%
+  $\mathrm{O}(n)$ is compact (closed and bounded in
+  $\mathrm{Mat}_{n}(\mathbb{R})$) and hence admits a unique
+  normalised Haar measure.  Integration over $\mathrm{O}(n)$ arises
+  in random matrix theory: the circular orthogonal ensemble (COE)
+  uses Haar-distributed orthogonal matrices.
+
+\item \textbf{Stiefel and Grassmann manifolds.}%
+  \index{Stiefel manifold}%
+  \index{Grassmann manifold}%
+  \index{orthogonal group!quotients}%
+  The Stiefel manifold $V_{k}(\mathbb{R}^{n})=\mathrm{O}(n)/
+  \mathrm{O}(n-k)$ parametrises orthonormal $k$-frames, and the
+  Grassmannian $\mathrm{Gr}(k,n)=\mathrm{O}(n)/(\mathrm{O}(k)
+  \times\mathrm{O}(n-k))$ parametrises $k$-dimensional subspaces.
+  These spaces appear in optimisation on manifolds and in the
+  topology of vector bundles.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.123\quad Hermitian transpose of a matrix}
+
+The Hermitian transpose (conjugate transpose) is
+$(A^{\dagger})_{ij}=\overline{A_{ji}}$.  It satisfies
+$(AB)^{\dagger}=B^{\dagger}A^{\dagger}$ and reduces to the ordinary
+transpose for real matrices.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Adjoint operators in quantum mechanics.}%
+  \index{Hermitian transpose!quantum mechanics}%
+  \index{adjoint operator}%
+  \index{Dirac notation!adjoint}%
+  In Dirac notation, $\langle\psi|=(|\psi\rangle)^{\dagger}$,
+  so taking the Hermitian transpose converts kets to bras.  An
+  operator satisfies $\langle\phi|A|\psi\rangle^{*}=\langle\psi|
+  A^{\dagger}|\phi\rangle$, and physical observables require
+  $A^{\dagger}=A$.
+
+\item \textbf{Creation and annihilation operators.}%
+  \index{creation operator}%
+  \index{annihilation operator!adjoint}%
+  \index{Fock space}%
+  The creation operator $a^{\dagger}$ is the Hermitian transpose of
+  the annihilation operator $a$, satisfying $[a,a^{\dagger}]=1$.
+  In matrix representation on the number basis,
+  $(a)_{mn}=\sqrt{m}\,\delta_{m,n+1}$ and
+  $(a^{\dagger})_{mn}=\sqrt{n}\,\delta_{m+1,n}$, which are indeed
+  transposes of each other (all entries being real).
+
+\item \textbf{Charge conjugation and CPT.}%
+  \index{charge conjugation!Hermitian transpose}%
+  \index{CPT theorem}%
+  \index{Dirac equation!charge conjugation}%
+  In the Dirac equation, the charge-conjugation operation involves
+  complex conjugation of the spinor and the relation
+  $\gamma^{\mu*}=B\gamma^{\mu}B^{-1}$ for a matrix $B$.  The
+  interplay between complex conjugation, transposition, and Hermitian
+  conjugation is at the heart of the CPT theorem.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{$*$-algebras and $C^{*}$-algebras.}%
+  \index{$*$-algebra}%
+  \index{$C^{*}$-algebra}%
+  \index{involution!Hermitian transpose}%
+  The Hermitian transpose defines an involution $A\mapsto A^{\dagger}$
+  on $\mathrm{Mat}_{n}(\mathbb{C})$, making it a $*$-algebra.  The
+  $C^{*}$-identity $\|A^{\dagger}A\|=\|A\|^{2}$ is the defining
+  axiom of a $C^{*}$-algebra, the abstract framework for quantum
+  mechanics (Gelfand--Naimark theorem).
+
+\item \textbf{Polar decomposition.}%
+  \index{polar decomposition}%
+  \index{Hermitian transpose!polar decomposition}%
+  \index{singular values!polar decomposition}%
+  Every matrix $A$ admits a polar decomposition $A=UP$ where $U$ is
+  unitary and $P=(A^{\dagger}A)^{1/2}$ is positive semidefinite.
+  The singular values of $A$ are the eigenvalues of $P$, and the
+  decomposition generalises the polar form $z=|z|e^{i\theta}$ of
+  a complex number.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.124\quad Hermitian matrix}
+
+A Hermitian matrix satisfies $A^{\dagger}=A$.  Its eigenvalues are
+real, and eigenvectors corresponding to distinct eigenvalues are
+orthogonal.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quantum observables and the measurement postulate.}%
+  \index{Hermitian matrix!observables}%
+  \index{quantum measurement}%
+  \index{Born rule}%
+  \index{spectral theorem!quantum mechanics}%
+  Every physical observable in quantum mechanics is represented by a
+  Hermitian operator.  The spectral theorem $A=\sum_{\lambda}\lambda
+  \,P_{\lambda}$ decomposes it into projections onto eigenspaces.
+  Upon measurement, the probability of outcome $\lambda$ is
+  $p_{\lambda}=\mathrm{tr}(\rho\,P_{\lambda})$ (Born rule), and
+  the reality of eigenvalues ensures that measurement outcomes are
+  real numbers.
+
+\item \textbf{Pauli matrices and spin-$\frac{1}{2}$.}%
+  \index{Pauli matrices}%
+  \index{spin-$\frac{1}{2}$!Pauli matrices}%
+  \index{Hermitian matrix!Pauli}%
+  The Pauli matrices $\sigma_{x}=\begin{pmatrix}0&1\\1&0\end{pmatrix}$,
+  $\sigma_{y}=\begin{pmatrix}0&-i\\i&0\end{pmatrix}$,
+  $\sigma_{z}=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ are
+  Hermitian, traceless, and satisfy $\sigma_{i}\sigma_{j}=
+  \delta_{ij}I+i\varepsilon_{ijk}\sigma_{k}$.  They form a basis
+  for $\mathfrak{su}(2)$ and represent spin angular momentum
+  $S_{i}=\tfrac{\hbar}{2}\sigma_{i}$.
+
+\item \textbf{Hamiltonian matrix in tight-binding models.}%
+  \index{Hamiltonian matrix!tight-binding}%
+  \index{tight-binding model}%
+  \index{band structure}%
+  \index{Hermitian matrix!band structure}%
+  In the tight-binding approximation, the Hamiltonian is an
+  $N\times N$ Hermitian matrix $H_{mn}=\langle m|H|n\rangle$ with
+  hopping integrals $t_{mn}=H_{mn}$ for nearest neighbours and
+  on-site energies $\varepsilon_{m}=H_{mm}$.  The eigenvalues
+  $E_{k}$ give the electronic band structure, and the Hermiticity
+  ensures real energy bands.
+
+\item \textbf{Density matrix formalism.}%
+  \index{density matrix!Hermitian}%
+  \index{von Neumann entropy}%
+  \index{mixed state}%
+  The density matrix $\rho=\sum_{i}p_{i}|\psi_{i}\rangle
+  \langle\psi_{i}|$ is Hermitian, positive semidefinite, and has
+  unit trace.  The von Neumann entropy $S=-\mathrm{tr}(\rho\ln\rho)
+  =-\sum_{i}\lambda_{i}\ln\lambda_{i}$ measures the mixedness
+  of the state and vanishes for pure states ($\rho^{2}=\rho$).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Spectral theorem for Hermitian matrices.}%
+  \index{spectral theorem!Hermitian}%
+  \index{unitary diagonalisation}%
+  \index{eigenvalues!Hermitian matrix}%
+  Every $n\times n$ Hermitian matrix is unitarily diagonalisable:
+  $A=U\Lambda U^{\dagger}$ with $\Lambda=\mathrm{diag}(\lambda_{1},
+  \dots,\lambda_{n})$ real and $U$ unitary.  This is the
+  finite-dimensional case of the spectral theorem for self-adjoint
+  operators, the cornerstone of functional analysis.
+
+\item \textbf{Weyl's inequalities and eigenvalue perturbation.}%
+  \index{Weyl's inequalities}%
+  \index{eigenvalue perturbation}%
+  \index{Hermitian matrix!perturbation}%
+  For Hermitian $A$ and $B$ with eigenvalues $\alpha_{1}\leq\cdots
+  \leq\alpha_{n}$ and $\beta_{1}\leq\cdots\leq\beta_{n}$, the
+  eigenvalues $\gamma_{k}$ of $A+B$ satisfy $\alpha_{i}+\beta_{j}
+  \leq\gamma_{i+j-1}\leq\alpha_{i}+\beta_{n-j+1}$ (Weyl).  These
+  inequalities bound the sensitivity of the spectrum to perturbations
+  and underpin numerical error analysis.
+
+\item \textbf{Random Hermitian matrices and the Gaussian Unitary Ensemble.}%
+  \index{random matrix theory!GUE}%
+  \index{Gaussian Unitary Ensemble}%
+  \index{Wigner semicircle law}%
+  The GUE consists of Hermitian matrices with Gaussian-distributed
+  entries.  The Wigner semicircle law states that the empirical
+  spectral distribution converges to $\rho(\lambda)=\frac{1}{2\pi}
+  \sqrt{4-\lambda^{2}}$ as $n\to\infty$, a universal result with
+  applications from nuclear physics to number theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.125\quad Unitary matrix}
+
+A unitary matrix satisfies $U^{\dagger}U=UU^{\dagger}=I$ and
+$|\det U|=1$.  The set of $n\times n$ unitary matrices forms the
+unitary group $\mathrm{U}(n)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Time evolution in quantum mechanics.}%
+  \index{unitary matrix!time evolution}%
+  \index{time evolution operator}%
+  \index{Schr\"odinger equation!unitary evolution}%
+  \index{probability conservation!unitarity}%
+  The time evolution operator $U(t)=e^{-iHt/\hbar}$ is unitary for
+  Hermitian $H$, ensuring conservation of probability:
+  $\langle\psi(t)|\psi(t)\rangle=\langle\psi(0)|U^{\dagger}U
+  |\psi(0)\rangle=\langle\psi(0)|\psi(0)\rangle$.  Every closed
+  quantum system evolves unitarily.
+
+\item \textbf{Quantum gates and quantum computing.}%
+  \index{quantum gates}%
+  \index{quantum computing!unitary}%
+  \index{Hadamard gate}%
+  \index{CNOT gate}%
+  Quantum logic gates are unitary matrices.  The Hadamard gate
+  $H=\frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}$
+  creates superposition, and the CNOT gate (a $4\times 4$ unitary
+  matrix) creates entanglement.  Any $n$-qubit unitary can be
+  decomposed into a product of one- and two-qubit gates (universality
+  theorem).
+
+\item \textbf{Scattering matrix (S-matrix).}%
+  \index{S-matrix!unitary}%
+  \index{scattering theory!unitarity}%
+  \index{optical theorem}%
+  The S-matrix $S=I+2iT$ relating in-states to out-states is unitary:
+  $S^{\dagger}S=I$.  This unitarity condition implies the optical
+  theorem $\mathrm{Im}\,T_{ii}=\sum_{f}|T_{fi}|^{2}$, relating the
+  total cross section to the imaginary part of the forward scattering
+  amplitude.
+
+\item \textbf{CKM and PMNS matrices in particle physics.}%
+  \index{CKM matrix}%
+  \index{PMNS matrix}%
+  \index{CP violation!unitary matrix}%
+  The Cabibbo--Kobayashi--Maskawa (CKM) matrix for quarks and the
+  Pontecorvo--Maki--Nakagawa--Sakata (PMNS) matrix for neutrinos are
+  $3\times 3$ unitary matrices parametrising flavour mixing.  A single
+  complex phase in the CKM matrix accounts for CP violation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Unitary group as a compact Lie group.}%
+  \index{unitary group!compact Lie group}%
+  \index{maximal torus}%
+  \index{Weyl group!unitary}%
+  $\mathrm{U}(n)$ is a compact, connected Lie group of dimension
+  $n^{2}$.  Its maximal torus consists of diagonal unitary matrices
+  $\mathrm{diag}(e^{i\theta_{1}},\dots,e^{i\theta_{n}})$, and the
+  Weyl group is $S_{n}$ (permutations).  The representation theory
+  of $\mathrm{U}(n)$ is governed by highest-weight theory and
+  Young diagrams.
+
+\item \textbf{Singular value decomposition.}%
+  \index{singular value decomposition}%
+  \index{SVD|see{singular value decomposition}}%
+  \index{unitary matrix!SVD}%
+  Every matrix $A\in\mathbb{C}^{m\times n}$ has a singular value
+  decomposition $A=U\Sigma V^{\dagger}$ with $U\in\mathrm{U}(m)$,
+  $V\in\mathrm{U}(n)$, and $\Sigma$ diagonal with non-negative real
+  entries.  The SVD provides the best rank-$k$ approximation
+  (Eckart--Young theorem) and is the computational backbone of
+  principal component analysis, data compression, and pseudoinverse
+  computation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.126\quad Eigenvalues and eigenvectors}
+
+The eigenvalue equation $A\mathbf{v}=\lambda\mathbf{v}$ with
+$\mathbf{v}\neq\mathbf{0}$ defines the eigenvalues (roots of
+$\det(A-\lambda I)=0$) and the corresponding eigenvectors.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Energy levels and stationary states.}%
+  \index{eigenvalues!energy levels}%
+  \index{stationary states}%
+  \index{Schr\"odinger equation!eigenvalue problem}%
+  \index{quantum mechanics!eigenvalue problem}%
+  The time-independent Schr\"{o}dinger equation
+  $H|\psi\rangle=E|\psi\rangle$ is an eigenvalue problem whose
+  eigenvalues $E_{n}$ are the allowed energy levels.  The
+  eigenstates $|\psi_{n}\rangle$ form a complete orthonormal set,
+  and the general state is $|\psi(t)\rangle=\sum_{n}c_{n}\,
+  e^{-iE_{n}t/\hbar}|\psi_{n}\rangle$.
+
+\item \textbf{Normal modes and resonance frequencies.}%
+  \index{normal modes!eigenvalue problem}%
+  \index{resonance frequencies}%
+  \index{vibration!eigenvalue problem}%
+  The generalised eigenvalue problem $(K-\omega^{2}M)\mathbf{u}=0$
+  for a structure with stiffness $K$ and mass $M$ gives the natural
+  frequencies $\omega_{k}$ and mode shapes $\mathbf{u}_{k}$.
+  Resonance occurs when an external driving frequency matches an
+  eigenfrequency, leading to large-amplitude response.
+
+\item \textbf{Stability analysis of dynamical systems.}%
+  \index{stability analysis!eigenvalues}%
+  \index{linearisation}%
+  \index{Lyapunov stability}%
+  The stability of a fixed point $\mathbf{x}_{0}$ of
+  $\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x})$ is determined by the
+  eigenvalues of the Jacobian $J_{ij}=\partial f_{i}/\partial x_{j}
+  |_{\mathbf{x}_{0}}$.  If all eigenvalues have negative real part,
+  the fixed point is asymptotically stable; if any has positive real
+  part, it is unstable.
+
+\item \textbf{Principal component analysis (PCA).}%
+  \index{principal component analysis}%
+  \index{eigenvalues!PCA}%
+  \index{dimensionality reduction}%
+  PCA computes the eigenvectors and eigenvalues of the covariance
+  matrix $\Sigma$.  The eigenvectors (principal components) define
+  directions of maximal variance, and the eigenvalues quantify the
+  variance along each direction.  Retaining the top $k$ components
+  gives the optimal $k$-dimensional approximation of the data.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Characteristic polynomial and algebraic multiplicity.}%
+  \index{characteristic polynomial!eigenvalues}%
+  \index{algebraic multiplicity}%
+  \index{geometric multiplicity}%
+  The characteristic polynomial $p(\lambda)=\det(\lambda I-A)$ has
+  degree $n$ with roots $\lambda_{1},\dots,\lambda_{n}$ (counted
+  with algebraic multiplicity).  The algebraic multiplicity of
+  $\lambda$ is its multiplicity as a root; the geometric
+  multiplicity $\dim\ker(A-\lambda I)$ satisfies $1\leq g\leq a$.
+  Diagonalisability requires $g=a$ for every eigenvalue.
+
+\item \textbf{Perron--Frobenius theorem.}%
+  \index{Perron--Frobenius theorem}%
+  \index{non-negative matrix}%
+  \index{spectral radius!Perron--Frobenius}%
+  A non-negative irreducible matrix $A\geq 0$ has a unique largest
+  eigenvalue $\lambda_{\max}>0$ (the Perron root) with a positive
+  eigenvector.  This theorem governs population dynamics (Leslie
+  matrix), web page ranking (PageRank), and convergence of iterative
+  methods.
+
+\item \textbf{Spectral graph theory.}%
+  \index{spectral graph theory}%
+  \index{graph Laplacian}%
+  \index{Fiedler vector}%
+  The eigenvalues of the adjacency matrix and the graph Laplacian
+  $L=D-A$ encode graph properties: the number of zero eigenvalues
+  of $L$ counts connected components, and the second-smallest
+  eigenvalue (algebraic connectivity, or Fiedler value) measures
+  how well-connected the graph is.  The corresponding Fiedler vector
+  is used for spectral graph partitioning.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.127\quad Nilpotent matrix}
+
+A matrix $N$ is nilpotent if $N^{k}=0$ for some positive integer $k$.
+The smallest such $k$ is the \emph{index of nilpotency}.  All
+eigenvalues of a nilpotent matrix are zero.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Raising and lowering operators in angular momentum.}%
+  \index{nilpotent matrix!raising operator}%
+  \index{raising operator}%
+  \index{lowering operator}%
+  \index{angular momentum!ladder operators}%
+  The raising operator $J_{+}=J_{x}+iJ_{y}$ restricted to a
+  finite-dimensional spin-$j$ representation satisfies
+  $J_{+}^{2j+1}=0$: it is nilpotent of index $2j+1$.  The matrix
+  representation in the $|j,m\rangle$ basis has entries
+  $(J_{+})_{m',m}=\hbar\sqrt{j(j+1)-m(m+1)}\,\delta_{m',m+1}$,
+  a strictly upper triangular (hence nilpotent) matrix.
+
+\item \textbf{Grassmann variables and fermionic coherent states.}%
+  \index{Grassmann algebra!nilpotent}%
+  \index{fermionic coherent states}%
+  \index{path integral!fermionic}%
+  Grassmann variables $\theta$ satisfy $\theta^{2}=0$, the algebraic
+  analogue of nilpotency.  In the path integral formulation of
+  fermionic quantum field theory, integration over Grassmann variables
+  replaces the trace over Fock space:
+  $\mathrm{tr}(e^{-\beta H})=\int e^{-S[\bar{\theta},\theta]}
+  \,d\bar{\theta}\,d\theta$.
+
+\item \textbf{BRST operator in gauge theory.}%
+  \index{BRST symmetry}%
+  \index{nilpotent matrix!BRST}%
+  \index{ghost fields}%
+  The BRST operator $Q$ satisfies $Q^{2}=0$ (nilpotent of index 2).
+  Physical states are defined as the cohomology of $Q$:
+  $|\text{phys}\rangle\in\ker Q/\mathrm{im}\,Q$.
+  This nilpotency is essential for the consistency of gauge-fixed
+  quantum field theories and the decoupling of ghost fields.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Jordan canonical form.}%
+  \index{Jordan canonical form!nilpotent}%
+  \index{Jordan block}%
+  \index{nilpotent matrix!Jordan form}%
+  Every nilpotent matrix is similar to a direct sum of Jordan blocks
+  $J_{k}(0)$ (with zeros on the diagonal and ones on the
+  superdiagonal).  The partition giving the sizes of the Jordan
+  blocks uniquely determines the similarity class and the
+  \emph{nilpotent orbit} in $\mathrm{Mat}_{n}$.
+
+\item \textbf{Nilpotent Lie algebras and the lower central series.}%
+  \index{nilpotent Lie algebra}%
+  \index{lower central series}%
+  \index{Engel's theorem}%
+  Engel's theorem states that a Lie algebra $\mathfrak{g}$ is
+  nilpotent if and only if every $\mathrm{ad}_{X}$ ($X\in
+  \mathfrak{g}$) is a nilpotent endomorphism.  The Heisenberg
+  algebra, with $[x,y]=z$ and all other brackets zero, is the
+  prototypical nilpotent Lie algebra and plays a fundamental role
+  in quantum mechanics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.128\quad Idempotent matrix}
+
+A matrix $P$ is idempotent if $P^{2}=P$.  Its eigenvalues are 0
+and 1, and $\mathrm{tr}(P)=\mathrm{rank}(P)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Projection operators in quantum mechanics.}%
+  \index{idempotent matrix!projection operator}%
+  \index{projection operator!quantum}%
+  \index{measurement!projection}%
+  \index{L\"uders rule}%
+  The projection onto an eigenspace $P_{\lambda}=|\lambda\rangle
+  \langle\lambda|$ is idempotent and Hermitian.  Measurement of an
+  observable $A=\sum_{\lambda}\lambda\,P_{\lambda}$ projects the
+  state via the L\"{u}ders rule: $\rho\mapsto P_{\lambda}\rho\,
+  P_{\lambda}/\mathrm{tr}(P_{\lambda}\rho)$ upon obtaining
+  outcome $\lambda$.
+
+\item \textbf{Projection operators in regression.}%
+  \index{hat matrix}%
+  \index{least squares!projection}%
+  \index{residual projection}%
+  In linear regression $\mathbf{y}=X\boldsymbol{\beta}+
+  \boldsymbol{\varepsilon}$, the hat matrix $H=X(X^{T}X)^{-1}X^{T}$
+  is idempotent and symmetric, projecting $\mathbf{y}$ onto the
+  column space of $X$.  The residual projection $I-H$ is also
+  idempotent: $\hat{\boldsymbol{\varepsilon}}=(I-H)\mathbf{y}$.
+
+\item \textbf{Density matrix of a pure state.}%
+  \index{density matrix!pure state}%
+  \index{idempotent matrix!pure state}%
+  \index{purity!idempotent condition}%
+  A density matrix $\rho$ represents a pure state if and only if
+  $\rho^{2}=\rho$ (idempotent).  In this case $\rho=|\psi\rangle
+  \langle\psi|$ is a rank-one projector, and the purity
+  $\mathrm{tr}(\rho^{2})=1$ is maximal.  Mixed states satisfy
+  $\rho^{2}\neq\rho$ and $\mathrm{tr}(\rho^{2})<1$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Direct sum decomposition.}%
+  \index{idempotent matrix!direct sum}%
+  \index{direct sum decomposition}%
+  \index{complementary subspace}%
+  An idempotent $P$ decomposes $V=\mathrm{im}(P)\oplus\ker(P)$,
+  and $I-P$ is the complementary idempotent.  A set of idempotents
+  $\{P_{1},\dots,P_{k}\}$ with $\sum P_{i}=I$ and $P_{i}P_{j}=
+  \delta_{ij}P_{i}$ gives a complete orthogonal decomposition of
+  the identity, the matrix version of a partition of unity.
+
+\item \textbf{$K$-theory and idempotents over rings.}%
+  \index{$K$-theory!idempotents}%
+  \index{projective module}%
+  \index{idempotent matrix!$K$-theory}%
+  A finitely generated projective module over a ring $R$ is the image
+  of an idempotent $e\in\mathrm{Mat}_{n}(R)$.  The Grothendieck
+  group $K_{0}(R)$ is built from equivalence classes of idempotents,
+  providing a bridge between linear algebra and algebraic topology.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.129\quad Positive definite}
+
+A Hermitian matrix $A$ is positive definite if
+$\mathbf{x}^{\dagger}A\mathbf{x}>0$ for all
+$\mathbf{x}\neq\mathbf{0}$, equivalently if all eigenvalues are
+strictly positive.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Kinetic energy and mass matrices.}%
+  \index{positive definite!kinetic energy}%
+  \index{mass matrix!positive definite}%
+  \index{kinetic energy!quadratic form}%
+  The kinetic energy $T=\frac{1}{2}\dot{\mathbf{q}}^{T}M
+  \dot{\mathbf{q}}$ requires the mass matrix $M$ to be positive
+  definite so that $T>0$ for any nonzero velocity.  This is a
+  physical requirement: kinetic energy cannot be negative.  Positive
+  definiteness of $M$ also guarantees that the generalised eigenvalue
+  problem $K\mathbf{u}=\omega^{2}M\mathbf{u}$ has real positive
+  eigenfrequencies.
+
+\item \textbf{Metric tensor in Riemannian geometry.}%
+  \index{positive definite!metric tensor}%
+  \index{Riemannian metric!positive definite}%
+  \index{proper distance}%
+  A Riemannian metric $g_{ij}$ is a positive definite symmetric
+  tensor field: $ds^{2}=g_{ij}\,dx^{i}dx^{j}>0$ for any nonzero
+  displacement.  This ensures a well-defined notion of distance.
+  In general relativity, the metric is only required to be
+  non-degenerate (signature $(-,+,+,+)$), not positive definite.
+
+\item \textbf{Fisher information matrix.}%
+  \index{Fisher information matrix}%
+  \index{Cram\'er--Rao bound}%
+  \index{statistical estimation!positive definite}%
+  The Fisher information matrix
+  $\mathcal{I}_{ij}(\theta)=-E[\partial^{2}\ln L/\partial\theta_{i}
+  \partial\theta_{j}]$ is positive semidefinite (positive definite
+  when the parameters are identifiable).  The Cram\'{e}r--Rao bound
+  $\mathrm{Cov}(\hat{\theta})\geq\mathcal{I}^{-1}$ states that no
+  unbiased estimator can have covariance smaller than the inverse
+  Fisher information.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cholesky decomposition and inner products.}%
+  \index{Cholesky decomposition!positive definite}%
+  \index{inner product!positive definite matrix}%
+  \index{Gram matrix}%
+  A Hermitian matrix is positive definite if and only if it has a
+  (unique) Cholesky factorisation $A=LL^{\dagger}$ with $L$ lower
+  triangular and positive diagonal entries.  Equivalently, $A$
+  defines an inner product $\langle\mathbf{x},\mathbf{y}\rangle_{A}
+  =\mathbf{x}^{\dagger}A\mathbf{y}$, and every Gram matrix of a
+  linearly independent set is positive definite.
+
+\item \textbf{Sylvester's criterion.}%
+  \index{Sylvester's criterion}%
+  \index{leading principal minors}%
+  \index{positive definite!criterion}%
+  A Hermitian matrix is positive definite if and only if all leading
+  principal minors are positive: $\Delta_{k}=\det(A_{k\times k})>0$
+  for $k=1,\dots,n$.  This provides a computationally efficient test
+  ($O(n^{3})$) without computing eigenvalues.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.130\quad Non-negative definite}
+
+A Hermitian matrix $A$ is non-negative definite (positive semidefinite)
+if $\mathbf{x}^{\dagger}A\mathbf{x}\geq 0$ for all $\mathbf{x}$,
+equivalently if all eigenvalues are non-negative.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Density matrices and quantum states.}%
+  \index{non-negative definite!density matrix}%
+  \index{density matrix!positivity}%
+  \index{quantum state!positivity}%
+  A valid density matrix must be positive semidefinite ($\rho\geq 0$)
+  with $\mathrm{tr}(\rho)=1$.  Positivity ensures non-negative
+  probabilities: $p_{\lambda}=\langle\lambda|\rho|\lambda\rangle
+  \geq 0$ for every state $|\lambda\rangle$.  Entanglement witnesses
+  are operators $W$ such that $\mathrm{tr}(W\rho)<0$ for some
+  entangled states, detecting violation of positivity under partial
+  transpose.
+
+\item \textbf{Noise covariance in signal processing.}%
+  \index{covariance matrix!positive semidefinite}%
+  \index{noise covariance}%
+  \index{Wiener filter}%
+  The noise covariance matrix $R_{nn}=E[\mathbf{n}\mathbf{n}^{\dagger}]$
+  is positive semidefinite by construction.  The Wiener filter
+  minimising mean-square error involves $R_{nn}^{-1}$ (when positive
+  definite) or $R_{nn}^{+}$ (Moore--Penrose pseudoinverse when
+  singular), and the semidefiniteness ensures the error is bounded
+  below by zero.
+
+\item \textbf{Correlation matrices in finance.}%
+  \index{correlation matrix}%
+  \index{portfolio optimisation}%
+  \index{Markowitz model}%
+  The asset return correlation matrix $C_{ij}=\mathrm{Corr}(R_{i},
+  R_{j})$ must be positive semidefinite.  In the Markowitz
+  mean-variance model, the portfolio variance
+  $\sigma_{p}^{2}=\mathbf{w}^{T}C\mathbf{w}\geq 0$ is non-negative
+  by the semidefiniteness of $C$, and the efficient frontier is
+  a quadratic optimisation problem over the simplex.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Semidefinite programming.}%
+  \index{semidefinite programming}%
+  \index{convex optimisation!semidefinite}%
+  \index{linear matrix inequality}%
+  Semidefinite programming (SDP) optimises a linear objective subject
+  to a linear matrix inequality $A_{0}+\sum_{i}x_{i}A_{i}\succeq 0$.
+  The cone of positive semidefinite matrices is a self-dual convex
+  cone, and interior-point methods solve SDPs in polynomial time.
+  Applications range from combinatorial optimisation (Max-Cut) to
+  quantum information (entanglement detection).
+
+\item \textbf{Reproducing kernel Hilbert spaces.}%
+  \index{reproducing kernel Hilbert space}%
+  \index{kernel matrix!positive semidefinite}%
+  \index{Mercer's theorem}%
+  A kernel $k(x,y)$ defines a reproducing kernel Hilbert space if and
+  only if the kernel matrix $K_{ij}=k(x_{i},x_{j})$ is positive
+  semidefinite for all finite sets $\{x_{1},\dots,x_{n}\}$ (Mercer's
+  condition).  This is the foundation of kernel methods in machine
+  learning (support vector machines, Gaussian processes).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.131\quad Diagonally dominant}
+
+A matrix $A$ is (strictly) diagonally dominant if $|A_{ii}|>\sum_{j
+\neq i}|A_{ij}|$ for every row $i$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Convergence of iterative solvers.}%
+  \index{diagonally dominant!iterative methods}%
+  \index{Jacobi iteration}%
+  \index{Gauss--Seidel iteration}%
+  The Jacobi and Gauss--Seidel iterative methods are guaranteed to
+  converge for strictly diagonally dominant systems.  In computational
+  physics, large sparse systems arising from finite difference
+  discretisations of elliptic PDEs (e.g., the Laplace equation with
+  a 5-point stencil) are often diagonally dominant, ensuring rapid
+  convergence.
+
+\item \textbf{Stability of finite difference schemes.}%
+  \index{finite difference!diagonal dominance}%
+  \index{stability!numerical}%
+  \index{von Neumann stability analysis}%
+  Implicit time-stepping schemes (e.g., backward Euler, Crank--Nicolson)
+  for parabolic PDEs produce diagonally dominant linear systems when the
+  time step satisfies a CFL-type condition.  Diagonal dominance implies
+  the non-singularity of the system matrix and bounds the growth of
+  numerical errors.
+
+\item \textbf{Network equilibrium in electrical circuits.}%
+  \index{nodal analysis!diagonal dominance}%
+  \index{electrical network}%
+  \index{admittance matrix}%
+  The nodal admittance matrix $Y$ of a passive electrical network is
+  diagonally dominant (with equality for floating networks).  The
+  diagonal entry $Y_{ii}$ is the sum of all admittances connected to
+  node $i$, and $|Y_{ii}|\geq\sum_{j\neq i}|Y_{ij}|$ by
+  construction, ensuring a unique voltage solution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gershgorin circle theorem.}%
+  \index{Gershgorin circle theorem}%
+  \index{eigenvalue localisation}%
+  \index{diagonally dominant!Gershgorin}%
+  Every eigenvalue of $A$ lies in at least one Gershgorin disc
+  $D_{i}=\{z\in\mathbb{C}:|z-A_{ii}|\leq\sum_{j\neq i}|A_{ij}|\}$.
+  For a strictly diagonally dominant matrix, no disc contains the
+  origin, so $A$ is non-singular.  The theorem provides cheap
+  eigenvalue bounds without computing the characteristic polynomial.
+
+\item \textbf{$M$-matrices and monotonicity.}%
+  \index{$M$-matrix}%
+  \index{monotone matrix}%
+  \index{diagonally dominant!$M$-matrix}%
+  A $Z$-matrix (non-positive off-diagonal entries) that is also
+  diagonally dominant is an $M$-matrix: $A^{-1}\geq 0$
+  (entrywise non-negative).  $M$-matrices arise in the
+  discretisation of elliptic operators and guarantee the
+  maximum principle at the discrete level.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsection{13.21\quad Quadratic Forms}
+\subsubsection{13.211\quad Sylvester's law of inertia}
+
+Sylvester's law of inertia states that for any real symmetric matrix
+$A$, the number of positive, negative, and zero eigenvalues is
+invariant under congruence transformations $A\mapsto S^{T}AS$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Metric signature in special and general relativity.}%
+  \index{Sylvester's law!metric signature}%
+  \index{metric signature}%
+  \index{Minkowski metric}%
+  \index{Lorentzian manifold}%
+  The Minkowski metric $\eta_{\mu\nu}=\mathrm{diag}(-1,+1,+1,+1)$
+  has signature $(1,3)$ (one negative, three positive eigenvalues).
+  Sylvester's law guarantees that no coordinate transformation can
+  change this signature: the distinction between time and space is
+  an invariant of the metric.  In general relativity, the signature
+  of $g_{\mu\nu}$ is $(1,3)$ everywhere on a Lorentzian manifold.
+
+\item \textbf{Stability of equilibria via the Hessian.}%
+  \index{Hessian matrix!stability}%
+  \index{stability!Hessian}%
+  \index{second derivative test}%
+  The Hessian $H_{ij}=\partial^{2}V/\partial q_{i}\partial q_{j}$
+  of the potential energy at an equilibrium determines stability.
+  By Sylvester's law, the inertia $(n_{+},n_{-},n_{0})$ of $H$ is
+  a congruence invariant: a minimum requires $n_{+}=n$ (positive
+  definite), while a saddle has $n_{-}\geq 1$, independent of
+  the choice of generalised coordinates.
+
+\item \textbf{Classification of conic sections and quadrics.}%
+  \index{conic sections!classification}%
+  \index{quadric surfaces}%
+  \index{Sylvester's law!conics}%
+  The general conic $\mathbf{x}^{T}A\mathbf{x}+\mathbf{b}^{T}
+  \mathbf{x}+c=0$ is classified by the inertia of $A$:
+  $(2,0)$ for ellipses, $(1,1)$ for hyperbolas, and rank-deficient
+  cases for parabolas.  In three dimensions, the inertia of the
+  $3\times 3$ matrix classifies quadric surfaces (ellipsoids,
+  hyperboloids, paraboloids, cones, cylinders).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Classification of bilinear forms.}%
+  \index{bilinear form!classification}%
+  \index{congruence!classification}%
+  \index{Sylvester's law!bilinear forms}%
+  Over $\mathbb{R}$, every symmetric bilinear form is congruent to
+  $\mathrm{diag}(1,\dots,1,-1,\dots,-1,0,\dots,0)$ with signature
+  $(p,q)$.  The pair $(p,q)$ is the complete invariant for real
+  symmetric bilinear forms under congruence.  Over $\mathbb{C}$,
+  only the rank matters.
+
+\item \textbf{Morse theory and critical points.}%
+  \index{Morse theory!index}%
+  \index{critical point!index}%
+  \index{Sylvester's law!Morse index}%
+  The Morse index of a non-degenerate critical point of a smooth
+  function $f$ is the number of negative eigenvalues of the
+  Hessian, which by Sylvester's law is a well-defined integer
+  independent of the choice of local coordinates.  The Morse
+  inequalities relate these indices to the Betti numbers of the
+  manifold.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.212\quad Rank}
+
+The rank of a matrix is the dimension of its column (or row) space,
+equivalently the number of nonzero singular values.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Degeneracy and constraint counting.}%
+  \index{rank!constraint counting}%
+  \index{degeneracy!rank deficiency}%
+  \index{degrees of freedom}%
+  In a system of linear constraints $A\mathbf{x}=\mathbf{b}$,
+  the number of independent constraints is $\mathrm{rank}(A)$ and
+  the number of free parameters (degrees of freedom) is
+  $n-\mathrm{rank}(A)$.  Rank deficiency signals degeneracy---for
+  example, a degenerate eigenvalue in quantum mechanics or a
+  gauge symmetry in field theory.
+
+\item \textbf{Rank of the stress-energy tensor.}%
+  \index{stress-energy tensor!rank}%
+  \index{electromagnetic stress tensor}%
+  \index{rank!stress tensor}%
+  The electromagnetic stress-energy tensor $T^{\mu\nu}$ is a
+  $4\times 4$ symmetric matrix.  For a null electromagnetic field
+  ($\mathbf{E}\perp\mathbf{B}$, $|\mathbf{E}|=|\mathbf{B}|$), the
+  rank of $T^{\mu\nu}$ drops to 1 (all energy flows in one null
+  direction), while for a general field the rank is 4.
+
+\item \textbf{Schmidt rank and entanglement.}%
+  \index{Schmidt decomposition}%
+  \index{entanglement!Schmidt rank}%
+  \index{rank!entanglement}%
+  A bipartite quantum state $|\psi\rangle\in H_{A}\otimes H_{B}$
+  has a Schmidt decomposition $|\psi\rangle=\sum_{k=1}^{r}
+  \sqrt{p_{k}}\,|a_{k}\rangle|b_{k}\rangle$ with Schmidt rank
+  $r=\mathrm{rank}(\rho_{A})$.  The state is entangled if and
+  only if $r>1$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Rank-nullity theorem.}%
+  \index{rank-nullity theorem!rank}%
+  \index{dimension formula}%
+  \index{kernel and image}%
+  For $A\in\mathbb{F}^{m\times n}$, $\mathrm{rank}(A)+
+  \mathrm{nullity}(A)=n$.  This dimension formula is the
+  finite-dimensional case of the first isomorphism theorem:
+  $V/\ker(T)\cong\mathrm{im}(T)$.
+
+\item \textbf{Low-rank approximation and compressed sensing.}%
+  \index{low-rank approximation}%
+  \index{Eckart--Young theorem}%
+  \index{compressed sensing}%
+  The Eckart--Young theorem states that the best rank-$k$
+  approximation to $A$ (in Frobenius or operator norm) is
+  $A_{k}=\sum_{i=1}^{k}\sigma_{i}\mathbf{u}_{i}\mathbf{v}_{i}^{T}$
+  from the SVD.  Low-rank structure is exploited in compressed
+  sensing, matrix completion (Netflix problem), and tensor networks
+  in quantum many-body physics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.213\quad Signature}
+
+The signature $(p,q)$ of a real symmetric matrix is the number of
+positive and negative eigenvalues.  It is a congruence invariant
+by Sylvester's law.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Spacetime signature and causal structure.}%
+  \index{signature!spacetime}%
+  \index{causal structure}%
+  \index{light cone}%
+  The signature $(1,3)$ of the Minkowski metric determines the
+  causal structure of spacetime: the light cone
+  $\eta_{\mu\nu}\,dx^{\mu}\,dx^{\nu}=0$ separates timelike,
+  spacelike, and null directions.  A Euclidean signature $(0,4)$
+  (Wick rotation $t\to i\tau$) converts the Lorentzian path
+  integral to a statistical-mechanics partition function.
+
+\item \textbf{Signature change and cosmological models.}%
+  \index{signature change}%
+  \index{Hartle--Hawking state}%
+  \index{quantum cosmology}%
+  The Hartle--Hawking no-boundary proposal for the wave function of
+  the universe involves a transition from Euclidean signature $(0,4)$
+  to Lorentzian $(1,3)$.  The signature of the metric is the
+  fundamental distinction between space and time, and its possible
+  change at the Planck scale is a topic of quantum gravity research.
+
+\item \textbf{Indefinite inner products in BRST quantisation.}%
+  \index{indefinite inner product}%
+  \index{BRST quantisation!indefinite metric}%
+  \index{Gupta--Bleuler quantisation}%
+  The Gupta--Bleuler and BRST methods for quantising gauge fields use
+  an indefinite-metric state space (signature $(p,q)$ with both $p$
+  and $q$ nonzero).  Physical states form a positive-definite
+  subspace, and the ghosts (negative-norm states) decouple from
+  physical amplitudes.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Clifford algebras and signature.}%
+  \index{Clifford algebra!signature}%
+  \index{signature!Clifford algebra}%
+  \index{Bott periodicity}%
+  The Clifford algebra $\mathrm{Cl}(p,q)$ generated by
+  $\gamma_{i}\gamma_{j}+\gamma_{j}\gamma_{i}=2g_{ij}$ with
+  $g=\mathrm{diag}(\underbrace{+1}_{p},\underbrace{-1}_{q})$
+  depends on the signature $(p,q)$.  The isomorphism class of
+  $\mathrm{Cl}(p,q)$ exhibits Bott periodicity with period~8,
+  connecting to the classification of real division algebras and
+  topological $K$-theory.
+
+\item \textbf{Witt group and quadratic form theory.}%
+  \index{Witt group}%
+  \index{quadratic form!Witt equivalence}%
+  \index{hyperbolic plane}%
+  Two quadratic forms are Witt-equivalent if they become isometric
+  after adding hyperbolic planes $\begin{pmatrix}0&1\\1&0
+  \end{pmatrix}$.  The Witt group $W(\mathbb{F})$ classifies
+  non-degenerate symmetric bilinear forms modulo hyperbolic forms
+  and is a fundamental invariant in algebraic number theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.214\quad Positive definite and semidefinite quadratic form}
+
+A quadratic form $Q(\mathbf{x})=\mathbf{x}^{T}A\mathbf{x}$ is
+positive definite if $Q(\mathbf{x})>0$ for all
+$\mathbf{x}\neq\mathbf{0}$, and positive semidefinite if
+$Q(\mathbf{x})\geq 0$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Potential energy and stability.}%
+  \index{quadratic form!potential energy}%
+  \index{stability!positive definite}%
+  \index{small oscillations}%
+  Near a stable equilibrium, the potential energy
+  $V\approx\frac{1}{2}\mathbf{q}^{T}K\mathbf{q}$ is a positive
+  definite quadratic form ($K>0$), ensuring a restoring force for
+  any displacement.  The eigenvalues of $M^{-1}K$ give the squared
+  normal-mode frequencies $\omega_{k}^{2}$, all positive.
+
+\item \textbf{Thermodynamic stability conditions.}%
+  \index{thermodynamic stability}%
+  \index{quadratic form!thermodynamics}%
+  \index{Le Chatelier principle}%
+  The stability of a thermodynamic equilibrium requires the second
+  variation of the entropy to be negative definite (equivalently,
+  the Hessian of the internal energy with respect to extensive
+  variables is positive definite).  This gives the conditions
+  $C_{V}>0$ (thermal stability) and $(\partial P/\partial V)_{T}<0$
+  (mechanical stability).
+
+\item \textbf{Electromagnetic energy density.}%
+  \index{energy density!electromagnetic}%
+  \index{permittivity tensor!positive definite}%
+  \index{permeability tensor}%
+  The electromagnetic energy density $u=\frac{1}{2}(\mathbf{E}
+  \cdot\mathbf{D}+\mathbf{B}\cdot\mathbf{H})=\frac{1}{2}
+  (\mathbf{E}^{T}\varepsilon\mathbf{E}+\mathbf{B}^{T}
+  \mu^{-1}\mathbf{B})$ is positive definite when the permittivity
+  tensor $\varepsilon$ and inverse permeability $\mu^{-1}$ are
+  positive definite, which holds for passive media.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Convexity and optimisation.}%
+  \index{convexity!positive definite Hessian}%
+  \index{quadratic programming}%
+  \index{optimisation!convex}%
+  A twice-differentiable function is (strictly) convex if and only if
+  its Hessian is positive semidefinite (definite) everywhere.
+  Quadratic programming minimises
+  $\frac{1}{2}\mathbf{x}^{T}Q\mathbf{x}+\mathbf{c}^{T}\mathbf{x}$
+  subject to linear constraints; for $Q\succ 0$ the problem has a
+  unique global minimum.
+
+\item \textbf{Lattices and number theory.}%
+  \index{lattice!positive definite form}%
+  \index{number theory!quadratic forms}%
+  \index{Minkowski's theorem}%
+  A positive definite quadratic form $Q(\mathbf{n})=\mathbf{n}^{T}A
+  \mathbf{n}$ with $\mathbf{n}\in\mathbb{Z}^{k}$ defines a lattice
+  in $\mathbb{R}^{k}$.  The minimum $\min_{\mathbf{n}\neq 0}
+  Q(\mathbf{n})$ is the squared length of the shortest lattice
+  vector, a central quantity in the geometry of numbers and the basis
+  of lattice-based cryptography.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{13.215\quad Basic theorems on quadratic forms}
+
+This subsubsection collects the principal structural results on
+real and complex quadratic forms, including diagonalisation,
+canonical forms, and invariant characterisations.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Diagonalisation of the Hamiltonian for coupled systems.}%
+  \index{quadratic form!Hamiltonian}%
+  \index{Bogoliubov transformation}%
+  \index{coupled oscillators!quadratic form}%
+  A quadratic Hamiltonian $H=\frac{1}{2}\mathbf{z}^{T}\mathcal{H}
+  \mathbf{z}$ (where $\mathbf{z}=(q_{1},\dots,q_{n},p_{1},\dots,
+  p_{n})^{T}$) is diagonalised by a symplectic (canonical)
+  transformation $\mathbf{z}=S\boldsymbol{\zeta}$ satisfying
+  $S^{T}JS=J$.  The resulting normal-mode Hamiltonian
+  $H=\sum_{k}\frac{\omega_{k}}{2}(\zeta_{k}^{2}+\pi_{k}^{2})$
+  decouples into independent oscillators.  In the quantum case,
+  this is the Bogoliubov transformation.
+
+\item \textbf{Index of a quadratic form and the Morse lemma.}%
+  \index{Morse lemma}%
+  \index{quadratic form!index}%
+  \index{saddle point!index}%
+  The Morse lemma states that near a non-degenerate critical point,
+  a smooth function can be put in the form
+  $f=f_{0}-y_{1}^{2}-\cdots-y_{\lambda}^{2}+y_{\lambda+1}^{2}
+  +\cdots+y_{n}^{2}$, where $\lambda$ is the index (number of
+  negative squares).  In the path integral, saddle points with
+  different indices contribute with different phases to the
+  semiclassical approximation.
+
+\item \textbf{Williamson's theorem and quantum uncertainty.}%
+  \index{Williamson's theorem}%
+  \index{symplectic eigenvalues}%
+  \index{uncertainty relation!covariance matrix}%
+  Williamson's theorem states that any positive definite $2n\times 2n$
+  matrix can be brought to the form $S^{T}AS=\mathrm{diag}(d_{1},
+  \dots,d_{n},d_{1},\dots,d_{n})$ by a symplectic transformation.
+  The symplectic eigenvalues $d_{k}$ characterise Gaussian quantum
+  states, and the uncertainty relation becomes $d_{k}\geq\hbar/2$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Simultaneous diagonalisation of two quadratic forms.}%
+  \index{simultaneous diagonalisation!quadratic forms}%
+  \index{generalised eigenvalue problem}%
+  \index{pencil of quadratic forms}%
+  If $A$ is positive definite and $B$ is symmetric, there exists an
+  invertible $S$ such that $S^{T}AS=I$ and $S^{T}BS=\Lambda$
+  (diagonal).  This reduces the generalised eigenvalue problem
+  $B\mathbf{v}=\lambda A\mathbf{v}$ to an ordinary one.  The
+  pencil $\det(B-\lambda A)=0$ defines the eigenvalues.
+
+\item \textbf{Representation numbers and theta functions.}%
+  \index{theta function!quadratic form}%
+  \index{representation numbers}%
+  \index{modular form!quadratic form}%
+  The number of representations $r_{Q}(n)=\#\{\mathbf{m}\in
+  \mathbb{Z}^{k}:Q(\mathbf{m})=n\}$ is encoded by the theta
+  function $\Theta_{Q}(\tau)=\sum_{\mathbf{m}}e^{2\pi i\tau\,
+  Q(\mathbf{m})}$, which is a modular form.  Jacobi's four-square
+  theorem $r_{4}(n)=8\sum_{4\nmid d|n}d$ is a classical application.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsection{13.31\quad Differentiation of Matrices}
+
+Matrix differentiation extends ordinary calculus to matrix-valued
+functions.  For a matrix $A(t)$ depending on a parameter $t$,
+$dA/dt$ has entries $(dA/dt)_{ij}=dA_{ij}/dt$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Equations of motion for density matrices.}%
+  \index{matrix differentiation!density matrix}%
+  \index{von Neumann equation}%
+  \index{Lindblad equation}%
+  \index{Liouville--von Neumann equation|see{von Neumann equation}}%
+  The von Neumann equation $i\hbar\,d\rho/dt=[H,\rho]$ governs the
+  time evolution of the density matrix for a closed system.  For open
+  systems, the Lindblad master equation adds dissipative terms:
+  $d\rho/dt=-\frac{i}{\hbar}[H,\rho]+\sum_{k}\left(L_{k}\rho
+  L_{k}^{\dagger}-\frac{1}{2}\{L_{k}^{\dagger}L_{k},\rho\}\right)$.
+
+\item \textbf{Matrix Riccati equation in control theory.}%
+  \index{Riccati equation!matrix}%
+  \index{optimal control}%
+  \index{LQR controller}%
+  The linear-quadratic regulator (LQR) problem leads to the matrix
+  Riccati equation $\dot{P}=-PA-A^{T}P-Q+PBR^{-1}B^{T}P$ for the
+  cost-to-go matrix $P(t)$.  The steady-state solution (algebraic
+  Riccati equation with $\dot{P}=0$) gives the optimal feedback gain
+  $K=R^{-1}B^{T}P$.
+
+\item \textbf{Gradient descent on matrix manifolds.}%
+  \index{matrix differentiation!gradient descent}%
+  \index{optimisation!matrix manifold}%
+  \index{Riemannian gradient}%
+  Training neural networks requires derivatives with respect to weight
+  matrices: $\partial\mathcal{L}/\partial W$.  On structured matrix
+  manifolds (e.g., the Stiefel manifold of orthonormal frames), the
+  Riemannian gradient projects the Euclidean gradient onto the tangent
+  space, and retraction maps ensure iterates remain on the manifold.
+
+\item \textbf{Jacobi's formula for the determinant.}%
+  \index{Jacobi's formula}%
+  \index{determinant!derivative}%
+  \index{matrix differentiation!determinant}%
+  Jacobi's formula $\frac{d}{dt}\det A(t)=\det A(t)\,\mathrm{tr}
+  \!\left(A^{-1}\frac{dA}{dt}\right)$ gives the rate of change of
+  the determinant.  In general relativity, this yields
+  $\partial_{\mu}\sqrt{-g}=\frac{1}{2}\sqrt{-g}\,g^{\alpha\beta}
+  \partial_{\mu}g_{\alpha\beta}$, essential for deriving the
+  covariant divergence.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Matrix calculus identities.}%
+  \index{matrix calculus}%
+  \index{chain rule!matrices}%
+  \index{Kronecker product!derivative}%
+  Key identities include $d\,\mathrm{tr}(AXB)=A^{T}B^{T}\,dX$
+  (in the sense of Frechet derivatives) and
+  $\frac{\partial}{\partial X}\mathrm{tr}(X^{T}AX)=(A+A^{T})X$.
+  The vec operator and Kronecker product linearise matrix equations:
+  $\mathrm{vec}(AXB)=(B^{T}\otimes A)\,\mathrm{vec}(X)$.
+
+\item \textbf{Derivative of the matrix exponential.}%
+  \index{matrix exponential!derivative}%
+  \index{Wilcox formula}%
+  \index{Duhamel's formula}%
+  The derivative of the matrix exponential is
+  $\frac{d}{dt}e^{A(t)}=\int_{0}^{1}e^{sA}\frac{dA}{dt}
+  e^{(1-s)A}\,ds$ (Duhamel/Wilcox formula), which differs from the
+  scalar case $\frac{d}{dt}e^{a(t)}=\dot{a}e^{a}$ because $A$ and
+  $dA/dt$ need not commute.  When they do commute, the scalar formula
+  is recovered.
+
+\item \textbf{Perturbation theory for eigenvalues.}%
+  \index{eigenvalue perturbation!derivative}%
+  \index{Hellmann--Feynman theorem}%
+  \index{matrix differentiation!eigenvalues}%
+  For a Hermitian matrix $A(\epsilon)$ with non-degenerate eigenvalue
+  $\lambda(\epsilon)$, the Hellmann--Feynman theorem gives
+  $d\lambda/d\epsilon=\mathbf{v}^{\dagger}(dA/d\epsilon)\mathbf{v}$,
+  where $\mathbf{v}$ is the normalised eigenvector.  Second-order
+  perturbation theory involves the resolvent $(A-\lambda I)^{-1}$
+  restricted to the orthogonal complement of $\mathbf{v}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsection{13.41\quad The Matrix Exponential}
+\subsubsection{13.411\quad Basic properties}
+
+The matrix exponential is defined by $e^{A}=\sum_{k=0}^{\infty}
+A^{k}/k!$ and satisfies $e^{A}e^{B}=e^{A+B}$ when $[A,B]=0$.
+The inverse is $e^{-A}$, and $\det(e^{A})=e^{\mathrm{tr}(A)}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Time evolution operator in quantum mechanics.}%
+  \index{matrix exponential!time evolution}%
+  \index{time evolution operator!matrix exponential}%
+  \index{Dyson series}%
+  \index{time-ordered exponential}%
+  For a time-independent Hamiltonian, the time evolution operator is
+  $U(t)=e^{-iHt/\hbar}$.  For time-dependent $H(t)$, the Dyson
+  series gives the time-ordered exponential
+  $U(t)=\mathcal{T}\exp\!\left(-\frac{i}{\hbar}\int_{0}^{t}
+  H(t')\,dt'\right)$, which reduces to the ordinary exponential
+  when $[H(t_{1}),H(t_{2})]=0$ for all $t_{1},t_{2}$.
+
+\item \textbf{Lie group--Lie algebra correspondence.}%
+  \index{matrix exponential!Lie group}%
+  \index{Lie group!exponential map}%
+  \index{exponential map}%
+  \index{one-parameter subgroup}%
+  The matrix exponential maps the Lie algebra $\mathfrak{g}$ to the
+  Lie group $G$: $\exp\colon\mathfrak{g}\to G$.  Every one-parameter
+  subgroup of a matrix Lie group has the form $g(t)=e^{tX}$ for some
+  $X\in\mathfrak{g}$.  For example, $e^{t\,\Omega}\in\mathrm{SO}(3)$
+  for skew-symmetric $\Omega\in\mathfrak{so}(3)$ is a rotation by
+  angle $t|\boldsymbol{\omega}|$ about the axis
+  $\boldsymbol{\omega}/|\boldsymbol{\omega}|$.
+
+\item \textbf{Baker--Campbell--Hausdorff formula.}%
+  \index{Baker--Campbell--Hausdorff formula}%
+  \index{BCH formula|see{Baker--Campbell--Hausdorff formula}}%
+  \index{Zassenhaus formula}%
+  When $[A,B]\neq 0$, the product $e^{A}e^{B}=e^{C}$ is given by the
+  BCH formula: $C=A+B+\frac{1}{2}[A,B]+\frac{1}{12}([A,[A,B]]
+  +[B,[B,A]])+\cdots$, an infinite series of nested commutators.
+  This formula is essential in quantum optics (disentangling
+  exponentials of boson operators) and in numerical methods
+  (splitting methods for differential equations).
+
+\item \textbf{Rotation matrices via the exponential map.}%
+  \index{Rodrigues' formula!exponential}%
+  \index{rotation matrix!exponential}%
+  \index{matrix exponential!rotation}%
+  Rodrigues' rotation formula
+  $e^{\theta\,\hat{n}\cdot\mathbf{J}}=I+\sin\theta\,[\hat{n}]_{\times}
+  +(1-\cos\theta)\,[\hat{n}]_{\times}^{2}$
+  (where $[\hat{n}]_{\times}$ is the skew-symmetric matrix for
+  the cross product with $\hat{n}$) gives the finite rotation by
+  angle $\theta$ about axis $\hat{n}$ as a closed-form matrix
+  exponential.  This is fundamental in robotics, computer graphics,
+  and spacecraft attitude dynamics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Solution of linear ODEs.}%
+  \index{matrix exponential!linear ODE}%
+  \index{linear ODE!matrix exponential}%
+  \index{fundamental matrix}%
+  The solution of $\dot{\mathbf{x}}=A\mathbf{x}$ with initial
+  condition $\mathbf{x}(0)=\mathbf{x}_{0}$ is
+  $\mathbf{x}(t)=e^{At}\mathbf{x}_{0}$.  The matrix exponential
+  $e^{At}$ is the fundamental matrix (state transition matrix), and
+  its computation is one of the ``nineteen dubious ways'' surveyed
+  by Moler and Van Loan, each with distinct numerical trade-offs.
+
+\item \textbf{Surjectivity of the exponential map.}%
+  \index{exponential map!surjectivity}%
+  \index{matrix logarithm}%
+  \index{GL($n$)!exponential map}%
+  The exponential map $\exp\colon\mathfrak{gl}(n,\mathbb{C})
+  \to\mathrm{GL}(n,\mathbb{C})$ is surjective: every invertible
+  complex matrix has a logarithm.  Over $\mathbb{R}$, surjectivity
+  fails: a real matrix with a negative real eigenvalue of odd
+  algebraic multiplicity has no real logarithm.  The exponential map
+  for compact Lie groups is always surjective (by the maximal torus
+  theorem).
+
+\item \textbf{Trotter product formula.}%
+  \index{Trotter product formula}%
+  \index{operator splitting}%
+  \index{Lie--Trotter formula|see{Trotter product formula}}%
+  The Trotter product formula $e^{A+B}=\lim_{n\to\infty}
+  (e^{A/n}e^{B/n})^{n}$ holds for bounded operators and extends to
+  unbounded self-adjoint operators (Trotter--Kato theorem).  This
+  is the mathematical basis for Suzuki--Trotter decompositions in
+  quantum Monte Carlo simulations and for operator splitting in
+  numerical PDEs.
+\end{enumerate}

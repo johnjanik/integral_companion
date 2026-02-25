@@ -1,0 +1,276 @@
+%% ============================================================
+%% 11  Algebraic Inequalities
+%% ============================================================
+\section{11\quad Algebraic Inequalities}
+
+\subsection{11.1--11.3\quad General Algebraic Inequalities}
+
+%% -------------------------------------------------------------------
+\subsubsection{11.11\quad Algebraic inequalities involving real numbers}
+
+The fundamental algebraic inequalities---AM-GM, Cauchy--Schwarz, power mean,
+rearrangement, Schur---are the discrete precursors of the integral
+inequalities in Section~12 and appear throughout mathematical physics,
+optimisation, and information theory.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{AM-GM inequality and thermodynamic bounds.}%
+  \index{AM-GM inequality}%
+  \index{thermodynamic bounds}%
+  \index{entropy!maximisation}%
+  \index{Gibbs inequality}%
+  The AM-GM inequality $\frac{1}{n}\sum a_{i}\geq(\prod a_{i})^{1/n}$
+  (with equality iff all $a_{i}$ are equal) underlies the Gibbs inequality
+  $\sum p_{i}\ln(p_{i}/q_{i})\geq 0$, which proves that the uniform
+  distribution maximises entropy among distributions on a finite set.
+  This is the foundation of the second law of thermodynamics for
+  discrete systems.
+
+\item \textbf{Cauchy--Schwarz inequality and the Heisenberg uncertainty principle.}%
+  \index{Cauchy--Schwarz inequality!discrete}%
+  \index{Heisenberg uncertainty principle}%
+  \index{quantum mechanics!uncertainty}%
+  \index{signal processing!matched filter}%
+  The discrete Cauchy--Schwarz inequality
+  $(\sum a_{i}b_{i})^{2}\leq(\sum a_{i}^{2})(\sum b_{i}^{2})$ is the
+  finite-dimensional case of $|\langle\psi|\phi\rangle|^{2}\leq
+  \langle\psi|\psi\rangle\langle\phi|\phi\rangle$, from which the
+  Robertson--Schr\"{o}dinger uncertainty relation
+  $\Delta A\,\Delta B\geq\frac{1}{2}|\langle[A,B]\rangle|$ follows.
+  In signal processing, the matched filter bound on signal-to-noise
+  ratio is an application.
+
+\item \textbf{Cram\'er--Rao bound in estimation theory.}%
+  \index{Cram\'er--Rao bound}%
+  \index{Fisher information!Cram\'er--Rao}%
+  \index{estimation theory}%
+  \index{quantum metrology}%
+  The Cauchy--Schwarz inequality applied to the score function gives
+  $\mathrm{Var}(\hat{\theta})\geq 1/I(\theta)$, where $I(\theta)$ is
+  the Fisher information.  This bound governs the precision of parameter
+  estimation in statistics and quantum metrology (quantum Cram\'{e}r--Rao
+  bound).
+
+\item \textbf{Power mean inequalities and $L^{p}$ norms.}%
+  \index{power mean inequality}%
+  \index{Lp norms@$L^p$ norms!discrete}%
+  \index{generalised mean}%
+  The power mean inequality
+  $M_{r}\leq M_{s}$ for $r\leq s$ (where
+  $M_{r}=(\frac{1}{n}\sum a_{i}^{r})^{1/r}$) generalises AM-GM and
+  is the discrete version of the inclusion $L^{s}\subset L^{r}$ for
+  finite measure spaces.
+
+\item \textbf{Isoperimetric inequality (discrete version).}%
+  \index{isoperimetric inequality!discrete}%
+  \index{surface area minimisation}%
+  \index{crystal shapes!Wulff construction}%
+  Among all $n$-gons of given perimeter, the regular $n$-gon has the
+  greatest area (discrete isoperimetric inequality), a consequence of the
+  AM-GM inequality for the inradii.  The continuum limit gives the
+  classical isoperimetric inequality, related to the Wulff construction
+  for equilibrium crystal shapes.
+
+\item \textbf{Young's inequality and convolution bounds.}%
+  \index{Young's inequality!discrete}%
+  \index{convolution!bound}%
+  \index{signal processing!convolution bound}%
+  Young's inequality $ab\leq a^{p}/p+b^{q}/q$ ($1/p+1/q=1$) is the
+  key step in proving H\"{o}lder's inequality and the Young convolution
+  inequality $\|f\ast g\|_{r}\leq\|f\|_{p}\|g\|_{q}$, fundamental in
+  signal processing and PDE theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Schur convexity and majorisation.}%
+  \index{Schur convexity}%
+  \index{majorisation}%
+  \index{Muirhead's inequality}%
+  \index{doubly stochastic matrices}%
+  A function $f$ is Schur-convex if $\mathbf{x}\prec\mathbf{y}$
+  (majorisation) implies $f(\mathbf{x})\leq f(\mathbf{y})$.  AM-GM,
+  power means, and entropy are all Schur-convex/concave.  The
+  Birkhoff--von Neumann theorem connects majorisation to doubly stochastic
+  matrices, and Muirhead's inequality gives the most general symmetric
+  mean inequality.
+
+\item \textbf{Rearrangement inequality.}%
+  \index{rearrangement inequality}%
+  \index{Hardy--Littlewood rearrangement}%
+  If $a_{1}\leq\cdots\leq a_{n}$ and $b_{1}\leq\cdots\leq b_{n}$, then
+  $\sum a_{i}b_{\sigma(i)}$ is maximised for the identity permutation and
+  minimised for the reversal.  The Hardy--Littlewood rearrangement
+  inequality extends this to integrals and is used in the proof of sharp
+  Sobolev inequalities.
+
+\item \textbf{Convexity and Jensen's inequality.}%
+  \index{Jensen's inequality!discrete}%
+  \index{convexity!inequalities}%
+  \index{information theory!Jensen}%
+  Jensen's inequality $f(\sum\lambda_{i}x_{i})\leq\sum\lambda_{i}f(x_{i})$
+  for convex~$f$ with $\sum\lambda_{i}=1$, $\lambda_{i}\geq 0$ implies
+  AM-GM (take $f=-\ln$) and the concavity of entropy.  It is the master
+  inequality from which most discrete inequalities follow.
+
+\item \textbf{Brunn--Minkowski inequality (discrete precursor).}%
+  \index{Brunn--Minkowski inequality}%
+  \index{optimal transport}%
+  \index{geometric measure theory}%
+  The AM-GM inequality for volumes
+  $|A+B|^{1/n}\geq|A|^{1/n}+|B|^{1/n}$ (Brunn--Minkowski) implies the
+  classical isoperimetric inequality and is the foundation of geometric
+  measure theory and optimal transport (Monge--Kantorovich theory).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{11.21\quad Algebraic inequalities involving complex numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Triangle inequality and signal superposition.}%
+  \index{triangle inequality!complex}%
+  \index{signal superposition}%
+  \index{phasor addition}%
+  \index{interference!constructive and destructive}%
+  $|z_{1}+z_{2}|\leq|z_{1}|+|z_{2}|$ limits the amplitude of
+  superposed signals.  Equality (constructive interference) occurs when
+  $z_{1}$ and $z_{2}$ are in phase.  The reverse triangle inequality
+  $|z_{1}+z_{2}|\geq||z_{1}|-|z_{2}||$ bounds the minimum amplitude.
+
+\item \textbf{Unitarity bounds in scattering theory.}%
+  \index{unitarity bounds}%
+  \index{scattering theory!unitarity}%
+  \index{partial wave!unitarity}%
+  Unitarity of the $S$-matrix requires $|S_{\ell}|\leq 1$ for each
+  partial wave, i.e., $|\eta_{\ell}e^{2i\delta_{\ell}}|\leq 1$.  The
+  optical theorem $\mathrm{Im}\,f(0)=k\sigma_{\mathrm{tot}}/(4\pi)$
+  is a consequence of these complex-number inequalities.
+
+\item \textbf{Stability of transfer functions.}%
+  \index{transfer function!stability}%
+  \index{Nyquist criterion}%
+  \index{control theory!stability}%
+  The Nyquist stability criterion requires counting encirclements of
+  $-1+0i$ by the complex transfer function $H(i\omega)$ as $\omega$
+  varies.  Inequalities $|H(i\omega)|<1$ or $|1+H(i\omega)|>0$ ensure
+  stability of feedback control systems.
+
+\item \textbf{Polarisation and coherence matrices.}%
+  \index{polarisation matrix}%
+  \index{coherence matrix}%
+  \index{positive semidefiniteness!complex}%
+  The coherence matrix $J_{ij}=\langle E_{i}E_{j}^{*}\rangle$ of a
+  partially polarised electromagnetic wave is positive semidefinite.
+  The inequality $|J_{12}|^{2}\leq J_{11}J_{22}$ (Cauchy--Schwarz for
+  complex numbers) gives the degree of polarisation
+  $P=\sqrt{1-4\det J/(\mathrm{tr}\,J)^{2}}\leq 1$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Maximum modulus principle.}%
+  \index{maximum modulus principle}%
+  \index{analytic functions!maximum modulus}%
+  \index{Schwarz lemma}%
+  If $f$ is analytic and non-constant on a domain~$D$, then $|f|$ attains
+  no maximum in the interior of~$D$.  The Schwarz lemma ($|f(z)|\leq|z|$
+  for $f\colon\mathbb{D}\to\mathbb{D}$ with $f(0)=0$) is a sharpening
+  that governs conformal mapping bounds.
+
+\item \textbf{Positive definite functions.}%
+  \index{positive definite functions}%
+  \index{Bochner's theorem}%
+  \index{Fourier transform!positive definiteness}%
+  A continuous function $\phi\colon\mathbb{R}\to\mathbb{C}$ is positive
+  definite if $\sum_{j,k}\phi(x_{j}-x_{k})c_{j}\bar{c}_{k}\geq 0$ for
+  all choices.  Bochner's theorem: $\phi$ is positive definite iff it is
+  the Fourier transform of a finite positive measure.
+
+\item \textbf{Operator norm inequalities.}%
+  \index{operator norm!complex}%
+  \index{von Neumann inequality}%
+  \index{spectral radius!complex}%
+  Von Neumann's inequality: if $T$ is a contraction on a Hilbert space
+  and $p$ is a polynomial, then $\|p(T)\|\leq\max_{|z|\leq 1}|p(z)|$.
+  This connects complex polynomial inequalities to operator theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{11.31\quad Inequalities for sets of complex numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gerschgorin discs and spectral estimation.}%
+  \index{Gerschgorin discs!spectral estimation}%
+  \index{eigenvalue estimation}%
+  \index{power grid!stability analysis}%
+  Gerschgorin's theorem: every eigenvalue of $A$ lies in the union of
+  discs $|z-a_{ii}|\leq\sum_{j\neq i}|a_{ij}|$.  This gives immediate
+  spectral bounds for large matrices arising in power grid stability
+  analysis, structural vibration, and quantum Hamiltonians without
+  requiring full diagonalisation.
+
+\item \textbf{Lee--Yang theorem and phase transitions.}%
+  \index{Lee--Yang theorem}%
+  \index{partition function!zeros}%
+  \index{phase transition!Yang--Lee}%
+  Lee and Yang (1952) proved that for ferromagnetic Ising models, all
+  zeros of the partition function $Z(z)$ as a polynomial in
+  $z=e^{-2\beta h}$ lie on the unit circle $|z|=1$.  This circle theorem
+  is an inequality for the zero set of a polynomial with positivity
+  constraints, and its violation signals a phase transition.
+
+\item \textbf{Random matrix universality.}%
+  \index{random matrix theory!universality}%
+  \index{Wigner semicircle law}%
+  \index{eigenvalue distribution!bounds}%
+  The Wigner semicircle law states that eigenvalues of a large random
+  Hermitian matrix with i.i.d.\ entries concentrate on
+  $[-2\sigma,2\sigma]$.  Concentration inequalities for complex random
+  variables (matrix Bernstein, matrix Chernoff) bound the probability
+  of eigenvalues deviating from this limit.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Enestr\"om--Kakeya theorem.}%
+  \index{Enestr\"om--Kakeya theorem}%
+  \index{polynomial zeros!location}%
+  \index{zero distribution}%
+  If $0<a_{0}\leq a_{1}\leq\cdots\leq a_{n}$, then all zeros of
+  $\sum a_{k}z^{k}$ satisfy $|z|\leq 1$.  Such theorems confining
+  polynomial zeros to specified regions are used in stability analysis
+  (Routh--Hurwitz, Schur--Cohn) and digital filter design.
+
+\item \textbf{Grace--Walsh--Szeg\H{o} theorem.}%
+  \index{Grace--Walsh--Szeg\H{o} theorem}%
+  \index{apolarity}%
+  \index{multilinear algebra!polarisation}%
+  If $p(z_{1},\ldots,z_{n})$ is a symmetric multilinear form and
+  $q(z)$ is apolar to $p$, then every circular domain containing a zero
+  of $q$ contains a zero of $p$.  This deep result in the geometry of
+  polynomials generalises many classical zero-location theorems.
+
+\item \textbf{Brunn--Minkowski for complex sets.}%
+  \index{Brunn--Minkowski inequality!complex}%
+  \index{Minkowski sum}%
+  \index{convex geometry}%
+  For compact sets $A,B\subset\mathbb{C}$, the Minkowski sum
+  $A+B=\{a+b:a\in A,b\in B\}$ satisfies
+  $\mathrm{area}(A+B)^{1/2}\geq\mathrm{area}(A)^{1/2}+\mathrm{area}(B)^{1/2}$
+  (the 2D Brunn--Minkowski inequality).  This bounds the ``spread'' of
+  eigenvalue sets under addition of matrices and connects to free
+  probability theory.
+
+\item \textbf{Potential theory and transfinite diameter.}%
+  \index{transfinite diameter}%
+  \index{logarithmic capacity}%
+  \index{Chebyshev constant}%
+  For a compact set $K\subset\mathbb{C}$, the transfinite diameter
+  $d_{\infty}(K)=\lim(\max\prod_{i<j}|z_{i}-z_{j}|^{2/[n(n-1)]})$
+  equals the logarithmic capacity, which governs the rate of polynomial
+  approximation on~$K$ (Bernstein--Walsh theorem).  Inequalities for
+  products of distances between complex points underlie this theory.
+\end{enumerate}

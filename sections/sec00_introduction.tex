@@ -1,0 +1,1265 @@
+%% ============================================================
+%% 0  Introduction
+%% ============================================================
+\section{0\quad Introduction}
+
+\subsection{0.1\quad Finite Sums}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.11\quad Progressions}
+
+Arithmetic and geometric progressions---the simplest closed-form sums---underpin
+an extraordinary range of applications whenever discrete accumulation or
+repeated multiplication is modelled.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quantum harmonic oscillator partition function.}%
+  \index{partition function!quantum harmonic oscillator}%
+  \index{geometric series!partition function}%
+  \index{quantum harmonic oscillator}%
+  \index{Planck distribution}%
+  The canonical partition function of a quantum harmonic oscillator is
+  the geometric series
+  \[
+    Z = \sum_{n=0}^{\infty} e^{-\beta\hbar\omega(n+1/2)}
+      = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}},
+  \]
+  from which the Planck distribution, zero-point energy, and
+  the entire thermodynamics of lattice vibrations (phonons) follow
+  directly \cite{Pathria2011}.
+
+\item \textbf{Signal processing and the Shannon sampling kernel.}%
+  \index{Shannon sampling theorem}%
+  \index{Dirichlet kernel}%
+  \index{signal processing!sampling}%
+  \index{discrete Fourier transform}%
+  The finite geometric sum
+  $\sum_{k=0}^{N-1}e^{i k\theta}=(1-e^{iN\theta})/(1-e^{i\theta})$
+  gives the Dirichlet kernel, which controls spectral leakage in the
+  discrete Fourier transform and appears in the proof of the Shannon
+  sampling theorem.
+
+\item \textbf{Geometric optics and thin-film interference.}%
+  \index{thin-film interference}%
+  \index{Fabry--P\'erot interferometer}%
+  \index{geometric series!optics}%
+  Each partial reflection in a Fabry--P\'{e}rot cavity contributes a
+  factor~$r^{2}e^{i\delta}$; the total transmitted amplitude is a
+  geometric series whose sum gives the Airy function describing the
+  interference fringes used in laser cavity design and spectroscopy.
+
+\item \textbf{Discrete compounding and present value.}%
+  \index{present value!geometric series}%
+  \index{annuity}%
+  \index{financial mathematics}%
+  The present value of an annuity paying~$C$ for~$n$ periods at rate~$r$
+  is $C\,(1-(1+r)^{-n})/r$, a geometric sum.  This formula is the
+  foundation of bond pricing, mortgage amortisation, and discounted cash
+  flow analysis.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Analytic continuation and regularisation of divergent series.}%
+  \index{analytic continuation!geometric series}%
+  \index{zeta regularisation}%
+  \index{Ramanujan summation}%
+  The geometric series $\sum_{n=0}^{\infty}x^{n}=1/(1-x)$ for $|x|<1$
+  provides the prototype for analytic continuation: evaluating the
+  right-hand side at $x=-1$ gives $1/2$, matching the Abel/Ces\`{a}ro
+  sum $1-1+1-1+\cdots=1/2$, which underlies zeta-regularised sums in
+  physics.
+
+\item \textbf{$p$-adic absolute value and non-archimedean analysis.}%
+  \index{p-adic@$p$-adic numbers}%
+  \index{non-archimedean analysis}%
+  \index{Hensel's lemma}%
+  Over the $p$-adic numbers $\mathbb{Q}_p$, the geometric series
+  $\sum p^n$ converges to $1/(1-p)$, illustrating that convergence
+  depends on the chosen absolute value.  This is the entry point to
+  $p$-adic analysis and Hensel's lemma.
+
+\item \textbf{Fractal geometry and self-similarity.}%
+  \index{fractal!self-similarity}%
+  \index{Hausdorff dimension}%
+  \index{Cantor set}%
+  The total length removed in constructing the Cantor set is the
+  geometric series $\sum_{k=0}^{\infty}2^k/3^{k+1}=1$, while the
+  Hausdorff dimension $\log 2/\log 3$ comes from the scaling ratio
+  of the geometric progression of covering intervals.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.12\quad Sums of powers of natural numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Bernoulli numbers and the Casimir effect.}%
+  \index{Bernoulli numbers!power sums}%
+  \index{Casimir effect!zeta regularisation}%
+  \index{zeta function!negative integers}%
+  \index{Faulhaber's formula}%
+  Faulhaber's formula expresses $\sum_{k=1}^{n}k^{p}$ as a polynomial
+  in~$n$ with Bernoulli number coefficients.  The analytic continuation
+  $\zeta(-p)=(-1)^{p}B_{p+1}/(p+1)$ relates these sums to the Riemann
+  zeta function at negative integers, which appears in the zeta-regularised
+  Casimir energy between conducting plates \cite{Elizalde1995}.
+
+\item \textbf{Euler--Maclaurin summation in lattice simulations.}%
+  \index{Euler--Maclaurin formula}%
+  \index{lattice QCD}%
+  \index{numerical integration!trapezoidal rule}%
+  \index{lattice sums}%
+  The Euler--Maclaurin formula bridges discrete sums and integrals:
+  $\sum_{k=a}^{b}f(k)=\int_{a}^{b}f(x)\,dx+\tfrac{1}{2}[f(a)+f(b)]
+  +\sum_{j=1}^{p}\frac{B_{2j}}{(2j)!}[f^{(2j-1)}(b)-f^{(2j-1)}(a)]
+  +R_{p}$.
+  This controls discretisation error in lattice QCD, numerical quadrature,
+  and Madelung-constant calculations for crystal lattices.
+
+\item \textbf{Debye model and low-temperature specific heat.}%
+  \index{Debye model!power sums}%
+  \index{specific heat!low temperature}%
+  \index{phonon density of states}%
+  In the Debye model, the phonon contribution to specific heat at low
+  temperature involves sums $\sum n^{2}e^{-n}$ which, via
+  Euler--Maclaurin or direct evaluation, lead to the $T^{3}$ law and the
+  Debye function $D_{n}(x)=\frac{n}{x^{n}}\int_{0}^{x}\frac{t^{n}}{e^{t}-1}\,dt$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Todd class and the Hirzebruch--Riemann--Roch theorem.}%
+  \index{Todd class}%
+  \index{Hirzebruch--Riemann--Roch theorem}%
+  \index{algebraic topology!Todd genus}%
+  The generating function $x/(1-e^{-x})=\sum_{k=0}^{\infty}(-1)^{k}B_{k}x^{k}/k!$
+  defines the Todd class in algebraic topology.  The Hirzebruch--Riemann--Roch
+  theorem computes the Euler characteristic of coherent sheaves on smooth
+  projective varieties as an integral of the Todd class---Bernoulli numbers
+  encode the topology of complex manifolds.
+
+\item \textbf{Umbral calculus and finite operator methods.}%
+  \index{umbral calculus}%
+  \index{finite differences}%
+  \index{Bernoulli polynomials!umbral calculus}%
+  In the umbral calculus, $B^{n}$ is formally replaced by $B_{n}$
+  (the $n$-th Bernoulli number), turning the identity
+  $(B+1)^{n}=B^{n}$ into the recurrence for Bernoulli numbers.
+  This technique extends to Appell polynomials and Sheffer sequences,
+  providing a systematic framework for finite-difference identities.
+
+\item \textbf{Analytic number theory: Euler--Maclaurin and $\zeta(s)$.}%
+  \index{Riemann zeta function!Euler--Maclaurin computation}%
+  \index{analytic continuation!Riemann zeta}%
+  The Euler--Maclaurin formula applied to $f(x)=x^{-s}$ provides
+  both the analytic continuation of $\zeta(s)$ to $\mathrm{Re}(s)>-2p$
+  and efficient numerical computation of $\zeta(s)$ on the critical
+  strip, as used in verification of the Riemann Hypothesis for
+  trillions of zeros.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.13\quad Sums of reciprocals of natural numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Harmonic numbers and the coupon collector problem.}%
+  \index{harmonic numbers!coupon collector}%
+  \index{coupon collector problem}%
+  \index{statistical mechanics!information}%
+  The expected number of trials to collect all~$n$ distinct types is
+  $nH_{n}=n\sum_{k=1}^{n}1/k\sim n\ln n$, where $H_{n}$ is the $n$-th
+  harmonic number.  This arises in sampling theory, randomised algorithms,
+  and the statistical mechanics of site-occupation models.
+
+\item \textbf{Renormalisation group logarithms.}%
+  \index{renormalisation group!logarithms}%
+  \index{harmonic numbers!perturbation theory}%
+  \index{QCD!anomalous dimensions}%
+  In perturbative quantum field theory, harmonic sums
+  $S_{1}(n)=\sum_{k=1}^{n}1/k$ and their nested generalisations appear
+  as Mellin-space representations of splitting functions governing parton
+  evolution in QCD \cite{Vermaseren1999}.
+
+\item \textbf{Diffusion on networks.}%
+  \index{random walk!expected return time}%
+  \index{resistance distance}%
+  \index{graph Laplacian}%
+  The expected commute time between nodes $i$ and $j$ on a graph is
+  proportional to the effective resistance, which for certain lattices
+  involves partial harmonic sums.  The divergence of $H_{n}$ reflects
+  the recurrence of the one-dimensional random walk.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler--Mascheroni constant.}%
+  \index{Euler--Mascheroni constant!definition}%
+  \index{harmonic numbers!asymptotic expansion}%
+  \index{Stieltjes constants}%
+  $\gamma=\lim_{n\to\infty}(H_{n}-\ln n)=0.57721\ldots$ is one of the
+  fundamental constants of analysis.  It appears as the constant term in
+  the Laurent expansion $\zeta(s)=1/(s-1)+\gamma+O(s-1)$ and generates
+  the Stieltjes constants $\gamma_{k}$.
+
+\item \textbf{Digamma function at positive integers.}%
+  \index{digamma function!at integers}%
+  \index{partial fractions!series summation}%
+  The identity $\psi(n+1)=-\gamma+H_{n}$ connects the harmonic numbers
+  to the digamma function, enabling the closed-form evaluation of any
+  convergent series $\sum P(n)/Q(n)$ with rational terms via partial
+  fractions (cf.\ G\&R~6.46).
+
+\item \textbf{Mertens' theorems and prime distribution.}%
+  \index{Mertens' theorems}%
+  \index{prime numbers!sum of reciprocals}%
+  $\sum_{p\leq x}1/p=\ln\ln x+M+O(1/\ln x)$, where $M$ is the
+  Meissel--Mertens constant.  The divergence of the sum of prime
+  reciprocals (Euler, 1737) was the first result connecting harmonic-type
+  sums to the distribution of primes.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.14\quad Sums of products of reciprocals of natural numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Nested harmonic sums in higher-order QCD.}%
+  \index{harmonic sums!nested}%
+  \index{DGLAP splitting functions}%
+  \index{QCD!higher-order corrections}%
+  Products of reciprocals generate nested sums
+  $S_{a,b,\ldots}(n)=\sum_{k=1}^{n}k^{-a}S_{b,\ldots}(k-1)$,
+  which appear at two-loop and three-loop order in DGLAP splitting
+  functions for deep inelastic scattering \cite{Vermaseren1999}.
+
+\item \textbf{Perturbation theory in quantum mechanics.}%
+  \index{perturbation theory!second order}%
+  \index{energy denominators}%
+  Second-order energy corrections
+  $E_{n}^{(2)}=\sum_{m\neq n}|V_{mn}|^{2}/(E_{n}^{(0)}-E_{m}^{(0)})$
+  produce sums of products of reciprocals when the unperturbed spectrum
+  is harmonic or Coulombic, evaluated using partial-fraction identities
+  from G\&R~0.14.
+
+\item \textbf{Correlation functions in statistical mechanics.}%
+  \index{correlation function!cumulant expansion}%
+  \index{cluster expansion}%
+  \index{virial coefficients}%
+  Cluster and virial expansions express thermodynamic quantities as sums
+  over products of pairwise interactions, leading to products of reciprocal
+  powers when the interaction has power-law form.  The combinatorial
+  structure mirrors that of multiple zeta values.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Multiple zeta values.}%
+  \index{multiple zeta values}%
+  \index{Zagier conjecture}%
+  \index{Kontsevich integrals}%
+  The multiple zeta values
+  $\zeta(s_{1},\ldots,s_{k})=\sum_{n_{1}>\cdots>n_{k}\geq 1}
+  n_{1}^{-s_{1}}\cdots n_{k}^{-s_{k}}$ generalise products of
+  reciprocal sums.  They satisfy algebraic relations (stuffle and
+  shuffle products) and appear in Kontsevich integrals, knot invariants,
+  and periods of mixed Tate motives.
+
+\item \textbf{Partial fraction decomposition.}%
+  \index{partial fractions!Heaviside method}%
+  \index{rational function integration}%
+  Products of reciprocals $1/[n(n+1)\cdots(n+k)]$ are the discrete
+  analogues of partial fractions, evaluated by telescoping.  This is the
+  discrete prototype for the Heaviside cover-up method used in integration
+  of rational functions (Section~2.1).
+
+\item \textbf{Stirling numbers and combinatorial identities.}%
+  \index{Stirling numbers!harmonic number identities}%
+  \index{combinatorial identities}%
+  Products of reciprocals arise in the expansion
+  $\binom{x}{n}=\sum_{k}s(n,k)x^{k}/n!$, where $s(n,k)$ are Stirling
+  numbers of the first kind.  Identities for sums of products of
+  reciprocals underpin the theory of finite differences and the calculus
+  of factorial powers.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.15\quad Sums of the binomial coefficients}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Lattice paths and random walks.}%
+  \index{random walk!lattice paths}%
+  \index{binomial coefficients!lattice paths}%
+  \index{diffusion!discrete}%
+  \index{polymer physics!random walk models}%
+  The number of paths of length~$n$ on $\mathbb{Z}^{d}$ returning to the
+  origin is $\binom{n}{n/2}^{d}$ (suitably interpreted).  Binomial
+  coefficient sums control the probability of return and the mean-square
+  displacement $\langle r^{2}\rangle=n$ in discrete diffusion, with
+  applications to polymer physics and Brownian motion.
+
+\item \textbf{Catalan numbers and Dyck paths.}%
+  \index{Catalan numbers}%
+  \index{Dyck paths}%
+  \index{parenthesisation}%
+  \index{quantum gravity!planar maps}%
+  $C_{n}=\binom{2n}{n}/(n+1)$ counts Dyck paths, non-crossing
+  partitions, and planar binary trees.  In theoretical physics, Catalan
+  numbers enumerate planar Feynman diagrams and triangulations of
+  polygons relevant to $2d$ quantum gravity \cite{DiFrancesco1995}.
+
+\item \textbf{Entropy of the binomial distribution.}%
+  \index{binomial distribution!entropy}%
+  \index{Stirling's approximation!binomial coefficient}%
+  \index{information theory!binary entropy}%
+  Using Stirling's approximation, $\ln\binom{n}{k}\approx nH(k/n)$
+  where $H(p)=-p\ln p-(1-p)\ln(1-p)$ is the binary entropy.
+  This asymptotic identity underlies the method of types in information
+  theory and the derivation of the microcanonical ensemble in
+  statistical mechanics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Vandermonde's identity and hypergeometric foundations.}%
+  \index{Vandermonde's identity}%
+  \index{hypergeometric series!Chu--Vandermonde}%
+  \index{Chu--Vandermonde identity}%
+  The Chu--Vandermonde identity
+  $\sum_{k}\binom{m}{k}\binom{n}{p-k}=\binom{m+n}{p}$ is equivalent
+  to the evaluation ${}_2F_1(-n,b;c;1)=(c-b)_n/(c)_n$, the simplest
+  non-trivial hypergeometric identity and the starting point for the
+  Wilf--Zeilberger method of automatic proof.
+
+\item \textbf{Central binomial coefficients and $\pi$.}%
+  \index{central binomial coefficient}%
+  \index{pi@$\pi$!series involving binomial coefficients}%
+  \index{Ramanujan series!for $1/\pi$}%
+  The asymptotic $\binom{2n}{n}\sim 4^{n}/\sqrt{\pi n}$ connects
+  binomial sums to~$\pi$.  Ramanujan-type series
+  $1/\pi=\sum_{n=0}^{\infty}\binom{2n}{n}^{3}a_{n}/b^{n}$ converge
+  extremely rapidly and are used in modern record computations of~$\pi$.
+
+\item \textbf{Generating functions and the binomial transform.}%
+  \index{generating functions!binomial coefficients}%
+  \index{binomial transform}%
+  \index{Euler transform}%
+  The binomial transform $b_{n}=\sum_{k=0}^{n}\binom{n}{k}a_{k}$
+  is an involution on sequences, related to the Euler transform for
+  accelerating alternating series.  It connects the ordinary and
+  exponential generating functions via the Borel correspondence.
+\end{enumerate}
+
+\subsection{0.2\quad Numerical Series and Infinite Products}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.21\quad The convergence of numerical series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Perturbation series and asymptotic convergence.}%
+  \index{perturbation series!asymptotic}%
+  \index{QED!perturbation series}%
+  \index{Dyson's argument}%
+  \index{Borel summability}%
+  Most perturbation series in quantum field theory are asymptotic
+  (divergent) rather than convergent.  Dyson's argument (1952) shows
+  that the QED perturbation series has zero radius of convergence,
+  yet its partial sums give predictions accurate to $10^{-12}$.
+  Borel summability and resurgence theory provide rigorous meaning to
+  such series.
+
+\item \textbf{Convergence of lattice sums (Madelung constants).}%
+  \index{Madelung constant}%
+  \index{lattice sums!conditional convergence}%
+  \index{Ewald summation}%
+  The electrostatic energy of an ionic crystal involves the conditionally
+  convergent Madelung sum $\sum'q_{j}/r_{j}$.  The order of summation
+  matters: the Ewald summation technique splits the series into rapidly
+  convergent parts in real and reciprocal space.
+
+\item \textbf{Renormalisation and removal of divergences.}%
+  \index{renormalisation!divergent series}%
+  \index{ultraviolet divergence}%
+  \index{infrared divergence}%
+  In QFT, loop integrals produce divergent series that must be
+  regularised (dimensional, cutoff, zeta) and renormalised.
+  Understanding the convergence properties of the regulated series
+  is essential for extracting finite physical predictions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Absolute vs.\ conditional convergence.}%
+  \index{conditional convergence}%
+  \index{absolute convergence}%
+  \index{Riemann rearrangement theorem}%
+  The Riemann rearrangement theorem states that a conditionally convergent
+  series can be rearranged to converge to any prescribed value.
+  This motivates the distinction between absolute and conditional
+  convergence, crucial for justifying term-by-term operations on series.
+
+\item \textbf{Banach space completeness.}%
+  \index{Banach space!completeness}%
+  \index{Cauchy sequences}%
+  \index{absolute convergence!completeness criterion}%
+  A normed space is complete (Banach) if and only if every absolutely
+  convergent series converges.  This characterisation is the basis for
+  proving completeness of $L^{p}$ spaces, $C[a,b]$, and other function
+  spaces central to analysis and PDE theory.
+
+\item \textbf{Summability methods.}%
+  \index{summability methods}%
+  \index{Ces\`aro summation}%
+  \index{Abel summation}%
+  Ces\`{a}ro, Abel, and Borel summation extend the notion of convergence
+  to assign values to divergent series.  A regular summability method
+  (Silverman--Toeplitz theorem) must assign the usual sum to any
+  convergent series, ensuring consistency.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.22\quad Convergence tests}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Convergence of partition functions.}%
+  \index{partition function!convergence}%
+  \index{Hagedorn temperature}%
+  \index{string theory!Hagedorn temperature}%
+  The ratio test applied to $Z=\sum_{n}g(n)e^{-\beta E_{n}}$ determines
+  the radius of convergence in $\beta$; the Hagedorn temperature in
+  string theory is the value where the exponential growth of states
+  overcomes the Boltzmann suppression and $Z$ diverges.
+
+\item \textbf{Radius of convergence of virial expansions.}%
+  \index{virial expansion!convergence}%
+  \index{equation of state}%
+  \index{Lee--Yang theorem}%
+  The virial expansion $P/k_{B}T=\rho+B_{2}\rho^{2}+B_{3}\rho^{3}+\cdots$
+  has a finite radius of convergence related to the closest singularity
+  in the complex fugacity plane (Lee--Yang theorem).  The ratio and root
+  tests estimate where the equation of state breaks down.
+
+\item \textbf{Convergence of multipole expansions.}%
+  \index{multipole expansion!convergence}%
+  \index{electrostatics!multipole}%
+  The multipole expansion of a potential
+  $\phi(\mathbf{r})=\sum_{\ell=0}^{\infty}A_{\ell}r^{-(\ell+1)}P_{\ell}(\cos\theta)$
+  converges for $r>r_{\max}$ (the radius of the smallest enclosing
+  sphere).  The comparison test with a geometric series establishes the
+  convergence rate.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cauchy's root test and the Cauchy--Hadamard theorem.}%
+  \index{root test}%
+  \index{Cauchy--Hadamard theorem}%
+  \index{radius of convergence}%
+  The radius of convergence $R=1/\limsup|a_{n}|^{1/n}$ (Cauchy--Hadamard)
+  generalises the root test to power series and is the basis for
+  determining domains of analyticity of complex functions.
+
+\item \textbf{Kummer's test and the hypergeometric series.}%
+  \index{Kummer's test}%
+  \index{hypergeometric series!convergence}%
+  \index{Gauss's test}%
+  For the hypergeometric series ${}_2F_1(a,b;c;1)$, Gauss showed
+  convergence if and only if $\mathrm{Re}(c-a-b)>0$.  Kummer's and
+  Raabe's tests handle the borderline cases and extend to generalised
+  hypergeometric series ${}_pF_q$.
+
+\item \textbf{Condensation test and number-theoretic series.}%
+  \index{Cauchy condensation test}%
+  \index{prime number series}%
+  Cauchy's condensation test reduces $\sum f(n)$ to $\sum 2^{n}f(2^{n})$,
+  providing quick proofs that $\sum 1/n$ diverges while
+  $\sum 1/(n\ln^{2}n)$ converges.  These techniques extend to
+  Dirichlet series and the convergence abscissa of $L$-functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.23--0.24\quad Examples of numerical series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Basel problem and quantum field theory.}%
+  \index{Basel problem}%
+  \index{zeta function!$\zeta(2)$}%
+  \index{Casimir effect!one dimension}%
+  Euler's result $\sum_{n=1}^{\infty}1/n^{2}=\pi^{2}/6$ ($=\zeta(2)$)
+  appears in the one-dimensional Casimir energy calculation and in the
+  blackbody radiation formula.  More generally, $\zeta(2k)$ gives rational
+  multiples of $\pi^{2k}$ via Bernoulli numbers.
+
+\item \textbf{Leibniz series and the Dirichlet beta function.}%
+  \index{Leibniz series}%
+  \index{Dirichlet beta function}%
+  \index{Catalan's constant}%
+  The alternating series $1-1/3+1/5-\cdots=\pi/4$ is $\beta(1)$, where
+  $\beta(s)=\sum_{n=0}^{\infty}(-1)^{n}(2n+1)^{-s}$ is the Dirichlet
+  beta function.  The value $\beta(2)=G$ (Catalan's constant) appears in
+  combinatorics, hyperbolic geometry, and the Green's function of the
+  two-dimensional lattice.
+
+\item \textbf{Ap\'ery's constant and electron anomalous magnetic moment.}%
+  \index{Ap\'ery's constant}%
+  \index{zeta function!$\zeta(3)$}%
+  \index{anomalous magnetic moment!electron}%
+  $\zeta(3)=1.20205\ldots$ appears in the three-loop QED correction to
+  the electron $g-2$ and in the free energy of the three-dimensional
+  Ising model.  Ap\'{e}ry's 1978 proof that $\zeta(3)$ is irrational
+  remains one of the landmarks of 20th-century number theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler's evaluation of $\zeta(2k)$.}%
+  \index{Riemann zeta function!even integer values}%
+  \index{Bernoulli numbers!$\zeta(2k)$}%
+  $\zeta(2k)=(-1)^{k+1}(2\pi)^{2k}B_{2k}/[2(2k)!]$, connecting
+  the series $\sum n^{-2k}$ to Bernoulli numbers and~$\pi$.  This
+  family of identities is the simplest instance of the general
+  theory of special values of $L$-functions.
+
+\item \textbf{Irrationality and transcendence.}%
+  \index{irrationality!$\zeta(3)$}%
+  \index{transcendence!$\pi$, $e$}%
+  \index{Lindemann--Weierstrass theorem}%
+  Series representations provide irrationality proofs: Fourier's proof
+  that $e$ is irrational uses the rapidly convergent series $e=\sum 1/n!$,
+  while Ap\'{e}ry's proof for $\zeta(3)$ uses accelerated series.  The
+  Lindemann--Weierstrass theorem (proving $\pi$ transcendental) relies on
+  the exponential series.
+
+\item \textbf{Acceleration of convergence.}%
+  \index{series acceleration}%
+  \index{Euler--Maclaurin formula!series acceleration}%
+  \index{Richardson extrapolation}%
+  Slowly convergent series are accelerated by the Euler transform,
+  Richardson extrapolation, or the Levin $u$-transform.  These methods
+  are essential in computational mathematics for evaluating special
+  function values from their defining series.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.25\quad Infinite products}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Euler product for $\zeta(s)$ and the prime number theorem.}%
+  \index{Euler product!Riemann zeta}%
+  \index{prime number theorem}%
+  \index{Riemann hypothesis}%
+  $\zeta(s)=\prod_{p\,\text{prime}}(1-p^{-s})^{-1}$ for $\mathrm{Re}(s)>1$
+  connects the analytic properties of $\zeta$ to the distribution of
+  primes.  The non-vanishing of $\zeta(1+it)$ (an infinite-product
+  property) is the key step in the proof of the prime number theorem.
+
+\item \textbf{Partition function as infinite product.}%
+  \index{partition function!infinite product}%
+  \index{Euler's partition identity}%
+  \index{bosonic string theory!partition function}%
+  \index{Dedekind eta function}%
+  The generating function for integer partitions is
+  $\prod_{n=1}^{\infty}(1-q^{n})^{-1}=\sum_{n=0}^{\infty}p(n)q^{n}$,
+  related to the Dedekind eta function $\eta(\tau)=q^{1/24}\prod(1-q^{n})$.
+  In bosonic string theory, $1/\eta(\tau)^{24}$ gives the one-loop
+  partition function.
+
+\item \textbf{Weierstrass factorisation and spectral determinants.}%
+  \index{Weierstrass factorisation}%
+  \index{spectral determinant}%
+  \index{functional determinant!infinite product}%
+  Spectral determinants $\det(\Delta-\lambda)=\prod_{n}(\lambda_{n}-\lambda)$
+  are infinite products over eigenvalues.  Regularised via zeta functions,
+  they compute path-integral measures in quantum mechanics and one-loop
+  partition functions in QFT.
+
+\item \textbf{Pentagonal number theorem and combinatorics.}%
+  \index{pentagonal number theorem}%
+  \index{Euler's pentagonal theorem}%
+  \index{partition function!pentagonal}%
+  Euler's pentagonal number theorem
+  $\prod_{n=1}^{\infty}(1-q^{n})=\sum_{k=-\infty}^{\infty}(-1)^{k}q^{k(3k-1)/2}$
+  is a prototype for Jacobi's triple product and Macdonald identities,
+  which appear in affine Lie algebra character formulas.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Weierstrass product theorem.}%
+  \index{Weierstrass product theorem}%
+  \index{entire functions!canonical product}%
+  \index{genus (entire function)}%
+  Every entire function with prescribed zeros $\{a_{n}\}$ can be written as
+  $e^{g(z)}\prod E_{p}(z/a_{n})$ with canonical factors $E_{p}$.  This
+  theorem is the starting point for the Hadamard factorisation theorem
+  and the theory of entire functions of finite order.
+
+\item \textbf{Jacobi triple product.}%
+  \index{Jacobi triple product}%
+  \index{theta functions!product formula}%
+  \index{modular forms}%
+  $\sum_{n=-\infty}^{\infty}z^{n}q^{n^{2}}=\prod_{n=1}^{\infty}(1-q^{2n})(1+zq^{2n-1})(1+z^{-1}q^{2n-1})$
+  connects theta-function series to infinite products and is foundational
+  for the theory of modular forms, elliptic functions, and combinatorial
+  identities.
+
+\item \textbf{Blaschke products and Hardy spaces.}%
+  \index{Blaschke product}%
+  \index{Hardy spaces}%
+  \index{inner functions}%
+  A Blaschke product $B(z)=\prod(z-a_{n})/(1-\bar{a}_{n}z)$ converges
+  in the unit disc whenever $\sum(1-|a_{n}|)<\infty$.  These are the
+  inner functions in Hardy space $H^{2}$, and the factorisation
+  $f=B\cdot S\cdot F$ (Blaschke, singular inner, outer) is the structure
+  theorem for bounded analytic functions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.26\quad Examples of infinite products}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Virasoro characters and modular invariance.}%
+  \index{Virasoro algebra!characters}%
+  \index{modular invariance}%
+  \index{conformal field theory!partition function}%
+  Characters of Virasoro algebra representations take the form
+  $\chi(q)=q^{h-c/24}\prod_{n=1}^{\infty}(1-q^{n})^{-1}$,
+  and modular invariance of the partition function
+  $Z=\sum|\chi_{i}|^{2}$ constrains the spectrum of $2d$ conformal
+  field theories.
+
+\item \textbf{Wallis product and quantum tunnelling.}%
+  \index{Wallis product}%
+  \index{quantum tunnelling!WKB}%
+  $\pi/2=\prod_{n=1}^{\infty}4n^{2}/(4n^{2}-1)$ (Wallis, 1655) is the
+  simplest infinite product for~$\pi$.  Its structure appears in WKB
+  connection formulas for quantum tunnelling through multiple barriers,
+  where products of transmission coefficients accumulate.
+
+\item \textbf{Dielectric function as infinite product.}%
+  \index{dielectric function!plasma}%
+  \index{Drude model}%
+  The frequency-dependent dielectric function of a plasma with multiple
+  resonances can be written as a product over poles and zeros,
+  $\varepsilon(\omega)=\varepsilon_{\infty}\prod(\omega^{2}-\omega_{L,j}^{2})/(\omega^{2}-\omega_{T,j}^{2})$
+  (Lyddane--Sachs--Teller relation), directly using infinite-product
+  representations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler's sine product and $\zeta(2k)$.}%
+  \index{Euler's sine product}%
+  \index{Riemann zeta function!via sine product}%
+  $\sin(\pi z)/(\pi z)=\prod_{n=1}^{\infty}(1-z^{2}/n^{2})$ gives
+  $\zeta(2k)$ by expanding $\ln\sin(\pi z)$ and comparing coefficients
+  with Newton's identities relating power sums to elementary symmetric
+  functions.
+
+\item \textbf{Gamma function reciprocal.}%
+  \index{gamma function!Weierstrass product}%
+  \index{entire functions!order one}%
+  $1/\Gamma(z)=ze^{\gamma z}\prod_{n=1}^{\infty}(1+z/n)e^{-z/n}$
+  exhibits $1/\Gamma$ as an entire function of order~1 and genus~1.
+  This product is the prototype for understanding the growth and zero
+  distribution of entire functions.
+
+\item \textbf{Pochhammer symbols and rising factorials.}%
+  \index{Pochhammer symbol}%
+  \index{rising factorial}%
+  \index{hypergeometric series!Pochhammer}%
+  The Pochhammer symbol $(a)_{n}=a(a+1)\cdots(a+n-1)=\Gamma(a+n)/\Gamma(a)$
+  is a finite product that forms the building blocks of hypergeometric
+  series.  Infinite products of ratios of Pochhammer symbols arise in
+  Ramanujan-type product formulas for special constants.
+\end{enumerate}
+
+\subsection{0.3\quad Functional Series}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.30\quad Definitions and theorems}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Uniform convergence and interchange of limits.}%
+  \index{uniform convergence}%
+  \index{interchange of limits}%
+  \index{thermodynamic limit!interchange}%
+  Physicists routinely interchange sums, integrals, and derivatives.
+  Uniform convergence (Weierstrass $M$-test) is the standard criterion
+  justifying these operations.  In statistical mechanics, the interchange
+  $\lim_{N\to\infty}\sum=\int$ in the thermodynamic limit requires
+  careful convergence analysis.
+
+\item \textbf{Normal modes and eigenfunction expansions.}%
+  \index{normal modes}%
+  \index{eigenfunction expansion}%
+  \index{Sturm--Liouville theory}%
+  Every solution of a linear PDE (wave equation, heat equation,
+  Schr\"{o}dinger equation) on a bounded domain expands in eigenfunctions
+  of the associated Sturm--Liouville operator.  Convergence theorems
+  (pointwise, $L^{2}$, uniform) determine when the expansion faithfully
+  represents the solution.
+
+\item \textbf{Born series in scattering theory.}%
+  \index{Born series}%
+  \index{scattering theory!Born approximation}%
+  \index{Neumann series}%
+  The Born series $\psi=\psi_{0}+G_{0}V\psi_{0}+G_{0}VG_{0}V\psi_{0}+\cdots$
+  is a Neumann series for the resolvent $(1-G_{0}V)^{-1}$.  It converges
+  when $\|G_{0}V\|<1$ (weak potential), and its radius of convergence
+  determines the breakdown of perturbative scattering theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Weierstrass approximation theorem.}%
+  \index{Weierstrass approximation theorem}%
+  \index{Stone--Weierstrass theorem}%
+  \index{Bernstein polynomials}%
+  Every continuous function on $[a,b]$ is the uniform limit of
+  polynomials.  The constructive proof via Bernstein polynomials
+  produces an explicit functional series.  The Stone--Weierstrass
+  generalisation applies to any separating subalgebra of $C(X)$.
+
+\item \textbf{Runge's theorem and rational approximation.}%
+  \index{Runge's theorem}%
+  \index{rational approximation}%
+  \index{Pad\'e approximants}%
+  Every function holomorphic on a compact set $K\subset\mathbb{C}$
+  with connected complement is a uniform limit of polynomials (Runge).
+  Pad\'{e} approximants give optimal rational function series that often
+  converge beyond the disc of convergence of the Taylor series.
+
+\item \textbf{Equicontinuity and the Arzel\`a--Ascoli theorem.}%
+  \index{Arzel\`a--Ascoli theorem}%
+  \index{equicontinuity}%
+  \index{compactness!in function spaces}%
+  The Arzel\`{a}--Ascoli theorem characterises compact subsets of
+  $C[a,b]$: bounded and equicontinuous families have convergent
+  subsequences.  This underpins existence proofs for ODEs (Peano's
+  theorem) and the direct method in the calculus of variations.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.31\quad Power series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Taylor expansion and linearisation.}%
+  \index{Taylor expansion!linearisation}%
+  \index{small oscillations}%
+  \index{harmonic approximation}%
+  Nearly every physical theory begins with a Taylor expansion:
+  $V(x)\approx V(x_{0})+\tfrac{1}{2}V''(x_{0})(x-x_{0})^{2}$ gives the
+  harmonic approximation for small oscillations.  Higher-order terms
+  yield anharmonic corrections, treated perturbatively.
+
+\item \textbf{Generating functions in statistical mechanics.}%
+  \index{generating functions!statistical mechanics}%
+  \index{grand canonical ensemble}%
+  \index{fugacity expansion}%
+  The grand partition function $\Xi(z,T)=\sum_{N=0}^{\infty}z^{N}Z_{N}(T)$
+  is a power series in the fugacity~$z$, whose radius of convergence
+  determines the phase structure (Lee--Yang theory).
+
+\item \textbf{Multipole and virial expansions.}%
+  \index{multipole expansion!power series}%
+  \index{virial expansion}%
+  \index{equation of state!power series}%
+  Both the multipole expansion of electrostatic potentials (in $1/r$)
+  and the virial expansion of the equation of state (in density~$\rho$)
+  are power series whose coefficients encode the physics of interactions
+  at successive orders.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Analytic functions and the identity theorem.}%
+  \index{analytic functions!identity theorem}%
+  \index{identity theorem}%
+  \index{analytic continuation!uniqueness}%
+  A function analytic on a connected domain is uniquely determined by its
+  Taylor coefficients at any point.  The identity theorem---if two analytic
+  functions agree on a set with an accumulation point, they are
+  identical---is the foundation for analytic continuation.
+
+\item \textbf{Radius of convergence and singularity analysis.}%
+  \index{radius of convergence!singularity}%
+  \index{Pringsheim's theorem}%
+  \index{analytic combinatorics!transfer theorems}%
+  By Pringsheim's theorem, a power series with non-negative coefficients
+  has a singularity at $z=R$ (its radius of convergence).  In analytic
+  combinatorics, the nature of this singularity (pole, branch point,
+  essential) determines the asymptotic growth of the coefficients via
+  transfer theorems \cite{FlajoletSedgewick2009}.
+
+\item \textbf{Formal power series and algebraic combinatorics.}%
+  \index{formal power series}%
+  \index{algebraic combinatorics}%
+  \index{composition of series}%
+  The ring of formal power series $\mathbb{Q}[[x]]$ has rich algebraic
+  structure: composition, inversion (Lagrange), and the plethystic
+  exponential.  Formal series enumerate combinatorial objects (trees,
+  graphs, permutations) without convergence concerns.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.32\quad Fourier series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Heat equation and Fourier's original problem.}%
+  \index{heat equation!Fourier series solution}%
+  \index{Fourier, Joseph!heat conduction}%
+  \index{thermal diffusion}%
+  Fourier's 1807 solution of the heat equation
+  $\partial_{t}u=\kappa\partial_{x}^{2}u$ on $[0,L]$ as
+  $u(x,t)=\sum a_{n}\sin(n\pi x/L)\,e^{-\kappa(n\pi/L)^{2}t}$
+  was the historical origin of Fourier series and one of the most
+  consequential developments in mathematical physics.
+
+\item \textbf{Quantum mechanics on a circle.}%
+  \index{quantum mechanics!particle on a circle}%
+  \index{Bloch's theorem}%
+  \index{band structure}%
+  \index{Brillouin zone}%
+  The energy eigenstates of a particle on a ring are $e^{in\theta}$,
+  and any wave function expands as a Fourier series.  In solid-state
+  physics, Bloch's theorem says that eigenstates in a periodic potential
+  have the form $u_{k}(x)e^{ikx}$ with $u_{k}$ periodic---i.e., a
+  Fourier series modulated by a plane wave.
+
+\item \textbf{Signal processing and spectral analysis.}%
+  \index{spectral analysis}%
+  \index{signal processing!Fourier series}%
+  \index{Gibbs phenomenon}%
+  Fourier series decompose periodic signals into harmonics.  The Gibbs
+  phenomenon (9\% overshoot at discontinuities) limits the accuracy of
+  truncated Fourier representations and motivates windowing techniques
+  and sigma-factor smoothing in digital signal processing.
+
+\item \textbf{Crystallography and diffraction.}%
+  \index{crystallography!structure factor}%
+  \index{X-ray diffraction}%
+  \index{Bragg's law}%
+  The electron density in a crystal is a three-dimensional Fourier series
+  $\rho(\mathbf{r})=\sum_{\mathbf{G}}F_{\mathbf{G}}e^{i\mathbf{G}\cdot\mathbf{r}}$
+  summed over reciprocal lattice vectors.  The Fourier coefficients
+  $F_{\mathbf{G}}$ (structure factors) are measured in X-ray diffraction
+  experiments.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{$L^{2}$ convergence and Parseval's theorem.}%
+  \index{Parseval's theorem}%
+  \index{L2 convergence@$L^2$ convergence}%
+  \index{orthonormal basis}%
+  $\sum|c_{n}|^{2}=\frac{1}{2\pi}\int_{0}^{2\pi}|f(\theta)|^{2}\,d\theta$
+  (Parseval) expresses the fact that $\{e^{in\theta}\}$ is an orthonormal
+  basis for $L^{2}([0,2\pi])$.  This is the prototype for all Hilbert
+  space expansions.
+
+\item \textbf{Pointwise convergence and Carleson's theorem.}%
+  \index{Carleson's theorem}%
+  \index{pointwise convergence!Fourier series}%
+  \index{Dirichlet kernel}%
+  Carleson's theorem (1966) shows that the Fourier series of an
+  $L^{2}$ function converges pointwise almost everywhere---settling a
+  question open since Fourier.  The proof introduced techniques
+  (time-frequency analysis) that became foundational in harmonic analysis.
+
+\item \textbf{Equidistribution and Weyl's theorem.}%
+  \index{equidistribution}%
+  \index{Weyl's equidistribution theorem}%
+  \index{ergodic theory}%
+  Weyl's criterion: the sequence $\{n\alpha\}$ is equidistributed
+  mod~1 if and only if $\sum e^{2\pi i n\alpha}/N\to 0$ for all
+  non-zero frequencies.  This connects Fourier analysis to ergodic
+  theory and Diophantine approximation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.33\quad Asymptotic series}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{WKB approximation in quantum mechanics.}%
+  \index{WKB approximation}%
+  \index{semiclassical mechanics!WKB}%
+  \index{Bohr--Sommerfeld quantisation}%
+  \index{tunnelling (quantum)!WKB}%
+  The WKB series $\psi(x)\sim\exp\bigl[\frac{i}{\hbar}\sum_{n=0}^{\infty}
+  \hbar^{n}S_{n}(x)\bigr]$ is asymptotic in $\hbar\to 0$: the leading
+  terms give the Bohr--Sommerfeld quantisation condition and tunnelling
+  rates, while the series diverges if summed to all orders.
+
+\item \textbf{Stirling's series and statistical mechanics.}%
+  \index{Stirling's series}%
+  \index{statistical mechanics!Stirling}%
+  \index{combinatorial approximation}%
+  $\ln\Gamma(z)\sim z\ln z-z-\frac{1}{2}\ln z+\frac{1}{2}\ln(2\pi)
+  +\sum_{k=1}^{\infty}\frac{B_{2k}}{2k(2k-1)z^{2k-1}}$
+  is the prototypical asymptotic series.  Though divergent, truncating
+  optimally gives exponentially small error (superasymptotic
+  approximation), essential for high-precision thermodynamic calculations.
+
+\item \textbf{Resurgence and non-perturbative physics.}%
+  \index{resurgence}%
+  \index{trans-series}%
+  \index{instanton}%
+  \index{non-perturbative effects}%
+  Resurgence theory shows that the large-order behaviour of an asymptotic
+  series encodes non-perturbative information (instantons, renormalons).
+  The divergent perturbation series is the ``tip of the iceberg'' of a
+  trans-series combining all saddle-point contributions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Poincar\'e's definition and Watson's lemma.}%
+  \index{Poincar\'e asymptotic expansion}%
+  \index{Watson's lemma}%
+  \index{Laplace method}%
+  Poincar\'{e} (1886) formalised asymptotic series:
+  $f(z)\sim\sum a_{n}z^{-n}$ means
+  $z^{N}[f(z)-\sum_{n=0}^{N-1}a_{n}z^{-n}]\to a_{N}$.
+  Watson's lemma derives such expansions for Laplace-type integrals
+  $\int_{0}^{\infty}t^{\lambda-1}e^{-zt}\phi(t)\,dt$.
+
+\item \textbf{Stokes phenomenon and exponential asymptotics.}%
+  \index{Stokes phenomenon}%
+  \index{exponential asymptotics}%
+  \index{connection formulas}%
+  As $\arg z$ varies, subdominant exponentials switch on/off across Stokes
+  lines, changing the form of the asymptotic expansion.  The Stokes
+  phenomenon explains the different connection formulas for Airy, Bessel,
+  and other special functions in different sectors of the complex plane.
+
+\item \textbf{Borel summation.}%
+  \index{Borel summation}%
+  \index{Borel transform}%
+  \index{Gevrey class}%
+  The Borel transform $\hat{f}(\zeta)=\sum a_{n}\zeta^{n}/n!$ often
+  converges even when $\sum a_{n}z^{-n}$ diverges.  If $\hat{f}$ has
+  no singularities on $[0,\infty)$, the Laplace integral
+  $\int_{0}^{\infty}\hat{f}(\zeta)e^{-z\zeta}\,d\zeta$ recovers the
+  original function---this is Borel summation, applicable to Gevrey-class
+  asymptotic series.
+\end{enumerate}
+
+\subsection{0.4\quad Certain Formulas from Differential Calculus}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.41\quad Differentiation of a definite integral with respect to a parameter}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Feynman's trick (differentiation under the integral sign).}%
+  \index{Feynman's trick}%
+  \index{differentiation under the integral sign}%
+  \index{Leibniz integral rule}%
+  \index{parameter integrals}%
+  Feynman's favourite technique: introduce a parameter into an integral,
+  differentiate to simplify, then integrate back.  For example,
+  $\int_{0}^{\infty}\frac{\sin x}{x}\,dx=\frac{\pi}{2}$ follows from
+  differentiating $I(\alpha)=\int_{0}^{\infty}\frac{\sin x}{x}e^{-\alpha x}\,dx$
+  with respect to~$\alpha$.
+
+\item \textbf{Schwinger parametrisation in QFT.}%
+  \index{Schwinger parametrisation}%
+  \index{Feynman parameters}%
+  \index{parameter differentiation!QFT}%
+  Differentiating $\int_{0}^{\infty}\alpha^{n-1}e^{-\alpha m^{2}}\,d\alpha
+  =\Gamma(n)/m^{2n}$ with respect to~$m^{2}$ generates the higher-power
+  propagators needed in multi-loop calculations.  This is the
+  parameter-differentiation approach to Feynman integrals.
+
+\item \textbf{Hellmann--Feynman theorem.}%
+  \index{Hellmann--Feynman theorem}%
+  \index{quantum chemistry!forces}%
+  \index{Born--Oppenheimer approximation}%
+  If $H(\lambda)|\psi(\lambda)\rangle=E(\lambda)|\psi(\lambda)\rangle$,
+  then $\partial E/\partial\lambda=\langle\psi|\partial H/\partial\lambda|\psi\rangle$.
+  This is differentiation of the ``integral'' $E=\langle\psi|H|\psi\rangle$
+  with respect to a parameter, and it gives forces on nuclei in the
+  Born--Oppenheimer framework of quantum chemistry.
+
+\item \textbf{Thermodynamic Maxwell relations.}%
+  \index{Maxwell relations}%
+  \index{thermodynamic potentials}%
+  \index{equation of state!parameter derivatives}%
+  Differentiating thermodynamic potentials (which are integrals over phase
+  space or partition-function derivatives) with respect to parameters
+  $(T,P,V,\mu)$ yields the Maxwell relations and equations of state.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Leibniz integral rule with variable limits.}%
+  \index{Leibniz integral rule!variable limits}%
+  \index{fundamental theorem of calculus!generalised}%
+  $\frac{d}{d\alpha}\int_{a(\alpha)}^{b(\alpha)}f(x,\alpha)\,dx
+  =\int_{a}^{b}\partial_{\alpha}f\,dx+f(b,\alpha)b'(\alpha)
+  -f(a,\alpha)a'(\alpha)$.
+  This generalises the fundamental theorem of calculus and is the key
+  tool for deriving variational equations and optimal control conditions.
+
+\item \textbf{Dominated convergence and measure-theoretic formulation.}%
+  \index{dominated convergence theorem}%
+  \index{measure theory!parameter integrals}%
+  The rigorous justification for differentiation under the integral sign
+  is Lebesgue's dominated convergence theorem: if $|\partial_{\alpha}f|$
+  is bounded by an integrable function uniformly in~$\alpha$, the
+  interchange is valid.
+
+\item \textbf{Green's functions and parameter dependence.}%
+  \index{Green's function!parameter dependence}%
+  \index{resolvent!derivative}%
+  The resolvent $R(\lambda)=(A-\lambda)^{-1}=\int(A-\lambda)^{-1}$ of an
+  operator satisfies $R'(\lambda)=R(\lambda)^{2}$, a parameter
+  differentiation identity.  This is used throughout spectral theory and
+  perturbation theory for linear operators.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.42\quad The nth derivative of a product (Leibniz's rule)}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Moyal star product and deformation quantisation.}%
+  \index{Moyal star product}%
+  \index{deformation quantisation}%
+  \index{Wigner function}%
+  \index{phase space!quantum mechanics}%
+  The Moyal star product $f\star g=\sum_{n=0}^{\infty}\frac{1}{n!}
+  \bigl(\frac{i\hbar}{2}\bigr)^{n}\{f,g\}_{n}$, where $\{f,g\}_{n}$
+  involves $n$-th order bidifferential operators (a generalised Leibniz
+  rule), implements quantum mechanics on phase space.  The Wigner function
+  $W(x,p)$ evolves under the Moyal bracket $\{f,g\}_{\star}=
+  (f\star g-g\star f)/(i\hbar)$.
+
+\item \textbf{Pseudodifferential operators and quantum observables.}%
+  \index{pseudodifferential operators}%
+  \index{symbol calculus}%
+  \index{Weyl quantisation}%
+  The composition of pseudodifferential operators (the symbol calculus)
+  uses the Leibniz rule for the product of symbols:
+  $\sigma(AB)\sim\sum_{\alpha}\frac{1}{\alpha!}\partial_{\xi}^{\alpha}
+  \sigma_{A}\,D_{x}^{\alpha}\sigma_{B}$.
+  This asymptotic expansion underlies Weyl quantisation and microlocal
+  analysis.
+
+\item \textbf{Higher-order perturbation theory.}%
+  \index{perturbation theory!higher order}%
+  \index{Rayleigh--Schr\"odinger perturbation theory}%
+  \index{Leibniz rule!perturbation series}%
+  In Rayleigh--Schr\"{o}dinger perturbation theory, the $n$-th order
+  correction to $\langle\psi|H|\psi\rangle$ requires derivatives of
+  products of wavefunctions and operators.  The general Leibniz rule
+  organises these corrections systematically.
+
+\item \textbf{Electromagnetic multipole radiation.}%
+  \index{multipole radiation}%
+  \index{electromagnetic radiation!multipole}%
+  \index{spherical harmonics!derivatives}%
+  The $n$-th derivative of the product $r^{\ell}Y_{\ell}^{m}(\theta,\phi)
+  \cdot f(r)$ (using Leibniz's rule) generates the coupling between
+  angular momentum channels in multipole radiation theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Leibniz rule for fractional derivatives.}%
+  \index{fractional calculus!Leibniz rule}%
+  \index{Riemann--Liouville derivative}%
+  \index{fractional Leibniz rule}%
+  The Leibniz rule extends to fractional derivatives:
+  $D^{\alpha}(fg)=\sum_{k=0}^{\infty}\binom{\alpha}{k}D^{\alpha-k}f\,D^{k}g$,
+  where $\binom{\alpha}{k}=\Gamma(\alpha+1)/[\Gamma(k+1)\Gamma(\alpha-k+1)]$.
+  This is fundamental in fractional calculus and anomalous diffusion models.
+
+\item \textbf{Fa\`a di Bruno via Leibniz iteration.}%
+  \index{Fa\`a di Bruno's formula!via Leibniz}%
+  \index{Bell polynomials!Leibniz connection}%
+  Iterating the Leibniz rule for $(fg)^{(n)}$ with specific choices of
+  $f$ and~$g$ recovers Fa\`{a} di Bruno's formula for the $n$-th
+  derivative of a composite function, expressed via partial Bell
+  polynomials $B_{n,k}$.
+
+\item \textbf{D-module theory and differential algebra.}%
+  \index{D-module theory}%
+  \index{differential algebra}%
+  \index{Weyl algebra}%
+  The Leibniz rule $[D,f]=f'$ (where $D=d/dx$) defines the Weyl
+  algebra $A_{1}=\mathbb{C}\langle x,D\rangle/(Dx-xD-1)$, the
+  simplest non-commutative ring.  $D$-module theory studies systems of
+  linear PDEs through this algebraic structure.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.43\quad The nth derivative of a composite function}
+
+Fa\`{a} di Bruno's formula gives the $n$-th derivative of a composite
+function $f(g(x))$ in terms of the derivatives of $f$ and~$g$:
+\[
+  \frac{d^{n}}{dx^{n}}f(g(x))
+  =\sum_{k=1}^{n}f^{(k)}(g(x))\,B_{n,k}\!\bigl(g'(x),g''(x),\ldots,
+  g^{(n-k+1)}(x)\bigr),
+\]
+where $B_{n,k}$ are partial Bell polynomials.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Connes--Kreimer Hopf algebra of renormalisation.}%
+  \index{Connes--Kreimer Hopf algebra}%
+  \index{renormalisation!combinatorial}%
+  \index{Hopf algebra!Feynman diagrams}%
+  \index{BPHZ renormalisation}%
+  The combinatorial structure of BPHZ renormalisation is encoded in
+  a Hopf algebra on rooted trees (Connes--Kreimer, 1998), whose
+  antipode (the counterterm map) is governed by Fa\`{a} di Bruno's
+  formula \cite{ConnesKreimer2000}.  The composition of counterterms
+  at nested subdivergences follows the Bell-polynomial structure exactly.
+
+\item \textbf{Cumulant expansion in statistical mechanics.}%
+  \index{cumulants!expansion}%
+  \index{linked cluster theorem}%
+  \index{moment-cumulant relation}%
+  The moment--cumulant relation
+  $\langle e^{tX}\rangle=\exp[\sum_{n=1}^{\infty}\kappa_{n}t^{n}/n!]$
+  is inverted by Fa\`{a} di Bruno's formula:
+  $\kappa_{n}=\sum(-1)^{k-1}(k-1)!\,B_{n,k}(\mu_{1}',\ldots,\mu_{n-k+1}')$.
+  This expansion is the mathematical basis for the linked cluster theorem
+  in statistical mechanics and quantum field theory.
+
+\item \textbf{Normal ordering and Wick's theorem.}%
+  \index{normal ordering}%
+  \index{Wick's theorem}%
+  \index{creation and annihilation operators}%
+  In quantum optics and QFT, expressing a function of the field operator
+  in normal-ordered form requires repeated use of the chain rule for
+  composites.  The combinatorics of contractions in Wick's theorem
+  mirror the Bell-polynomial structure of Fa\`{a} di Bruno's formula.
+
+\item \textbf{Formal group laws in algebraic topology.}%
+  \index{formal group laws}%
+  \index{cobordism theory}%
+  \index{Lazard ring}%
+  A formal group law $F(x,y)=x+y+\sum a_{ij}x^{i}y^{j}$ on a ring~$R$
+  satisfies associativity conditions that, when composed and differentiated,
+  require Fa\`{a} di Bruno's formula.  The universal formal group law
+  (Lazard ring) classifies complex cobordism.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bell polynomials and combinatorial species.}%
+  \index{Bell polynomials}%
+  \index{combinatorial species}%
+  \index{set partitions!Bell polynomials}%
+  The partial Bell polynomials $B_{n,k}$ count the number of ways to
+  partition $\{1,\ldots,n\}$ into $k$ non-empty blocks with weights.
+  They unify many combinatorial identities and are central to the theory
+  of species of structures.
+
+\item \textbf{Lagrange inversion formula.}%
+  \index{Lagrange inversion formula}%
+  \index{implicit function theorem!formal}%
+  \index{tree enumeration}%
+  The Lagrange inversion formula for the compositional inverse
+  $f^{-1}$ is closely related to Fa\`{a} di Bruno's formula via
+  the identity $[z^{n}]f^{-1}(z)=\frac{1}{n}[w^{n-1}](w/f(w))^{n}$.
+  This enumerates labelled rooted trees (Cayley's formula $n^{n-1}$).
+
+\item \textbf{Umbral calculus and Sheffer sequences.}%
+  \index{Sheffer sequences}%
+  \index{umbral calculus!Fa\`a di Bruno}%
+  Fa\`{a} di Bruno's formula provides the connection constants between
+  different Sheffer polynomial sequences.  The group of formal
+  diffeomorphisms under composition is the Fa\`{a} di Bruno group,
+  whose Lie algebra is related to the Virasoro algebra.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{0.44\quad Integration by substitution}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Change of variables in path integrals.}%
+  \index{path integral!change of variables}%
+  \index{Jacobian!path integral}%
+  \index{Faddeev--Popov procedure}%
+  In functional integrals, the substitution
+  $\mathcal{D}\phi'=|\det(\delta\phi'/\delta\phi)|\,\mathcal{D}\phi$
+  introduces the Jacobian determinant.  The Faddeev--Popov ghost fields
+  in gauge theory arise precisely from this determinant when fixing a
+  gauge \cite{FaddeevPopov1967}.
+
+\item \textbf{Canonical transformations in Hamiltonian mechanics.}%
+  \index{canonical transformation}%
+  \index{Hamiltonian mechanics}%
+  \index{generating function!canonical}%
+  \index{action-angle variables}%
+  Canonical transformations $(q,p)\to(Q,P)$ preserve the symplectic
+  form $dp\wedge dq=dP\wedge dQ$.  The integral $\oint p\,dq$ (action
+  variable) is invariant under substitution, leading to action-angle
+  variables that simplify integrable systems.
+
+\item \textbf{Dimensional analysis and scaling.}%
+  \index{dimensional analysis}%
+  \index{Buckingham $\Pi$ theorem}%
+  \index{renormalisation group!scaling}%
+  The substitution $x=\lambda\tilde{x}$ (rescaling) in integrals
+  reveals scaling dimensions.  The Buckingham~$\Pi$ theorem formalises
+  this, and the renormalisation group extends scaling analysis to
+  quantum field theory.
+
+\item \textbf{Coordinate transformations in general relativity.}%
+  \index{general relativity!coordinate transformations}%
+  \index{metric tensor!transformation}%
+  \index{covariance!general}%
+  The principle of general covariance requires that physical laws be
+  invariant under arbitrary coordinate substitutions.  The transformation
+  of the volume element $\sqrt{|g|}\,d^{4}x$ under diffeomorphisms
+  is the curved-spacetime version of the substitution rule.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Change of variables formula in $\mathbb{R}^{n}$.}%
+  \index{change of variables!multiple integrals}%
+  \index{Jacobian determinant}%
+  \index{diffeomorphism}%
+  For a $C^{1}$ diffeomorphism $\phi\colon U\to V$,
+  $\int_{V}f(y)\,dy=\int_{U}f(\phi(x))\,|\det D\phi(x)|\,dx$.
+  The absolute value of the Jacobian determinant measures local volume
+  distortion.
+
+\item \textbf{Euler substitutions for algebraic integrands.}%
+  \index{Euler substitutions}%
+  \index{algebraic integrands}%
+  \index{rationalisation!of integrals}%
+  The three Euler substitutions rationalise integrals containing
+  $\sqrt{ax^{2}+bx+c}$, reducing them to integrals of rational functions
+  (Section~2.2).  These are the prototypes for the uniformisation of
+  algebraic curves.
+
+\item \textbf{Measure-theoretic change of variables.}%
+  \index{change of variables!measure theory}%
+  \index{pushforward measure}%
+  \index{Radon--Nikodym theorem}%
+  The pushforward of a measure $\mu$ under a measurable map $T$ gives
+  $\int f\,d(T_{*}\mu)=\int(f\circ T)\,d\mu$.  When $T$ is
+  differentiable, the Radon--Nikodym derivative is $|\det DT|$, unifying
+  the substitution rule with the abstract theory of measures.
+\end{enumerate}

@@ -1,0 +1,1199 @@
+%% Section 14 — Determinants
+\section{14\quad Determinants}
+
+\subsection{14.11\quad Expansion of Second- and Third-Order Determinants}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.111\quad Second-order determinants}
+
+The determinant of a $2\times 2$ matrix $A=\bigl(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\bigr)$ is $\det A=ad-bc$.
+This is the signed area of the parallelogram spanned by the column vectors and is the simplest instance of the alternating multilinear form that defines all determinants.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Torque and cross products in two dimensions.}%
+  \index{torque!two-dimensional}%
+  \index{cross product!two-dimensional determinant}%
+  \index{angular momentum!two-dimensional}%
+  The two-dimensional cross product $\mathbf{u}\times\mathbf{v}=u_{1}v_{2}-u_{2}v_{1}=\det(u_{i},v_{j})$ gives the signed area of the parallelogram spanned by $\mathbf{u}$ and $\mathbf{v}$.
+  In planar mechanics, the torque about the origin due to a force $\mathbf{F}$ applied at position $\mathbf{r}$ is $\tau=\det\bigl(\begin{smallmatrix}r_{1}&F_{1}\\r_{2}&F_{2}\end{smallmatrix}\bigr)$, and its sign determines the sense of rotation.
+  This connection between determinants and oriented areas pervades classical and quantum angular momentum theory.
+
+\item \textbf{Jones matrices in polarisation optics.}%
+  \index{Jones matrix}%
+  \index{polarisation optics!Jones calculus}%
+  \index{optical elements!determinant}%
+  \index{birefringence|see{Jones matrix}}%
+  A Jones matrix $J\in\mathrm{GL}(2,\mathbb{C})$ describes the transformation of the polarisation state of coherent light by an optical element.
+  For lossless elements $|\det J|=1$, while $|\det J|<1$ indicates absorption.
+  The determinant condition $\det J=e^{i\phi}$ characterises unitary (phase-only) elements such as wave plates.
+  Cascading two elements gives $\det(J_{1}J_{2})=\det J_{1}\det J_{2}$, so the total loss is the product of individual losses.
+
+\item \textbf{Stability of two-dimensional dynamical systems.}%
+  \index{dynamical system!two-dimensional stability}%
+  \index{trace-determinant plane}%
+  \index{fixed point classification}%
+  For the linear system $\dot{\mathbf{x}}=A\mathbf{x}$ with $A$ a $2\times 2$ real matrix, the eigenvalues are $\lambda_{\pm}=\frac{1}{2}(\mathrm{tr}\,A\pm\sqrt{(\mathrm{tr}\,A)^{2}-4\det A})$.
+  The trace--determinant plane classifies fixed points: stable nodes ($\det A>0$, $\mathrm{tr}\,A<0$), saddles ($\det A<0$), and spirals ($(\mathrm{tr}\,A)^{2}<4\det A$).
+  This classification is fundamental in nonlinear dynamics near equilibria.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Area of triangles and orientation.}%
+  \index{triangle!signed area}%
+  \index{orientation!determinant}%
+  \index{computational geometry!orientation test}%
+  The signed area of a triangle with vertices $(x_{1},y_{1})$, $(x_{2},y_{2})$, $(x_{3},y_{3})$ is
+  $\tfrac{1}{2}\det\bigl(\begin{smallmatrix}x_{2}-x_{1}&x_{3}-x_{1}\\y_{2}-y_{1}&y_{3}-y_{1}\end{smallmatrix}\bigr)$.
+  The sign determines the orientation (counterclockwise vs.\ clockwise), and the test $\det\gtrless 0$ is the fundamental orientation predicate in computational geometry, used in convex hull algorithms and Delaunay triangulation.
+
+\item \textbf{M\"obius transformations and $\mathrm{PSL}(2,\mathbb{C})$.}%
+  \index{M\"obius transformation}%
+  \index{PSL(2,C)@$\mathrm{PSL}(2,\mathbb{C})$}%
+  \index{fractional linear transformation|see{M\"obius transformation}}%
+  The M\"obius transformation $z\mapsto(az+b)/(cz+d)$ is determined by $\bigl(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\bigr)$ up to scaling.
+  The group of such transformations is $\mathrm{PSL}(2,\mathbb{C})$, the quotient of $2\times 2$ matrices of determinant~$1$ by $\{\pm I\}$.
+  The requirement $ad-bc=1$ ensures invertibility and connects the determinant to conformal geometry of the Riemann sphere.
+
+\item \textbf{Quadratic forms and conic classification.}%
+  \index{conic sections!classification}%
+  \index{quadratic form!discriminant}%
+  \index{discriminant!conic}%
+  The general conic $ax^{2}+2bxy+cy^{2}+dx+ey+f=0$ is classified by $\Delta=\det\bigl(\begin{smallmatrix}a&b\\b&c\end{smallmatrix}\bigr)=ac-b^{2}$: an ellipse when $\Delta>0$, a hyperbola when $\Delta<0$, and a parabola when $\Delta=0$.
+  This discriminant is the simplest invariant of a quadratic form under rotation and is the starting point for the classification of quadrics in higher dimensions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.112\quad Third-order determinants}
+
+The determinant of a $3\times 3$ matrix can be expanded by the rule of Sarrus or by cofactor expansion along any row or column.
+For $A=(a_{ij})$, the explicit formula is
+$\det A=a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31})$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Triple scalar product and volume.}%
+  \index{triple scalar product}%
+  \index{volume!parallelepiped}%
+  \index{crystallography!unit cell volume}%
+  The volume of the parallelepiped spanned by vectors $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$ is $V=|\mathbf{a}\cdot(\mathbf{b}\times\mathbf{c})|=|\det(\mathbf{a},\mathbf{b},\mathbf{c})|$.
+  In crystallography, the unit cell volume is $V=|\mathbf{a}_{1}\cdot(\mathbf{a}_{2}\times\mathbf{a}_{3})|$ where $\mathbf{a}_{i}$ are the lattice vectors.
+  The reciprocal lattice vectors are $\mathbf{b}_{i}=\epsilon_{ijk}\mathbf{a}_{j}\times\mathbf{a}_{k}/V$, with each component involving a $2\times 2$ subdeterminant.
+
+\item \textbf{Levi-Civita symbol and pseudotensors.}%
+  \index{Levi-Civita symbol}%
+  \index{pseudotensor}%
+  \index{determinant!Levi-Civita relation}%
+  \index{cross product!Levi-Civita}%
+  The Levi-Civita symbol $\epsilon_{ijk}$ is the determinant of the $3\times 3$ matrix whose columns are $\mathbf{e}_{i}$, $\mathbf{e}_{j}$, $\mathbf{e}_{k}$.
+  The identity $\epsilon_{ijk}\epsilon_{ilm}=\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}$ reduces products of cross products to dot products, and the determinant of a $3\times 3$ matrix is $\det A=\epsilon_{ijk}a_{1i}a_{2j}a_{3k}$.
+  This connection makes the Levi-Civita symbol the algebraic engine of three-dimensional vector analysis.
+
+\item \textbf{Moment of inertia tensor eigenvalues.}%
+  \index{moment of inertia tensor}%
+  \index{principal axes!rigid body}%
+  \index{characteristic polynomial!3x3}%
+  The principal moments of inertia of a rigid body are the roots of the characteristic polynomial $\det(I-\lambda\mathbf{1})=0$, a cubic equation.
+  The coefficients of this cubic are the three elementary symmetric functions of the eigenvalues: $\mathrm{tr}\,I$, the sum of $2\times 2$ principal minors, and $\det I$.
+  Cardano's formula or trigonometric solution of the depressed cubic then yields the principal moments explicitly.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cramer's rule for $3\times 3$ systems.}%
+  \index{Cramer's rule!3x3}%
+  \index{linear system!small}%
+  \index{explicit solution formula}%
+  For the system $A\mathbf{x}=\mathbf{b}$ with $A$ a $3\times 3$ matrix, Cramer's rule gives $x_{i}=\det A_{i}/\det A$, where $A_{i}$ is $A$ with column~$i$ replaced by $\mathbf{b}$.
+  While numerically inferior to Gaussian elimination for large systems, the explicit formula is invaluable for symbolic computation and for proving existence and uniqueness when $\det A\neq 0$.
+
+\item \textbf{Cayley--Hamilton theorem for $3\times 3$ matrices.}%
+  \index{Cayley--Hamilton theorem!3x3}%
+  \index{characteristic polynomial!3x3}%
+  \index{matrix polynomial}%
+  Every $3\times 3$ matrix satisfies its own characteristic equation $A^{3}-(\mathrm{tr}\,A)A^{2}+\tfrac{1}{2}[(\mathrm{tr}\,A)^{2}-\mathrm{tr}(A^{2})]A-(\det A)I=0$.
+  This allows any polynomial in $A$ to be reduced to degree at most~$2$ and provides the matrix inverse $A^{-1}=\frac{1}{\det A}[A^{2}-(\mathrm{tr}\,A)A+\tfrac{1}{2}((\mathrm{tr}\,A)^{2}-\mathrm{tr}(A^{2}))I]$ when $\det A\neq 0$.
+  The Cayley--Hamilton identity is the finite-dimensional prototype of functional calculus.
+
+\item \textbf{The vector triple product identity.}%
+  \index{triple product!vector}%
+  \index{BAC-CAB rule}%
+  \index{Grassmann identity|see{BAC-CAB rule}}%
+  The identity $\mathbf{a}\times(\mathbf{b}\times\mathbf{c})=\mathbf{b}(\mathbf{a}\cdot\mathbf{c})-\mathbf{c}(\mathbf{a}\cdot\mathbf{b})$ (the BAC-CAB rule) is proved by expanding both sides using determinants.
+  It is equivalent to the contraction identity for the Levi-Civita symbol and is used extensively in electromagnetic theory when simplifying expressions involving curls of curls, such as $\nabla\times(\nabla\times\mathbf{E})$.
+\end{enumerate}
+
+
+\subsection{14.12\quad Basic Properties}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.121\quad Multilinearity and alternating property}
+
+The determinant is the unique (up to normalisation) alternating multilinear function of the columns (or rows) of a matrix: it is linear in each column separately, changes sign when two columns are swapped, and satisfies $\det I=1$.
+These three axioms suffice to derive every other property.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Slater determinants and the Pauli exclusion principle.}%
+  \index{Slater determinant}%
+  \index{Pauli exclusion principle}%
+  \index{fermion!antisymmetry}%
+  \index{Hartree--Fock method|see{Slater determinant}}%
+  The antisymmetric many-body wavefunction for $N$ fermions in orbitals $\phi_{1},\ldots,\phi_{N}$ is the Slater determinant
+  \[
+    \Psi(x_{1},\ldots,x_{N})=\frac{1}{\sqrt{N!}}
+    \det\bigl[\phi_{i}(x_{j})\bigr]_{i,j=1}^{N}.
+  \]
+  The alternating property ensures $\Psi=0$ when any two particles occupy the same state (Pauli exclusion).
+  The Hartree--Fock method approximates the ground state of an $N$-electron system by the single Slater determinant that minimises the energy functional.
+  Configuration interaction and coupled-cluster methods systematically improve upon this by including linear combinations of multiple Slater determinants.
+
+\item \textbf{Flux quantisation in superconductors.}%
+  \index{flux quantisation}%
+  \index{superconductor!order parameter}%
+  \index{Ginzburg--Landau theory}%
+  In the Ginzburg--Landau theory, the superconducting order parameter transforms under gauge transformations, and the requirement that the many-electron wavefunction (a Slater-like determinant) be single-valued leads to flux quantisation $\Phi=n\Phi_{0}$, where $\Phi_{0}=h/(2e)$ is the magnetic flux quantum.
+  The alternating property of the determinant is essential for maintaining the correct fermionic statistics.
+
+\item \textbf{Exterior algebra and differential forms.}%
+  \index{exterior algebra}%
+  \index{differential forms!wedge product}%
+  \index{wedge product!determinant}%
+  The wedge product $\omega^{1}\wedge\cdots\wedge\omega^{n}$ of $n$ one-forms evaluates on $n$ vectors to give a determinant.
+  The alternating property of determinants becomes the antisymmetry of differential forms, and the multilinearity becomes the tensorial character.
+  This is the mathematical language of electromagnetism (Faraday two-form $F=dA$), thermodynamics (contact forms), and general relativity (volume forms).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Orientation of manifolds.}%
+  \index{orientation!manifold}%
+  \index{volume form!orientation}%
+  \index{orientability!determinant}%
+  A smooth manifold $M$ is orientable if and only if it admits an atlas whose transition functions all have positive-determinant Jacobians.
+  The determinant's alternating property means that reversing the order of two basis vectors changes the sign of the volume form, capturing the notion of ``handedness.''
+  Non-orientable manifolds such as the M\"obius band and Klein bottle fail this condition.
+
+\item \textbf{Leibniz formula and the symmetric group.}%
+  \index{Leibniz formula!determinant}%
+  \index{symmetric group!sign of permutation}%
+  \index{permutation!signature}%
+  The Leibniz formula $\det A=\sum_{\sigma\in S_{n}}\mathrm{sgn}(\sigma)\prod_{i=1}^{n}a_{i,\sigma(i)}$ expresses the determinant as a sum over all $n!$ permutations, weighted by their signs.
+  This formula connects determinants to the representation theory of the symmetric group $S_{n}$ and shows that $\det$ is the character of the one-dimensional sign representation.
+  It also provides the starting point for the combinatorial theory of determinants (path matrices, Lindstr\"om--Gessel--Viennot lemma).
+
+\item \textbf{Characterisation by axioms.}%
+  \index{determinant!axiomatic characterisation}%
+  \index{alternating multilinear form}%
+  \index{uniqueness of determinant}%
+  The determinant is the unique alternating multilinear function $\det\colon(\mathbb{R}^{n})^{n}\to\mathbb{R}$ with $\det(e_{1},\ldots,e_{n})=1$.
+  This axiomatic approach, due to Weierstrass, provides a coordinate-free definition and extends to determinants over commutative rings, where $\det$ is the unique natural transformation $\bigwedge^{n}\to\mathbf{1}$ from the $n$-th exterior power functor to the identity.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.122\quad Multiplicativity}
+
+The product rule $\det(AB)=\det A\cdot\det B$ is the most computationally powerful property of determinants, reducing the determinant of a product to a product of determinants.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Liouville's theorem and phase space volume.}%
+  \index{Liouville's theorem!phase space}%
+  \index{phase space!volume preservation}%
+  \index{Hamiltonian mechanics!symplecticity}%
+  \index{symplectic matrix!determinant}%
+  Hamiltonian time evolution is a canonical (symplectic) transformation with $\det(\partial(q',p')/\partial(q,p))=1$.
+  By multiplicativity, composing time steps preserves this unit determinant, so phase space volume is conserved (Liouville's theorem).
+  This is the classical foundation of the ergodic hypothesis and of statistical mechanics.
+
+\item \textbf{Renormalisation group and functional determinants.}%
+  \index{renormalisation group}%
+  \index{functional determinant}%
+  \index{path integral!Gaussian}%
+  In quantum field theory, one-loop contributions are Gaussian functional integrals yielding $(\det\mathcal{O})^{-1/2}$ for bosonic operators.
+  Under a renormalisation group step that decomposes $\mathcal{O}=\mathcal{O}_{<}\mathcal{O}_{>}$, multiplicativity gives $\det\mathcal{O}=\det\mathcal{O}_{<}\det\mathcal{O}_{>}$, separating high- and low-energy contributions.
+  The anomalous Jacobian $\det(\partial\phi'/\partial\phi)$ under field redefinitions produces the chiral anomaly.
+
+\item \textbf{Transfer matrices in statistical mechanics.}%
+  \index{transfer matrix!statistical mechanics}%
+  \index{partition function!transfer matrix}%
+  \index{Ising model!transfer matrix}%
+  The partition function of the one-dimensional Ising model is $Z=\mathrm{tr}\,T^{N}$, where $T$ is the transfer matrix.
+  The free energy per site in the thermodynamic limit is $f=-k_{B}T\ln\lambda_{\max}$, where $\lambda_{\max}$ is the largest eigenvalue, and $\det T=\lambda_{1}\lambda_{2}$ gives the product of eigenvalues.
+  Multiplicativity $\det(T^{N})=(\det T)^{N}$ ensures consistent normalisation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The group $\mathrm{GL}(n)$ and its subgroups.}%
+  \index{general linear group}%
+  \index{special linear group}%
+  \index{determinant!group homomorphism}%
+  The map $\det\colon\mathrm{GL}(n,\mathbb{F})\to\mathbb{F}^{\times}$ is a group homomorphism by multiplicativity, with kernel $\mathrm{SL}(n,\mathbb{F})$.
+  The first isomorphism theorem gives $\mathrm{GL}(n)/\mathrm{SL}(n)\cong\mathbb{F}^{\times}$.
+  This short exact sequence is the starting point for the theory of algebraic $K$-theory ($K_{1}$ of a ring is the abelianisation of its general linear group).
+
+\item \textbf{Resultants and elimination theory.}%
+  \index{resultant!determinant}%
+  \index{elimination theory}%
+  \index{Sylvester matrix}%
+  The resultant $\mathrm{Res}(f,g)$ of two polynomials $f$ and $g$ is the determinant of the Sylvester matrix.
+  By multiplicativity, $\mathrm{Res}(fg,h)=\mathrm{Res}(f,h)\mathrm{Res}(g,h)$, which is the key to proving that the resultant vanishes if and only if $f$ and $g$ share a common root.
+  This connects determinant theory to algebraic geometry (intersection multiplicity).
+
+\item \textbf{Determinant of block matrices.}%
+  \index{block matrix!determinant}%
+  \index{Schur complement}%
+  \index{block triangular factorisation}%
+  For a block matrix $M=\bigl(\begin{smallmatrix}A&B\\C&D\end{smallmatrix}\bigr)$ with $A$ invertible, $\det M=\det A\cdot\det(D-CA^{-1}B)$, where $D-CA^{-1}B$ is the Schur complement.
+  This follows from multiplicativity applied to the block LU factorisation.
+  The Schur complement formula is ubiquitous in statistics (conditional covariance), control theory (transfer functions), and numerical linear algebra (domain decomposition).
+\end{enumerate}
+
+\subsection{14.13\quad Minors and Cofactors of a Determinant}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.131\quad Minors, cofactors, and cofactor expansion}
+
+The $(i,j)$-minor $M_{ij}$ of an $n\times n$ matrix $A$ is the determinant of the $(n-1)\times(n-1)$ submatrix obtained by deleting row~$i$ and column~$j$.
+The cofactor is $C_{ij}=(-1)^{i+j}M_{ij}$, and the determinant admits the cofactor (Laplace) expansion $\det A=\sum_{j=1}^{n}a_{ij}C_{ij}$ along any row~$i$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Green's functions via matrix inversion.}%
+  \index{Green's function!matrix inversion}%
+  \index{cofactor!inverse matrix}%
+  \index{lattice models!Green's function}%
+  For a tight-binding Hamiltonian $H$ on a lattice, the retarded Green's function is $G(E)=(EI-H)^{-1}$, with matrix elements $(G)_{ij}=C_{ji}/\det(EI-H)$.
+  The cofactors $C_{ji}$ encode the amplitude for propagation from site~$j$ to site~$i$, and the poles of $G(E)$ are the eigenvalues of $H$.
+  Recursive evaluation of minors (decimation) is the basis of the Green's function method for quasi-one-dimensional systems.
+
+\item \textbf{Kirchhoff's matrix tree theorem.}%
+  \index{Kirchhoff's theorem!matrix tree}%
+  \index{spanning tree!determinant}%
+  \index{electrical network!resistance}%
+  \index{graph Laplacian!cofactor}%
+  For an electrical network with graph Laplacian $L$, the number of spanning trees is any cofactor $C_{ii}$ of $L$ (all cofactors are equal since every row and column of $L$ sums to zero).
+  The effective resistance between nodes $i$ and $j$ is $R_{ij}=C_{ij}^{(2)}/C_{11}$, where $C_{ij}^{(2)}$ involves a $2\times 2$ minor.
+  This elegant connection between combinatorics and circuit theory was discovered by Kirchhoff in 1847.
+
+\item \textbf{Sensitivity analysis in control systems.}%
+  \index{control theory!sensitivity}%
+  \index{cofactor!transfer function}%
+  \index{signal flow graph}%
+  In Mason's gain formula for signal flow graphs, the transfer function from input to output is $T=\sum_{k}P_{k}\Delta_{k}/\Delta$, where $\Delta=\det(I-A)$ is the graph determinant and $\Delta_{k}$ is the cofactor obtained by removing loops that touch path~$k$.
+  Each cofactor quantifies the contribution of non-touching feedback loops, providing a systematic sensitivity analysis of the control system.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Adjugate matrix and the inverse.}%
+  \index{adjugate matrix}%
+  \index{inverse matrix!cofactor formula}%
+  \index{classical adjoint|see{adjugate matrix}}%
+  The adjugate (classical adjoint) of $A$ is $\mathrm{adj}(A)=(C_{ji})$, the transpose of the cofactor matrix.
+  The identity $A\,\mathrm{adj}(A)=(\det A)\,I$ gives the inverse $A^{-1}=\mathrm{adj}(A)/\det A$ and is valid over any commutative ring, making it the basis for computing inverses symbolically and for proving that $A$ is invertible if and only if $\det A$ is a unit.
+
+\item \textbf{Jacobi's formula for the derivative of a determinant.}%
+  \index{Jacobi's formula}%
+  \index{determinant!derivative}%
+  \index{matrix calculus!determinant derivative}%
+  Jacobi's formula $\frac{d}{dt}\det A(t)=\mathrm{tr}\bigl(\mathrm{adj}(A)\,\dot{A}\bigr)$ expresses the derivative of a determinant in terms of cofactors.
+  When $A$ is invertible, this simplifies to $\frac{d}{dt}\det A=(\det A)\,\mathrm{tr}(A^{-1}\dot{A})$, which is fundamental in Riemannian geometry ($\frac{d}{dt}\sqrt{\det g}=\frac{1}{2}\sqrt{\det g}\,g^{ij}\dot{g}_{ij}$) and in the study of matrix differential equations.
+
+\item \textbf{Lindstr\"om--Gessel--Viennot lemma.}%
+  \index{Lindstr\"om--Gessel--Viennot lemma}%
+  \index{non-intersecting lattice paths}%
+  \index{combinatorics!determinantal}%
+  The number of families of $n$ non-intersecting lattice paths from sources $\{s_{i}\}$ to sinks $\{t_{j}\}$ is $\det\bigl[e(s_{i},t_{j})\bigr]$, where $e(s,t)$ is the number of paths from $s$ to $t$.
+  This lemma reduces a combinatorial counting problem to a determinant evaluation and is the key tool in the enumeration of plane partitions, Young tableaux, and tilings.
+  The alternating sign in the cofactor expansion implements the inclusion-exclusion over path crossings.
+\end{enumerate}
+
+\subsection{14.14\quad Principal Minors}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.141\quad Principal minors and positive definiteness}
+
+A principal minor of an $n\times n$ matrix $A$ is the determinant of a submatrix obtained by deleting the same set of rows and columns.
+The $k$-th leading principal minor is $\Delta_{k}=\det(a_{ij})_{1\leq i,j\leq k}$.
+Sylvester's criterion states that a symmetric matrix is positive definite if and only if all leading principal minors are positive: $\Delta_{k}>0$ for $k=1,\ldots,n$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Thermodynamic stability conditions.}%
+  \index{thermodynamic stability}%
+  \index{Hessian!free energy}%
+  \index{Le Chatelier's principle}%
+  \index{principal minor!stability}%
+  The conditions for local thermodynamic stability require that the Hessian matrix of the entropy (or free energy) with respect to extensive (or intensive) variables be negative (or positive) definite.
+  By Sylvester's criterion, this reduces to positivity of the leading principal minors of the Hessian: $\partial^{2}F/\partial T^{2}<0$, $\det\bigl(\begin{smallmatrix}\partial^{2}F/\partial T^{2}&\partial^{2}F/\partial T\partial V\\\partial^{2}F/\partial V\partial T&\partial^{2}F/\partial V^{2}\end{smallmatrix}\bigr)>0$, etc.
+  Violation of these conditions signals a phase transition or spinodal decomposition.
+
+\item \textbf{Stability of mechanical equilibria.}%
+  \index{mechanical equilibrium!stability}%
+  \index{potential energy!Hessian}%
+  \index{Sylvester's criterion!mechanics}%
+  A mechanical equilibrium at $\mathbf{q}_{0}$ is stable if the Hessian of the potential energy $V_{ij}=\partial^{2}V/\partial q_{i}\partial q_{j}|_{\mathbf{q}_{0}}$ is positive definite.
+  For a system with $n$ degrees of freedom, checking $n$ leading principal minors via Sylvester's criterion is often simpler than computing all $n$ eigenvalues.
+  Failure of the $k$-th minor identifies the subspace in which the instability first occurs.
+
+\item \textbf{Passivity of multiport networks.}%
+  \index{passive network!principal minors}%
+  \index{impedance matrix!positive real}%
+  \index{multiport network}%
+  A multiport electrical network is passive if and only if its impedance matrix $Z(\omega)$ satisfies $\mathrm{Re}\,Z\geq 0$ (positive semidefinite Hermitian part) for all frequencies $\omega>0$.
+  By the principal minor criterion for positive semidefiniteness, every principal minor of $\mathrm{Re}\,Z(\omega)$ must be non-negative.
+  This provides a hierarchy of necessary conditions that can be checked sequentially, from one-port to multi-port constraints.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Descartes' rule of signs for characteristic polynomials.}%
+  \index{Descartes' rule of signs}%
+  \index{characteristic polynomial!sign pattern}%
+  \index{inertia!principal minors}%
+  The coefficients of the characteristic polynomial $\det(\lambda I-A)=\sum_{k}(-1)^{k}e_{k}\lambda^{n-k}$ are the elementary symmetric polynomials $e_{k}$ of the eigenvalues, which are sums of $k\times k$ principal minors.
+  Descartes' rule applied to the sign pattern of these sums bounds the number of positive and negative eigenvalues.
+  This connects the principal minors to the inertia of the matrix (Sylvester's law).
+
+\item \textbf{Totally positive matrices.}%
+  \index{totally positive matrix}%
+  \index{minor!positivity}%
+  \index{oscillatory matrix}%
+  A matrix is totally positive if every minor (not just principal minors) is non-negative.
+  Totally positive matrices arise in spline theory, combinatorics (Jacobi--Trudi identity), and the theory of P\'olya frequency sequences.
+  The Loewner--Whitney theorem characterises totally positive matrices as products of elementary bidiagonal matrices with positive entries, providing a useful parametrisation.
+
+\item \textbf{Compound matrices and exterior powers.}%
+  \index{compound matrix}%
+  \index{exterior power!matrix}%
+  \index{Cauchy--Binet formula}%
+  The $k$-th compound matrix $C_{k}(A)$ has entries that are all $k\times k$ minors of $A$, indexed by the corresponding row and column index sets.
+  By the Cauchy--Binet formula, $C_{k}(AB)=C_{k}(A)C_{k}(B)$, so the map $A\mapsto C_{k}(A)$ is a group homomorphism.
+  The eigenvalues of $C_{k}(A)$ are all $\binom{n}{k}$ products of $k$ eigenvalues of $A$, connecting principal minors to spectral theory.
+\end{enumerate}
+
+\subsection{14.15\textsuperscript{*}\quad Laplace Expansion of a Determinant}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.151\quad Generalised Laplace expansion}
+
+The generalised Laplace expansion expresses the determinant as a sum over complementary $k\times k$ and $(n-k)\times(n-k)$ minors.
+Choosing a set $S$ of $k$ rows, $\det A=\sum_{T}(-1)^{|S|+|T|}M_{S,T}\,M_{\bar{S},\bar{T}}$, where the sum ranges over all $\binom{n}{k}$ column subsets $T$, and bars denote complements.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Pfaffian and BCS pairing.}%
+  \index{Pfaffian}%
+  \index{BCS theory!Pfaffian}%
+  \index{pairing Hamiltonian}%
+  \index{superconductivity!pairing}%
+  For a $2n\times 2n$ antisymmetric matrix $A$, $\det A=(\mathrm{Pf}\,A)^{2}$, where the Pfaffian $\mathrm{Pf}\,A$ is computed via a Laplace-type expansion over perfect matchings.
+  In BCS theory, the ground-state wavefunction of a superconductor involves a Pfaffian of the pairing matrix.
+  The Pfaffian sign determines the topological invariant of a topological superconductor (Kitaev chain).
+
+\item \textbf{Wick's theorem and Feynman diagrams.}%
+  \index{Wick's theorem}%
+  \index{Feynman diagram!combinatorics}%
+  \index{Gaussian integral!Wick contraction}%
+  Wick's theorem states that the expectation value $\langle\phi_{1}\cdots\phi_{2n}\rangle$ in a free field theory equals the sum over all pairings $\sum\prod\langle\phi_{i}\phi_{j}\rangle$, which is exactly $\mathrm{Pf}(G)$ where $G_{ij}=\langle\phi_{i}\phi_{j}\rangle$ is the propagator matrix.
+  Each pairing corresponds to a Feynman diagram, and the Laplace expansion of the determinant/Pfaffian organises the combinatorics.
+  For fermions, the sign of each Wick contraction is the signature of the corresponding permutation.
+
+\item \textbf{Multi-electron integrals in quantum chemistry.}%
+  \index{multi-electron integral}%
+  \index{quantum chemistry!determinant expansion}%
+  \index{Slater--Condon rules}%
+  The Slater--Condon rules express matrix elements of one- and two-body operators between Slater determinants in terms of one- and two-electron integrals.
+  These rules are derived by Laplace expansion of the overlap determinant between two Slater determinants differing in $k$ orbitals: the matrix element vanishes if $k>2$ (two-body operator) or $k>1$ (one-body operator).
+  This is the computational backbone of configuration interaction methods.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cauchy--Binet formula.}%
+  \index{Cauchy--Binet formula}%
+  \index{rectangular matrix!determinant}%
+  \index{Gram determinant}%
+  For an $m\times n$ matrix $A$ and an $n\times m$ matrix $B$ with $m\leq n$, the Cauchy--Binet formula gives $\det(AB)=\sum_{S}\det(A_{S})\det(B_{S})$, where the sum is over all $\binom{n}{m}$ subsets $S$ of columns of $A$ (rows of $B$).
+  Setting $B=A^{T}$ yields $\det(AA^{T})=\sum_{S}(\det A_{S})^{2}\geq 0$, proving that Gram matrices are positive semidefinite.
+  This formula generalises $\det(AB)=\det A\det B$ to rectangular matrices.
+
+\item \textbf{Pl\"ucker coordinates and Grassmannians.}%
+  \index{Pl\"ucker coordinates}%
+  \index{Grassmannian}%
+  \index{Pl\"ucker relations}%
+  The Pl\"ucker embedding maps a $k$-dimensional subspace $V\subset\mathbb{R}^{n}$, represented by a $k\times n$ matrix of basis vectors, to the vector of all $\binom{n}{k}$ maximal minors (Pl\"ucker coordinates) in projective space.
+  These coordinates satisfy the Pl\"ucker relations, quadratic equations derived from the Laplace expansion.
+  This gives the Grassmannian $\mathrm{Gr}(k,n)$ the structure of a projective variety and is the foundation of the modern theory of scattering amplitudes (amplituhedron).
+
+\item \textbf{Dodgson condensation.}%
+  \index{Dodgson condensation}%
+  \index{determinant!recursive evaluation}%
+  \index{Lewis Carroll identity|see{Dodgson condensation}}%
+  Dodgson (Lewis Carroll) condensation computes $\det A$ recursively via the identity $\det A\cdot\det A_{ij}^{ij}=\det A_{i}^{i}\det A_{j}^{j}-\det A_{i}^{j}\det A_{j}^{i}$, where superscripts and subscripts denote deleted rows and columns.
+  This is a consequence of the Laplace expansion and the Desnanot--Jacobi identity.
+  It provides an $O(n^{3})$ algorithm that is naturally parallelisable, and the intermediate quantities have combinatorial interpretations as weighted sums of non-intersecting lattice paths.
+\end{enumerate}
+
+\subsection{14.16\quad Jacobi's Theorem}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.161\quad Jacobi's theorem on complementary minors}
+
+Jacobi's theorem states that for an invertible matrix $A$, the $(I,J)$-minor of $A^{-1}$ is related to the complementary minor of $A$:
+\[
+  \det\bigl[(A^{-1})_{I,J}\bigr]=(-1)^{|I|+|J|}\frac{\det(A_{\bar{J},\bar{I}})}{\det A},
+\]
+where $\bar{I}$ and $\bar{J}$ are the complementary index sets.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Schur complement and effective Hamiltonians.}%
+  \index{Schur complement!effective Hamiltonian}%
+  \index{L\"owdin partitioning}%
+  \index{downfolding}%
+  L\"owdin partitioning in quantum mechanics writes the effective Hamiltonian for a subspace $P$ as $H_{\mathrm{eff}}=H_{PP}-H_{PQ}(H_{QQ}-E)^{-1}H_{QP}$, which is a Schur complement.
+  Jacobi's theorem relates the determinant of the effective Hamiltonian to the complementary minor of the full resolvent, providing a direct link between the full and reduced spectra.
+  This partitioning is used in electronic structure theory, nuclear shell models, and effective field theories.
+
+\item \textbf{Fluctuation--dissipation and response functions.}%
+  \index{fluctuation--dissipation theorem}%
+  \index{response function!minor}%
+  \index{susceptibility!submatrix}%
+  In linear response theory, the susceptibility matrix $\chi=-\beta(G^{-1})$ relates fluctuations to responses.
+  A submatrix of the susceptibility corresponds, by Jacobi's theorem, to a complementary minor of the correlation matrix $G$, yielding the conditional response when some degrees of freedom are held fixed.
+  This is the matrix analogue of the thermodynamic Maxwell relations.
+
+\item \textbf{Network reduction and Kron reduction.}%
+  \index{Kron reduction}%
+  \index{network reduction!determinant}%
+  \index{power grid!reduced model}%
+  Kron reduction eliminates internal nodes from a network, replacing the full admittance matrix $Y$ by a reduced matrix $Y_{\mathrm{red}}=Y_{PP}-Y_{PQ}Y_{QQ}^{-1}Y_{QP}$ (a Schur complement).
+  By Jacobi's theorem, the determinant of the reduced matrix relates to minors of the original.
+  This technique is standard in power systems analysis, where networks with thousands of buses are reduced to equivalent models at boundary nodes.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Matrix inversion lemma (Woodbury identity).}%
+  \index{Woodbury identity}%
+  \index{matrix inversion lemma}%
+  \index{Sherman--Morrison formula}%
+  The Woodbury identity $(A+UCV)^{-1}=A^{-1}-A^{-1}U(C^{-1}+VA^{-1}U)^{-1}VA^{-1}$ is a consequence of Jacobi's theorem on complementary minors applied to the block matrix $\bigl(\begin{smallmatrix}A&U\\-V&C^{-1}\end{smallmatrix}\bigr)$.
+  The special case of a rank-one update is the Sherman--Morrison formula.
+  These identities are computationally essential when $A$ is large but $C$ is small, enabling $O(n^{2})$ updates instead of $O(n^{3})$ re-inversions.
+
+\item \textbf{Complementary subspaces and duality.}%
+  \index{complementary subspace}%
+  \index{duality!determinant}%
+  \index{Hodge star!algebraic analogue}%
+  Jacobi's theorem provides an algebraic analogue of Hodge duality: the $k$-form data of a linear map (the $k\times k$ minors) determines the $(n-k)$-form data (the complementary minors) up to a sign and the total determinant.
+  This is the matrix-theoretic shadow of the Hodge star operator $\star\colon\bigwedge^{k}V\to\bigwedge^{n-k}V$ and connects determinantal identities to differential geometry.
+
+\item \textbf{Dodgson--Jacobi identity and cluster algebras.}%
+  \index{cluster algebra!determinant}%
+  \index{Desnanot--Jacobi identity}%
+  \index{Pl\"ucker relation!Jacobi}%
+  The Desnanot--Jacobi identity $\det A\cdot\det A_{ij}^{ij}=\det A_{i}^{i}\det A_{j}^{j}-\det A_{i}^{j}\det A_{j}^{i}$ is a special case of Jacobi's theorem on complementary minors.
+  This identity is an exchange relation in the cluster algebra structure on the coordinate ring of the Grassmannian, connecting classical determinantal identities to the modern theory of Fomin and Zelevinsky.
+\end{enumerate}
+
+\subsection{14.17\quad Hadamard's Theorem}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.171\quad Hadamard matrices}
+
+A Hadamard matrix $H_{n}$ is an $n\times n$ matrix with entries $\pm 1$ satisfying $H_{n}H_{n}^{T}=nI$.
+The Hadamard conjecture asserts that $H_{n}$ exists for every $n$ divisible by~$4$ (and for $n=1,2$).
+The simplest construction is the Sylvester (Kronecker product) method: $H_{2^{k}}=H_{2}\otimes H_{2^{k-1}}$ with $H_{2}=\bigl(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\bigr)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Hadamard gate in quantum computing.}%
+  \index{Hadamard gate}%
+  \index{quantum computing!Hadamard}%
+  \index{superposition!quantum}%
+  \index{quantum circuit}%
+  The Hadamard gate $H=\frac{1}{\sqrt{2}}\bigl(\begin{smallmatrix}1&1\\1&-1\end{smallmatrix}\bigr)$ creates an equal superposition $|0\rangle\mapsto(|0\rangle+|1\rangle)/\sqrt{2}$.
+  Applying $H^{\otimes n}$ to $|0\rangle^{\otimes n}$ creates the uniform superposition over all $2^{n}$ computational basis states, the starting step of Grover's search and the quantum Fourier transform.
+  The fact that $H$ is simultaneously a Hadamard matrix (up to normalisation) and a unitary gate is no coincidence: $H_{n}H_{n}^{T}=nI$ becomes $UU^{\dagger}=I$ after dividing by $\sqrt{n}$.
+
+\item \textbf{Walsh--Hadamard transform in signal processing.}%
+  \index{Walsh--Hadamard transform}%
+  \index{signal processing!Walsh functions}%
+  \index{CDMA!Walsh codes}%
+  The Walsh--Hadamard transform $\mathbf{y}=H_{n}\mathbf{x}$ can be computed in $O(n\log n)$ operations using the butterfly structure of the Sylvester construction, analogous to the Cooley--Tukey FFT.
+  In CDMA telecommunications, Walsh codes (rows of $H_{n}$) provide orthogonal spreading sequences.
+  The entries $\pm 1$ ensure constant envelope, desirable for power amplifier linearity.
+
+\item \textbf{Speckle patterns and Hadamard spectroscopy.}%
+  \index{Hadamard spectroscopy}%
+  \index{multiplexing!Hadamard}%
+  \index{Fellgett advantage}%
+  Hadamard transform spectroscopy uses a mask based on a Hadamard matrix row to encode spectral channels.
+  The inverse transform recovers the spectrum from $n$ measurements, each integrating roughly half the channels.
+  The multiplex (Fellgett) advantage gives a $\sqrt{n}$ improvement in signal-to-noise ratio over scanning spectrometers, because each measurement receives signal from $n/2$ channels simultaneously.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Combinatorial designs and error-correcting codes.}%
+  \index{combinatorial design!Hadamard}%
+  \index{error-correcting code!Hadamard}%
+  \index{Reed--Muller code}%
+  From an $n\times n$ Hadamard matrix one constructs a $(2n,n,n/2)$ Hadamard code (first-order Reed--Muller code) by using the rows and their negatives as codewords.
+  This code achieves the Plotkin bound and is the basis of the Reed--Muller family.
+  Hadamard matrices also yield symmetric balanced incomplete block designs (2-designs) with parameters $(4n-1,2n-1,n-1)$.
+
+\item \textbf{Hadamard conjecture and Paley construction.}%
+  \index{Hadamard conjecture}%
+  \index{Paley construction}%
+  \index{quadratic residue!Hadamard}%
+  Paley's construction produces Hadamard matrices of order $q+1$ when $q\equiv 3\pmod{4}$ is a prime power, using the quadratic residue character of $\mathbb{F}_{q}$.
+  The resulting matrix $H=(h_{ij})$ with $h_{ij}=\chi(i-j)$ (Jacobsthal matrix) plus a border of ones satisfies $HH^{T}=(q+1)I$.
+  Despite intensive search, the Hadamard conjecture remains open; the smallest unresolved order is $n=668$.
+
+\item \textbf{Spectral properties and flat polynomials.}%
+  \index{Hadamard matrix!spectral property}%
+  \index{flat polynomial}%
+  \index{Littlewood conjecture}%
+  The rows of a normalised Hadamard matrix $n^{-1/2}H_{n}$ form an orthonormal basis of $\mathbb{R}^{n}$ with all entries of equal absolute value.
+  The existence question is related to the Littlewood conjecture on polynomials with $\pm 1$ coefficients having flat magnitude on the unit circle.
+  The eigenvalues of $H_{n}$ all have absolute value $\sqrt{n}$, making $H_{n}$ a conference matrix when $n$ is even.
+\end{enumerate}
+
+\subsection{14.18\quad Hadamard's Inequality}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.181\quad Hadamard's determinant inequality}
+
+Hadamard's inequality states that for any $n\times n$ matrix $A$ with columns $\mathbf{a}_{1},\ldots,\mathbf{a}_{n}$,
+\[
+  |\det A|\leq\prod_{j=1}^{n}\|\mathbf{a}_{j}\|,
+\]
+with equality if and only if the columns are mutually orthogonal.
+For positive definite matrices with entries $|a_{ij}|\leq 1$, this gives $|\det A|\leq n^{n/2}$ (the Hadamard bound), achieved by Hadamard matrices.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Maximum entropy and covariance determinants.}%
+  \index{maximum entropy!Gaussian}%
+  \index{covariance matrix!determinant bound}%
+  \index{entropy!multivariate Gaussian}%
+  The differential entropy of a multivariate Gaussian with covariance $\Sigma$ is $h=\frac{1}{2}\ln\det(2\pi e\Sigma)$.
+  Hadamard's inequality gives $\det\Sigma\leq\prod\sigma_{ii}^{2}$, with equality when variables are uncorrelated.
+  Thus, among all distributions with given marginal variances, the product of independent Gaussians has the maximum entropy---a result central to information theory and statistical physics.
+
+\item \textbf{MIMO channel capacity.}%
+  \index{MIMO!channel capacity}%
+  \index{channel capacity!determinant}%
+  \index{wireless communications!Hadamard bound}%
+  The capacity of a MIMO (multiple-input multiple-output) wireless channel is $C=\log_{2}\det(I+\frac{\mathrm{SNR}}{n_{t}}HH^{\dagger})$ bits per channel use.
+  Hadamard's inequality shows that capacity is maximised when the columns of $H$ are orthogonal (no inter-antenna interference).
+  This motivates beamforming and precoding strategies that attempt to orthogonalise the effective channel matrix.
+
+\item \textbf{Experimental design and D-optimality.}%
+  \index{D-optimality}%
+  \index{experimental design!determinant}%
+  \index{Fisher information!determinant}%
+  \index{optimal design|see{D-optimality}}%
+  A D-optimal experimental design maximises $\det(X^{T}X)$, where $X$ is the design matrix.
+  By Hadamard's inequality, $\det(X^{T}X)\leq\prod_{j}\|x_{j}\|^{2}$, and the bound is achieved when design columns are orthogonal.
+  This determinantal criterion maximises the volume of the confidence ellipsoid and is equivalent to maximising the determinant of the Fisher information matrix.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Maximum volume simplices.}%
+  \index{simplex!maximum volume}%
+  \index{Hadamard inequality!simplex}%
+  \index{Hadamard bound}%
+  The volume of the simplex with vertices at the origin and at $\mathbf{a}_{1},\ldots,\mathbf{a}_{n}$ is $V=|\det A|/n!$.
+  Hadamard's inequality bounds this volume by the product of edge lengths divided by $n!$.
+  Among all simplices inscribed in the unit cube $[0,1]^{n}$, the maximum volume is achieved when the vertex matrix is (up to affine transformation) a Hadamard matrix, connecting the Hadamard conjecture to discrete geometry.
+
+\item \textbf{Gram determinant and geometric measure.}%
+  \index{Gram determinant!volume}%
+  \index{geometric measure!Gram}%
+  \index{parallelotope volume}%
+  For vectors $v_{1},\ldots,v_{k}\in\mathbb{R}^{n}$, the $k$-dimensional volume of the parallelotope they span is $\mathrm{vol}_{k}=\sqrt{\det G}$, where $G_{ij}=\langle v_{i},v_{j}\rangle$ is the Gram matrix.
+  Hadamard's inequality applied to $G$ gives $\det G\leq\prod\|v_{i}\|^{2}$, recovering the fact that volume is maximised for orthogonal vectors.
+  The ratio $\det G/\prod\|v_{i}\|^{2}$ measures the ``orthogonality defect'' and is used as a quality metric in lattice basis reduction (LLL algorithm).
+
+\item \textbf{Coding theory and the Singleton bound.}%
+  \index{coding theory!Hadamard bound}%
+  \index{Singleton bound}%
+  \index{MDS code}%
+  For a linear code with generator matrix $G$, the minimum distance is related to the smallest number of linearly dependent columns.
+  Hadamard's inequality bounds the number of codewords achievable with a given minimum distance, and codes meeting this bound (MDS codes) have the property that every square submatrix of $G$ is non-singular (every maximal minor is non-zero).
+  The determinant bounds from Hadamard's inequality thus constrain the existence of optimal codes.
+\end{enumerate}
+
+\subsection{14.21\quad Cramer's Rule}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.211\quad Cramer's rule for linear systems}
+
+Cramer's rule solves the system $A\mathbf{x}=\mathbf{b}$ when $\det A\neq 0$ by
+\[
+  x_{i}=\frac{\det A_{i}(\mathbf{b})}{\det A},\qquad i=1,\ldots,n,
+\]
+where $A_{i}(\mathbf{b})$ is the matrix $A$ with its $i$-th column replaced by $\mathbf{b}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Circuit analysis with mesh currents.}%
+  \index{circuit analysis!Cramer's rule}%
+  \index{mesh current method}%
+  \index{impedance matrix}%
+  Kirchhoff's voltage law for a network with $n$ meshes yields $Z\mathbf{I}=\mathbf{V}$, where $Z$ is the impedance matrix.
+  Cramer's rule gives each mesh current as a ratio of determinants: $I_{k}=\det Z_{k}/\det Z$.
+  For small networks ($n\leq 4$), this is practical and gives closed-form expressions showing how each current depends on all sources, useful for understanding mutual coupling.
+
+\item \textbf{Scattering parameters from boundary conditions.}%
+  \index{scattering parameter}%
+  \index{boundary condition!linear system}%
+  \index{transmission line!junction}%
+  At a junction of $n$ transmission lines, continuity of voltage and current yields a linear system whose solution via Cramer's rule gives the scattering parameters $S_{ij}$ as ratios of determinants.
+  The structure of these determinants reveals which geometric parameters affect each $S_{ij}$, guiding the design of microwave filters and impedance-matching networks.
+  The condition $\det Z=0$ signals a resonance at which the system has a non-trivial solution with no external driving.
+
+\item \textbf{Equilibrium concentrations in chemical kinetics.}%
+  \index{chemical kinetics!equilibrium}%
+  \index{steady-state concentration}%
+  \index{King--Altman method}%
+  The King--Altman method for enzyme kinetics expresses steady-state concentrations of enzyme intermediates as ratios of determinants of the rate-constant matrix.
+  Each cofactor in the numerator is a sum over spanning trees of the kinetic graph (by Kirchhoff's matrix tree theorem), and the denominator is the sum of all such trees.
+  This gives the Michaelis--Menten and more complex rate laws as determinantal expressions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Birational geometry and rational solutions.}%
+  \index{Cramer's rule!birational}%
+  \index{rational solution}%
+  \index{algebraic geometry!linear systems}%
+  Cramer's rule shows that the solution of a parametric linear system $A(\mathbf{p})\mathbf{x}=\mathbf{b}(\mathbf{p})$ is a rational function of the parameters.
+  This is the prototype of the general principle that solutions of algebraic equations are algebraic (or rational) functions of the coefficients.
+  In algebraic geometry, Cramer's rule describes the birational map from the space of coefficients to the space of solutions.
+
+\item \textbf{Interpolation formulas.}%
+  \index{interpolation!Cramer's rule}%
+  \index{Lagrange interpolation}%
+  \index{Vandermonde system}%
+  The coefficients of the interpolating polynomial of degree $n-1$ through $n$ points satisfy a Vandermonde system $V\mathbf{c}=\mathbf{y}$.
+  Cramer's rule gives each coefficient $c_{k}$ as a ratio of Vandermonde-like determinants; the resulting formula is equivalent to the Lagrange interpolation formula.
+  The explicit determinantal form reveals the condition number of the interpolation problem and motivates the use of orthogonal polynomial bases.
+
+\item \textbf{Consistency and the Rouch\'e--Capelli theorem.}%
+  \index{Rouch\'e--Capelli theorem}%
+  \index{consistency!linear system}%
+  \index{augmented matrix!rank}%
+  The system $A\mathbf{x}=\mathbf{b}$ is consistent if and only if $\mathrm{rank}[A|\mathbf{b}]=\mathrm{rank}\,A$ (Rouch\'e--Capelli).
+  When $\mathrm{rank}\,A=n$, Cramer's rule provides the unique solution.
+  When $\mathrm{rank}\,A<n$ but the system is consistent, the general solution is a translate of the null space, parametrised using the cofactors of a maximal non-singular submatrix.
+\end{enumerate}
+
+
+\subsection{14.31\quad Some Special Determinants}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.311\quad Vandermonde's determinant (alternant)}
+
+The Vandermonde determinant of $x_{1},\ldots,x_{n}$ is
+\[
+  V(x_{1},\ldots,x_{n})=\det\bigl[x_{j}^{i-1}\bigr]_{i,j=1}^{n}
+  =\prod_{1\leq i<j\leq n}(x_{j}-x_{i}).
+\]
+This is the prototypical alternating polynomial and vanishes if and only if two arguments coincide.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Free fermion partition function and eigenvalue repulsion.}%
+  \index{free fermion!partition function}%
+  \index{eigenvalue repulsion}%
+  \index{random matrix theory!Vandermonde}%
+  \index{Coulomb gas!Vandermonde}%
+  The joint probability density of eigenvalues $\lambda_{1},\ldots,\lambda_{N}$ of a random Hermitian matrix from the Gaussian Unitary Ensemble (GUE) is
+  \[
+    p(\lambda_{1},\ldots,\lambda_{N})\propto\prod_{i<j}|\lambda_{i}-\lambda_{j}|^{2}\,e^{-\sum\lambda_{k}^{2}/2}
+    =|V(\lambda_{1},\ldots,\lambda_{N})|^{2}\,e^{-\sum\lambda_{k}^{2}/2}.
+  \]
+  The Vandermonde factor $|V|^{2}$ produces the eigenvalue repulsion characteristic of random matrices and is equivalent to a two-dimensional Coulomb gas at inverse temperature $\beta=2$.
+  This distribution is also the squared norm of a Slater determinant of harmonic oscillator wavefunctions, establishing the connection between free fermions and random matrices.
+
+\item \textbf{Quantum Hall effect and Laughlin wavefunction.}%
+  \index{quantum Hall effect!Laughlin}%
+  \index{Laughlin wavefunction}%
+  \index{fractional quantum Hall effect}%
+  The Laughlin wavefunction for the fractional quantum Hall state at filling $\nu=1/m$ is
+  $\Psi(z_{1},\ldots,z_{N})=\prod_{i<j}(z_{i}-z_{j})^{m}\,e^{-\sum|z_{k}|^{2}/4\ell^{2}}$,
+  where $z_{k}=x_{k}+iy_{k}$ are complex coordinates and $\ell$ is the magnetic length.
+  For $m=1$ (integer quantum Hall), this is exactly the Vandermonde determinant of the lowest Landau level orbitals.
+  The exponent $m$ introduces stronger correlations (fractional statistics), and the topological order of the state is encoded in the analytic structure of this generalised Vandermonde factor.
+
+\item \textbf{Polynomial interpolation in spectroscopy.}%
+  \index{spectroscopy!polynomial interpolation}%
+  \index{Vandermonde matrix!interpolation}%
+  \index{calibration curve}%
+  Fitting a calibration curve through $n$ data points $(x_{i},y_{i})$ in spectroscopy requires solving the Vandermonde system $V\mathbf{c}=\mathbf{y}$.
+  The condition number of $V$ grows exponentially with $n$ for equally spaced points, but the Vandermonde determinant $\prod(x_{j}-x_{i})$ reveals that the system is well-conditioned when the nodes are spread out (e.g., Chebyshev nodes).
+  This motivates the use of orthogonal polynomial bases for stable calibration.
+
+\item \textbf{Discrete Fourier transform as a Vandermonde matrix.}%
+  \index{discrete Fourier transform!Vandermonde}%
+  \index{DFT matrix!structure}%
+  \index{roots of unity}%
+  The DFT matrix $F_{n}$ with entries $F_{jk}=\omega^{jk}$, $\omega=e^{2\pi i/n}$, is a Vandermonde matrix with nodes at the $n$-th roots of unity.
+  Its determinant is $\det F_{n}=V(1,\omega,\ldots,\omega^{n-1})=\prod_{0\leq j<k\leq n-1}(\omega^{k}-\omega^{j})=n^{n/2}e^{i\pi n(n-1)/4}$ (up to sign convention).
+  The Vandermonde structure guarantees invertibility and underlies the FFT factorisation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Schur polynomials and representation theory.}%
+  \index{Schur polynomial}%
+  \index{representation theory!symmetric group}%
+  \index{Weyl character formula!Vandermonde}%
+  The Schur polynomial $s_{\lambda}(x_{1},\ldots,x_{n})$ corresponding to a partition $\lambda$ is the ratio of two alternants:
+  $s_{\lambda}=\det[x_{j}^{\lambda_{i}+n-i}]/\det[x_{j}^{n-i}]=a_{\lambda+\delta}/a_{\delta}$,
+  where $\delta=(n-1,n-2,\ldots,0)$ and the denominator is the Vandermonde determinant.
+  The Weyl character formula for $\mathrm{GL}(n)$ representations takes exactly this form, with Schur polynomials as the irreducible characters.
+  This connects determinantal algebra to the deepest structures in combinatorics and representation theory.
+
+\item \textbf{Newton's identities and symmetric functions.}%
+  \index{Newton's identities}%
+  \index{symmetric function!Vandermonde}%
+  \index{power sum polynomial}%
+  The Vandermonde determinant is the simplest alternating symmetric polynomial.
+  Every alternating polynomial is divisible by $V$, and the quotient is a symmetric polynomial.
+  Newton's identities relate the power sums $p_{k}=\sum x_{i}^{k}$ to the elementary symmetric polynomials $e_{k}$ via the determinantal formula $e_{k}=\frac{1}{k!}\det\bigl(\begin{smallmatrix}p_{1}&1&0&\cdots\\p_{2}&p_{1}&2&\cdots\\\vdots&&\ddots\\p_{k}&p_{k-1}&\cdots&p_{1}\end{smallmatrix}\bigr)$.
+
+\item \textbf{Hermite interpolation and confluent Vandermonde.}%
+  \index{Hermite interpolation}%
+  \index{confluent Vandermonde matrix}%
+  \index{divided difference!Vandermonde}%
+  When interpolation nodes coalesce ($x_{i}\to x_{j}$), the Vandermonde matrix degenerates into the confluent Vandermonde matrix, whose rows involve derivatives of the monomial basis.
+  The resulting system solves the Hermite interpolation problem (matching function values and derivatives).
+  The confluent Vandermonde determinant is $\prod(x_{j}-x_{i})^{m_{i}m_{j}}$, where $m_{k}$ are the multiplicities, generalising the classical product formula.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.312\quad Circulants}
+
+The circulant matrix $C=\mathrm{circ}(c_{0},c_{1},\ldots,c_{n-1})$ has $(i,j)$-entry $c_{(j-i)\bmod n}$.
+Its determinant is
+\[
+  \det C=\prod_{k=0}^{n-1}p(\omega^{k}),\qquad
+  p(z)=\sum_{j=0}^{n-1}c_{j}z^{j},\quad\omega=e^{2\pi i/n}.
+\]
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{DFT diagonalisation and Bloch's theorem.}%
+  \index{DFT!circulant diagonalisation}%
+  \index{Bloch's theorem}%
+  \index{periodic boundary conditions}%
+  \index{tight-binding model!circulant}%
+  A circulant matrix is diagonalised by the DFT matrix: $C=F^{-1}\mathrm{diag}(\hat{c}_{0},\ldots,\hat{c}_{n-1})F$, where $\hat{c}_{k}=p(\omega^{k})$.
+  In solid-state physics, the tight-binding Hamiltonian with periodic boundary conditions is circulant, and diagonalisation by the DFT is Bloch's theorem: the eigenstates are plane waves $\psi_{k}(j)=\omega^{jk}/\sqrt{n}$ with eigenvalues $\epsilon(k)=\sum_{j}t_{j}\omega^{jk}$ (the band structure).
+  The determinant $\det(EI-H)=\prod_{k}(E-\epsilon(k))$ gives the spectral polynomial.
+
+\item \textbf{Cyclic codes and error correction.}%
+  \index{cyclic code!circulant}%
+  \index{error-correcting code!cyclic}%
+  \index{generator polynomial}%
+  A cyclic code of length $n$ over $\mathbb{F}_{q}$ corresponds to an ideal in $\mathbb{F}_{q}[x]/(x^{n}-1)$, generated by a divisor $g(x)$ of $x^{n}-1$.
+  The parity-check matrix is circulant, and its determinant (over the finite field) characterises the code's error-detection capability.
+  The BCH bound on minimum distance is derived from the roots of $g(x)$ among the $n$-th roots of unity, mirroring the eigenvalue decomposition of the circulant.
+
+\item \textbf{Discrete convolution and filtering.}%
+  \index{discrete convolution!circulant}%
+  \index{circular convolution}%
+  \index{digital filter!circulant matrix}%
+  Multiplication by a circulant matrix implements circular convolution: $C\mathbf{x}=\mathbf{c}\circledast\mathbf{x}$.
+  The determinant condition $\det C\neq 0$ is equivalent to $p(\omega^{k})\neq 0$ for all $k$, meaning the frequency response has no zeros---the filter is invertible (deconvolution is possible).
+  This is the discrete analogue of the Wiener--Khinchin condition for causal deconvolution.
+
+\item \textbf{Normal modes of cyclic molecular chains.}%
+  \index{normal mode!cyclic chain}%
+  \index{cyclic molecule}%
+  \index{benzene!normal modes}%
+  The Hessian of a cyclic molecular chain (e.g., benzene) with nearest-neighbour force constants is circulant.
+  The normal-mode frequencies are $\omega_{k}^{2}=f_{0}+2f_{1}\cos(2\pi k/n)$, where $f_{0}$ and $f_{1}$ are the diagonal and off-diagonal force constants.
+  The degeneracies $\omega_{k}=\omega_{n-k}$ reflect the real-valuedness of the circulant (symmetry under complex conjugation of eigenvalues).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Resultants via circulants.}%
+  \index{resultant!circulant}%
+  \index{polynomial!common root}%
+  \index{companion matrix!circulant}%
+  The resultant of $x^{n}-1$ and $p(x)$ is $\prod_{k}p(\omega^{k})=\det\mathrm{circ}(c_{0},\ldots,c_{n-1})$, the determinant of the circulant.
+  More generally, the resultant $\mathrm{Res}(f,g)=\det S$ (Sylvester matrix) can be block-diagonalised into circulant-like blocks when $f$ and $g$ have special structure (e.g., when $f=x^{n}-a$), reducing the resultant to a product over roots of unity.
+
+\item \textbf{Number theory and the norm of algebraic integers.}%
+  \index{algebraic integer!norm}%
+  \index{cyclotomic field}%
+  \index{circulant determinant!norm}%
+  The norm of an element $\alpha=\sum c_{j}\zeta^{j}$ in the cyclotomic field $\mathbb{Q}(\zeta)$, $\zeta=e^{2\pi i/n}$, is $N(\alpha)=\prod_{k}\sigma_{k}(\alpha)=\prod_{k}p(\zeta^{k})$, which is the determinant of the circulant matrix of multiplication by $\alpha$ in the integral basis.
+  This connects the circulant determinant to algebraic number theory and is used in computing class numbers of cyclotomic fields.
+
+\item \textbf{Graph spectra of cycle graphs.}%
+  \index{cycle graph!spectrum}%
+  \index{graph spectrum!circulant}%
+  \index{Cheeger constant}%
+  The adjacency matrix of the cycle graph $C_{n}$ is the circulant $\mathrm{circ}(0,1,0,\ldots,0,1)$ with eigenvalues $\lambda_{k}=2\cos(2\pi k/n)$.
+  More generally, the adjacency matrix of any circulant graph $\mathrm{Circ}(n;S)$ is a circulant, and its spectrum is given by the polynomial $p(\omega^{k})$ evaluated at roots of unity.
+  The spectral gap $\lambda_{1}-\lambda_{2}$ determines the expansion properties of the graph (Cheeger inequality).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.313\quad Jacobian determinant}
+
+The Jacobian determinant of a differentiable map $\mathbf{f}\colon\mathbb{R}^{n}\to\mathbb{R}^{n}$ at a point $\mathbf{x}$ is
+\[
+  J_{\mathbf{f}}(\mathbf{x})=\det\!\left(\frac{\partial f_{i}}{\partial x_{j}}\right).
+\]
+It measures the local volume distortion of the map: an infinitesimal volume element $d^{n}x$ is mapped to $|J_{\mathbf{f}}|\,d^{n}x$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Change of variables in multiple integrals.}%
+  \index{change of variables!Jacobian}%
+  \index{Jacobian determinant!integration}%
+  \index{curvilinear coordinates}%
+  \index{spherical coordinates!Jacobian}%
+  The change-of-variables formula $\int f(\mathbf{x})\,d^{n}x=\int f(\mathbf{g}(\mathbf{u}))\,|J_{\mathbf{g}}(\mathbf{u})|\,d^{n}u$ is the workhorse of multivariate integration.
+  For spherical coordinates in $\mathbb{R}^{3}$, $J=r^{2}\sin\theta$; for general curvilinear coordinates, $J=\sqrt{\det g}$ where $g_{ij}$ is the metric tensor.
+  In general relativity, the invariant volume element $\sqrt{-\det g_{\mu\nu}}\,d^{4}x$ ensures that the Einstein--Hilbert action is coordinate-independent.
+
+\item \textbf{Faddeev--Popov determinant in gauge theory.}%
+  \index{Faddeev--Popov determinant}%
+  \index{gauge fixing}%
+  \index{ghost field}%
+  \index{path integral!gauge theory}%
+  In the quantisation of gauge theories, the Faddeev--Popov procedure inserts the determinant $\det(\delta G/\delta\alpha)$ (the Jacobian of the gauge-fixing condition $G$ with respect to gauge parameters $\alpha$) into the path integral to compensate for the redundant integration over gauge orbits.
+  This determinant is represented by anticommuting ghost fields $c$, $\bar{c}$ with action $S_{\mathrm{ghost}}=\int\bar{c}\,(\delta G/\delta\alpha)\,c$.
+  The ghost fields contribute to loop diagrams and are essential for the unitarity and renormalisability of non-Abelian gauge theories (Yang--Mills).
+
+\item \textbf{Hamiltonian mechanics and canonical transformations.}%
+  \index{canonical transformation!Jacobian}%
+  \index{generating function!canonical}%
+  \index{Poisson bracket!Jacobian}%
+  A transformation $(q,p)\to(Q,P)$ is canonical if and only if the Jacobian matrix is symplectic: $J^{T}\Omega J=\Omega$, where $\Omega=\bigl(\begin{smallmatrix}0&I\\-I&0\end{smallmatrix}\bigr)$.
+  Taking determinants gives $(\det J)^{2}=1$, so $\det J=\pm 1$.
+  Canonical transformations thus preserve oriented phase-space volume (Liouville's theorem) and the Poisson bracket structure.
+
+\item \textbf{Probability density transformation.}%
+  \index{probability density!transformation}%
+  \index{change of variables!probability}%
+  \index{normalising flow}%
+  If $\mathbf{X}$ is a random vector with density $p_{\mathbf{X}}$ and $\mathbf{Y}=\mathbf{g}(\mathbf{X})$ is a diffeomorphism, then $p_{\mathbf{Y}}(\mathbf{y})=p_{\mathbf{X}}(\mathbf{g}^{-1}(\mathbf{y}))\,|J_{\mathbf{g}^{-1}}(\mathbf{y})|$.
+  In machine learning, normalising flows compose a sequence of invertible maps to transform a simple base density into a complex target, with the log-likelihood computed via the sum of log-Jacobian-determinants at each layer.
+  Efficient architectures ensure that each Jacobian is triangular, making the determinant computable in $O(n)$ time.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Inverse function theorem.}%
+  \index{inverse function theorem}%
+  \index{Jacobian!invertibility}%
+  \index{local diffeomorphism}%
+  The inverse function theorem states that if $J_{\mathbf{f}}(\mathbf{x}_{0})\neq 0$, then $\mathbf{f}$ is a local diffeomorphism near $\mathbf{x}_{0}$ with Jacobian of the inverse $J_{\mathbf{f}^{-1}}=(J_{\mathbf{f}})^{-1}$.
+  The proof via the contraction mapping principle gives quantitative bounds on the radius of invertibility in terms of $|J_{\mathbf{f}}|$ and the Lipschitz constant of $D\mathbf{f}$.
+  This is the foundation of the implicit function theorem and the theory of smooth manifolds.
+
+\item \textbf{Degree of a map and topology.}%
+  \index{degree of a map}%
+  \index{Brouwer degree}%
+  \index{winding number!Jacobian}%
+  The Brouwer degree of a smooth map $\mathbf{f}\colon M\to N$ between compact oriented manifolds is $\deg\mathbf{f}=\sum_{\mathbf{x}\in\mathbf{f}^{-1}(\mathbf{y})}\mathrm{sgn}\,J_{\mathbf{f}}(\mathbf{x})$ for any regular value $\mathbf{y}$.
+  This integer is a topological invariant (independent of the regular value chosen) and generalises the winding number.
+  The degree governs the existence of solutions to $\mathbf{f}(\mathbf{x})=\mathbf{y}$: if $\deg\mathbf{f}\neq 0$, every regular value has at least one preimage.
+
+\item \textbf{Sard's theorem and critical values.}%
+  \index{Sard's theorem}%
+  \index{critical value}%
+  \index{measure zero!critical values}%
+  Sard's theorem states that the set of critical values $\{\mathbf{f}(\mathbf{x}):J_{\mathbf{f}}(\mathbf{x})=0\}$ has Lebesgue measure zero.
+  Thus ``almost every'' value of a smooth map is a regular value, and the preimage $\mathbf{f}^{-1}(\mathbf{y})$ is a smooth submanifold for almost every $\mathbf{y}$.
+  This theorem is the analytic foundation of transversality theory and Morse theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.314\quad Hessian determinants}
+
+The Hessian matrix of a twice-differentiable function $f\colon\mathbb{R}^{n}\to\mathbb{R}$ is $H_{ij}=\partial^{2}f/\partial x_{i}\partial x_{j}$, and the Hessian determinant is $\det H$.
+For $n=2$, $\det H=f_{xx}f_{yy}-f_{xy}^{2}$ classifies critical points: positive for extrema, negative for saddle points.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stability of equilibria in classical mechanics.}%
+  \index{Hessian!stability}%
+  \index{equilibrium!classification}%
+  \index{Morse index!mechanics}%
+  At an equilibrium $\nabla V=0$ of a potential energy $V(q_{1},\ldots,q_{n})$, the Hessian $H_{ij}=\partial^{2}V/\partial q_{i}\partial q_{j}$ determines stability.
+  The number of negative eigenvalues (the Morse index) counts the number of unstable directions.
+  If $\det H>0$ and the diagonal minors are all positive (Sylvester's criterion), the equilibrium is stable; if $\det H<0$, at least one direction is unstable.
+
+\item \textbf{Gaussian beam optics and ray transfer matrices.}%
+  \index{Gaussian beam!Hessian}%
+  \index{ray transfer matrix}%
+  \index{wavefront curvature}%
+  \index{paraxial optics}%
+  In paraxial optics, the phase of a Gaussian beam $\psi\propto\exp(ik\,\mathbf{r}^{T}Q^{-1}\mathbf{r}/2)$ has a Hessian proportional to $Q^{-1}$, the inverse complex beam parameter matrix.
+  The determinant $\det Q$ determines the beam cross-sectional area, and the Hessian eigenvalues give the principal curvatures of the wavefront.
+  Under propagation through an optical system described by a ray transfer (ABCD) matrix, $Q$ transforms as $Q'=(AQ+B)(CQ+D)^{-1}$, preserving $\det(\mathrm{Im}\,Q^{-1})>0$ (beam physicality).
+
+\item \textbf{Saddle-point approximation (steepest descent).}%
+  \index{saddle-point approximation}%
+  \index{steepest descent method}%
+  \index{Hessian!Gaussian integral}%
+  The saddle-point (Laplace) approximation of $\int e^{-\lambda f(\mathbf{x})}\,d^{n}x$ as $\lambda\to\infty$ gives $(\frac{2\pi}{\lambda})^{n/2}|\det H|^{-1/2}e^{-\lambda f(\mathbf{x}_{0})}$, where $H$ is the Hessian at the critical point $\mathbf{x}_{0}$.
+  The Hessian determinant controls the prefactor and thus the one-loop (semiclassical) correction in quantum mechanics and quantum field theory.
+  For path integrals, the Hessian becomes a functional determinant (the fluctuation operator), connecting to the Fredholm determinant of Section~14.315.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Morse theory and topology of level sets.}%
+  \index{Morse theory!Hessian}%
+  \index{critical point!non-degenerate}%
+  \index{CW decomposition}%
+  A critical point of a smooth function $f$ is non-degenerate if $\det H\neq 0$ (i.e., the Hessian is non-singular).
+  The Morse lemma states that near such a point, $f$ can be written as $f=f(\mathbf{x}_{0})-x_{1}^{2}-\cdots-x_{\lambda}^{2}+x_{\lambda+1}^{2}+\cdots+x_{n}^{2}$ in suitable coordinates, where $\lambda$ is the Morse index.
+  The fundamental theorem of Morse theory builds the topology of $\{f\leq c\}$ by attaching a $\lambda$-handle at each critical point, yielding a CW decomposition of the manifold.
+
+\item \textbf{Monge--Amp\`ere equation.}%
+  \index{Monge--Amp\`ere equation}%
+  \index{Hessian determinant!PDE}%
+  \index{optimal transport!Monge--Amp\`ere}%
+  The Monge--Amp\`ere equation $\det(\partial^{2}u/\partial x_{i}\partial x_{j})=f(\mathbf{x})$ prescribes the Hessian determinant as a given function.
+  It arises in optimal transport (Brenier's theorem: the optimal map is the gradient of a convex function solving Monge--Amp\`ere), in affine differential geometry (affine spheres), and in the prescribed Gauss curvature problem.
+  The theory of viscosity solutions (Caffarelli) gives existence and regularity under natural convexity assumptions.
+
+\item \textbf{Convexity and the Hessian.}%
+  \index{convexity!Hessian criterion}%
+  \index{positive semidefinite!Hessian}%
+  \index{second-order optimality}%
+  A twice-differentiable function $f$ is convex if and only if its Hessian is positive semidefinite everywhere.
+  The second-order sufficient condition for a local minimum at $\mathbf{x}_{0}$ is $\nabla f(\mathbf{x}_{0})=0$ and $H(\mathbf{x}_{0})\succ 0$ (positive definite), which implies $\det H>0$ and all principal minors positive.
+  For constrained optimisation, the bordered Hessian determinant conditions replace Sylvester's criterion.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.315\quad Wronskian determinants}
+
+The Wronskian of $n$ functions $y_{1},\ldots,y_{n}$ is
+\[
+  W(y_{1},\ldots,y_{n})(x)=\det\begin{pmatrix}
+  y_{1} & y_{2} & \cdots & y_{n}\\
+  y_{1}' & y_{2}' & \cdots & y_{n}'\\
+  \vdots & \vdots & \ddots & \vdots\\
+  y_{1}^{(n-1)} & y_{2}^{(n-1)} & \cdots & y_{n}^{(n-1)}
+  \end{pmatrix}.
+\]
+If $y_{1},\ldots,y_{n}$ are solutions of an $n$-th order linear ODE, then $W\neq 0$ at one point implies linear independence.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Abel's identity and conservation in quantum mechanics.}%
+  \index{Abel's identity}%
+  \index{Wronskian!Abel}%
+  \index{probability current}%
+  \index{continuity equation!quantum}%
+  Abel's identity for a second-order ODE $y''+p(x)y'+q(x)y=0$ states that $W(y_{1},y_{2})(x)=W_{0}\exp(-\int^{x}p(t)\,dt)$.
+  For the Schr\"odinger equation ($p=0$), the Wronskian $W=\psi_{1}\psi_{2}'-\psi_{2}\psi_{1}'$ is constant, which is the one-dimensional form of probability current conservation.
+  The constancy of the Wronskian ensures that the probability current $j=\frac{\hbar}{2mi}W(\psi,\psi^{*})$ satisfies the continuity equation.
+
+\item \textbf{Sturm--Liouville theory and eigenfunction expansions.}%
+  \index{Sturm--Liouville theory}%
+  \index{eigenfunction expansion}%
+  \index{Green's function!Wronskian}%
+  The Green's function for the Sturm--Liouville operator $Ly=-(py')'+qy$ on $[a,b]$ is constructed from two linearly independent solutions $y_{1}$, $y_{2}$ satisfying different boundary conditions:
+  $G(x,\xi)=\frac{y_{1}(x_{<})y_{2}(x_{>})}{p(\xi)W(y_{1},y_{2})(\xi)}$.
+  The Wronskian in the denominator ensures correct normalisation and encodes the self-adjointness of the operator.
+  The eigenfunction expansion theorem (Sturm--Liouville) guarantees completeness of the eigenfunctions, generalising Fourier series.
+
+\item \textbf{Transfer matrices and scattering in one dimension.}%
+  \index{transfer matrix!scattering}%
+  \index{scattering!one-dimensional}%
+  \index{transmission coefficient}%
+  For the one-dimensional Schr\"odinger equation, the transfer matrix $M$ relates the wavefunction and its derivative at two points: $\bigl(\begin{smallmatrix}\psi(b)\\\psi'(b)\end{smallmatrix}\bigr)=M\bigl(\begin{smallmatrix}\psi(a)\\\psi'(a)\end{smallmatrix}\bigr)$.
+  The Wronskian constancy implies $\det M=1$ (unit determinant), which yields the relation $|t|^{2}+|r|^{2}=1$ between transmission and reflection coefficients (unitarity of scattering).
+  For a sequence of barriers, $\det(M_{1}M_{2}\cdots M_{N})=1$ by multiplicativity, ensuring conservation of probability through any layered structure.
+
+\item \textbf{Variation of parameters.}%
+  \index{variation of parameters}%
+  \index{Wronskian!variation of parameters}%
+  \index{inhomogeneous ODE}%
+  The particular solution of the inhomogeneous ODE $y^{(n)}+\cdots=f(x)$ is given by variation of parameters:
+  $y_{p}(x)=\sum_{k=1}^{n}y_{k}(x)\int\frac{W_{k}(\xi)}{W(\xi)}f(\xi)\,d\xi$,
+  where $W_{k}$ is the Wronskian with the $k$-th column replaced by $(0,\ldots,0,1)^{T}$.
+  The non-vanishing of $W$ (guaranteed for a fundamental set) ensures the method produces a valid solution.
+  This generalises the integrating-factor method to arbitrary-order linear ODEs.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Linear independence of analytic functions.}%
+  \index{linear independence!Wronskian}%
+  \index{analytic function!Wronskian}%
+  \index{Bostan--Dumas theorem}%
+  For analytic functions, $W(y_{1},\ldots,y_{n})\equiv 0$ on an interval implies linear dependence over $\mathbb{R}$---this is the Wronskian criterion for linear dependence.
+  The converse fails for merely smooth functions (Peano's counterexample: $y_{1}=x^{2}$, $y_{2}=x|x|$ are linearly independent with $W\equiv 0$), but holds for solutions of linear ODEs with continuous coefficients.
+  This distinction is important in the theory of differential Galois groups.
+
+\item \textbf{Differential algebra and Picard--Vessiot theory.}%
+  \index{Picard--Vessiot theory}%
+  \index{differential Galois group}%
+  \index{Wronskian!differential algebra}%
+  The Wronskian is a differential algebraic invariant: if $y_{1},\ldots,y_{n}$ satisfy $y^{(n)}+a_{n-1}y^{(n-1)}+\cdots+a_{0}y=0$, then $W'=-a_{n-1}W$ (Abel's identity generalised).
+  The Picard--Vessiot extension is the differential field generated by a fundamental set of solutions, and its differential Galois group is the algebraic subgroup of $\mathrm{GL}(n)$ preserving the Wronskian relations.
+  This theory classifies which linear ODEs are solvable in terms of elementary functions, Liouvillian extensions, or algebraic functions.
+
+\item \textbf{Oscillation theory and Sturm comparison.}%
+  \index{oscillation theory}%
+  \index{Sturm comparison theorem}%
+  \index{zero counting!Wronskian}%
+  Sturm's comparison theorem uses the Wronskian to compare solutions of two ODEs: if $y''+q_{1}y=0$ and $z''+q_{2}z=0$ with $q_{1}<q_{2}$, then between any two consecutive zeros of $y$, there is at least one zero of $z$.
+  The proof uses $\frac{d}{dx}(zy'-yz')=(q_{2}-q_{1})yz$ (the Wronskian derivative) and the intermediate value theorem.
+  Sturm oscillation theory extends this to count eigenvalues below a given level for Sturm--Liouville problems.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.316\quad Properties}
+
+This subsection collects general properties shared by special determinants: behaviour under row and column operations, evaluation by recursion, and product formulas that arise from underlying algebraic or combinatorial structure.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Determinantal point processes in quantum mechanics.}%
+  \index{determinantal point process}%
+  \index{fermion!correlation function}%
+  \index{random matrix theory!correlation}%
+  The $k$-point correlation function of free fermions at zero temperature is
+  $\rho_{k}(x_{1},\ldots,x_{k})=\det[K(x_{i},x_{j})]_{i,j=1}^{k}$,
+  where $K$ is the one-particle density matrix (projection kernel).
+  This determinantal structure encodes the Pauli exclusion principle statistically: the joint probability of finding particles at $x_{1},\ldots,x_{k}$ factorises into a determinant, ensuring anti-bunching.
+  Random matrix eigenvalue statistics are the prototypical determinantal point process with sine kernel $K(x,y)=\sin\pi(x-y)/[\pi(x-y)]$.
+
+\item \textbf{Fredholm determinant and spectral zeta functions.}%
+  \index{Fredholm determinant}%
+  \index{spectral zeta function}%
+  \index{functional determinant!regularised}%
+  \index{quantum field theory!one-loop}%
+  The Fredholm determinant of a trace-class operator $K$ on a Hilbert space is
+  $\det(I-zK)=\exp\bigl(-\sum_{n=1}^{\infty}\frac{z^{n}}{n}\mathrm{tr}\,K^{n}\bigr)$.
+  This infinite-dimensional generalisation of the finite determinant arises in the exact solution of quantum integrable models (e.g., the Tracy--Widom distribution for the largest eigenvalue of a random matrix).
+  In quantum field theory, one-loop partition functions are regularised Fredholm determinants, computed via the spectral zeta function $\zeta_{A}(s)=\sum\lambda_{n}^{-s}$ with $\det A=\exp(-\zeta_{A}'(0))$.
+
+\item \textbf{Permanents and bosonic systems.}%
+  \index{permanent!boson}%
+  \index{boson!permanent}%
+  \index{boson sampling}%
+  The permanent $\mathrm{perm}(A)=\sum_{\sigma}\prod_{i}a_{i\sigma(i)}$ (no sign factor) plays the role for bosons that the determinant plays for fermions.
+  The $N$-boson wavefunction in orbitals $\phi_{1},\ldots,\phi_{N}$ is proportional to $\mathrm{perm}[\phi_{i}(x_{j})]$, which is symmetric under particle exchange.
+  Computing the permanent is \#P-hard (Valiant's theorem), unlike the determinant which is in P; this complexity gap underlies the proposed computational advantage of boson sampling experiments.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Determinantal identities and Schur complements.}%
+  \index{determinantal identity}%
+  \index{Schur complement!identity}%
+  \index{matrix determinant lemma}%
+  The matrix determinant lemma $\det(A+\mathbf{u}\mathbf{v}^{T})=(1+\mathbf{v}^{T}A^{-1}\mathbf{u})\det A$ is the rank-one case of the more general identity $\det(A+UBV)=\det A\cdot\det(B^{-1}+VA^{-1}U)\cdot\det B$.
+  These identities are proved by writing the augmented block matrix and taking the Schur complement.
+  They enable efficient determinant updates in Monte Carlo simulations, where the matrix changes by a low-rank perturbation at each step.
+
+\item \textbf{Cauchy determinant.}%
+  \index{Cauchy determinant}%
+  \index{partial fraction decomposition}%
+  \index{Hilbert matrix|see{Cauchy determinant}}%
+  The Cauchy determinant $\det\bigl[\frac{1}{x_{i}+y_{j}}\bigr]=\frac{\prod_{i<j}(x_{j}-x_{i})(y_{j}-y_{i})}{\prod_{i,j}(x_{i}+y_{j})}$ generalises the Vandermonde and appears in partial fraction decompositions, integrable systems (KP hierarchy), and random matrix theory (Cauchy ensemble).
+  The Hilbert matrix $H_{ij}=1/(i+j-1)$ is a special case ($x_{i}=i-1/2$, $y_{j}=j-1/2$), and its determinant has the closed form $\det H_{n}=\prod_{k=1}^{n}(k-1)!^{4}/((2k-1)\cdot(2k-2)!^{2})$.
+
+\item \textbf{Determinants and generating functions.}%
+  \index{generating function!determinantal}%
+  \index{Jacobi--Trudi identity}%
+  \index{Young tableau!determinant}%
+  The Jacobi--Trudi identity expresses the Schur polynomial as a determinant of complete homogeneous symmetric polynomials: $s_{\lambda}=\det[h_{\lambda_{i}-i+j}]$.
+  This determinantal formula connects the theory of symmetric functions to the representation theory of $\mathrm{GL}(n)$ and $S_{n}$ and gives generating functions for the number of Young tableaux of a given shape.
+  The dual Jacobi--Trudi identity uses elementary symmetric polynomials: $s_{\lambda'}=\det[e_{\lambda_{i}'-i+j}]$, where $\lambda'$ is the conjugate partition.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{14.317\quad Gram-Kowalewski theorem on linear dependence}
+
+The Gram determinant (Gramian) of vectors $v_{1},\ldots,v_{k}$ in an inner product space is $G=\det[\langle v_{i},v_{j}\rangle]$.
+The Gram--Kowalewski theorem states that $G=0$ if and only if $v_{1},\ldots,v_{k}$ are linearly dependent, and $G>0$ when the vectors are linearly independent (in a real inner product space).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Linear independence of quantum states.}%
+  \index{quantum state!linear independence}%
+  \index{Gram matrix!quantum}%
+  \index{overlap matrix}%
+  \index{non-orthogonal basis!Gram}%
+  In quantum mechanics, the overlap matrix $S_{ij}=\langle\phi_{i}|\phi_{j}\rangle$ of a set of (possibly non-orthogonal) basis functions is the Gram matrix.
+  The condition $\det S>0$ ensures linear independence and is checked routinely in basis-set quantum chemistry.
+  When $\det S$ is small, the basis is nearly linearly dependent, causing numerical instability (``basis set superposition error''); the L\"owdin orthogonalisation $|\tilde{\phi}\rangle=S^{-1/2}|\phi\rangle$ remedies this.
+
+\item \textbf{Signal detection and matched subspace detectors.}%
+  \index{matched subspace detector}%
+  \index{Gram determinant!signal detection}%
+  \index{GLRT!subspace}%
+  In array signal processing, the generalised likelihood ratio test (GLRT) for detecting a signal in a $k$-dimensional subspace involves the ratio $\det(S_{\mathrm{signal}})/\det(S_{\mathrm{noise}})$ of Gram determinants.
+  The Gram--Kowalewski theorem ensures that this ratio is well-defined (positive) when the signal vectors are linearly independent.
+  The test statistic is related to the product of canonical correlations and to the volumes of projected parallelotopes.
+
+\item \textbf{Strain and deformation in continuum mechanics.}%
+  \index{strain tensor!Gram}%
+  \index{deformation gradient}%
+  \index{Cauchy--Green tensor}%
+  The right Cauchy--Green deformation tensor $C=F^{T}F$, where $F$ is the deformation gradient, is the Gram matrix of the deformed basis vectors.
+  Its determinant $\det C=(\det F)^{2}=J^{2}$ is the square of the volume ratio, and $\det C>0$ (guaranteed by Gram--Kowalewski for linearly independent columns of $F$) ensures that the deformation does not collapse the material to a lower-dimensional subspace.
+  The principal stretches are $\sqrt{\lambda_{i}}$ where $\lambda_{i}$ are the eigenvalues of $C$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Volume of $k$-dimensional parallelotopes.}%
+  \index{parallelotope!volume}%
+  \index{Gram determinant!volume}%
+  \index{Pythagorean theorem!higher-dimensional}%
+  The $k$-dimensional volume of the parallelotope spanned by $v_{1},\ldots,v_{k}\in\mathbb{R}^{n}$ ($k\leq n$) is $\mathrm{vol}_{k}=\sqrt{\det G}$.
+  For $k=n$, this reduces to $|\det A|$ where $A=[v_{1}|\cdots|v_{n}]$.
+  The formula $\det G=\sum_{|S|=k}(\det A_{S})^{2}$ (by Cauchy--Binet, where $A_{S}$ is the $k\times k$ submatrix of rows indexed by $S$) is the higher-dimensional Pythagorean theorem: the squared volume of a $k$-parallelotope in $\mathbb{R}^{n}$ equals the sum of squares of its projections onto all coordinate $k$-planes.
+
+\item \textbf{Lattice theory and the geometry of numbers.}%
+  \index{lattice!Gram matrix}%
+  \index{geometry of numbers}%
+  \index{Minkowski's theorem!lattice}%
+  A lattice $\Lambda=\{n_{1}v_{1}+\cdots+n_{k}v_{k}:n_{i}\in\mathbb{Z}\}$ has fundamental volume $\mathrm{vol}(\Lambda)=\sqrt{\det G}$.
+  Minkowski's theorem states that a convex symmetric body of volume greater than $2^{k}\mathrm{vol}(\Lambda)$ contains a non-zero lattice point.
+  The LLL lattice basis reduction algorithm seeks a basis minimising $\det G$ (which is invariant under unimodular transformations but whose individual entries $G_{ij}$ can be reduced), and its efficiency is measured by the orthogonality defect $\det G/\prod\|v_{i}\|^{2}$.
+
+\item \textbf{Reproducing kernel Hilbert spaces.}%
+  \index{reproducing kernel Hilbert space}%
+  \index{kernel!positive definite}%
+  \index{Gram matrix!RKHS}%
+  \index{Mercer's theorem}%
+  In a reproducing kernel Hilbert space (RKHS) with kernel $K(x,y)$, the Gram matrix of evaluation functionals at points $x_{1},\ldots,x_{n}$ is $G_{ij}=K(x_{i},x_{j})$.
+  By Mercer's theorem, $G$ is positive semidefinite, and $\det G\geq 0$ with equality if and only if the evaluation points are linearly dependent in the feature space.
+  The Gram determinant appears in the power function for interpolation error bounds: $|f(x)-s_{n}(x)|\leq\|f\|_{\mathcal{H}}\sqrt{K(x,x)-\mathbf{k}^{T}G^{-1}\mathbf{k}}$.
+
+\item \textbf{Hadamard--Fischer inequality.}%
+  \index{Hadamard--Fischer inequality}%
+  \index{positive definite!block inequality}%
+  \index{Gram determinant!inequality}%
+  For a positive definite matrix $A$ partitioned as $A=\bigl(\begin{smallmatrix}A_{11}&A_{12}\\A_{21}&A_{22}\end{smallmatrix}\bigr)$, the Hadamard--Fischer inequality states $\det A\leq\det A_{11}\det A_{22}$, with equality if and only if $A_{12}=0$.
+  This refines Hadamard's inequality (which is the case of $1\times 1$ diagonal blocks) and bounds the Gram determinant of a full set in terms of Gram determinants of subsets.
+  It is the determinantal counterpart of the subadditivity of entropy.
+\end{enumerate}
