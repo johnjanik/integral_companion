@@ -32,6 +32,125 @@
 \begin{document}
 
 %% ============================================================
+%% Title and Front Matter
+%% ============================================================
+
+\begin{center}
+{\LARGE\bfseries The Missing Manual for Gradshteyn--Ryzhik}\\[6pt]
+{\Large A Companion to \emph{Table of Integrals, Series, and Products}}\\[12pt]
+{\large John Janik}\\[4pt]
+{\normalsize \today}
+\end{center}
+
+\bigskip
+
+\subsection*{Preface}
+
+Gradshteyn and Ryzhik's \emph{Table of Integrals, Series, and Products}
+\cite{GradshteynRyzhik2007}---known universally as ``G\&R''---has been an
+indispensable reference for physicists, engineers, and mathematicians since
+its first Russian edition in 1943.  Its roughly 12{,}000 formulas cover
+finite sums, indefinite and definite integrals, special functions,
+inequalities, matrices, differential equations, and integral transforms.
+
+G\&R tells you \emph{what} an integral evaluates to.  It does not tell you
+\emph{why you would ever need it.}
+
+This companion fills that gap.  For every section of the table, it catalogs
+the physics and mathematics problems where the integrals, identities, and
+special functions actually appear.  The aim is threefold:
+
+\begin{enumerate}
+\item \textbf{Forward lookup.}  You know which section of G\&R you are
+  reading and want to see what it is used for---which physical systems
+  produce these integrals, which mathematical structures they encode.
+
+\item \textbf{Reverse lookup.}  You know the physics
+  (e.g., ``hydrogen atom,'' ``Casimir effect,'' ``Voigt profile'') and want
+  to find which integrals and formulas you will need.  The index, with
+  over 5{,}200 entries, is designed for this purpose.
+
+\item \textbf{Context and connections.}  Many formulas in G\&R are related
+  to one another in ways that are invisible from the table itself.  The
+  Gaussian integral (3.32) is the foundation of quantum field theory.  The
+  Selberg integral (4.63) generalises the beta function to random matrix
+  theory.  The Dirichlet integral $\int_{0}^{\infty}\sin x/x\,dx=\pi/2$
+  (3.72) is simultaneously the normalisation of the sinc function, the
+  impulse response of an ideal low-pass filter, and a special case of the
+  Fourier transform.  This companion makes those connections explicit.
+\end{enumerate}
+
+\subsection*{How to use this document}
+
+Each section of the companion follows the numbering of G\&R.  Within each
+section, closely related subsections are grouped together and annotated with
+two blocks:
+
+\begin{itemize}
+\item \textbf{Physics applications}---concrete problems from quantum
+  mechanics, electrodynamics, statistical mechanics, fluid dynamics,
+  general relativity, optics, signal processing, and other fields.
+\item \textbf{Mathematics applications}---connections to analysis, algebra,
+  number theory, geometry, topology, and combinatorics.
+\end{itemize}
+
+\noindent
+The fastest way into the document is through the \textbf{Index} (page~\pageref{theindex}
+onward).  Search for a concept---``Fourier transform,'' ``Bessel functions,''
+``partition function''---and follow the page references to the relevant G\&R
+sections.
+
+The document can also be read linearly as a survey of how each class of
+integrals connects to research problems.  Graduate students may find it
+useful as a companion to a mathematical methods course; working researchers
+may find it useful when encountering an unfamiliar integral or special
+function.
+
+\subsection*{A simple example: the hydrogen atom}
+
+To illustrate how a single physical problem threads through the table,
+consider the non-relativistic hydrogen atom.  Solving the Schr\"{o}dinger
+equation $-(\hbar^{2}/2m)\nabla^{2}\psi+V(r)\psi=E\psi$ for the Coulomb
+potential $V=-e^{2}/(4\pi\varepsilon_{0}r)$ requires:
+%
+\begin{itemize}
+\item the Laplacian in spherical coordinates (G\&R~10.51--10.61),
+\item separation into radial and angular equations (G\&R~16),
+\item the associated Legendre functions and spherical harmonics for the
+  angular part (G\&R~8.81--8.85),
+\item the associated Laguerre polynomials for the radial part
+  (G\&R~8.97),
+\item normalisation integrals $\int_{0}^{\infty}r^{2}|R_{n\ell}|^{2}\,dr=1$
+  involving exponentials times powers (G\&R~3.38--3.39), which evaluate to
+  gamma functions (G\&R~8.31),
+\item orthogonality integrals for the Laguerre polynomials
+  (G\&R~7.414),
+\item dipole matrix elements for transition rates, requiring the coupling
+  of spherical harmonics (Clebsch--Gordan coefficients, G\&R~8.85) and
+  radial overlap integrals (G\&R~3.38, 7.41).
+\end{itemize}
+%
+One problem, eight sections of the table.  Add the fine structure (Dirac
+equation and confluent hypergeometric functions, G\&R~9.21), the Lamb shift
+(QED radiative corrections and logarithmic integrals, G\&R~4.38), or the
+Stark effect (parabolic coordinates and parabolic cylinder functions,
+G\&R~9.24), and the thread extends further.  Every section of G\&R is
+connected to problems like this.
+
+\subsection*{License}
+
+This work is released under the MIT License.  You are free to copy,
+distribute, modify, and use this document for any purpose, including
+commercial use, provided that the copyright notice and license text are
+preserved.  See the accompanying \texttt{LICENSE} file for the full terms.
+
+\bigskip
+\begin{center}
+\rule{0.5\textwidth}{0.4pt}
+\end{center}
+\bigskip
+
+%% ============================================================
 %% Per-section files
 %% ============================================================
 
@@ -73,6 +192,7 @@
 
 \printbibliography[heading=bibintoc, title={Bibliography}]
 
+\label{theindex}%
 \printindex
 
 \end{document}
