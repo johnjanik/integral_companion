@@ -1,49 +1,1390 @@
-%% Section 15 — Norms
+%% ============================================================
+%% 15  Norms
+%% ============================================================
 \section{15\quad Norms}
 
 \subsection{15.1--15.9\quad Vector Norms}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.11\quad General Properties}
+
+A norm on a vector space $V$ over $\mathbb{R}$ (or $\mathbb{C}$) is a
+function $\|\cdot\|:V\to[0,\infty)$ satisfying: (i)~$\|\mathbf{x}\|=0$
+iff $\mathbf{x}=\mathbf{0}$ (definiteness); (ii)~$\|\alpha\mathbf{x}\|
+=|\alpha|\|\mathbf{x}\|$ (homogeneity);
+(iii)~$\|\mathbf{x}+\mathbf{y}\|\leq\|\mathbf{x}\|+\|\mathbf{y}\|$
+(triangle inequality).  A normed space is a metric space with
+$d(\mathbf{x},\mathbf{y})=\|\mathbf{x}-\mathbf{y}\|$, providing the
+framework for convergence, continuity, and approximation.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{State space distances in quantum mechanics.}%
+  \index{norm!general properties}%
+  \index{quantum state!distance}%
+  \index{trace distance}%
+  \index{fidelity!quantum states}%
+  The trace distance
+  $D(\rho,\sigma)=\tfrac{1}{2}\|\rho-\sigma\|_{1}$ and the Bures
+  distance $d_{B}=\sqrt{2(1-\sqrt{F(\rho,\sigma)})}$ are norms (or
+  metrics derived from norms) on the space of density matrices.  They
+  quantify distinguishability of quantum states: the trace distance
+  gives the maximum probability of distinguishing $\rho$ from $\sigma$
+  in a single measurement.
+
+\item \textbf{Error measures in numerical computation.}%
+  \index{error!norm-based measures}%
+  \index{numerical analysis!error norms}%
+  \index{floating-point arithmetic!error}%
+  Computational accuracy is measured by the norm of the error vector:
+  $\|\mathbf{x}_{\mathrm{computed}}-\mathbf{x}_{\mathrm{exact}}\|$.
+  The choice of norm matters---the $\|\cdot\|_{\infty}$ norm catches
+  componentwise worst-case errors, while $\|\cdot\|_{2}$ measures
+  root-mean-square error.  Condition numbers
+  $\kappa(A)=\|A\|\|A^{-1}\|$ depend on this choice.
+
+\item \textbf{Signal energy and power.}%
+  \index{signal energy}%
+  \index{signal power}%
+  \index{signal-to-noise ratio}%
+  In signal processing, the energy of a discrete signal is
+  $E=\|\mathbf{x}\|_{2}^{2}=\sum|x_{k}|^{2}$ and the peak amplitude
+  is $\|\mathbf{x}\|_{\infty}=\max|x_{k}|$.  The peak-to-average
+  power ratio $\mathrm{PAPR}=\|\mathbf{x}\|_{\infty}^{2}/
+  (\|\mathbf{x}\|_{2}^{2}/n)$ is critical in OFDM communications.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Equivalence of norms in finite dimensions.}%
+  \index{equivalence of norms}%
+  \index{norm!finite-dimensional equivalence}%
+  \index{compactness!unit ball}%
+  On $\mathbb{R}^{n}$, all norms are equivalent: for any two norms
+  $\|\cdot\|_{a}$ and $\|\cdot\|_{b}$, there exist constants $c,C>0$
+  with $c\|\mathbf{x}\|_{a}\leq\|\mathbf{x}\|_{b}\leq C\|\mathbf{x}\|_{a}$.
+  The proof relies on the compactness of the unit sphere in
+  $\|\cdot\|_{a}$, which fails in infinite dimensions---hence the
+  profusion of inequivalent function space norms ($L^{p}$, Sobolev,
+  H\"{o}lder, etc.).
+
+\item \textbf{Convex geometry of unit balls.}%
+  \index{unit ball!convex geometry}%
+  \index{Minkowski functional}%
+  \index{convex body}%
+  A norm is completely determined by its unit ball
+  $B=\{\mathbf{x}:\|\mathbf{x}\|\leq 1\}$, which is a symmetric
+  convex body.  Conversely, any symmetric convex body centred at the
+  origin defines a norm (its Minkowski functional).  The geometry of
+  the unit ball---round ($\ell_{2}$), diamond ($\ell_{1}$), cube
+  ($\ell_{\infty}$)---directly determines the properties of the norm.
+
+\item \textbf{Banach spaces and completeness.}%
+  \index{Banach space}%
+  \index{completeness!normed space}%
+  \index{functional analysis!Banach space}%
+  A complete normed space is a Banach space.  $\mathbb{R}^{n}$ with
+  any norm is a Banach space (finite-dimensional spaces are
+  automatically complete).  Infinite-dimensional examples include
+  $L^{p}$, $C[a,b]$, $\ell^{p}$, and Sobolev spaces $W^{k,p}$.
+  The Banach space framework is the foundation of functional analysis.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.21\quad Principal Vector Norms}
 \subsubsection{15.211\quad The norm $\|\mathbf{x}\|_{1}$}
+
+The $\ell_{1}$ norm $\|\mathbf{x}\|_{1}=\sum_{i=1}^{n}|x_{i}|$ is
+the sum of absolute values, also called the Manhattan or taxicab norm.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Compressed sensing and sparse signal recovery.}%
+  \index{$\ell_1$ norm}%
+  \index{compressed sensing}%
+  \index{sparse signal recovery}%
+  \index{basis pursuit}%
+  Compressed sensing recovers sparse signals by minimising
+  $\|\mathbf{x}\|_{1}$ subject to $A\mathbf{x}=\mathbf{b}$ (basis
+  pursuit).  The $\ell_{1}$ norm is the tightest convex relaxation of
+  the $\ell_{0}$ ``norm'' (number of non-zero entries), and the
+  Cand\`{e}s--Tao restricted isometry property guarantees exact
+  recovery under incoherence conditions.  Applications include MRI
+  acceleration, radio astronomy, and single-pixel cameras.
+
+\item \textbf{LASSO regression and feature selection.}%
+  \index{LASSO regression}%
+  \index{feature selection!$\ell_1$}%
+  \index{regularisation!$\ell_1$}%
+  \index{sparsity!$\ell_1$ penalty}%
+  The LASSO (least absolute shrinkage and selection operator)
+  minimises $\|\mathbf{y}-X\boldsymbol{\beta}\|_{2}^{2}
+  +\lambda\|\boldsymbol{\beta}\|_{1}$.  The $\ell_{1}$ penalty promotes
+  sparsity---many coefficients are driven exactly to zero---performing
+  simultaneous estimation and variable selection.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Total variation and $BV$ functions.}%
+  \index{total variation}%
+  \index{$BV$ functions}%
+  \index{$\ell_1$ norm!total variation}%
+  The total variation of a function $f$ on $[a,b]$ is
+  $\mathrm{TV}(f)=\sup\sum|f(x_{i+1})-f(x_{i})|$, the continuous
+  analogue of the $\ell_{1}$ norm of the discrete derivative.  The space
+  $BV$ of bounded-variation functions is a Banach space crucial in
+  the theory of hyperbolic conservation laws and image processing
+  (Rudin--Osher--Fatemi denoising).
+
+\item \textbf{The $\ell_{1}$ unit ball and cross-polytope.}%
+  \index{cross-polytope!$\ell_1$ ball}%
+  \index{$\ell_1$ norm!unit ball geometry}%
+  \index{sparsity!geometric interpretation}%
+  The $\ell_{1}$ unit ball in $\mathbb{R}^{n}$ is the cross-polytope
+  (hyperoctahedron) with $2n$ vertices at $\pm\mathbf{e}_{i}$.
+  Its vertices are the sparsest unit vectors (only one non-zero
+  component), which is why $\ell_{1}$ minimisation promotes sparsity:
+  the intersection of a random hyperplane with the cross-polytope
+  generically occurs at a vertex.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.212\quad The norm $\|\mathbf{x}\|_{2}$ (Euclidean or $L_{2}$ norm)}
+
+The $\ell_{2}$ norm $\|\mathbf{x}\|_{2}=(\sum_{i=1}^{n}|x_{i}|^{2})^{1/2}$
+is the Euclidean distance, the unique norm arising from an inner product
+via $\|\mathbf{x}\|_{2}=\sqrt{\langle\mathbf{x},\mathbf{x}\rangle}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Least-squares estimation and Gauss--Markov theorem.}%
+  \index{$\ell_2$ norm}%
+  \index{Euclidean norm}%
+  \index{least-squares!$\ell_2$ norm}%
+  \index{Gauss--Markov theorem}%
+  Minimising $\|\mathbf{y}-A\mathbf{x}\|_{2}^{2}$ gives the
+  least-squares solution $\mathbf{x}=(A^{T}A)^{-1}A^{T}\mathbf{y}$.
+  The Gauss--Markov theorem guarantees this is the best linear unbiased
+  estimator (BLUE) under uncorrelated equal-variance noise.  The
+  pseudoinverse $A^{+}$ gives the minimum $\|\mathbf{x}\|_{2}$
+  solution when the system is underdetermined.
+
+\item \textbf{Quantum state normalisation and Born rule.}%
+  \index{quantum state!normalisation}%
+  \index{Born rule}%
+  \index{probability!$\ell_2$ norm}%
+  \index{Hilbert space!norm}%
+  The $\ell_{2}$ norm of the coefficient vector
+  $\|\boldsymbol{\alpha}\|_{2}^{2}=\sum|\alpha_{i}|^{2}=1$ encodes
+  the normalisation condition $\langle\psi|\psi\rangle=1$ for a
+  quantum state $|\psi\rangle=\sum\alpha_{i}|i\rangle$.  The Born
+  rule---$|\alpha_{i}|^{2}$ is the measurement probability---is
+  a direct consequence of the $\ell_{2}$ structure of Hilbert space.
+
+\item \textbf{Energy conservation and Parseval's theorem.}%
+  \index{Parseval's theorem!$\ell_2$ norm}%
+  \index{energy conservation!Fourier}%
+  \index{Plancherel theorem}%
+  Parseval's theorem $\|\mathbf{x}\|_{2}=\|\hat{\mathbf{x}}\|_{2}$
+  states that the discrete Fourier transform preserves the $\ell_{2}$
+  norm.  Physically, total energy is the same in the time and
+  frequency domains.  The continuous version (Plancherel's theorem)
+  gives $\|f\|_{L^{2}}=\|\hat{f}\|_{L^{2}}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Inner product spaces and the parallelogram law.}%
+  \index{inner product space!$\ell_2$}%
+  \index{parallelogram law}%
+  \index{polarisation identity}%
+  The $\ell_{2}$ norm satisfies the parallelogram law
+  $\|\mathbf{x}+\mathbf{y}\|^{2}+\|\mathbf{x}-\mathbf{y}\|^{2}
+  =2\|\mathbf{x}\|^{2}+2\|\mathbf{y}\|^{2}$, and conversely, any
+  norm satisfying this law arises from an inner product via the
+  polarisation identity.  This characterises $\ell_{2}$ among all
+  norms as the unique one with an underlying inner product structure.
+
+\item \textbf{Orthogonal projection and best approximation.}%
+  \index{orthogonal projection!$\ell_2$}%
+  \index{best approximation!Hilbert space}%
+  \index{projection theorem}%
+  In an inner product space, the best approximation to $\mathbf{x}$
+  from a closed subspace $W$ is the orthogonal projection
+  $\hat{\mathbf{x}}=P_{W}\mathbf{x}$, characterised by
+  $\|\mathbf{x}-\hat{\mathbf{x}}\|_{2}\leq\|\mathbf{x}-\mathbf{w}\|_{2}$
+  for all $\mathbf{w}\in W$.  This is the projection theorem,
+  the geometric core of least-squares, Fourier analysis, and
+  approximation theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.213\quad The norm $\|\mathbf{x}\|_{\infty}$}
+
+The $\ell_{\infty}$ norm (Chebyshev or max norm)
+$\|\mathbf{x}\|_{\infty}=\max_{1\leq i\leq n}|x_{i}|$ measures the
+largest absolute component.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Worst-case error and tolerance specifications.}%
+  \index{$\ell_\infty$ norm}%
+  \index{worst-case error}%
+  \index{tolerance!engineering}%
+  \index{minimax!approximation}%
+  In engineering, component specifications are given as worst-case
+  tolerances: each component must satisfy $|x_{i}-x_{i}^{*}|\leq\varepsilon$,
+  i.e., $\|\mathbf{x}-\mathbf{x}^{*}\|_{\infty}\leq\varepsilon$.
+  The $\ell_{\infty}$ norm is the natural metric for tolerance analysis,
+  dimensional inspection, and go/no-go testing.
+
+\item \textbf{Digital-to-analogue conversion and quantisation.}%
+  \index{quantisation error!$\ell_\infty$}%
+  \index{digital-to-analogue conversion}%
+  \index{uniform approximation}%
+  Quantisation error in ADC/DAC conversion is bounded by
+  $\|\mathbf{x}-\mathbf{x}_{q}\|_{\infty}\leq\Delta/2$ where $\Delta$
+  is the quantisation step.  The $\ell_{\infty}$ norm also governs
+  Chebyshev (minimax) polynomial approximation, used in digital filter
+  design to minimise the worst-case frequency response deviation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Chebyshev approximation and equioscillation.}%
+  \index{Chebyshev approximation}%
+  \index{equioscillation theorem}%
+  \index{minimax!polynomial}%
+  \index{Chebyshev polynomials!minimax}%
+  The best polynomial approximation in the $\|\cdot\|_{\infty}$ norm
+  (supremum norm) is characterised by the equioscillation theorem
+  (Chebyshev): the error attains its maximum absolute value with
+  alternating signs at least $n+2$ times.  Chebyshev polynomials
+  $T_{n}(x)$ are the extremal polynomials for this problem.
+
+\item \textbf{The $\ell_{\infty}$ unit ball and hypercube.}%
+  \index{$\ell_\infty$ norm!unit ball}%
+  \index{hypercube!$\ell_\infty$ ball}%
+  \index{duality!$\ell_1$ and $\ell_\infty$}%
+  The $\ell_{\infty}$ unit ball is the hypercube $[-1,1]^{n}$, dual
+  to the cross-polytope ($\ell_{1}$ ball).  This duality
+  $(\ell_{1})^{*}=\ell_{\infty}$ reflects the general duality
+  $(\ell_{p})^{*}=\ell_{q}$ with $1/p+1/q=1$, and determines which
+  optimisation problems (e.g., linear programming) are naturally
+  formulated in which norm.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.31\quad Matrix Norms}
 \subsubsection{15.311\quad General properties}
+
+A matrix norm $\|\cdot\|$ on $\mathbb{R}^{m\times n}$ is a vector
+norm on the space of matrices.  A \emph{submultiplicative} matrix norm
+additionally satisfies $\|AB\|\leq\|A\|\|B\|$, which is essential for
+bounding products and powers of matrices.
+
 \subsubsection{15.312\quad Induced norms}
 \subsubsection{15.313\quad Natural norm of unit matrix}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Condition number and numerical stability.}%
+  \index{matrix norm!general properties}%
+  \index{condition number}%
+  \index{numerical stability!condition number}%
+  \index{ill-conditioning}%
+  The condition number $\kappa(A)=\|A\|\|A^{-1}\|$ measures the
+  sensitivity of the linear system $A\mathbf{x}=\mathbf{b}$ to
+  perturbations: $\|\delta\mathbf{x}\|/\|\mathbf{x}\|\leq
+  \kappa(A)\|\delta\mathbf{b}\|/\|\mathbf{b}\|$.
+  In the spectral norm, $\kappa_{2}(A)=\sigma_{\max}/\sigma_{\min}$
+  (ratio of largest to smallest singular values).  Large condition
+  numbers arise in discretisations of integral equations, ill-posed
+  inverse problems, and stiff ODEs.
+
+\item \textbf{Operator norms in quantum information.}%
+  \index{operator norm!quantum information}%
+  \index{diamond norm}%
+  \index{quantum channel!distance}%
+  \index{completely bounded norm}%
+  The diamond norm $\|\mathcal{E}\|_{\diamond}
+  =\sup_{\rho}\|(\mathcal{E}\otimes\mathrm{id})(\rho)\|_{1}$
+  is the appropriate induced norm for quantum channels, measuring
+  the worst-case distinguishability of quantum operations.  It
+  governs error thresholds in quantum error correction and fault-tolerant
+  quantum computation.
+
+\item \textbf{Stability of time-stepping schemes.}%
+  \index{stability!time-stepping}%
+  \index{CFL condition}%
+  \index{von Neumann stability analysis}%
+  For a linear ODE system $\mathbf{y}_{n+1}=A\mathbf{y}_{n}$
+  (discretised time step), stability requires $\|A^{n}\|$ to remain
+  bounded, which holds iff $\|A\|\leq 1$ in an induced norm (or
+  more precisely, iff the spectral radius $\rho(A)\leq 1$).  This is
+  the basis of von Neumann stability analysis and the CFL condition
+  in computational fluid dynamics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Induced norms and operator norms.}%
+  \index{induced norm!definition}%
+  \index{operator norm!matrix}%
+  \index{subordinate norm}%
+  Given vector norms on $\mathbb{R}^{n}$ and $\mathbb{R}^{m}$, the
+  induced (operator, subordinate) matrix norm is
+  $\|A\|=\sup_{\mathbf{x}\neq\mathbf{0}}\|A\mathbf{x}\|/\|\mathbf{x}\|
+  =\max_{\|\mathbf{x}\|=1}\|A\mathbf{x}\|$.  Induced norms are
+  automatically submultiplicative and satisfy $\|I\|=1$ (G\&R~15.313),
+  properties not shared by all matrix norms (e.g., the Frobenius norm
+  has $\|I\|_{F}=\sqrt{n}$).
+
+\item \textbf{Neumann series for matrix inverse.}%
+  \index{Neumann series!matrix inverse}%
+  \index{matrix inverse!perturbation}%
+  \index{geometric series!matrix}%
+  If $\|A\|<1$ in a submultiplicative norm, then $I-A$ is invertible
+  and $(I-A)^{-1}=\sum_{k=0}^{\infty}A^{k}$ (the matrix Neumann series),
+  with $\|(I-A)^{-1}\|\leq 1/(1-\|A\|)$.  This gives the fundamental
+  perturbation bound: $\|(I-A)^{-1}-I\|\leq\|A\|/(1-\|A\|)$, the
+  starting point for all perturbation theory of linear systems.
+
+\item \textbf{Submultiplicativity and matrix exponential bounds.}%
+  \index{submultiplicativity}%
+  \index{matrix exponential!norm bound}%
+  \index{power bound!matrix}%
+  Submultiplicativity gives $\|A^{k}\|\leq\|A\|^{k}$ and hence
+  $\|e^{A}\|\leq e^{\|A\|}$.  More refined bounds use the numerical
+  range or the logarithmic norm
+  $\mu(A)=\lim_{h\to 0^{+}}(\|I+hA\|-1)/h$ to get the sharp estimate
+  $\|e^{tA}\|\leq e^{\mu(A)t}$, tighter than $e^{\|A\|t}$ when
+  $A$ has eigenvalues with negative real parts.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.41\quad Principal Natural Norms}
 \subsubsection{15.411\quad Maximum absolute column sum norm}
+
+The matrix norm induced by $\|\cdot\|_{1}$ on vectors is
+$\|A\|_{1}=\max_{j}\sum_{i}|a_{ij}|$, the maximum absolute column sum.
+
 \subsubsection{15.412\quad Spectral norm}
+
+The matrix norm induced by $\|\cdot\|_{2}$ is
+$\|A\|_{2}=\sigma_{\max}(A)$, the largest singular value.
+
 \subsubsection{15.413\quad Maximum absolute row sum norm}
+
+The matrix norm induced by $\|\cdot\|_{\infty}$ is
+$\|A\|_{\infty}=\max_{i}\sum_{j}|a_{ij}|$, the maximum absolute row sum.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Singular value decomposition in data analysis.}%
+  \index{singular value decomposition}%
+  \index{spectral norm!largest singular value}%
+  \index{principal component analysis}%
+  \index{Eckart--Young theorem}%
+  The spectral norm $\|A\|_{2}=\sigma_{1}$ is the leading singular
+  value.  The Eckart--Young theorem states that the best rank-$k$
+  approximation in the spectral (or Frobenius) norm is the truncated
+  SVD $A_{k}=\sum_{i=1}^{k}\sigma_{i}\mathbf{u}_{i}\mathbf{v}_{i}^{T}$.
+  This underlies principal component analysis (PCA), latent semantic
+  analysis, and low-rank approximation of large data matrices.
+
+\item \textbf{Frobenius norm and matrix completion.}%
+  \index{Frobenius norm}%
+  \index{matrix completion}%
+  \index{nuclear norm}%
+  \index{Netflix problem}%
+  The Frobenius norm $\|A\|_{F}=(\sum_{ij}|a_{ij}|^{2})^{1/2}
+  =(\sum\sigma_{i}^{2})^{1/2}$ is the $\ell_{2}$ norm of the matrix
+  entries (or singular values).  The nuclear norm
+  $\|A\|_{*}=\sum\sigma_{i}$ (the $\ell_{1}$ norm of singular values)
+  is the convex relaxation for rank minimisation, used in matrix
+  completion (the ``Netflix problem'') and robust PCA.
+
+\item \textbf{Convergence of iterative methods.}%
+  \index{iterative methods!convergence}%
+  \index{Jacobi iteration}%
+  \index{Gauss--Seidel method}%
+  For the splitting $A=M-N$ giving iteration
+  $\mathbf{x}_{k+1}=M^{-1}N\mathbf{x}_{k}+M^{-1}\mathbf{b}$,
+  convergence requires $\rho(M^{-1}N)<1$.  The easily computable norms
+  $\|M^{-1}N\|_{1}$ and $\|M^{-1}N\|_{\infty}$ (column/row sums)
+  give sufficient conditions: $\|M^{-1}N\|<1$ in any subordinate norm
+  implies convergence.  Diagonal dominance of $A$ ensures convergence
+  of Jacobi and Gauss--Seidel iterations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Duality of $\|\cdot\|_{1}$ and $\|\cdot\|_{\infty}$ norms.}%
+  \index{duality!matrix norms}%
+  \index{$\ell_1$ and $\ell_\infty$!matrix norm duality}%
+  \index{transpose!norm relation}%
+  The matrix norms $\|A\|_{1}$ and $\|A\|_{\infty}$ are dual:
+  $\|A\|_{1}=\|A^{T}\|_{\infty}$.  More generally, if $\|\cdot\|_{a}$
+  and $\|\cdot\|_{b}$ are dual vector norms ($\|\cdot\|_{b}
+  =\|\cdot\|_{a}^{*}$), then $\|A\|_{a\to b}=\|A^{T}\|_{b^{*}\to a^{*}}$,
+  a manifestation of the general duality of operators and their
+  adjoints.
+
+\item \textbf{Schatten $p$-norms and non-commutative $L^{p}$ spaces.}%
+  \index{Schatten norms}%
+  \index{non-commutative $L^p$ spaces}%
+  \index{trace class!Schatten 1-norm}%
+  The Schatten $p$-norm $\|A\|_{S_{p}}=(\sum\sigma_{i}^{p})^{1/p}$
+  interpolates between the nuclear norm ($p=1$), Frobenius norm ($p=2$),
+  and spectral norm ($p=\infty$).  These are the non-commutative
+  analogues of $\ell_{p}$ norms, and the Schatten classes $S_{p}$ are
+  the matrix/operator analogues of $L^{p}$ spaces.  H\"{o}lder's
+  inequality becomes $|\mathrm{tr}(AB)|\leq\|A\|_{S_{p}}\|B\|_{S_{q}}$
+  with $1/p+1/q=1$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.51\quad Spectral Radius of a Square Matrix}
 \subsubsection{15.511\quad Inequalities concerning matrix norms and the spectral radius}
+
+The spectral radius $\rho(A)=\max_{i}|\lambda_{i}|$ (the maximum
+modulus of the eigenvalues of $A$) is not itself a norm, but it governs
+the asymptotic behaviour of $A^{k}$.  The fundamental inequality is
+$\rho(A)\leq\|A\|$ for every submultiplicative norm, and Gelfand's
+formula gives $\rho(A)=\lim_{k\to\infty}\|A^{k}\|^{1/k}
+=\inf_{k}\|A^{k}\|^{1/k}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Power iteration and dominant eigenvalue.}%
+  \index{spectral radius}%
+  \index{power iteration}%
+  \index{dominant eigenvalue}%
+  \index{PageRank algorithm}%
+  The power method $\mathbf{x}_{k+1}=A\mathbf{x}_{k}/\|A\mathbf{x}_{k}\|$
+  converges to the eigenvector associated with $\rho(A)$ at rate
+  $|\lambda_{2}/\lambda_{1}|^{k}$.  Google's PageRank algorithm is
+  a power iteration on the web graph's transition matrix, where the
+  spectral gap $1-|\lambda_{2}|$ determines convergence speed.
+
+\item \textbf{Stability of discrete dynamical systems.}%
+  \index{stability!discrete dynamical system}%
+  \index{spectral radius!stability criterion}%
+  \index{Leslie matrix!population dynamics}%
+  For $\mathbf{x}_{k+1}=A\mathbf{x}_{k}$, the system is asymptotically
+  stable iff $\rho(A)<1$, marginally stable iff $\rho(A)=1$ (with
+  all eigenvalues on the unit circle semi-simple), and unstable iff
+  $\rho(A)>1$.  In population dynamics, $\rho$ of the Leslie matrix
+  gives the asymptotic population growth rate.
+
+\item \textbf{Transfer matrix method in statistical mechanics.}%
+  \index{transfer matrix!spectral radius}%
+  \index{partition function!transfer matrix}%
+  \index{Ising model!transfer matrix}%
+  \index{free energy!spectral radius}%
+  The partition function of the Ising model on a strip of width $n$
+  is $Z=\mathrm{tr}(T^{N})$ where $T$ is the $2^{n}\times 2^{n}$
+  transfer matrix.  The free energy per site is
+  $f=-k_{B}T\lim_{N\to\infty}N^{-1}\ln Z
+  =-k_{B}T\ln\rho(T)$.  The largest eigenvalue dominates the
+  thermodynamics, and the spectral gap gives the correlation length.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gelfand's spectral radius formula.}%
+  \index{Gelfand's formula}%
+  \index{spectral radius!limit formula}%
+  $\rho(A)=\lim_{k\to\infty}\|A^{k}\|^{1/k}$ holds for any
+  submultiplicative norm.  The proof combines $\rho(A)^{k}
+  =\rho(A^{k})\leq\|A^{k}\|$ (giving $\rho(A)\leq\liminf\|A^{k}\|^{1/k}$)
+  with a resolvent argument for the reverse inequality.
+
+\item \textbf{Joint spectral radius.}%
+  \index{joint spectral radius}%
+  \index{switched systems!stability}%
+  \index{wavelet regularity}%
+  For a set of matrices $\{A_{1},\ldots,A_{m}\}$, the joint spectral
+  radius $\hat{\rho}=\lim_{k\to\infty}\max_{\sigma}\|A_{\sigma_{k}}
+  \cdots A_{\sigma_{1}}\|^{1/k}$ governs the stability of switched
+  systems and the regularity of wavelets and subdivision schemes.
+  Computing $\hat{\rho}$ is algorithmically hard (NP-hard to
+  approximate), in contrast to the ordinary spectral radius.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.512\quad Deductions from Gerschgorin's theorem (see 15.814)}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Diagonal dominance and spectral radius bounds.}%
+  \index{diagonal dominance!spectral radius}%
+  \index{Gerschgorin!spectral radius}%
+  \index{convergence!iterative methods}%
+  For a strictly diagonally dominant matrix ($|a_{ii}|>\sum_{j\neq i}|a_{ij}|$
+  for all $i$), Gerschgorin's theorem implies all eigenvalues have
+  positive real parts (if $a_{ii}>0$), guaranteeing positive
+  definiteness.  For the Jacobi iteration matrix $D^{-1}(L+U)$,
+  Gerschgorin gives $\rho(D^{-1}(L+U))<1$, proving convergence
+  without computing eigenvalues.
+
+\item \textbf{Tight-binding models in solid-state physics.}%
+  \index{tight-binding model!Gerschgorin}%
+  \index{band structure!Gerschgorin bounds}%
+  \index{energy bands!matrix bounds}%
+  In tight-binding Hamiltonians, the diagonal elements $\varepsilon_{i}$
+  are on-site energies and off-diagonal $t_{ij}$ are hopping integrals.
+  Gerschgorin discs centred at $\varepsilon_{i}$ with radii
+  $r_{i}=\sum_{j\neq i}|t_{ij}|$ immediately bound the energy bands
+  without diagonalisation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Localisation of eigenvalues.}%
+  \index{eigenvalue localisation!Gerschgorin}%
+  \index{irreducibly diagonally dominant}%
+  If $A$ is irreducible and has weak diagonal dominance with strict
+  dominance in at least one row, then $A$ is non-singular.  The
+  connected component structure of Gerschgorin discs (discs for
+  irreducible blocks merge) gives finer eigenvalue localisation
+  than individual disc estimates.
+
+\item \textbf{Perturbation theory for eigenvalues.}%
+  \index{perturbation!eigenvalue}%
+  \index{Bauer--Fike theorem}%
+  The Bauer--Fike theorem states that every eigenvalue $\mu$ of
+  $A+E$ satisfies $\min_{\lambda\in\sigma(A)}|\mu-\lambda|\leq
+  \kappa(X)\|E\|$ where $A=X\Lambda X^{-1}$.  For normal matrices
+  ($\kappa_{2}(X)=1$), this reduces to
+  $|\mu-\lambda|\leq\|E\|_{2}$, the classical Weyl perturbation bound.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.61\quad Inequalities Involving Eigenvalues of Matrices}
-\subsubsection{15.611\quad Cayley-Hamilton theorem}
+\subsubsection{15.611\quad Cayley--Hamilton theorem}
+
+The Cayley--Hamilton theorem states that every square matrix satisfies
+its own characteristic equation: if $p(\lambda)=\det(\lambda I-A)
+=\lambda^{n}-c_{1}\lambda^{n-1}+\cdots+(-1)^{n}c_{n}$, then
+$p(A)=A^{n}-c_{1}A^{n-1}+\cdots+(-1)^{n}c_{n}I=0$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Matrix functions via Cayley--Hamilton.}%
+  \index{Cayley--Hamilton theorem}%
+  \index{matrix function!Cayley--Hamilton}%
+  \index{matrix exponential!Cayley--Hamilton}%
+  \index{Rodrigues' rotation formula}%
+  Since $A^{n}$ can be expressed as a polynomial of degree $\leq n-1$
+  in $A$ via Cayley--Hamilton, any analytic matrix function $f(A)$
+  reduces to an $(n-1)$th degree polynomial.  For $3\times 3$
+  rotation matrices, this gives Rodrigues' formula
+  $e^{\theta\hat{\mathbf{n}}\times}=I+\sin\theta\,[\hat{\mathbf{n}}]_{\times}
+  +(1-\cos\theta)[\hat{\mathbf{n}}]_{\times}^{2}$, fundamental in
+  robotics and attitude control.
+
+\item \textbf{Minimal polynomial and Jordan structure.}%
+  \index{minimal polynomial}%
+  \index{Jordan structure!minimal polynomial}%
+  \index{controllability!minimal polynomial}%
+  The minimal polynomial $m(\lambda)$ (the lowest-degree monic polynomial
+  annihilating $A$) divides the characteristic polynomial.  The degree
+  of $m$ equals the size of the largest Jordan block, and $m$ determines
+  the controllability and observability indices in control theory:
+  $(A,B)$ is controllable iff the minimal polynomial of $A$ equals the
+  characteristic polynomial.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Symbolic computation of matrix inverse.}%
+  \index{matrix inverse!Cayley--Hamilton}%
+  \index{adjugate matrix}%
+  \index{Leverrier--Faddeev algorithm}%
+  From $p(A)=0$, we get $A^{-1}=(-1)^{n+1}c_{n}^{-1}[A^{n-1}-c_{1}A^{n-2}
+  +\cdots+(-1)^{n-1}c_{n-1}I]$ (when $c_{n}=\det A\neq 0$).  The
+  Leverrier--Faddeev algorithm computes the characteristic coefficients
+  $c_{k}$ and the adjugate matrix simultaneously using only matrix
+  multiplications and traces.
+
+\item \textbf{Powers of matrices and linear recurrences.}%
+  \index{matrix powers!Cayley--Hamilton}%
+  \index{linear recurrence!matrix method}%
+  \index{Fibonacci numbers!matrix}%
+  Cayley--Hamilton implies that $A^{k}$ for $k\geq n$ is a linear
+  combination of $I,A,\ldots,A^{n-1}$ with coefficients satisfying a
+  linear recurrence given by the characteristic polynomial.  This is
+  the matrix method for solving linear recurrences: the Fibonacci
+  sequence satisfies $F_{k+2}=F_{k+1}+F_{k}$, encoded by
+  $\bigl(\begin{smallmatrix}1&1\\1&0\end{smallmatrix}\bigr)^{k}$
+  with characteristic polynomial $\lambda^{2}-\lambda-1$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.612\quad Corollaries}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Traces, determinants, and physical invariants.}%
+  \index{trace!physical invariants}%
+  \index{determinant!physical invariants}%
+  \index{stress tensor!invariants}%
+  \index{Newton's identities!eigenvalue sums}%
+  The coefficients of the characteristic polynomial are symmetric
+  functions of the eigenvalues: $c_{1}=\mathrm{tr}\,A=\sum\lambda_{i}$,
+  $c_{n}=\det A=\prod\lambda_{i}$.  Newton's identities relate power
+  sums $\mathrm{tr}(A^{k})=\sum\lambda_{i}^{k}$ to these symmetric
+  functions.  In continuum mechanics, the three invariants
+  $I_{1}=\mathrm{tr}\,\boldsymbol{\sigma}$,
+  $I_{2}=\frac{1}{2}[(\mathrm{tr}\,\boldsymbol{\sigma})^{2}
+  -\mathrm{tr}(\boldsymbol{\sigma}^{2})]$,
+  $I_{3}=\det\boldsymbol{\sigma}$ of the stress tensor determine the
+  yield criterion (von Mises, Tresca).
+
+\item \textbf{Schur's inequality for eigenvalue sums.}%
+  \index{Schur's inequality!eigenvalue--diagonal}%
+  \index{eigenvalue!diagonal comparison}%
+  \index{Hadamard's inequality!determinant}%
+  For Hermitian $A$ with eigenvalues $\lambda_{1}\geq\cdots\geq\lambda_{n}$
+  and diagonal entries $a_{11},\ldots,a_{nn}$, Schur's inequality
+  states that $(\lambda_{1},\ldots,\lambda_{n})\prec(a_{11},\ldots,a_{nn})$
+  (majorisation in reverse).  This implies Hadamard's inequality
+  $|\det A|\leq\prod\|a_{j}\|_{2}$ (columns) and the trace inequality
+  $\sum\lambda_{i}^{2}\leq\sum a_{ii}^{2}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Characteristic polynomial and graph theory.}%
+  \index{characteristic polynomial!graphs}%
+  \index{adjacency matrix!spectrum}%
+  \index{graph spectrum}%
+  The characteristic polynomial of the adjacency matrix of a graph
+  encodes structural information: the number of triangles is
+  $\mathrm{tr}(A^{3})/6$, the number of edges is $\mathrm{tr}(A^{2})/2$,
+  and the eigenvalues determine expansion properties (Cheeger inequality),
+  chromatic number bounds, and random walk mixing rates.
+
+\item \textbf{Amitsur--Levitzki theorem.}%
+  \index{Amitsur--Levitzki theorem}%
+  \index{polynomial identity!matrices}%
+  \index{standard identity}%
+  The Cayley--Hamilton theorem is a polynomial identity of degree $n$
+  for individual matrices.  The Amitsur--Levitzki theorem is a
+  universal polynomial identity: every $n\times n$ matrix satisfies
+  the standard identity $S_{2n}(A_{1},\ldots,A_{2n})=0$ of degree
+  $2n$, the minimal degree for a polynomial identity for $M_{n}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.71\quad Inequalities for the Characteristic Polynomial}
 \subsubsection{15.711\quad Named and unnamed inequalities}
 \subsubsection{15.712\quad Parodi's theorem}
 \subsubsection{15.713\quad Corollary of Brauer's theorem}
 \subsubsection{15.714\quad Ballieu's theorem}
-\subsubsection{15.715\quad Routh-Hurwitz theorem}
 
+These results provide regions in the complex plane that contain all
+eigenvalues (zeros of the characteristic polynomial).  They refine and
+complement Gerschgorin's theorem by using different combinations of the
+matrix entries.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Eigenvalue enclosures for large Hamiltonians.}%
+  \index{eigenvalue enclosure}%
+  \index{Parodi's theorem}%
+  \index{Ballieu's theorem}%
+  \index{Hamiltonian!eigenvalue bounds}%
+  When full diagonalisation of a large Hamiltonian matrix is
+  infeasible, Parodi's and Ballieu's theorems give eigenvalue
+  enclosures from the matrix entries alone.  Parodi's theorem provides
+  annular regions $r\leq|\lambda|\leq R$ using ratios of the
+  characteristic coefficients, useful for bounding ground-state and
+  highest-energy eigenvalues in many-body quantum systems.
+
+\item \textbf{Stability of feedback systems.}%
+  \index{stability!characteristic polynomial}%
+  \index{Routh--Hurwitz criterion}%
+  \index{feedback system!stability}%
+  \index{control theory!stability analysis}%
+  Knowing that all eigenvalues lie in a specific region (e.g., the
+  left half-plane for stability) without computing them explicitly is
+  essential in control theory.  Ballieu's theorem and Brauer's
+  generalisation give conditions on the matrix entries ensuring all
+  eigenvalues have negative real parts, complementing the
+  Routh--Hurwitz criterion for polynomial stability analysis.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Companion matrix and polynomial zero bounds.}%
+  \index{companion matrix}%
+  \index{polynomial zeros!bounds}%
+  \index{Cauchy bound!polynomial roots}%
+  Any monic polynomial $p(\lambda)=\lambda^{n}+a_{n-1}\lambda^{n-1}
+  +\cdots+a_{0}$ is the characteristic polynomial of its companion
+  matrix.  Applying Gerschgorin, Brauer, or Ballieu to the companion
+  matrix gives bounds on the zeros of $p$: Cauchy's bound
+  $|\lambda|\leq\max(1,\sum|a_{i}|)$ and Fujiwara's bound
+  $|\lambda|\leq 2\max_{i}|a_{i}/a_{n}|^{1/(n-i)}$ follow from
+  matrix norm estimates.
+
+\item \textbf{Ovals of Cassini (Brauer's theorem).}%
+  \index{Brauer's theorem!ovals of Cassini}%
+  \index{ovals of Cassini}%
+  \index{eigenvalue!Cassini ovals}%
+  Brauer's theorem sharpens Gerschgorin: every eigenvalue lies in the
+  union of ovals of Cassini
+  $\{z:|z-a_{ii}||z-a_{jj}|\leq r_{i}r_{j}\}$ over all pairs
+  $i\neq j$.  These lemniscate-shaped regions can be strictly smaller
+  than the union of Gerschgorin discs, giving tighter eigenvalue
+  enclosures for matrices with off-diagonal structure.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
+\subsubsection{15.715\quad Routh--Hurwitz theorem}
+
+The Routh--Hurwitz theorem gives necessary and sufficient conditions for
+all roots of a real polynomial $p(s)=a_{n}s^{n}+\cdots+a_{1}s+a_{0}$
+to have strictly negative real parts (Hurwitz stability): all leading
+principal minors of the Hurwitz matrix must be positive.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Control system stability analysis.}%
+  \index{Routh--Hurwitz theorem!control systems}%
+  \index{stability!Hurwitz criterion}%
+  \index{characteristic equation!stability}%
+  The closed-loop characteristic polynomial of a feedback system
+  determines stability.  The Routh--Hurwitz criterion tests stability
+  algebraically without computing roots, essential for parametric
+  stability analysis: given a system with parameter $k$, the Hurwitz
+  conditions determine the range of $k$ for which the system is stable.
+
+\item \textbf{Onset of oscillatory instabilities.}%
+  \index{Hopf bifurcation!Routh--Hurwitz}%
+  \index{oscillatory instability}%
+  \index{flutter!aeroelasticity}%
+  A Hopf bifurcation (transition from stable equilibrium to limit
+  cycle oscillations) occurs when a pair of complex eigenvalues crosses
+  the imaginary axis.  The Routh--Hurwitz conditions detect this
+  crossing: when a Hurwitz determinant passes through zero, pure
+  imaginary roots appear, signalling the onset of flutter in
+  aeroelasticity or oscillatory chemical reactions.
+
+\item \textbf{Thermodynamic and chemical stability.}%
+  \index{chemical kinetics!stability}%
+  \index{detailed balance!stability}%
+  \index{Turing instability}%
+  The Jacobian of a chemical reaction network at equilibrium must have
+  all eigenvalues with negative real parts for stability.  The
+  Routh--Hurwitz conditions on the Jacobian give explicit stability
+  criteria in terms of rate constants, used to identify Turing
+  instabilities (pattern formation) and oscillatory dynamics
+  (Belousov--Zhabotinsky reaction).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hurwitz matrices and total positivity.}%
+  \index{Hurwitz matrix}%
+  \index{total positivity!Hurwitz}%
+  \index{stability!algebraic criterion}%
+  A real polynomial is Hurwitz stable iff its Hurwitz matrix has all
+  positive leading principal minors.  The Hurwitz matrix is totally
+  non-negative for stable polynomials, connecting stability theory
+  to the combinatorics of total positivity.
+
+\item \textbf{Hermite--Biehler theorem.}%
+  \index{Hermite--Biehler theorem}%
+  \index{interlacing!real and imaginary parts}%
+  \index{Hurwitz polynomial}%
+  A real polynomial $p(s)$ is Hurwitz stable iff its even and odd parts
+  $p(i\omega)=u(\omega^{2})+i\omega v(\omega^{2})$ have real interlacing
+  zeros.  This is the Hermite--Biehler theorem, equivalent to
+  Routh--Hurwitz but formulated in terms of the frequency response on
+  the imaginary axis.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{15.81--15.82\quad Named Theorems on Eigenvalues}
+
 \subsubsection{15.811\quad Schur's inequalities}
+
+Schur's inequality states that for a matrix $A$ with eigenvalues
+$\lambda_{1},\ldots,\lambda_{n}$:
+$\sum_{i}|\lambda_{i}|^{2}\leq\sum_{i,j}|a_{ij}|^{2}=\|A\|_{F}^{2}$,
+with equality iff $A$ is normal ($A^{*}A=AA^{*}$).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Energy bounds in quantum mechanics.}%
+  \index{Schur's inequality!eigenvalue bounds}%
+  \index{energy bound!Frobenius norm}%
+  \index{Hamiltonian!trace inequality}%
+  For a Hermitian Hamiltonian matrix $H$ with eigenvalues $E_{k}$,
+  Schur's inequality gives $\sum E_{k}^{2}\leq\|H\|_{F}^{2}$
+  (equality holds since $H$ is normal).  Combined with
+  $\sum E_{k}=\mathrm{tr}\,H$, this bounds the spread of energy
+  levels and the variance of the energy spectrum.
+
+\item \textbf{Normal matrices and quantum observables.}%
+  \index{normal matrix!quantum observable}%
+  \index{spectral theorem!normal matrices}%
+  \index{uncertainty!normal operators}%
+  Normal matrices are unitarily diagonalisable (the spectral theorem).
+  Every quantum observable is represented by a normal (specifically
+  Hermitian) operator, and Schur's inequality with equality
+  characterises exactly those operators that admit a complete set of
+  eigenstates---the foundational requirement for quantum measurement
+  theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Schur triangularisation.}%
+  \index{Schur triangularisation}%
+  \index{unitary similarity}%
+  \index{Schur decomposition}%
+  Every matrix $A$ is unitarily similar to an upper triangular matrix
+  $T$ ($A=UTU^{*}$), with the eigenvalues on the diagonal.
+  The off-diagonal entries of $T$ measure the departure from normality,
+  and $\|A\|_{F}^{2}=\sum|\lambda_{i}|^{2}+\sum_{i<j}|t_{ij}|^{2}$,
+  from which Schur's inequality follows.
+
+\item \textbf{Departure from normality.}%
+  \index{departure from normality}%
+  \index{non-normal matrix!pseudospectrum}%
+  \index{Henrici number}%
+  The quantity $\delta(A)=(\|A\|_{F}^{2}-\sum|\lambda_{i}|^{2})^{1/2}$
+  measures the departure from normality (Henrici number).  Non-normal
+  matrices can exhibit transient growth $\|e^{tA}\|\gg 1$ even when
+  all eigenvalues have negative real parts, a phenomenon central to
+  pseudospectral analysis and the stability of fluid flows.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.812\quad Sturmian separation theorem}
 \subsubsection{15.813\quad Poincar\'e's separation theorem}
+
+The Cauchy interlacing (Sturmian separation) theorem states that if $B$
+is an $(n-1)\times(n-1)$ principal submatrix of a Hermitian
+$n\times n$ matrix $A$ with eigenvalues
+$\lambda_{1}\leq\cdots\leq\lambda_{n}$, then the eigenvalues
+$\mu_{1}\leq\cdots\leq\mu_{n-1}$ of $B$ interlace:
+$\lambda_{i}\leq\mu_{i}\leq\lambda_{i+1}$.  Poincar\'{e}'s separation
+theorem generalises this to arbitrary rectangular submatrices (sections
+by subspaces).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Truncation of quantum Hamiltonians.}%
+  \index{interlacing!Cauchy}%
+  \index{Sturmian separation theorem}%
+  \index{Poincar\'e separation theorem}%
+  \index{Hamiltonian truncation!interlacing}%
+  \index{variational bound!interlacing}%
+  In quantum chemistry, a Hamiltonian matrix is truncated to a smaller
+  basis set for computational feasibility.  The interlacing theorem
+  guarantees that the computed eigenvalues bracket the true ones:
+  each approximate energy level lies between consecutive exact levels.
+  This gives rigorous upper and lower bounds on transition energies.
+
+\item \textbf{Vibrational mode extraction.}%
+  \index{substructure!eigenvalue interlacing}%
+  \index{mode extraction}%
+  \index{structural dynamics!interlacing}%
+  When a structural dynamics model is partitioned into substructures,
+  the eigenvalues of each substructure interlace with those of the
+  full structure.  This is the theoretical basis of component mode
+  synthesis (Craig--Bampton method): the modes of substructures
+  provide a priori bounds on the modes of the assembled system.
+
+\item \textbf{Anderson localisation and level statistics.}%
+  \index{Anderson localisation!interlacing}%
+  \index{level repulsion}%
+  \index{random matrix!interlacing}%
+  In disordered quantum systems, interlacing constrains eigenvalue
+  spacing.  For random Hermitian matrices, interlacing combined with
+  Dyson's Coulomb gas analogy leads to level repulsion: the probability
+  of two eigenvalues being very close vanishes as $|\lambda_{i}-\lambda_{j}|^{\beta}$
+  where $\beta=1,2,4$ for the GOE, GUE, GSE ensembles respectively.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Minimax characterisation and the Courant--Fischer theorem.}%
+  \index{Courant--Fischer theorem}%
+  \index{minimax principle!eigenvalues}%
+  \index{Rayleigh quotient!minimax}%
+  The Courant--Fischer minimax theorem
+  $\lambda_{k}=\min_{\dim V=k}\max_{\mathbf{x}\in V\setminus\{0\}}
+  R(\mathbf{x})$ (where $R$ is the Rayleigh quotient) implies the
+  interlacing inequalities and is the principal tool for proving
+  eigenvalue comparison results.
+
+\item \textbf{Weyl's inequality for Hermitian perturbations.}%
+  \index{Weyl's inequality!eigenvalue perturbation}%
+  \index{eigenvalue perturbation!Hermitian}%
+  \index{Lidskii's theorem}%
+  If $A$ and $B$ are Hermitian with eigenvalues $\alpha_{i}$ and
+  $\beta_{i}$ (ordered), then the eigenvalues $\gamma_{i}$ of $A+B$
+  satisfy $\alpha_{i}+\beta_{1}\leq\gamma_{i}\leq\alpha_{i}+\beta_{n}$
+  (Weyl's inequality).  Lidskii's sharper result gives
+  $\sum_{i\in S}|\gamma_{i}-\alpha_{i}|\leq\sum|\beta_{i}|$ for any
+  index set $S$, proved via interlacing.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.814\quad Gerschgorin's theorem}
+
+Every eigenvalue of an $n\times n$ matrix $A$ lies in at least one
+Gerschgorin disc $D_{i}=\{z\in\mathbb{C}:|z-a_{ii}|\leq r_{i}\}$
+where $r_{i}=\sum_{j\neq i}|a_{ij}|$.  Moreover, the union of any $k$
+discs that form a connected component isolated from the remaining $n-k$
+discs contains exactly $k$ eigenvalues (counting multiplicities).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quick spectral estimates for large matrices.}%
+  \index{Gerschgorin's theorem}%
+  \index{Gerschgorin discs}%
+  \index{spectral estimate!quick}%
+  \index{sparse matrix!eigenvalue bounds}%
+  Gerschgorin's theorem requires only $O(n^{2})$ operations (computing
+  row sums) versus $O(n^{3})$ for full diagonalisation, making it
+  invaluable for quick spectral estimates of large sparse matrices
+  in quantum chemistry, network analysis, and finite element methods.
+
+\item \textbf{Positive definiteness without diagonalisation.}%
+  \index{positive definiteness!Gerschgorin}%
+  \index{stiffness matrix!positive definiteness}%
+  \index{diagonal dominance!positive definiteness}%
+  For a Hermitian matrix with positive diagonal, if all Gerschgorin
+  discs lie in the right half-plane ($a_{ii}>r_{i}$ for all $i$), then
+  all eigenvalues are positive---the matrix is positive definite.  This
+  gives an easily checked sufficient condition for positive definiteness
+  of stiffness matrices in structural engineering.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Non-singularity of diagonally dominant matrices.}%
+  \index{diagonal dominance!non-singularity}%
+  \index{Gerschgorin!non-singularity}%
+  \index{M-matrix}%
+  If $A$ is strictly diagonally dominant, then $0$ lies outside all
+  Gerschgorin discs, so $A$ is non-singular.  This is the simplest
+  non-singularity criterion and the starting point for the theory of
+  M-matrices and H-matrices in numerical linear algebra.
+
+\item \textbf{Continuity of eigenvalues.}%
+  \index{eigenvalue continuity}%
+  \index{perturbation!Gerschgorin}%
+  Gerschgorin's theorem applied to $A+\varepsilon B$ shows that
+  eigenvalues move continuously: each eigenvalue of $A+\varepsilon B$
+  lies in a Gerschgorin disc of radius $O(\varepsilon)$ about an
+  eigenvalue of $A$.  This gives a simple proof of the continuity of
+  eigenvalues as functions of matrix entries.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.815\quad Brauer's theorem}
+
+Brauer's theorem refines Gerschgorin: every eigenvalue lies in the
+union of ovals of Cassini
+$C_{ij}=\{z:|z-a_{ii}|\cdot|z-a_{jj}|\leq r_{i}\cdot r_{j}\}$ for
+$i\neq j$, where $r_{i}=\sum_{k\neq i}|a_{ik}|$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Tighter spectral bounds for structured matrices.}%
+  \index{Brauer's theorem!spectral bounds}%
+  \index{ovals of Cassini!spectral bounds}%
+  For matrices with one dominant row and one small row (common in
+  multi-scale physical problems), the Cassini oval for that pair can
+  be much smaller than the corresponding Gerschgorin discs, giving
+  tighter eigenvalue enclosures.  This is particularly useful for
+  stiff systems where eigenvalue ratios span many orders of magnitude.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Oval geometry and eigenvalue isolation.}%
+  \index{Cassini ovals!geometry}%
+  \index{eigenvalue isolation!Brauer}%
+  Cassini ovals $\{z:|z-a||z-b|=c^{2}\}$ are lemniscate-like curves
+  that can split into two components when $c<|a-b|/2$.  When this
+  happens, Brauer's theorem isolates eigenvalues more effectively than
+  Gerschgorin, splitting a connected group of discs into separated
+  ovals.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.816\quad Perron's theorem}
 \subsubsection{15.817\quad Frobenius theorem}
 \subsubsection{15.818\quad Perron--Frobenius theorem}
+
+Perron's theorem (1907): a positive matrix ($a_{ij}>0$ for all $i,j$)
+has a unique eigenvalue of largest modulus (the Perron root $\lambda_{1}>0$),
+with a corresponding strictly positive eigenvector.  Frobenius (1912)
+extended this to non-negative irreducible matrices, where the Perron
+root is still positive with a positive eigenvector, but the eigenvalues
+of maximum modulus may include roots of unity $\lambda_{1}e^{2\pi ik/h}$
+($h$ is the period of the matrix).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Markov chains and stationary distributions.}%
+  \index{Perron--Frobenius theorem}%
+  \index{Markov chain!stationary distribution}%
+  \index{stochastic matrix}%
+  \index{mixing time}%
+  A stochastic matrix $P$ (non-negative, row sums 1) has Perron root
+  $\lambda_{1}=1$.  The corresponding left eigenvector $\boldsymbol{\pi}$
+  ($\boldsymbol{\pi}^{T}P=\boldsymbol{\pi}^{T}$) is the stationary
+  distribution.  Irreducibility means the chain is ergodic
+  ($\boldsymbol{\pi}$ is unique and positive), and the spectral gap
+  $1-|\lambda_{2}|$ controls the mixing time.
+
+\item \textbf{Nuclear reactor criticality.}%
+  \index{nuclear reactor!criticality}%
+  \index{neutron transport!Perron--Frobenius}%
+  \index{criticality!eigenvalue}%
+  \index{effective multiplication factor $k_{\text{eff}}$}%
+  The neutron transport equation discretised on a mesh gives a
+  non-negative matrix whose Perron eigenvalue is the effective
+  multiplication factor $k_{\mathrm{eff}}$.  The reactor is critical
+  when $k_{\mathrm{eff}}=1$, subcritical when $k_{\mathrm{eff}}<1$,
+  and supercritical when $k_{\mathrm{eff}}>1$.  The Perron eigenvector
+  gives the spatial neutron flux distribution.
+
+\item \textbf{Population dynamics and Leslie matrices.}%
+  \index{Leslie matrix!Perron--Frobenius}%
+  \index{population growth rate!Perron root}%
+  \index{stable age distribution}%
+  The Leslie matrix for age-structured population dynamics is
+  non-negative with positive fecundities.  The Perron root gives
+  the asymptotic population growth rate, and the Perron eigenvector
+  gives the stable age distribution.  Frobenius's extension handles
+  semelparous species (organisms that reproduce only once, giving
+  periodic matrices).
+
+\item \textbf{Google PageRank and web search.}%
+  \index{PageRank!Perron--Frobenius}%
+  \index{web search!eigenvalue}%
+  \index{random surfer model}%
+  The PageRank vector is the Perron eigenvector of the Google matrix
+  $G=(1-\alpha)(\mathbf{v}\mathbf{1}^{T}/n)+\alpha P$, a convex
+  combination of the web transition matrix and a uniform teleportation
+  matrix.  The damping factor $\alpha\approx 0.85$ ensures irreducibility
+  and aperiodicity, guaranteeing a unique positive Perron vector.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Non-negative matrix theory.}%
+  \index{non-negative matrix theory}%
+  \index{irreducibility!matrix}%
+  \index{primitivity!matrix}%
+  The Perron--Frobenius theorem is the cornerstone of non-negative
+  matrix theory.  A non-negative matrix is primitive (irreducible and
+  aperiodic) iff $A^{k}>0$ for some $k$, iff $\lambda_{1}$ is the
+  unique eigenvalue of maximum modulus.  The Collatz--Wielandt formula
+  $\lambda_{1}=\max_{\mathbf{x}>0}\min_{i}(A\mathbf{x})_{i}/x_{i}$
+  gives a variational characterisation of the Perron root.
+
+\item \textbf{Graph theory and algebraic connectivity.}%
+  \index{graph theory!Perron--Frobenius}%
+  \index{adjacency matrix!Perron--Frobenius}%
+  \index{algebraic connectivity}%
+  \index{Fiedler vector}%
+  For the adjacency matrix of a connected graph, the Perron root
+  (spectral radius) measures the graph's ``density'' and bounds the
+  chromatic number.  The Laplacian $L=D-A$ has smallest eigenvalue 0
+  (with eigenvector $\mathbf{1}$); the second smallest eigenvalue
+  (algebraic connectivity, Fiedler value) measures how well-connected
+  the graph is.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.819\quad Wielandt's theorem}
 \subsubsection{15.820\quad Ostrowski's theorem}
+
+Wielandt's theorem bounds the spectral radius of the Hadamard
+(entrywise) product: $\rho(A\circ B)\leq\rho(A)\rho(B)$ for
+non-negative $A,B$.  Ostrowski's theorem relates eigenvalues to
+diagonal scalings: for non-negative $A$ with row sums $r_{i}$ and
+column sums $c_{j}$, $\min_{i}r_{i}\leq\rho(A)\leq\max_{i}r_{i}$
+with refinements using geometric means of row and column sums.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Bounds on reaction rates in chemical networks.}%
+  \index{Wielandt's theorem}%
+  \index{Ostrowski's theorem}%
+  \index{Hadamard product!spectral bound}%
+  \index{chemical network!rate bounds}%
+  In chemical reaction networks, the stoichiometric matrix and the
+  rate constant matrix combine via Hadamard products.  Wielandt's
+  bound gives spectral radius estimates for the combined system
+  from the individual factors, useful for bounding dominant reaction
+  rates without full eigenvalue computation.
+
+\item \textbf{Diagonal scaling and matrix equilibration.}%
+  \index{diagonal scaling}%
+  \index{matrix equilibration}%
+  \index{preconditioning!diagonal}%
+  Ostrowski's theorem shows that diagonal scaling $DAD^{-1}$ can
+  reduce the spectral radius of the iteration matrix, motivating
+  diagonal preconditioning.  Matrix equilibration (scaling rows and
+  columns to have equal norms) improves the condition number and is
+  a standard preprocessing step in numerical linear algebra.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hadamard product and Schur product theorem.}%
+  \index{Hadamard product!positive definiteness}%
+  \index{Schur product theorem}%
+  \index{covariance matrix!Hadamard product}%
+  The Schur product theorem states that the Hadamard product of two
+  positive semidefinite matrices is positive semidefinite.  Combined
+  with Wielandt's spectral radius bound, this gives powerful tools
+  for bounding eigenvalues of entrywise products, with applications
+  to covariance matrices and kernel methods in machine learning.
+
+\item \textbf{$DAD$ scalings and doubly stochastic matrices.}%
+  \index{doubly stochastic!scaling}%
+  \index{Sinkhorn--Knopp algorithm}%
+  \index{DAD scaling}%
+  The Sinkhorn--Knopp algorithm iteratively scales a positive matrix
+  to be doubly stochastic via alternating row and column
+  normalisations.  Ostrowski's theorem and its generalisations
+  provide the convergence analysis, and the resulting doubly stochastic
+  matrix has Perron root 1 with known eigenvector $\mathbf{1}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{15.821\quad First theorem due to Lyapunov}
 \subsubsection{15.822\quad Second theorem due to Lyapunov}
 
+Lyapunov's first theorem: the linear system $\dot{\mathbf{x}}=A\mathbf{x}$
+is asymptotically stable iff all eigenvalues of $A$ have negative real parts.
+Lyapunov's second (matrix) theorem: $A$ is stable iff for every positive
+definite $Q$, the Lyapunov equation $A^{T}P+PA=-Q$ has a unique positive
+definite solution $P$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stability of linear control systems.}%
+  \index{Lyapunov stability!matrix theorem}%
+  \index{Lyapunov equation}%
+  \index{control system!Lyapunov stability}%
+  \index{energy function!Lyapunov}%
+  The Lyapunov function $V(\mathbf{x})=\mathbf{x}^{T}P\mathbf{x}$
+  with $P$ satisfying $A^{T}P+PA=-Q$ serves as a generalised energy
+  function.  $\dot{V}=-\mathbf{x}^{T}Q\mathbf{x}<0$ proves
+  asymptotic stability.  In control engineering, $P$ gives the
+  steady-state covariance of the state under white noise excitation,
+  and $\mathrm{tr}(P)$ is the $H_{2}$ norm of the system.
+
+\item \textbf{Structural stability and Lyapunov exponents.}%
+  \index{Lyapunov exponents}%
+  \index{structural stability}%
+  \index{chaos!Lyapunov exponents}%
+  For nonlinear systems $\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x})$,
+  Lyapunov's first theorem applied to the linearisation
+  $A=D\mathbf{f}(\mathbf{x}^{*})$ determines local stability of
+  equilibria.  For trajectories, the Lyapunov exponents
+  $\lambda_{i}=\lim_{t\to\infty}t^{-1}\ln\sigma_{i}(\Phi(t))$
+  (where $\Phi$ is the fundamental matrix) generalise eigenvalues to
+  time-varying and nonlinear systems.  A positive Lyapunov exponent
+  is the hallmark of chaos.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lyapunov equation and Sylvester equation.}%
+  \index{Lyapunov equation!Sylvester generalisation}%
+  \index{Sylvester equation}%
+  \index{Kronecker product!Lyapunov equation}%
+  The Lyapunov equation $A^{T}P+PA=-Q$ is a special case of the
+  Sylvester equation $AX+XB=C$.  The Sylvester equation has a unique
+  solution iff $\sigma(A)\cap\sigma(-B)=\emptyset$, i.e., $A$ and $-B$
+  share no eigenvalues.  For the Lyapunov equation, this reduces to
+  $\lambda_{i}+\bar{\lambda}_{j}\neq 0$, automatically satisfied when
+  all eigenvalues have negative real parts.  The solution can be
+  expressed via the Kronecker product: $\mathrm{vec}(P)=(I\otimes A^{T}
+  +A^{T}\otimes I)^{-1}\mathrm{vec}(-Q)$.
+
+\item \textbf{Inertia theorems and matrix sign.}%
+  \index{inertia!matrix}%
+  \index{Sylvester's law of inertia}%
+  \index{matrix sign function}%
+  The Lyapunov theorem is an instance of Ostrowski--Schneider's inertia
+  theorem: the inertia of $A$ (number of eigenvalues with positive,
+  negative, and zero real parts) equals the inertia of $P$ when
+  $A^{T}P+PA=Q$ is definite.  This connects the eigenvalue sign pattern
+  of $A$ to the definiteness of the Lyapunov solution, the basis of
+  the matrix sign function algorithm for spectral dichotomy.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{15.823\quad Hermitian matrices and diophantine relations involving circular functions of rational angles due to Calogero and Perelomov}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Calogero--Moser--Sutherland models.}%
+  \index{Calogero--Moser system}%
+  \index{Calogero--Perelomov!identities}%
+  \index{exactly solvable models}%
+  \index{trigonometric identities!many-body}%
+  Calogero and Perelomov discovered that certain identities involving
+  $\cot(\pi k/n)$ and $\csc(\pi k/n)$ for rational angles follow from
+  the eigenvalue structure of specific Hermitian matrices.  These
+  identities arise naturally in the exactly solvable
+  Calogero--Moser--Sutherland many-body systems, where $n$ particles on
+  a circle interact with inverse-square potentials proportional to
+  $1/\sin^{2}(\theta_{i}-\theta_{j})$.
+
+\item \textbf{Lattice sums and crystallography.}%
+  \index{lattice sums!trigonometric}%
+  \index{crystallography!angular sums}%
+  \index{Madelung constant!related sums}%
+  The diophantine-type identities involving circular functions of
+  rational angles appear in lattice sums and crystallographic
+  calculations, where sums over discrete angles arise from the
+  symmetry group of the lattice.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Circulant and Toeplitz matrices.}%
+  \index{circulant matrix!eigenvalues}%
+  \index{Toeplitz matrix!eigenvalues}%
+  \index{roots of unity!eigenvalues}%
+  The identities are proved by constructing Hermitian matrices whose
+  eigenvalues are known (often from roots of unity) and applying trace
+  identities $\mathrm{tr}(A^{k})=\sum\lambda_{i}^{k}$.  Circulant
+  matrices $C$ with eigenvalues
+  $\lambda_{k}=\sum_{j}c_{j}\omega^{jk}$ ($\omega=e^{2\pi i/n}$)
+  are the key tool, connecting the identities to the discrete Fourier
+  transform.
+
+\item \textbf{Diophantine equations and number theory.}%
+  \index{diophantine equations!trigonometric}%
+  \index{Niven's theorem}%
+  \index{rational angles!trigonometric values}%
+  The rational values of $\cos(\pi q)$ for $q\in\mathbb{Q}$ are
+  $0,\pm\frac{1}{2},\pm 1$ (Niven's theorem).  The
+  Calogero--Perelomov identities give more general relations
+  involving sums and products of trigonometric functions at rational
+  multiples of $\pi$, some of which have surprising number-theoretic
+  consequences.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{15.91\quad Variational Principles}
 \subsubsection{15.911\quad Rayleigh quotient}
+
+The Rayleigh quotient $R(\mathbf{x})=\mathbf{x}^{*}A\mathbf{x}/
+\mathbf{x}^{*}\mathbf{x}$ for a Hermitian matrix $A$ satisfies
+$\lambda_{\min}\leq R(\mathbf{x})\leq\lambda_{\max}$, with equality
+at the corresponding eigenvectors.
+
 \subsubsection{15.912\quad Basic theorems}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Variational method in quantum mechanics.}%
+  \index{Rayleigh quotient}%
+  \index{variational method!quantum mechanics}%
+  \index{ground state energy!upper bound}%
+  \index{Ritz method}%
+  \index{trial wavefunction}%
+  The variational principle
+  $E_{0}\leq\langle\psi_{\mathrm{trial}}|H|\psi_{\mathrm{trial}}\rangle/
+  \langle\psi_{\mathrm{trial}}|\psi_{\mathrm{trial}}\rangle=R(\psi_{\mathrm{trial}})$
+  gives an upper bound on the ground state energy for any trial
+  wavefunction.  The Ritz method optimises $R$ over a parameterised
+  family of trial states, and the Hylleraas--Undheim--MacDonald theorem
+  ensures that the $k$th Ritz eigenvalue is an upper bound on the
+  $k$th exact eigenvalue.
+
+\item \textbf{Finite element method and structural eigenvalues.}%
+  \index{finite element method!Rayleigh quotient}%
+  \index{structural eigenvalue!Rayleigh--Ritz}%
+  \index{natural frequency!variational}%
+  \index{Rayleigh--Ritz method}%
+  The Rayleigh--Ritz method projects the continuous eigenvalue problem
+  (vibrating structure, acoustic cavity) onto a finite-dimensional
+  subspace.  The Rayleigh quotient
+  $R[\mathbf{u}]=\mathbf{u}^{T}K\mathbf{u}/\mathbf{u}^{T}M\mathbf{u}$
+  (stiffness over mass) gives the squared natural frequencies, and
+  the Courant--Fischer minimax theorem guarantees that refining the mesh
+  can only decrease (improve) the approximate eigenvalues.
+
+\item \textbf{Principal component analysis and dimensionality reduction.}%
+  \index{principal component analysis!Rayleigh quotient}%
+  \index{dimensionality reduction}%
+  \index{explained variance!maximisation}%
+  PCA seeks the direction $\mathbf{w}$ maximising the variance
+  $\mathbf{w}^{T}\Sigma\mathbf{w}/\mathbf{w}^{T}\mathbf{w}$---the
+  Rayleigh quotient of the covariance matrix.  The solution is the
+  eigenvector corresponding to $\lambda_{\max}$.  The $k$ leading
+  eigenvectors capture the maximum variance in $k$ dimensions
+  (Eckart--Young--Mirsky theorem).
+
+\item \textbf{Band structure in solid-state physics.}%
+  \index{band structure!variational}%
+  \index{Bloch's theorem!Rayleigh quotient}%
+  \index{plane-wave expansion!variational}%
+  Electronic band structure calculations use the Rayleigh quotient
+  of the Hamiltonian restricted to Bloch functions
+  $\psi_{\mathbf{k}}(\mathbf{r})=e^{i\mathbf{k}\cdot\mathbf{r}}
+  u_{\mathbf{k}}(\mathbf{r})$.  The variational principle guarantees
+  that plane-wave (or augmented plane-wave) expansions give
+  convergent upper bounds on the energy bands.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Courant--Fischer minimax and maximin theorems.}%
+  \index{Courant--Fischer theorem!minimax}%
+  \index{eigenvalue!variational characterisation}%
+  \index{minimax!eigenvalue}%
+  The Courant--Fischer theorem gives a variational characterisation of
+  every eigenvalue:
+  $\lambda_{k}=\min_{\dim V=k}\max_{\mathbf{x}\in V,\|\mathbf{x}\|=1}
+  R(\mathbf{x})=\max_{\dim W=n-k+1}\min_{\mathbf{x}\in W,\|\mathbf{x}\|=1}
+  R(\mathbf{x})$.  This implies the interlacing theorems
+  (G\&R~15.812--15.813), Weyl's perturbation inequalities, and
+  monotonicity of eigenvalues under matrix constraints.
+
+\item \textbf{Generalised eigenvalue problems.}%
+  \index{generalised eigenvalue problem}%
+  \index{pencil!matrix}%
+  \index{Rayleigh quotient!generalised}%
+  The generalised eigenvalue problem $A\mathbf{x}=\lambda B\mathbf{x}$
+  (matrix pencil) has Rayleigh quotient
+  $R(\mathbf{x})=\mathbf{x}^{*}A\mathbf{x}/\mathbf{x}^{*}B\mathbf{x}$
+  when $B$ is positive definite.  All variational results extend:
+  $\lambda_{k}=\min_{\dim V=k}\max_{\mathbf{x}\in V}R(\mathbf{x})$.
+  This is the framework for finite element eigenvalue problems ($A=K$,
+  $B=M$) and generalised SVD applications.
+
+\item \textbf{Ky Fan's maximum principle.}%
+  \index{Ky Fan's theorem}%
+  \index{trace maximisation}%
+  \index{subspace!optimal}%
+  Ky Fan's theorem: $\sum_{i=1}^{k}\lambda_{i}(A)
+  =\max_{\dim V=k}\mathrm{tr}(P_{V}AP_{V})$ where $P_{V}$ is the
+  orthogonal projection onto $V$.  This generalises the Rayleigh
+  quotient from single vectors to subspaces and gives a variational
+  characterisation of the sum of the $k$ largest eigenvalues, used in
+  semidefinite programming relaxations and quantum entanglement measures.
+\end{enumerate}

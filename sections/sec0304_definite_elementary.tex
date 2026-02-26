@@ -1,90 +1,1451 @@
-%% Sections 3–4 — Definite Integrals of Elementary Functions
+%% ============================================================
+%% 3--4  Definite Integrals of Elementary Functions
+%% ============================================================
 \section{3--4\quad Definite Integrals of Elementary Functions}
 
 \subsection{3.0\quad Introduction}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.01\quad Theorems of a general nature}
 \subsubsection{3.02\quad Change of variable in a definite integral}
 \subsubsection{3.03\quad General formulas}
 \subsubsection{3.04\quad Improper integrals}
 \subsubsection{3.05\quad The principal values of improper integrals}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Normalization of quantum states.}%
+  \index{normalization!quantum state}%
+  \index{improper integral!wave function}%
+  \index{probability!conservation}%
+  The normalization condition $\int_{-\infty}^{\infty}|\psi(x)|^{2}\,dx=1$
+  is an improper integral (G\&R~3.04) whose convergence is a physical
+  requirement---only square-integrable wave functions represent
+  physical states.  The change-of-variable formula (G\&R~3.02) is
+  used routinely to switch between position and momentum
+  representations.
+
+\item \textbf{Kramers--Kronig relations and principal values.}%
+  \index{Kramers--Kronig relations}%
+  \index{principal value!dispersion relation}%
+  \index{causality!dispersion relations}%
+  \index{dielectric function!Kramers--Kronig}%
+  The Kramers--Kronig relations
+  $\operatorname{Re}\chi(\omega)
+  =\frac{1}{\pi}\,\mathrm{P.V.}\!\int_{-\infty}^{\infty}
+  \frac{\operatorname{Im}\chi(\omega')}{\omega'-\omega}\,d\omega'$
+  connect the real and imaginary parts of any causal response function
+  via principal-value integrals (G\&R~3.05).  They ensure causality
+  in optics, acoustics, and electrical circuit theory.
+
+\item \textbf{Dimensional analysis and scaling.}%
+  \index{dimensional analysis!definite integrals}%
+  \index{scaling!change of variable}%
+  \index{similarity solutions}%
+  The substitution $x=\alpha t$ in $\int_{0}^{\infty}f(x)\,dx$ extracts
+  powers of $\alpha$ by dimensional analysis, reducing physical integrals
+  to dimensionless standard forms.  This is the basis of similarity
+  solutions in fluid mechanics and renormalization group scaling in
+  field theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lebesgue vs.\ Riemann integration.}%
+  \index{Lebesgue integral}%
+  \index{Riemann integral!limitations}%
+  \index{dominated convergence theorem}%
+  The theorems of G\&R~3.01---uniform convergence of integrands,
+  interchange of limit and integral---are rigorously justified by the
+  dominated convergence theorem in Lebesgue theory.  The conditionally
+  convergent integrals (G\&R~3.04) illustrate cases where the Riemann
+  integral exists but the Lebesgue integral does not (e.g.,
+  $\int_{0}^{\infty}\sin(x)/x\,dx$).
+
+\item \textbf{Distributions and the principal value.}%
+  \index{principal value!distribution}%
+  \index{Sokhotski--Plemelj formula}%
+  \index{Dirac delta!from principal value}%
+  The Sokhotski--Plemelj formula
+  $\lim_{\varepsilon\to 0^{+}}1/(x\pm i\varepsilon)
+  =\mathrm{P.V.}(1/x)\mp i\pi\delta(x)$
+  interprets the principal value of G\&R~3.05 as a distribution.
+  This connects the classical Cauchy principal value to the modern
+  theory of distributions and to the $i\varepsilon$ prescription of
+  quantum field theory.
+
+\item \textbf{Residue calculus for definite integrals.}%
+  \index{residue calculus!definite integrals}%
+  \index{contour integration}%
+  \index{Jordan's lemma}%
+  Many formulas in G\&R~3--4 are most efficiently derived by contour
+  integration: closing the real-line integral into a semicircular or
+  keyhole contour, applying the residue theorem, and using Jordan's
+  lemma to control the contribution at infinity.  This converts the
+  evaluation of a definite integral into an algebraic computation of
+  residues.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{3.1--3.2\quad Power and Algebraic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.11\quad Rational functions}
 \subsubsection{3.12\quad Products of rational functions and expressions that can be reduced to square roots of first- and second-degree polynomials}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Dispersion integrals in optics and particle physics.}%
+  \index{dispersion integral}%
+  \index{optical theorem}%
+  \index{forward scattering amplitude}%
+  Dispersion relations express the real part of a scattering amplitude
+  as a principal-value integral of its imaginary part (the cross section)
+  over all energies:
+  $\operatorname{Re}f(\omega)=\frac{2\omega^{2}}{\pi}
+  \,\mathrm{P.V.}\!\int_{0}^{\infty}\frac{\sigma(\omega')}
+  {\omega'^{2}-\omega^{2}}\,d\omega'$.
+  The integrand is a rational function of $\omega'$ (G\&R~3.11).
+
+\item \textbf{Electrostatic energy of charge distributions.}%
+  \index{electrostatic energy!integral}%
+  \index{capacitance!from definite integral}%
+  \index{charge distribution!energy}%
+  The electrostatic energy $U=\frac{1}{2}\int\rho\,\Phi\,dV$ for
+  polynomial or rational charge densities $\rho(r)$ reduces to
+  definite integrals of rational functions.  For spherically symmetric
+  distributions, $U\propto\int_{0}^{R}r^{2}\rho(r)\Phi(r)\,dr$, a
+  definite integral of rational-times-power forms from
+  G\&R~3.11--3.12.
+
+\item \textbf{Period of orbits in power-law potentials.}%
+  \index{orbital period!algebraic integral}%
+  \index{power-law potential!orbit}%
+  \index{turning points}%
+  The radial period of a bound orbit in a central-force potential
+  $V(r)\propto r^{n}$ is
+  $T=2\int_{r_{\min}}^{r_{\max}}dr/\sqrt{2(E-V_{\text{eff}}(r))}$,
+  involving square roots of polynomials between turning points
+  (G\&R~3.12).  For the harmonic oscillator ($n=2$) and Kepler problem
+  ($n=-1$), these evaluate in closed form.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Beta function and Euler's integral.}%
+  \index{beta function!Euler integral}%
+  \index{Euler integral!first kind}%
+  \index{$B(p,q)=\int_0^1 t^{p-1}(1-t)^{q-1}dt$}%
+  The beta function
+  $B(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,dt=\Gamma(p)\Gamma(q)/\Gamma(p+q)$
+  is the master formula for the power-and-binomial integrals of
+  G\&R~3.19--3.24.  It connects the definite integrals of algebraic
+  functions to the gamma function, providing closed-form evaluations.
+
+\item \textbf{Contour integration of rational functions.}%
+  \index{contour integration!rational functions}%
+  \index{residue theorem!rational integrals}%
+  \index{partial fractions!definite integrals}%
+  $\int_{-\infty}^{\infty}P(x)/Q(x)\,dx$ with $\deg Q\geq\deg P+2$
+  equals $2\pi i$ times the sum of residues in the upper half-plane.
+  This standard technique evaluates all the rational definite integrals
+  of G\&R~3.11 and provides a check on formulas obtained by partial
+  fractions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.13--3.17\quad Expressions that can be reduced to square roots of third- and fourth-degree polynomials and their products with rational functions}
 \subsubsection{3.18\quad Expressions that can be reduced to fourth roots of second-degree polynomials and their products with rational functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Complete elliptic integrals in electromagnetic theory.}%
+  \index{elliptic integral!complete}%
+  \index{mutual inductance!coaxial coils}%
+  \index{magnetic flux!elliptic integral}%
+  The mutual inductance between two coaxial circular loops is
+  $M=\mu_{0}\sqrt{R_{1}R_{2}}\bigl[(2/k-k)K(k)-2E(k)/k\bigr]$,
+  where $K(k)$ and $E(k)$ are complete elliptic integrals of the
+  first and second kinds.  These are definite integrals involving
+  $\sqrt{1-k^{2}\sin^{2}\phi}$ over $[0,\pi/2]$, the prototypes
+  of G\&R~3.13--3.17.
+
+\item \textbf{Surface area of an ellipsoid.}%
+  \index{ellipsoid!surface area}%
+  \index{oblate and prolate spheroids}%
+  \index{geodesy!elliptic integrals}%
+  The surface area of a triaxial ellipsoid involves incomplete elliptic
+  integrals.  For a spheroid (two equal semi-axes), the result
+  simplifies to $2\pi a^{2}+\pi b^{2}\ln[(1+e)/(1-e)]/e$ (prolate) or
+  $2\pi a^{2}+2\pi b^{2}\arcsin(e)/e$ (oblate), involving the
+  algebraic-function definite integrals of G\&R~3.12--3.17.
+
+\item \textbf{Nonlinear oscillation periods.}%
+  \index{nonlinear oscillation!period}%
+  \index{quartic potential!period}%
+  \index{complete elliptic integral!oscillation period}%
+  The period of oscillation in a quartic potential
+  $V(x)=\alpha x^{2}+\beta x^{4}$ is
+  $T=2\int_{-x_{0}}^{x_{0}}dx/\sqrt{2(E-V(x))}$, a definite integral
+  involving $\sqrt{P_{4}(x)}$ where $P_{4}$ is a quartic polynomial.
+  This is a complete elliptic integral; the integrands of
+  G\&R~3.13--3.17 tabulate the standard forms.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Periods of elliptic curves.}%
+  \index{elliptic curve!periods}%
+  \index{period lattice}%
+  \index{modular function}%
+  The periods $\omega_{1}=\oint_{\gamma_{1}}dx/y$ and
+  $\omega_{2}=\oint_{\gamma_{2}}dx/y$ of the elliptic curve
+  $y^{2}=4x^{3}-g_{2}x-g_{3}$ are definite integrals of
+  $1/\sqrt{P_{3}(x)}$ over cycles.  Their ratio
+  $\tau=\omega_{2}/\omega_{1}$ is the modular parameter, and
+  $j(\tau)$ is the $j$-invariant classifying the curve up to
+  isomorphism.
+
+\item \textbf{Ramanujan-type evaluations.}%
+  \index{Ramanujan!elliptic integral identities}%
+  \index{singular moduli}%
+  \index{algebraic values!elliptic integrals}%
+  At special values of the modulus (singular moduli), complete elliptic
+  integrals take algebraic multiples of~$\pi$.  Ramanujan discovered
+  many such identities, e.g., $K(k_{210})$ expressed in terms of gamma
+  values.  These connect G\&R~3.13--3.17 to the theory of complex
+  multiplication and class field theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.19--3.23\quad Combinations of powers of $x$ and powers of binomials of the form $(\alpha +\beta x)$}
 \subsubsection{3.24--3.27\quad Powers of $x$, of binomials of the form $\alpha +\beta x^{p}$ and of polynomials in $x$}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stefan--Boltzmann law and the Riemann zeta function.}%
+  \index{Stefan--Boltzmann law!derivation}%
+  \index{Riemann zeta function!$\zeta(4)$}%
+  \index{Planck distribution!moments}%
+  The total black-body power $\int_{0}^{\infty}x^{3}/(e^{x}-1)\,dx
+  =\Gamma(4)\zeta(4)=\pi^{4}/15$ is a definite integral of the form
+  $\int_{0}^{\infty}x^{p}/(1+x^{q})^{r}\,dx$ after expanding the
+  Bose factor in geometric series.  The general formula
+  $\int_{0}^{\infty}x^{s-1}/(1+x)^{n}\,dx=B(s,n-s)$ from
+  G\&R~3.24 underlies the evaluation.
+
+\item \textbf{Density of states in condensed matter.}%
+  \index{density of states!power-law}%
+  \index{Van Hove singularity}%
+  \index{Debye model}%
+  The Debye model's density of states $g(\omega)\propto\omega^{2}$
+  gives thermodynamic integrals $\int_{0}^{\omega_{D}}\omega^{2}
+  f(\omega)\,d\omega$ with power-law prefactors.  Near Van Hove
+  singularities, $g(\omega)\propto(\omega-\omega_{0})^{-1/2}$,
+  producing binomial-power integrands from G\&R~3.19--3.23.
+
+\item \textbf{Moment integrals in probability and statistics.}%
+  \index{moments!probability distribution}%
+  \index{beta distribution!moments}%
+  \index{Pareto distribution}%
+  The $n$th moment of the beta distribution
+  $\mathbb{E}[X^{n}]=\int_{0}^{1}x^{n}\cdot x^{\alpha-1}(1-x)^{\beta-1}
+  /B(\alpha,\beta)\,dx=B(\alpha+n,\beta)/B(\alpha,\beta)$ is a
+  direct application of G\&R~3.19.  Pareto, power-law, and Student's
+  $t$-distribution moments similarly reduce to the binomial-power
+  integrals of G\&R~3.24--3.27.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Beta function and combinatorial identities.}%
+  \index{beta function!combinatorial identity}%
+  \index{Vandermonde--Chu identity}%
+  \index{binomial coefficients!integral representation}%
+  The integral representation $\binom{m+n}{m}^{-1}=(m+n+1)B(m+1,n+1)$
+  provides integral proofs of combinatorial identities.  The
+  Vandermonde--Chu identity $\sum_{k}\binom{m}{k}\binom{n}{r-k}
+  =\binom{m+n}{r}$ can be proved by evaluating the beta integral
+  $\int_{0}^{1}t^{m}(1-t)^{n}\,dt$ in two ways.
+
+\item \textbf{Mellin transform and Ramanujan's master theorem.}%
+  \index{Mellin transform}%
+  \index{Ramanujan's master theorem}%
+  \index{power-law kernel}%
+  The Mellin transform $\mathcal{M}\{f\}(s)=\int_{0}^{\infty}x^{s-1}f(x)\,dx$
+  maps power-law integrands (G\&R~3.24--3.27) to gamma functions.
+  Ramanujan's master theorem asserts that if
+  $f(x)=\sum_{k=0}^{\infty}(-x)^{k}\phi(k)/k!$, then
+  $\mathcal{M}\{f\}(s)=\Gamma(s)\phi(-s)$, providing a powerful
+  analytic continuation tool \cite{Hardy1920}.
+
+\item \textbf{Selberg integral.}%
+  \index{Selberg integral}%
+  \index{Mehta integral}%
+  \index{random matrix theory!eigenvalue distribution}%
+  The Selberg integral
+  $\int_{[0,1]^{n}}\prod_{i}t_{i}^{a-1}(1-t_{i})^{b-1}
+  \prod_{i<j}|t_{i}-t_{j}|^{2c}\,dt_{1}\cdots dt_{n}$
+  is an $n$-dimensional generalisation of the beta function.  Its
+  closed-form evaluation \cite{Selberg1944} connects the power-and-binomial
+  integrals of G\&R~3.19--3.24 to random matrix theory
+  \cite{MehtaDyson1963} and conformal field theory.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{3.3--3.4\quad Exponential Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.31\quad Exponential functions}
 \subsubsection{3.32--3.34\quad Exponentials of more complicated arguments}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gaussian integrals and quantum mechanics.}%
+  \index{Gaussian integral}%
+  \index{path integral!Gaussian}%
+  \index{Fresnel integral!Gaussian}%
+  The Gaussian integral $\int_{-\infty}^{\infty}e^{-ax^{2}}\,dx
+  =\sqrt{\pi/a}$ (G\&R~3.32) is the single most important definite
+  integral in physics.  It evaluates the partition function of the
+  harmonic oscillator, the free-particle propagator in quantum
+  mechanics, and every Gaussian path integral in quantum field theory.
+  The Fresnel integral $\int_{-\infty}^{\infty}e^{iax^{2}}\,dx
+  =\sqrt{\pi/a}\,e^{i\pi/4}$ (analytic continuation to imaginary~$a$)
+  gives the propagator in the Schr\"{o}dinger representation.
+
+\item \textbf{Error function and diffusion.}%
+  \index{error function!diffusion}%
+  \index{diffusion equation!solution}%
+  \index{heat kernel}%
+  The solution of the diffusion equation $\partial_{t}u=D\partial_{x}^{2}u$
+  with a step initial condition is $u(x,t)=\tfrac{1}{2}\operatorname{erfc}
+  (x/\sqrt{4Dt})$, where $\operatorname{erfc}(z)=\frac{2}{\sqrt{\pi}}
+  \int_{z}^{\infty}e^{-t^{2}}\,dt$ is the complementary error function.
+  The heat kernel $G(x,t)=(4\pi Dt)^{-1/2}e^{-x^{2}/4Dt}$ is the
+  Gaussian of G\&R~3.32 with time-dependent width.
+
+\item \textbf{Laplace transform tables.}%
+  \index{Laplace transform!definite integrals}%
+  \index{transfer function!from definite integral}%
+  \index{impulse response}%
+  Every entry in a Laplace transform table is a definite integral
+  $\hat{f}(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt$.  The exponential
+  integrals of G\&R~3.31 and the Gaussian-type integrals of
+  G\&R~3.32--3.34 generate the transforms of the elementary functions
+  that fill standard engineering tables.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gamma function as a definite integral.}%
+  \index{gamma function!Euler integral}%
+  \index{Euler integral!second kind}%
+  \index{$\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt$}%
+  The gamma function $\Gamma(s)=\int_{0}^{\infty}t^{s-1}e^{-t}\,dt$
+  (G\&R~3.38) is the master integral connecting the exponential
+  function to the factorial.  Every formula in G\&R~3.31--3.39 with a
+  power-law prefactor reduces to gamma functions via the substitution
+  $t=ax$.
+
+\item \textbf{Method of steepest descent.}%
+  \index{steepest descent}%
+  \index{saddle-point approximation}%
+  \index{Stirling's approximation}%
+  The asymptotic evaluation of $\int e^{\lambda\phi(x)}\,dx$ as
+  $\lambda\to\infty$ by deforming the contour through the saddle point
+  of $\phi$ is the method of steepest descent.  The leading term is a
+  Gaussian integral (G\&R~3.32); sub-leading corrections involve the
+  higher-moment integrals $\int x^{2n}e^{-ax^{2}}\,dx$ of
+  G\&R~3.32--3.34.  Stirling's approximation $n!\sim\sqrt{2\pi n}(n/e)^{n}$
+  is the simplest application.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.35\quad Combinations of exponentials and rational functions}
 \subsubsection{3.36--3.37\quad Combinations of exponentials and algebraic functions}
 \subsubsection{3.38--3.39\quad Combinations of exponentials and arbitrary powers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Fermi's golden rule and transition rates.}%
+  \index{Fermi's golden rule}%
+  \index{transition rate}%
+  \index{matrix element!integral}%
+  Transition rates in quantum mechanics involve matrix elements
+  $\langle f|V|i\rangle=\int\psi_{f}^{*}(x)V(x)\psi_{i}(x)\,dx$
+  where the wave functions are often exponentials times powers
+  (hydrogen-like states $\propto r^{\ell}e^{-r/na_{0}}$).  These are
+  exponential-times-power definite integrals (G\&R~3.38--3.39) that
+  evaluate to gamma functions.
+
+\item \textbf{Schwinger parametrisation in quantum field theory.}%
+  \index{Schwinger parametrisation}%
+  \index{Feynman propagator!integral representation}%
+  \index{proper-time method}%
+  Schwinger's proper-time representation
+  $1/(p^{2}+m^{2})^{n}=\frac{1}{\Gamma(n)}\int_{0}^{\infty}
+  \alpha^{n-1}e^{-\alpha(p^{2}+m^{2})}\,d\alpha$ \cite{Schwinger1951}
+  converts propagator denominators into exponential integrals of the
+  form in G\&R~3.38.  This is the starting point for computing Feynman
+  diagrams via Gaussian integration over momenta.
+
+\item \textbf{Bremsstrahlung spectrum.}%
+  \index{bremsstrahlung!spectrum}%
+  \index{radiation!exponential-power integral}%
+  \index{Bethe--Heitler formula}%
+  The Bethe--Heitler cross section for bremsstrahlung involves
+  integrals of the form
+  $\int_{0}^{E}k^{n}e^{-\alpha k}\,dk$ (photon energy~$k$ with
+  exponential screening), standard instances of G\&R~3.38.  The
+  stopping power $-dE/dx\propto\int_{0}^{E_{\max}}k\sigma(k)\,dk$
+  involves exponential-rational combinations from G\&R~3.35.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gamma function identities.}%
+  \index{gamma function!identities}%
+  \index{reflection formula!$\Gamma(s)\Gamma(1-s)=\pi/\sin\pi s$}%
+  \index{duplication formula}%
+  Euler's reflection formula $\Gamma(s)\Gamma(1-s)=\pi/\sin(\pi s)$
+  can be proved by evaluating $\int_{0}^{\infty}t^{s-1}/(1+t)\,dt
+  =\pi/\sin(\pi s)$ (G\&R~3.24) via contour integration.  Legendre's
+  duplication formula and Gauss's multiplication formula are similarly
+  proved by substitution in the definite integrals of G\&R~3.38--3.39.
+
+\item \textbf{Moment-generating functions and cumulants.}%
+  \index{moment-generating function}%
+  \index{cumulants}%
+  \index{probability distribution!moments}%
+  The moment-generating function
+  $M(t)=\mathbb{E}[e^{tX}]=\int e^{tx}f(x)\,dx$ is an
+  exponential-times-density definite integral.  For power-law densities
+  (G\&R~3.38--3.39), $M(t)$ evaluates in terms of gamma functions, and
+  the cumulant-generating function $\ln M(t)$ gives the cumulants.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.41--3.44\quad Combinations of rational functions of powers and exponentials}
 \subsubsection{3.45\quad Combinations of powers and algebraic functions of exponentials}
 \subsubsection{3.46--3.48\quad Combinations of exponentials of more complicated arguments and powers}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Planck distribution and Bose--Einstein integrals.}%
+  \index{Planck distribution!definite integral}%
+  \index{Bose--Einstein integral}%
+  \index{polylogarithm!Bose--Einstein}%
+  \index{Riemann zeta function!$\zeta(n)$ from Planck integral}%
+  The integral $\int_{0}^{\infty}\frac{x^{s-1}}{e^{x}-1}\,dx
+  =\Gamma(s)\zeta(s)$ (G\&R~3.41) connects the Planck distribution to
+  the Riemann zeta function.  For the Bose--Einstein distribution at
+  finite chemical potential,
+  $g_{s}(z)=\frac{1}{\Gamma(s)}\int_{0}^{\infty}\frac{x^{s-1}}{z^{-1}e^{x}-1}\,dx
+  =\mathrm{Li}_{s}(z)$ defines the polylogarithm, the key special
+  function for quantum-gas thermodynamics \cite{Pathria2011}.
+
+\item \textbf{Fermi--Dirac integrals and degenerate electron gas.}%
+  \index{Fermi--Dirac integral}%
+  \index{degenerate electron gas}%
+  \index{Sommerfeld expansion}%
+  The Fermi--Dirac integral
+  $f_{s}(\eta)=\frac{1}{\Gamma(s+1)}\int_{0}^{\infty}\frac{x^{s}}{e^{x-\eta}+1}\,dx$
+  (G\&R~3.41) determines the thermodynamics of electrons in metals,
+  semiconductors, and white dwarfs.  The Sommerfeld expansion for
+  $T\to 0$ is an asymptotic series in even powers of $\pi T/E_{F}$,
+  derived from the Euler--Maclaurin formula applied to these integrals.
+
+\item \textbf{Gaussian integrals with polynomial exponents.}%
+  \index{Gaussian integral!quartic correction}%
+  \index{anharmonic partition function}%
+  \index{perturbation theory!Gaussian}%
+  The anharmonic oscillator's partition function involves
+  $\int_{-\infty}^{\infty}e^{-ax^{2}-bx^{4}}\,dx$ (G\&R~3.46),
+  evaluated perturbatively in $b$ by expanding and integrating
+  term by term using the Gaussian moments
+  $\int x^{2n}e^{-ax^{2}}\,dx$.  The exact result involves
+  parabolic cylinder functions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bernoulli numbers and the Riemann zeta function.}%
+  \index{Bernoulli numbers!from definite integrals}%
+  \index{Riemann zeta function!integral representation}%
+  \index{$\zeta(2n)=(-1)^{n+1}(2\pi)^{2n}B_{2n}/2(2n)"!$}%
+  The integral $\int_{0}^{\infty}x^{2n-1}/(e^{x}-1)\,dx
+  =(2n-1)!\,\zeta(2n)$ combined with $\zeta(2n)
+  =(-1)^{n+1}(2\pi)^{2n}B_{2n}/(2(2n)!)$ gives a definite-integral
+  representation of the Bernoulli numbers.  This connects
+  G\&R~3.41--3.44 to the arithmetic of $\pi$ and to the values of
+  $L$-functions.
+
+\item \textbf{Laplace's method for exponentials of polynomials.}%
+  \index{Laplace's method!polynomial exponent}%
+  \index{Airy function!from cubic exponent}%
+  \index{catastrophe theory!integrals}%
+  The integral $\int_{-\infty}^{\infty}e^{i(t^{3}/3+xt)}\,dt=2\pi\mathrm{Ai}(x)$
+  (G\&R~3.46) defines the Airy function via a cubic-exponent Fourier
+  integral.  More generally, integrals $\int e^{i P(t)}\,dt$ with
+  polynomial phase $P$ are the oscillatory integrals of catastrophe
+  theory, classified by the singularity type of~$P$.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{3.5\quad Hyperbolic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.51\quad Hyperbolic functions}
 \subsubsection{3.52--3.53\quad Combinations of hyperbolic functions and algebraic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Specific heat of solids: Debye and Einstein models.}%
+  \index{Debye model!specific heat}%
+  \index{Einstein model!specific heat}%
+  \index{specific heat!integral}%
+  The Debye specific heat is
+  $C_{V}=9Nk_{B}(T/\Theta_{D})^{3}\int_{0}^{\Theta_{D}/T}
+  \frac{x^{4}e^{x}}{(e^{x}-1)^{2}}\,dx$,
+  where $x^{4}e^{x}/(e^{x}-1)^{2}=x^{4}/(4\sinh^{2}(x/2))$ is a
+  combination of powers and hyperbolic functions from G\&R~3.52.
+  The Einstein model uses a single frequency and reduces to
+  $\int_{0}^{\infty}x^{2}/\sinh^{2}(x/2)\,dx$.
+
+\item \textbf{Brillouin function and quantum paramagnetism.}%
+  \index{Brillouin function}%
+  \index{paramagnetism!quantum}%
+  \index{magnetisation!Brillouin}%
+  The quantum-mechanical generalisation of the Langevin function is the
+  Brillouin function $B_{J}(x)=\frac{2J+1}{2J}\coth\!\bigl(\frac{2J+1}{2J}x\bigr)
+  -\frac{1}{2J}\coth\!\bigl(\frac{x}{2J}\bigr)$.
+  Thermodynamic averages such as the magnetic susceptibility involve
+  definite integrals of $\coth$ and $1/\sinh^{2}$ from
+  G\&R~3.51--3.52.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler--Maclaurin formula and $\operatorname{csch}$-weighted integrals.}%
+  \index{Euler--Maclaurin formula}%
+  \index{Bernoulli polynomials}%
+  \index{$\operatorname{csch}$!definite integrals}%
+  The Euler--Maclaurin summation formula
+  $\sum_{k=0}^{n}f(k)\approx\int_{0}^{n}f(x)\,dx
+  +\sum_{k=1}^{p}\frac{B_{k}}{k!}(f^{(k-1)}(n)-f^{(k-1)}(0))+\cdots$
+  involves Bernoulli numbers that arise from the definite integral
+  $\int_{0}^{\infty}x^{2n-1}/\sinh(\pi x)\,dx$ (G\&R~3.52),
+  connecting hyperbolic definite integrals to number theory.
+
+\item \textbf{Fourier transforms of $\operatorname{sech}$ and $\operatorname{csch}$.}%
+  \index{Fourier transform!$\operatorname{sech}$}%
+  \index{self-reciprocal function}%
+  \index{$\operatorname{sech}(\pi x)$!Fourier transform}%
+  The function $\operatorname{sech}(\pi x)$ is self-reciprocal under
+  the Fourier transform:
+  $\int_{-\infty}^{\infty}\operatorname{sech}(\pi t)e^{-2\pi i\xi t}\,dt
+  =\operatorname{sech}(\pi\xi)$.  This elegant identity is a
+  consequence of the functional equation of the gamma function and
+  exemplifies the ``nice'' definite integrals of G\&R~3.51.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.54\quad Combinations of hyperbolic functions and exponentials}
 \subsubsection{3.55--3.56\quad Combinations of hyperbolic functions, exponentials, and powers}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Thermal Green's functions and Matsubara sums.}%
+  \index{Matsubara frequencies}%
+  \index{thermal Green's function}%
+  \index{imaginary-time formalism}%
+  In the imaginary-time formalism of finite-temperature field theory,
+  sums over Matsubara frequencies
+  $T\sum_{n}g(i\omega_{n})$ are converted to contour integrals
+  involving $\coth(\beta\omega/2)$ (bosonic) or $\tanh(\beta\omega/2)$
+  (fermionic) times exponentials.  The resulting definite integrals are
+  combinations of hyperbolic functions, exponentials, and powers
+  from G\&R~3.54--3.56.
+
+\item \textbf{Casimir effect.}%
+  \index{Casimir effect!integral}%
+  \index{zero-point energy!summation}%
+  \index{regularisation!Casimir}%
+  The Casimir energy between parallel conducting plates involves
+  $\int_{0}^{\infty}\frac{x^{2}}{e^{x}-1}\,dx$ (after regularisation),
+  equivalently $\int_{0}^{\infty}x^{2}(\coth(x/2)-1)\,dx$, a
+  combination of hyperbolic functions, exponentials, and powers
+  (G\&R~3.55--3.56).  The result
+  $\pi^{2}\hbar c/(720\,d^{3})$ per unit area connects to $\zeta(4)$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Ramanujan's integral formulas.}%
+  \index{Ramanujan!integral formulas}%
+  \index{$\int_0^\infty x^{s-1}/(e^x-1)\,dx$}%
+  \index{analytic continuation!zeta function}%
+  Ramanujan derived many striking identities involving integrals of
+  the type $\int_{0}^{\infty}x^{s-1}\operatorname{csch}(x)\,e^{-ax}\,dx$,
+  connecting them to $L$-functions and modular forms.  These are
+  instances of G\&R~3.54--3.56, and their evaluation involves the
+  Hurwitz zeta function $\zeta(s,a)$ and the digamma function.
+
+\item \textbf{Abel--Plana formula.}%
+  \index{Abel--Plana formula}%
+  \index{sum-to-integral conversion}%
+  \index{Euler--Maclaurin!variant}%
+  The Abel--Plana formula
+  $\sum_{n=0}^{\infty}f(n)=\int_{0}^{\infty}f(x)\,dx
+  +\tfrac{1}{2}f(0)+i\int_{0}^{\infty}\frac{f(it)-f(-it)}{e^{2\pi t}-1}\,dt$
+  converts sums to integrals using an exponential-hyperbolic kernel.
+  The correction term is a definite integral from G\&R~3.54--3.55,
+  and the formula is used in analytic number theory and regularisation
+  of divergent sums.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{3.6--4.1\quad Trigonometric Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.61\quad Rational functions of sines and cosines and trigonometric functions of multiple angles}
 \subsubsection{3.62\quad Powers of trigonometric functions}
 \subsubsection{3.63\quad Powers of trigonometric functions and trigonometric functions of linear functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Single-slit and multi-slit diffraction.}%
+  \index{diffraction!single-slit}%
+  \index{diffraction!multi-slit}%
+  \index{Fraunhofer diffraction}%
+  The Fraunhofer diffraction pattern of an $N$-slit grating is
+  $I\propto\bigl(\sin(N\beta)/\sin\beta\bigr)^{2}$, and the
+  total transmitted power involves
+  $\int_{0}^{\pi}\sin^{2}(N\beta)/\sin^{2}\beta\,d\beta=N\pi$
+  (G\&R~3.61--3.62).  Higher-order moments of the diffraction pattern
+  require integrals of $\sin^{2n}\theta$ and products of sines at
+  different frequencies (G\&R~3.63).
+
+\item \textbf{Antenna array factors.}%
+  \index{antenna!array factor}%
+  \index{beamforming!integral}%
+  \index{directivity!trigonometric integral}%
+  The directivity of a linear antenna array is proportional to
+  $1/\int_{0}^{\pi}|AF(\theta)|^{2}\sin\theta\,d\theta$, where the
+  array factor $AF=\sum_{n}w_{n}e^{in\psi}$ involves sums of
+  exponentials in the angle.  The resulting integrals are powers and
+  rational functions of trigonometric functions from G\&R~3.62--3.63.
+
+\item \textbf{Wigner $d$-matrices and angular momentum coupling.}%
+  \index{Wigner $d$-matrix}%
+  \index{angular momentum!coupling coefficients}%
+  \index{Clebsch--Gordan coefficients!integral form}%
+  The Clebsch--Gordan coefficients can be expressed as
+  $\int_{0}^{2\pi}\int_{0}^{\pi}
+  D^{j_{1}}_{m_{1}m_{1}'}D^{j_{2}}_{m_{2}m_{2}'}
+  \overline{D^{J}_{MM'}}\sin\theta\,d\theta\,d\phi$,
+  where the Wigner $D$-functions are products of exponentials and
+  powers of $\sin(\theta/2)$ and $\cos(\theta/2)$.  These are
+  trigonometric-power integrals from G\&R~3.62--3.63.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Wallis's integral and the beta function.}%
+  \index{Wallis integral!definite}%
+  \index{beta function!trigonometric form}%
+  \index{$\int_0^{\pi/2}\sin^m\theta\cos^n\theta\,d\theta$}%
+  $\int_{0}^{\pi/2}\sin^{m}\theta\cos^{n}\theta\,d\theta
+  =\tfrac{1}{2}B\bigl(\tfrac{m+1}{2},\tfrac{n+1}{2}\bigr)$
+  is the trigonometric form of the beta function, unifying all the
+  power-of-trig integrals of G\&R~3.62 into a single gamma-function
+  expression.
+
+\item \textbf{Dirichlet kernel and Fourier convergence.}%
+  \index{Dirichlet integral!$\int\sin(nx)/\sin x$}%
+  \index{Fourier series!convergence}%
+  \index{Gibbs phenomenon}%
+  The integral $\int_{0}^{\pi}\sin((2N+1)x/2)/\sin(x/2)\,dx=\pi$
+  (G\&R~3.61) is the Dirichlet integral, and the overshoot of Fourier
+  partial sums near a discontinuity (Gibbs phenomenon) involves the
+  sine integral $\int_{0}^{\pi}\sin(Nx)/x\,dx\to\pi\cdot 1.0895\ldots$
+  (G\&R~3.72).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.64--3.65\quad Powers and rational functions of trigonometric functions}
 \subsubsection{3.66\quad Forms containing powers of linear functions of trigonometric functions}
 \subsubsection{3.67\quad Square roots of expressions containing trigonometric functions}
 \subsubsection{3.68\quad Various forms of powers of trigonometric functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Radiation from accelerating charges.}%
+  \index{Larmor radiation!angular integral}%
+  \index{synchrotron radiation!angular distribution}%
+  \index{angular power pattern}%
+  The total power radiated by a relativistic accelerating charge is
+  $P=\frac{q^{2}}{6\pi\varepsilon_{0}c^{3}}\int_{0}^{\pi}
+  \frac{\sin^{3}\theta}{(1-\beta\cos\theta)^{5}}\,d\theta$,
+  a rational function of $\cos\theta$ times powers of $\sin\theta$
+  (G\&R~3.64--3.65).  Synchrotron radiation has a more complex angular
+  distribution involving higher powers.
+
+\item \textbf{Solid angle subtended by geometric shapes.}%
+  \index{solid angle!definite integral}%
+  \index{view factor!radiation}%
+  \index{configuration factor}%
+  The solid angle subtended by a rectangle at a point is
+  $\Omega=\int\!\!\int\cos\theta\,dA/r^{2}$, which reduces to
+  integrals containing $\arctan(\cdots)$ and square roots of
+  trigonometric expressions (G\&R~3.66--3.67).  In thermal radiation,
+  configuration (view) factors between surfaces involve the same types
+  of integrals.
+
+\item \textbf{Complete elliptic integrals in magnetic field calculations.}%
+  \index{elliptic integral!magnetic field}%
+  \index{solenoid!field on axis}%
+  \index{toroidal geometry!field integral}%
+  The off-axis magnetic field of a solenoid or toroidal coil involves
+  $\int_{0}^{\pi}d\phi/\sqrt{a+b\cos\phi}$ and
+  $\int_{0}^{\pi}\cos\phi\,d\phi/\sqrt{a+b\cos\phi}$ (G\&R~3.67),
+  which are complete elliptic integrals $K(k)$ and $E(k)$ after
+  half-angle substitution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Contour integration of trigonometric rational functions.}%
+  \index{contour integration!trigonometric}%
+  \index{unit circle!contour}%
+  \index{$z=e^{i\theta}$ substitution}%
+  Integrals $\int_{0}^{2\pi}R(\sin\theta,\cos\theta)\,d\theta$ are
+  converted to contour integrals around the unit circle via
+  $z=e^{i\theta}$, $\sin\theta=(z-z^{-1})/2i$,
+  $\cos\theta=(z+z^{-1})/2$.  The residue theorem then evaluates the
+  rational-function-of-trig integrals of G\&R~3.64--3.65 algebraically.
+
+\item \textbf{Elliptic integrals as periods.}%
+  \index{elliptic integral!as period}%
+  \index{Picard--Fuchs equation}%
+  \index{Gauss hypergeometric function}%
+  The complete elliptic integral
+  $K(k)=\int_{0}^{\pi/2}d\theta/\sqrt{1-k^{2}\sin^{2}\theta}$
+  (G\&R~3.67) satisfies a second-order ODE in the modulus~$k$
+  (the Picard--Fuchs equation), and $K(k)=(\pi/2)\,
+  {}_{2}F_{1}(1/2,1/2;1;k^{2})$.  This identifies the integrals of
+  G\&R~3.67 with periods of the Legendre family of elliptic curves.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.69--3.71\quad Trigonometric functions of more complicated arguments}
 \subsubsection{3.72--3.74\quad Combinations of trigonometric and rational functions}
 \subsubsection{3.75\quad Combinations of trigonometric and algebraic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Fresnel integrals and wave optics.}%
+  \index{Fresnel integrals!optics}%
+  \index{Cornu spiral}%
+  \index{near-field diffraction}%
+  The Fresnel integrals $C(x)=\int_{0}^{x}\cos(\pi t^{2}/2)\,dt$ and
+  $S(x)=\int_{0}^{x}\sin(\pi t^{2}/2)\,dt$ (G\&R~3.69) describe
+  near-field (Fresnel) diffraction.  The Cornu spiral $C(x)+iS(x)$
+  gives the diffracted amplitude; the definite integrals
+  $C(\infty)=S(\infty)=1/2$ normalise the pattern.
+
+\item \textbf{Dirichlet integral and signal processing.}%
+  \index{Dirichlet integral!$\int_0^\infty\sin x/x\,dx$}%
+  \index{sinc function!integral}%
+  \index{ideal low-pass filter}%
+  The Dirichlet integral
+  $\int_{0}^{\infty}\frac{\sin x}{x}\,dx=\frac{\pi}{2}$ (G\&R~3.72)
+  is the normalisation of the sinc function, the impulse response of
+  the ideal low-pass filter.  Its generalisation
+  $\int_{0}^{\infty}\frac{\sin(ax)}{x}\,dx=\frac{\pi}{2}\operatorname{sgn}(a)$
+  is the Fourier transform of the sign function.
+
+\item \textbf{Born approximation in scattering.}%
+  \index{Born approximation!Fourier transform}%
+  \index{form factor!scattering}%
+  \index{Fourier transform!of radial potential}%
+  The first Born approximation gives the scattering amplitude as the
+  Fourier transform of the potential:
+  $f(\mathbf{q})\propto\int V(r)\,e^{i\mathbf{q}\cdot\mathbf{r}}\,d^{3}r
+  =\frac{4\pi}{q}\int_{0}^{\infty}rV(r)\sin(qr)\,dr$,
+  a trigonometric-times-algebraic definite integral from G\&R~3.75.
+  For the Yukawa potential $V=e^{-\mu r}/r$, this gives the
+  Rutherford formula.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Fourier transform theory.}%
+  \index{Fourier transform!as definite integral}%
+  \index{Plancherel theorem}%
+  \index{inversion formula!Fourier}%
+  The Fourier transform $\hat{f}(\xi)=\int_{-\infty}^{\infty}f(x)e^{-2\pi ix\xi}\,dx$
+  and its inversion formula are definite integrals of
+  trigonometric-times-function products (G\&R~3.72--3.75).  Plancherel's
+  theorem $\int|f|^{2}=\int|\hat{f}|^{2}$ is the isometry of
+  $L^{2}$---energy conservation in the frequency domain.
+
+\item \textbf{Riemann--Lebesgue lemma.}%
+  \index{Riemann--Lebesgue lemma}%
+  \index{oscillatory integrals!decay}%
+  \index{stationary phase}%
+  The Riemann--Lebesgue lemma states that
+  $\int_{a}^{b}f(x)e^{i\lambda x}\,dx\to 0$ as $\lambda\to\infty$
+  for any $L^{1}$ function~$f$.  The precise rate of decay depends on
+  the smoothness of~$f$: the smoother $f$ is, the faster the Fourier
+  coefficients decay, quantified by the integrals of G\&R~3.72--3.75.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.76--3.77\quad Combinations of trigonometric functions and powers}
 \subsubsection{3.78--3.81\quad Rational functions of $x$ and of trigonometric functions}
 \subsubsection{3.82--3.83\quad Powers of trigonometric functions combined with other powers}
 \subsubsection{3.84\quad Integrals containing $\sqrt{1 - k^{2}\sin^{2}x}$, $\sqrt{1 - k^{2}\cos^{2}x}$, and similar expressions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Fourier--Bessel transforms and cylindrical symmetry.}%
+  \index{Fourier--Bessel transform}%
+  \index{Hankel transform}%
+  \index{cylindrical symmetry!integral}%
+  The Hankel transform
+  $\tilde{f}(k)=\int_{0}^{\infty}f(r)\,J_{0}(kr)\,r\,dr$ arises from
+  the Fourier transform in cylindrical coordinates.  Using the integral
+  representation $J_{0}(z)=\frac{1}{\pi}\int_{0}^{\pi}\cos(z\sin\theta)\,d\theta$,
+  the inner integral is a trigonometric-times-power form from
+  G\&R~3.76--3.77.
+
+\item \textbf{Bessel function integrals in antenna theory.}%
+  \index{Bessel functions!antenna integral}%
+  \index{circular aperture!diffraction}%
+  \index{Airy pattern}%
+  The diffraction pattern of a circular aperture is the Airy pattern
+  $I\propto[2J_{1}(x)/x]^{2}$, where $J_{1}$ is expressed as
+  $\int_{0}^{\pi}\cos(\theta-x\sin\theta)\,d\theta/\pi$.  Total power
+  and encircled energy integrals involve
+  $\int x^{m}\cos^{n}(x\sin\theta)\sin^{p}\theta\,d\theta\,dx$,
+  trigonometric-power-combined forms from G\&R~3.82--3.83.
+
+\item \textbf{Arc length of ellipses and planetary orbits.}%
+  \index{ellipse!arc length}%
+  \index{complete elliptic integral!$E(k)$}%
+  \index{perimeter!ellipse}%
+  The perimeter of an ellipse with semi-axes $a,b$ is
+  $L=4a\int_{0}^{\pi/2}\sqrt{1-e^{2}\sin^{2}\theta}\,d\theta=4aE(e)$
+  where $e$ is the eccentricity (G\&R~3.84).  Ramanujan's approximation
+  $L\approx\pi(3(a+b)-\sqrt{(3a+b)(a+3b)})$ is remarkably accurate
+  and comes from analysing the series expansion of $E(e)$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Integral representations of Bessel functions.}%
+  \index{Bessel functions!integral representation}%
+  \index{Poisson integral!Bessel}%
+  \index{Schl\"afli integral}%
+  The Poisson integral $J_{n}(z)=\frac{1}{\pi}\int_{0}^{\pi}
+  \cos(n\theta-z\sin\theta)\,d\theta$ and the Schl\"{a}fli integral
+  are definite integrals of trigonometric-times-power type
+  (G\&R~3.76--3.77).  These representations are the starting point for
+  asymptotic analysis of Bessel functions \cite{Watson1944}.
+
+\item \textbf{Modular equations and elliptic integral identities.}%
+  \index{modular equations}%
+  \index{Landen transformation}%
+  \index{elliptic integral!identities}%
+  Landen's transformation $K(\sqrt{2k/(1+k)})=(1+k)K(k)$ relates
+  elliptic integrals at different moduli and is used for fast numerical
+  computation.  The integrals $\int_{0}^{\pi/2}\sqrt{1-k^{2}\sin^{2}\theta}
+  \,d\theta$ (G\&R~3.84) satisfy modular equations that are the
+  algebraic backbone of the arithmetic-geometric mean.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.85--3.88\quad Trigonometric functions of more complicated arguments combined with powers}
 \subsubsection{3.89--3.91\quad Trigonometric functions and exponentials}
 \subsubsection{3.92\quad Trigonometric functions of more complicated arguments combined with exponentials}
 \subsubsection{3.93\quad Trigonometric and exponential functions of trigonometric functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Fourier transforms of Gaussian wave packets.}%
+  \index{Gaussian wave packet!Fourier transform}%
+  \index{uncertainty principle!Fourier}%
+  \index{minimum-uncertainty state}%
+  The Fourier transform of a Gaussian wave packet
+  $\int_{-\infty}^{\infty}e^{-ax^{2}}e^{-ibx}\,dx
+  =\sqrt{\pi/a}\,e^{-b^{2}/4a}$ (G\&R~3.89) is again Gaussian,
+  illustrating the minimum-uncertainty product
+  $\Delta x\,\Delta p=\hbar/2$.  Chirped pulses with quadratic phase
+  involve $\int e^{-ax^{2}+ibx^{2}}\cos(cx)\,dx$ (G\&R~3.92).
+
+\item \textbf{Spectral line shapes and Voigt profile.}%
+  \index{Voigt profile}%
+  \index{spectral line shape}%
+  \index{convolution!Gaussian and Lorentzian}%
+  The Voigt profile
+  $V(x)=\int_{-\infty}^{\infty}\frac{e^{-t^{2}}}
+  {(x-t)^{2}+\gamma^{2}}\,dt$ is the convolution of a Gaussian
+  (Doppler broadening) and a Lorentzian (natural linewidth).  After
+  Fourier transform, this is $\int_{0}^{\infty}e^{-\gamma t-\sigma^{2}t^{2}/4}
+  \cos(xt)\,dt$, a trigonometric-exponential-Gaussian integral from
+  G\&R~3.89--3.92.
+
+\item \textbf{Debye--Waller factor and thermal motion.}%
+  \index{Debye--Waller factor}%
+  \index{thermal vibration!scattering}%
+  \index{X-ray diffraction!thermal}%
+  The Debye--Waller factor $e^{-2W}$ with
+  $2W=\int_{0}^{\omega_{D}}\frac{g(\omega)}{\omega^{2}}
+  \coth(\hbar\omega/2k_{B}T)\,d\omega$ involves the exponential of an
+  integral of trigonometric-type functions of frequency.  The integrands
+  $\omega^{n}\coth(\alpha\omega)e^{-\beta\omega}$ are combinations
+  from G\&R~3.93.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Fourier transform of exponential decay.}%
+  \index{Fourier transform!exponential decay}%
+  \index{Lorentzian!Fourier transform}%
+  \index{Cauchy distribution}%
+  $\int_{0}^{\infty}e^{-at}\cos(bt)\,dt=a/(a^{2}+b^{2})$ and
+  $\int_{0}^{\infty}e^{-at}\sin(bt)\,dt=b/(a^{2}+b^{2})$
+  (G\&R~3.89) produce the Lorentzian (Cauchy distribution in
+  probability).  These are the building blocks for evaluating Fourier
+  transforms by the residue theorem.
+
+\item \textbf{Stationary phase approximation.}%
+  \index{stationary phase!method}%
+  \index{oscillatory integral!asymptotics}%
+  \index{Fourier integral!asymptotics}%
+  The asymptotic evaluation of $\int_{a}^{b}f(x)e^{i\lambda g(x)}\,dx$
+  as $\lambda\to\infty$ localises to the stationary points of~$g$
+  (where $g'=0$), each contributing a term $\sim e^{i\lambda g(x_{0})}
+  /\sqrt{\lambda|g''(x_{0})|}$.  The leading contribution is a Fresnel
+  integral (G\&R~3.69), and corrections involve the higher-order
+  oscillatory integrals of G\&R~3.85--3.88.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{3.94--3.97\quad Combinations involving trigonometric functions, exponentials, and powers}
 \subsubsection{3.98--3.99\quad Combinations of trigonometric and hyperbolic functions}
 \subsubsection{4.11--4.12\quad Combinations involving trigonometric and hyperbolic functions and powers}
 \subsubsection{4.13\quad Combinations of trigonometric and hyperbolic functions and exponentials}
 \subsubsection{4.14\quad Combinations of trigonometric and hyperbolic functions, exponentials, and powers}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quantum field theory propagators.}%
+  \index{Feynman propagator!momentum integral}%
+  \index{K\"all\'en--Lehmann representation}%
+  \index{spectral function}%
+  The momentum-space Feynman propagator in position space
+  $G(x)=\int\frac{d^{4}k}{(2\pi)^{4}}\frac{e^{ik\cdot x}}
+  {k^{2}-m^{2}+i\varepsilon}$ involves, after angular integration,
+  integrals of the form $\int_{0}^{\infty}k^{n}\sin(kr)e^{-\alpha k}\,dk$
+  (G\&R~3.94).  The spectral (K\"{a}ll\'{e}n--Lehmann) representation
+  further introduces $\coth$ and $\tanh$ factors at finite temperature.
+
+\item \textbf{Thermal radiation in absorbing media.}%
+  \index{thermal radiation!absorbing medium}%
+  \index{Kirchhoff's law!spectral}%
+  \index{emissivity!spectral integral}%
+  Kirchhoff's law relates emissivity to absorptivity, and computing the
+  total emitted power involves
+  $\int_{0}^{\infty}\frac{\omega^{3}}{e^{\hbar\omega/k_{B}T}-1}
+  \varepsilon(\omega)\,d\omega$ where the emissivity $\varepsilon(\omega)$
+  often has an exponential or power-law frequency dependence.  These are
+  combinations of trigonometric functions (via $e^{i\omega t}$),
+  exponentials, and powers from G\&R~3.94--3.97.
+
+\item \textbf{Lattice dynamics and phonon spectra.}%
+  \index{phonon spectrum!integral}%
+  \index{lattice dynamics}%
+  \index{thermal conductivity!integral}%
+  The thermal conductivity of a crystal involves
+  $\kappa\propto\int_{0}^{\omega_{D}}
+  \frac{\omega^{2}\tau(\omega)}{\sinh^{2}(\hbar\omega/2k_{B}T)}\,d\omega$,
+  a combination of powers, hyperbolic functions, and possibly
+  exponential relaxation-time factors $\tau(\omega)\propto e^{-\alpha\omega}$
+  (G\&R~4.13--4.14).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Mordell integrals and mock theta functions.}%
+  \index{Mordell integral}%
+  \index{mock theta functions}%
+  \index{modular transformations!integrals}%
+  The Mordell integral $\int_{-\infty}^{\infty}e^{-\pi ax^{2}+2\pi bx}
+  /\cosh(\pi x)\,dx$ combines Gaussian, exponential, and hyperbolic
+  functions (G\&R~3.98--4.14).  It appears in the theory of mock theta
+  functions (Ramanujan, Zwegers) and satisfies modular transformation
+  properties.
+
+\item \textbf{Fourier coefficients of modular forms.}%
+  \index{modular forms!Fourier coefficients}%
+  \index{Hecke $L$-function}%
+  \index{Mellin--Barnes integral}%
+  The Mellin transform of a modular form involves integrals of the
+  type $\int_{0}^{\infty}x^{s-1}f(ix)\,dx$ where $f$ has a Fourier
+  expansion in $e^{2\pi inx}$.  Term-by-term integration produces
+  gamma functions times Dirichlet series, and the full integral is a
+  combination of exponential, trigonometric, and power-law factors
+  from G\&R~3.94--3.97.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{4.2--4.4\quad Logarithmic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.21\quad Logarithmic functions}
 \subsubsection{4.22\quad Logarithms of more complicated arguments}
 \subsubsection{4.23\quad Combinations of logarithms and rational functions}
 \subsubsection{4.24\quad Combinations of logarithms and algebraic functions}
 \subsubsection{4.25\quad Combinations of logarithms and powers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Renormalization and logarithmic divergences.}%
+  \index{renormalization!logarithmic divergence}%
+  \index{ultraviolet divergence}%
+  \index{running coupling constant}%
+  One-loop corrections in quantum field theory produce logarithmically
+  divergent integrals $\int_{0}^{\Lambda}\frac{dk}{k}\sim\ln\Lambda$.
+  After renormalization, the finite remainder involves integrals
+  $\int_{0}^{1}x^{n}\ln(x)\,dx=-1/(n+1)^{2}$ and
+  $\int_{0}^{1}\ln(1-x)/x\,dx=-\pi^{2}/6$ (G\&R~4.21--4.25).  The
+  running of coupling constants with energy scale is governed by
+  these logarithmic integrals.
+
+\item \textbf{Entropy of mixing and the Gibbs paradox.}%
+  \index{entropy of mixing}%
+  \index{Gibbs paradox}%
+  \index{ideal gas!entropy}%
+  The entropy of mixing $n$ ideal gases is
+  $\Delta S=-Nk_{B}\sum_{i}x_{i}\ln x_{i}$, and the configurational
+  entropy of a continuous distribution involves
+  $\int_{0}^{1}p(x)\ln p(x)\,dx$---logarithmic integrals from
+  G\&R~4.21--4.22.  The Gibbs paradox (discontinuous entropy change
+  as gases become identical) illustrates the subtlety of the
+  $\ln$-weighted integral.
+
+\item \textbf{Coulomb logarithm in plasma physics.}%
+  \index{Coulomb logarithm}%
+  \index{plasma physics!collision integral}%
+  \index{Debye screening}%
+  The Coulomb collision integral in a plasma involves
+  $\int_{b_{\min}}^{b_{\max}}db/b=\ln(b_{\max}/b_{\min})
+  =\ln\Lambda$ (the Coulomb logarithm), where $b_{\max}$ is the
+  Debye length and $b_{\min}$ is the distance of closest approach.
+  More refined calculations involve $\int_{0}^{\infty}\ln(1+x^{2})/
+  (x^{2}+a^{2})\,dx$ from G\&R~4.23.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler's integral for $\ln\Gamma$.}%
+  \index{log-gamma function!integral}%
+  \index{$\ln\Gamma(a)=\int_0^\infty\ldots$}%
+  \index{Binet's formula}%
+  Binet's formula $\ln\Gamma(a)=(a-\tfrac{1}{2})\ln a-a+\tfrac{1}{2}\ln(2\pi)
+  +\int_{0}^{\infty}(\tfrac{1}{2}-\tfrac{1}{t}+\tfrac{1}{e^{t}-1})
+  \frac{e^{-at}}{t}\,dt$ expresses $\ln\Gamma$ as a definite integral
+  involving logarithms and exponentials.  Simpler relatives such as
+  $\int_{0}^{1}x^{a-1}\ln(1/x)\,dx=1/a^{2}$ (G\&R~4.25) are
+  special cases.
+
+\item \textbf{Polylogarithms and multiple zeta values.}%
+  \index{polylogarithm!integral representation}%
+  \index{multiple zeta values}%
+  \index{iterated integrals!Chen}%
+  The polylogarithm $\mathrm{Li}_{s}(z)=\sum_{n=1}^{\infty}z^{n}/n^{s}$
+  has integral representation
+  $\mathrm{Li}_{s}(z)=\frac{z}{\Gamma(s)}\int_{0}^{\infty}
+  \frac{t^{s-1}}{e^{t}-z}\,dt$ and also
+  $\mathrm{Li}_{2}(z)=-\int_{0}^{1}\frac{\ln(1-zt)}{t}\,dt$
+  (G\&R~4.23).  Multiple zeta values $\zeta(s_{1},\ldots,s_{k})$
+  generalise these to iterated logarithmic integrals (Chen integrals).
+
+\item \textbf{Raabe's formula.}%
+  \index{Raabe's formula}%
+  \index{$\int_0^1\ln\Gamma(x)\,dx=\frac{1}{2}\ln(2\pi)$}%
+  Raabe's formula $\int_{0}^{1}\ln\Gamma(x)\,dx=\tfrac{1}{2}\ln(2\pi)$
+  \cite{Raabe1843} is a logarithmic definite integral that connects the
+  gamma function to the Gaussian constant.  It is proved by exploiting
+  the functional equation $\Gamma(x)\Gamma(1-x)=\pi/\sin(\pi x)$ and
+  integrating $\ln\sin(\pi x)$ (G\&R~4.38).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.26--4.27\quad Combinations involving powers of the logarithm and other powers}
 \subsubsection{4.28\quad Combinations of rational functions of $\ln x$ and powers}
 \subsubsection{4.29--4.32\quad Combinations of logarithmic functions of more complicated arguments and powers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Higher-loop corrections in QCD.}%
+  \index{QCD!higher-loop corrections}%
+  \index{polylogarithm!Feynman diagrams}%
+  \index{harmonic sums}%
+  Multi-loop Feynman diagrams produce integrals involving
+  $\ln^{n}(x)/(1\pm x)$ (G\&R~4.26--4.27), whose definite integrals
+  over $[0,1]$ give multiple zeta values.  The three-loop QCD splitting
+  functions \cite{Vermaseren1999} involve harmonic sums equivalent
+  to iterated logarithmic integrals of increasing depth.
+
+\item \textbf{Radiative corrections and infrared logarithms.}%
+  \index{infrared divergence!logarithmic}%
+  \index{soft photon!integral}%
+  \index{Sudakov form factor}%
+  Soft-photon emission produces double logarithms (Sudakov logarithms)
+  $\int_{0}^{E}\frac{dk}{k}\ln(E/k)=\tfrac{1}{2}\ln^{2}(E/k_{\min})$,
+  integrals of $\ln^{n}(x)/x$ type (G\&R~4.26).  Resummation of these
+  logarithms via the renormalization group is essential for precision
+  predictions at colliders.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Derivatives of the gamma function.}%
+  \index{polygamma function!from log-power integrals}%
+  \index{$\psi^{(n)}(a)$ from $\int x^{a-1}\ln^n(x)e^{-x}\,dx$}%
+  Differentiating $\Gamma(s)=\int_{0}^{\infty}t^{s-1}e^{-t}\,dt$ with
+  respect to~$s$ gives $\Gamma'(s)=\int_{0}^{\infty}t^{s-1}(\ln t)
+  e^{-t}\,dt$ and more generally the polygamma functions
+  $\psi^{(n)}(s)$ from $\int t^{s-1}(\ln t)^{n}e^{-t}\,dt$
+  (G\&R~4.26--4.27).
+
+\item \textbf{Frullani's integral.}%
+  \index{Frullani integral}%
+  \index{$\int_0^\infty(f(ax)-f(bx))/x\,dx$}%
+  Frullani's integral
+  $\int_{0}^{\infty}\frac{f(ax)-f(bx)}{x}\,dx
+  =(f(0)-f(\infty))\ln(b/a)$ (a special case of G\&R~4.28) applies
+  when $f$ is continuous with finite limits at $0$ and $\infty$.
+  It produces elegant evaluations such as
+  $\int_{0}^{\infty}(\arctan(ax)-\arctan(bx))/x\,dx
+  =(\pi/2)\ln(a/b)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.33--4.34\quad Combinations of logarithms and exponentials}
 \subsubsection{4.35--4.36\quad Combinations of logarithms, exponentials, and powers}
 \subsubsection{4.37\quad Combinations of logarithms and hyperbolic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Free energy of quantum gases.}%
+  \index{free energy!quantum gas}%
+  \index{grand potential!integral}%
+  \index{fugacity expansion}%
+  The grand potential of a Bose or Fermi gas is
+  $\Omega=\mp k_{B}T\int_{0}^{\infty}g(\varepsilon)
+  \ln(1\mp ze^{-\beta\varepsilon})\,d\varepsilon$
+  (G\&R~4.33--4.35), where $z=e^{\beta\mu}$ is the fugacity and
+  $g(\varepsilon)$ is the density of states.  For power-law densities
+  of states $g\propto\varepsilon^{s-1}$, these reduce to polylogarithms.
+
+\item \textbf{Vacuum energy and zeta-function regularisation.}%
+  \index{zeta-function regularisation}%
+  \index{vacuum energy!logarithmic}%
+  \index{functional determinant}%
+  The regularised vacuum energy
+  $E=-\frac{1}{2}\frac{d}{ds}\bigl[\sum_{n}\omega_{n}^{-s}\bigr]_{s=-1}$
+  involves derivatives of spectral zeta functions, which are Mellin
+  transforms $\int_{0}^{\infty}t^{s-1}K(t)\,dt$ of the heat kernel
+  $K(t)=\sum_{n}e^{-\omega_{n}t}$ \cite{Elizalde1995}.  The
+  $\ln$-weighted variants arise from $d/ds$ acting on $t^{s-1}$,
+  producing integrals of $(\ln t)\,e^{-\omega t}$ from G\&R~4.33--4.35.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler--Mascheroni constant.}%
+  \index{Euler--Mascheroni constant $\gamma$}%
+  \index{$\gamma=-\int_0^\infty e^{-t}\ln t\,dt$}%
+  \index{digamma function!at 1}%
+  The Euler--Mascheroni constant
+  $\gamma=-\int_{0}^{\infty}e^{-t}\ln t\,dt=-\Gamma'(1)=0.5772\ldots$
+  (G\&R~4.33) is the simplest logarithm-exponential definite integral.
+  It appears throughout analytic number theory (in the Laurent expansion
+  of $\zeta(s)$ near $s=1$), probability (extreme-value distributions),
+  and combinatorics (harmonic numbers).
+
+\item \textbf{Heat-kernel coefficients and spectral geometry.}%
+  \index{heat kernel!coefficients}%
+  \index{spectral geometry}%
+  \index{Seeley--DeWitt expansion}%
+  The Seeley--DeWitt expansion of the heat kernel
+  $K(t)\sim\sum_{n}a_{n}t^{n-d/2}$ as $t\to 0^{+}$ determines the
+  spectral invariants of a Riemannian manifold.  The Mellin transform
+  $\int_{0}^{\infty}t^{s-1}K(t)\,dt$ (G\&R~4.35) gives the spectral
+  zeta function, whose derivative at $s=0$ is the log-determinant
+  $\ln\det\Delta$ \cite{OsgoodPhillipsSarnak1988}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.38--4.41\quad Logarithms and trigonometric functions}
 \subsubsection{4.42--4.43\quad Combinations of logarithms, trigonometric functions, and powers}
 \subsubsection{4.44\quad Combinations of logarithms, trigonometric functions, and exponentials}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Lamb shift and radiative corrections.}%
+  \index{Lamb shift}%
+  \index{radiative correction!logarithmic}%
+  \index{Bethe logarithm}%
+  The non-relativistic Bethe logarithm for the hydrogen Lamb shift
+  involves $\ln\langle(E_{n}-H)\ln|E_{n}-H|\rangle$, which after
+  angular integration reduces to integrals of
+  $\ln(\sin\theta)\sin^{m}\theta$ (G\&R~4.38--4.41).  These
+  logarithm-trigonometric integrals produce Catalan's constant and
+  values of the Clausen function.
+
+\item \textbf{Phase-space integrals in particle physics.}%
+  \index{phase-space integral!logarithmic}%
+  \index{collinear singularity}%
+  \index{splitting function!QCD}%
+  Phase-space integrals for particle decays and scattering near
+  collinear singularities involve
+  $\int_{0}^{\pi}\ln\sin(\theta/2)\sin^{n}\theta\,d\theta$
+  (G\&R~4.38), producing Euler sums and harmonic polylogarithms.
+  The DGLAP splitting functions that govern parton evolution are
+  expressed through such integrals.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Log-sine integrals and Clausen functions.}%
+  \index{log-sine integrals}%
+  \index{Clausen function!from log-sine}%
+  \index{$\int_0^{\pi/2}\ln\sin\theta\,d\theta=-\frac{\pi}{2}\ln 2$}%
+  The classical log-sine integral
+  $\int_{0}^{\pi/2}\ln(\sin\theta)\,d\theta=-(\pi/2)\ln 2$
+  (G\&R~4.38) and its higher-power generalisations
+  $\int_{0}^{\pi}\theta^{n}\ln(2\sin(\theta/2))\,d\theta$ yield
+  Clausen functions and multiple zeta values.  These are central to
+  the theory of mixed Tate motives and periods.
+
+\item \textbf{Catalan's constant and related values.}%
+  \index{Catalan's constant $G$}%
+  \index{$G=\int_0^1\arctan(x)/x\,dx$}%
+  \index{Dirichlet beta function}%
+  Catalan's constant $G=\sum_{n=0}^{\infty}(-1)^{n}/(2n+1)^{2}
+  =\beta(2)=0.9159\ldots$ has numerous integral representations,
+  including $G=\int_{0}^{\pi/4}\ln(\cot\theta)\,d\theta$
+  (G\&R~4.38) and $G=-\int_{0}^{1}\ln(x)/(1+x^{2})\,dx$
+  (G\&R~4.23).  Whether $G$ is irrational remains an open problem.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{4.5\quad Inverse Trigonometric Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.51\quad Inverse trigonometric functions}
 \subsubsection{4.52\quad Combinations of arcsines, arccosines, and powers}
 \subsubsection{4.53--4.54\quad Combinations of arctangents, arccotangents, and powers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Scattering phase shifts and Levinson's theorem.}%
+  \index{Levinson's theorem}%
+  \index{phase shift!integral}%
+  \index{bound states!counting}%
+  Levinson's theorem $\delta_{\ell}(0)-\delta_{\ell}(\infty)=n_{\ell}\pi$
+  (number of bound states in the $\ell$th partial wave) is proved by
+  integrating $d\delta_{\ell}/dk$ over $[0,\infty)$.  The arctangent
+  representation $\delta_{\ell}=\arctan(f_{\ell}(k))$ makes this an
+  inverse-trigonometric definite integral of the form in
+  G\&R~4.53--4.54.
+
+\item \textbf{Probability and order statistics.}%
+  \index{order statistics!arcsine}%
+  \index{uniform distribution!arcsin moments}%
+  \index{circular statistics}%
+  The distribution of the $k$th order statistic from a uniform sample
+  is a beta distribution, and its CDF involves
+  $\int_{0}^{x}t^{k-1}(1-t)^{n-k}\,dt$, related to the regularised
+  incomplete beta function.  The arcsine distribution
+  ($\alpha=\beta=1/2$) gives moments
+  $\int_{0}^{1}x^{n}\cdot\frac{2}{\pi}\frac{\arcsin\sqrt{x}}
+  {\sqrt{x(1-x)}}\,dx$ from G\&R~4.52.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Ahmed's integral and generalisations.}%
+  \index{Ahmed's integral}%
+  \index{$\int_0^1\arctan(\sqrt{x^2+2})/(x^2+1)\sqrt{x^2+2}\,dx$}%
+  Ahmed's integral
+  $\int_{0}^{1}\frac{\arctan\sqrt{x^{2}+2}}{(x^{2}+1)\sqrt{x^{2}+2}}\,dx
+  =\frac{5\pi^{2}}{96}$ (a combination of arctangent and algebraic
+  functions) is a celebrated example of a ``closed-form miracle'' among
+  inverse-trigonometric definite integrals.  It belongs to the family of
+  integrals expressible via Clausen functions.
+
+\item \textbf{Dilogarithm identities.}%
+  \index{dilogarithm!from arctangent integrals}%
+  \index{$\mathrm{Li}_2$!integral representations}%
+  \index{functional equation!dilogarithm}%
+  The identity $\mathrm{Li}_{2}(x)+\mathrm{Li}_{2}(1-x)
+  =\pi^{2}/6-\ln(x)\ln(1-x)$ can be proved by integrating
+  $\int_{0}^{1}\arctan(tx)/(1+t^{2}x^{2})\,dt$ (G\&R~4.53) and
+  differentiating with respect to~$x$.  The five-term relation
+  (Schaeffer, Abel, Spence) for the dilogarithm is similarly derived
+  from arctangent integrals.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.55\quad Combinations of inverse trigonometric functions and exponentials}
 \subsubsection{4.56\quad A combination of the arctangent and a hyperbolic function}
 \subsubsection{4.57\quad Combinations of inverse and direct trigonometric functions}
 \subsubsection{4.58\quad A combination involving an inverse and a direct trigonometric function and a power}
 \subsubsection{4.59\quad Combinations of inverse trigonometric functions and logarithms}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Winding number and topological phases.}%
+  \index{winding number!integral}%
+  \index{Berry phase!integral}%
+  \index{topological invariant!arctangent}%
+  The winding number of a map $\mathbf{n}(\theta):S^{1}\to S^{1}$ is
+  $\nu=\frac{1}{2\pi}\int_{0}^{2\pi}\frac{d}{d\theta}\arctan
+  (n_{y}/n_{x})\,d\theta$, a definite integral involving the
+  derivative of an arctangent (G\&R~4.57--4.58).  The Berry phase
+  $\gamma=\oint\langle\psi|\nabla_{\mathbf{R}}|\psi\rangle\cdot d\mathbf{R}$
+  is the continuous analogue.
+
+\item \textbf{Information-theoretic integrals.}%
+  \index{mutual information!integral}%
+  \index{channel capacity}%
+  \index{entropy!inverse trigonometric}%
+  The channel capacity of certain communication channels involves
+  $\int_{0}^{1}\arcsin(x)\ln(1/x)\,dx$ (G\&R~4.59), arising from
+  the entropy of the arcsine distribution.  More generally, mutual
+  information for channels with trigonometric transfer functions
+  produces inverse-trig-times-logarithm integrals.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler sums and alternating zeta values.}%
+  \index{Euler sums}%
+  \index{alternating zeta values}%
+  \index{$\int_0^1\arctan(x)\ln(x)\,dx$}%
+  The integral $\int_{0}^{1}\arctan(x)\ln(x)\,dx$ (G\&R~4.59)
+  evaluates to a linear combination of Catalan's constant~$G$ and
+  $\pi\ln 2$.  More generally, integrals
+  $\int_{0}^{1}x^{n}\arctan(x)\ln^{m}(x)\,dx$ produce Euler sums
+  $\sum_{k}(-1)^{k}H_{k}/(2k+1)^{n}$ involving harmonic numbers,
+  connecting to the theory of multiple polylogarithms.
+
+\item \textbf{Mahler measures.}%
+  \index{Mahler measure}%
+  \index{$m(1+x+y)=\frac{3\sqrt{3}}{4\pi}L(\chi_{-3},2)$}%
+  \index{$L$-function!Mahler measure}%
+  The Mahler measure
+  $m(P)=\int_{0}^{1}\cdots\int_{0}^{1}\ln|P(e^{2\pi i\theta_{1}},
+  \ldots)|\,d\theta_{1}\cdots d\theta_{n}$ of a polynomial often
+  reduces to inverse-trigonometric-times-logarithm integrals
+  (G\&R~4.59).  Celebrated results include
+  $m(1+x+y)=\frac{3\sqrt{3}}{4\pi}L(\chi_{-3},2)$, connecting to
+  special values of $L$-functions.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{4.6\quad Multiple Integrals}
+
+%% -------------------------------------------------------------------
 \subsubsection{4.60\quad Change of variables in multiple integrals}
 \subsubsection{4.61\quad Change of the order of integration and change of variables}
 \subsubsection{4.62\quad Double and triple integrals with constant limits}
 \subsubsection{4.63--4.64\quad Multiple integrals}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Phase-space integrals in statistical mechanics.}%
+  \index{phase space!multiple integral}%
+  \index{microcanonical ensemble}%
+  \index{volume of $n$-ball}%
+  The phase-space volume of $N$ particles with total energy $\leq E$ is
+  $\Omega(E)=\frac{1}{N!h^{3N}}\int_{H\leq E}d^{3N}q\,d^{3N}p$,
+  a $6N$-dimensional multiple integral.  Evaluating this by changing to
+  hyperspherical coordinates uses
+  $V_{n}(R)=\pi^{n/2}R^{n}/\Gamma(n/2+1)$ (G\&R~4.63),
+  the volume of the $n$-ball.
+
+\item \textbf{Multi-loop Feynman integrals.}%
+  \index{Feynman integral!multi-loop}%
+  \index{Feynman parameters}%
+  \index{dimensional regularisation!multiple integrals}%
+  An $L$-loop Feynman diagram in $d$ dimensions involves an
+  $L$-fold momentum integral.  Feynman parametrisation converts these
+  to $\int_{0}^{1}\cdots\int_{0}^{1}\delta(1-\sum x_{i})
+  \prod x_{i}^{a_{i}}\cdot(\text{denominator})^{-n}\,dx_{1}\cdots dx_{k}$,
+  a simplex integral (G\&R~4.63--4.64) evaluated in terms of gamma
+  functions \cite{tHooftVeltman1972}.
+
+\item \textbf{Random matrix eigenvalue distributions.}%
+  \index{random matrix theory!eigenvalue integral}%
+  \index{Selberg integral!random matrices}%
+  \index{Vandermonde determinant}%
+  The joint probability density of eigenvalues of a GUE random matrix
+  is $p(\lambda_{1},\ldots,\lambda_{n})\propto
+  \prod_{i<j}|\lambda_{i}-\lambda_{j}|^{2}\prod_{i}e^{-\lambda_{i}^{2}/2}$.
+  Marginal distributions and correlation functions involve the
+  Selberg-type multiple integrals of G\&R~4.63 \cite{MehtaDyson1963}.
+
+\item \textbf{Fubini's theorem and iterated physical integrals.}%
+  \index{Fubini's theorem!physics}%
+  \index{iterated integration!order of}%
+  \index{convolution!multiple integral}%
+  Fubini's theorem (G\&R~4.61) justifies the interchange of integration
+  order that physicists routinely exploit---for instance, computing
+  the convolution of two distributions
+  $\int\int f(x)g(y-x)\,dx\,dy$ by integrating first over $x$, then
+  over $y$, to obtain the Fourier-space product.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Jacobian and change of variables.}%
+  \index{Jacobian!multiple integral}%
+  \index{change of variables!multiple integral}%
+  \index{polar, cylindrical, spherical coordinates}%
+  The change-of-variables formula
+  $\int_{T(\Omega)}f(\mathbf{y})\,d\mathbf{y}
+  =\int_{\Omega}f(T(\mathbf{x}))|\det DT(\mathbf{x})|\,d\mathbf{x}$
+  (G\&R~4.60) is the multivariable analogue of substitution.  The
+  Jacobians for polar ($r$), cylindrical ($r$), and spherical
+  ($r^{2}\sin\theta$) coordinates are the three most-used instances.
+
+\item \textbf{Dirichlet integral and simplex volumes.}%
+  \index{Dirichlet integral!multidimensional}%
+  \index{simplex!volume}%
+  \index{multinomial beta function}%
+  The Dirichlet integral
+  $\int_{\Delta_{n}}x_{1}^{a_{1}-1}\cdots x_{n}^{a_{n}-1}\,dx_{1}\cdots dx_{n-1}
+  =\frac{\Gamma(a_{1})\cdots\Gamma(a_{n})}{\Gamma(a_{1}+\cdots+a_{n})}$
+  over the standard simplex $\Delta_{n}$ (G\&R~4.63) is the
+  $n$-dimensional generalisation of the beta function.  It gives the
+  volume of the simplex (when all $a_{i}=1$) as $1/n!$.
+
+\item \textbf{Gaussian integrals in $n$ dimensions.}%
+  \index{Gaussian integral!$n$-dimensional}%
+  \index{determinant!Gaussian integral}%
+  \index{Wick's theorem}%
+  $\int_{\mathbb{R}^{n}}e^{-\frac{1}{2}\mathbf{x}^{T}A\mathbf{x}}\,d^{n}x
+  =(2\pi)^{n/2}/\sqrt{\det A}$ for positive-definite $A$ (G\&R~4.62)
+  is the foundation of all perturbative calculations in quantum field
+  theory.  Wick's theorem---the rule for evaluating $n$-point
+  correlators---follows from differentiating this identity with
+  respect to an external source.
+\end{enumerate}

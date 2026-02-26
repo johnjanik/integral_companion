@@ -1,61 +1,1266 @@
-%% Section 2 — Indefinite Integrals of Elementary Functions
+%% ============================================================
+%% 2  Indefinite Integrals of Elementary Functions
+%% ============================================================
 \section{2\quad Indefinite Integrals of Elementary Functions}
 
 \subsection{2.0\quad Introduction}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.00\quad General remarks}
 \subsubsection{2.01\quad The basic integrals}
 \subsubsection{2.02\quad General formulas}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Equations of motion from Newton's second law.}%
+  \index{Newton's second law!integration}%
+  \index{equations of motion!indefinite integral}%
+  \index{velocity from acceleration}%
+  The most elementary use of indefinite integrals in physics is
+  $v(t)=\int a(t)\,dt$ and $x(t)=\int v(t)\,dt$.  Every kinematic
+  formula in introductory mechanics---constant-acceleration results such
+  as $x=x_{0}+v_{0}t+\tfrac{1}{2}at^{2}$---is an instance of the basic
+  power-rule integral $\int t^{n}\,dt=t^{n+1}/(n+1)+C$.  The arbitrary
+  constant~$C$ encodes initial conditions, the physicist's standard
+  boundary data.
+
+\item \textbf{Linearity and superposition.}%
+  \index{superposition principle!integration}%
+  \index{linearity!of integration}%
+  \index{Fourier synthesis}%
+  The linearity rule $\int[\alpha f+\beta g]\,dx
+  =\alpha\int f\,dx+\beta\int g\,dx$ (G\&R~2.02) is the integral
+  counterpart of the superposition principle.  In circuit theory, the
+  response to a sum of inputs is the sum of individual responses, each
+  computed by a separate antiderivative.  Fourier synthesis builds
+  arbitrary waveforms from sinusoidal antiderivatives
+  $\int\sin(n\omega t)\,dt=-\cos(n\omega t)/(n\omega)$.
+
+\item \textbf{Integration by parts and the interaction picture.}%
+  \index{integration by parts!physical applications}%
+  \index{interaction picture}%
+  \index{Dyson series}%
+  Integration by parts $\int u\,dv=uv-\int v\,du$ (G\&R~2.02)
+  transfers derivatives between factors.  In quantum field theory, the
+  analogous operation moves derivatives off fields to obtain equations
+  of motion from action principles; the boundary terms determine
+  surface contributions that vanish for fields decaying at infinity.
+
+\item \textbf{Substitution and coordinate changes.}%
+  \index{substitution rule!coordinate change}%
+  \index{change of variables!indefinite integral}%
+  \index{canonical transformation}%
+  The substitution rule $\int f(g(x))g'(x)\,dx=\int f(u)\,du$
+  (G\&R~2.02) is the one-dimensional version of coordinate
+  transformation.  In Hamiltonian mechanics, canonical transformations
+  $(q,p)\to(Q,P)$ exploit substitutions that simplify the Hamiltonian,
+  reducing integrals to standard forms catalogued in G\&R~2.01.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The fundamental theorem of calculus.}%
+  \index{fundamental theorem of calculus}%
+  \index{antiderivative!existence}%
+  \index{Riemann integral!antiderivative}%
+  Every continuous function on a closed interval possesses an
+  antiderivative, given by $F(x)=\int_{a}^{x}f(t)\,dt$.  The
+  fundamental theorem connects the two faces of calculus: the
+  antiderivative (G\&R~2.01) and the definite integral (G\&R~3--4).
+  The table of basic integrals is, in effect, a table of inverse
+  derivatives.
+
+\item \textbf{Liouville's theorem on elementary antiderivatives.}%
+  \index{Liouville's theorem!elementary integrals}%
+  \index{elementary functions!integration}%
+  \index{differential algebra}%
+  Not every elementary function has an elementary antiderivative---the
+  classic examples $\int e^{-x^{2}}\,dx$, $\int\sin(x)/x\,dx$, and
+  $\int dx/\ln x$ require special functions (see G\&R~8--9).
+  Liouville's theorem (1835) and its modern extension by Risch (1969)
+  give a decision procedure for when an elementary antiderivative
+  exists, founding the field of differential algebra.
+
+\item \textbf{Reduction formulas and recursion.}%
+  \index{reduction formulas}%
+  \index{recursion!integration}%
+  \index{Wallis-type integrals}%
+  The general formulas of G\&R~2.02 include reduction formulas such as
+  $\int x^{n}e^{ax}\,dx=\frac{x^{n}e^{ax}}{a}
+  -\frac{n}{a}\int x^{n-1}e^{ax}\,dx$.
+  These are discrete recursions in the exponent~$n$, connecting
+  indefinite integration to difference equations and combinatorial
+  identities.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.1\quad Rational Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.10\quad General integration rules}
 \subsubsection{2.11--2.13\quad Forms containing the binomial $a + bx^k$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Partial fractions in circuit analysis.}%
+  \index{partial fractions!circuit analysis}%
+  \index{transfer function!poles}%
+  \index{Laplace transform!inversion by partial fractions}%
+  Inverse Laplace transforms in linear circuit theory require
+  decomposing a rational transfer function $H(s)=P(s)/Q(s)$ into
+  partial fractions.  Each simple pole $1/(s-p_{k})$ inverts to an
+  exponential $e^{p_{k}t}$, while repeated poles produce terms
+  $t^{n}e^{pt}$.  The partial-fraction rules of G\&R~2.10 are the
+  workhorse of this procedure.
+
+\item \textbf{Gravitational and Coulomb potentials in one dimension.}%
+  \index{Coulomb potential!one-dimensional integral}%
+  \index{gravitational potential!antiderivative}%
+  \index{inverse-square law!integration}%
+  Integrating the inverse-square force $F=k/x^{2}$ gives the
+  potential energy $U=-k/x+C$, an instance of $\int x^{-n}\,dx$
+  from G\&R~2.11.  More generally, power-law forces $F\propto x^{-n}$
+  and their potentials catalogue the basic binomial integrals.
+
+\item \textbf{Logistic and Verhulst population models.}%
+  \index{logistic equation!partial fractions}%
+  \index{Verhulst model}%
+  \index{population dynamics}%
+  The logistic equation $dN/dt=rN(1-N/K)$ separates to
+  $\int\frac{dN}{N(1-N/K)}=rt$, resolved by partial fractions into
+  $\ln|N|-\ln|1-N/K|=rt+C$.  This is a direct application of the
+  rational-function techniques of G\&R~2.10--2.13 and yields the
+  sigmoid growth curve ubiquitous in ecology, epidemiology, and
+  machine learning.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Partial fraction decomposition and the residue theorem.}%
+  \index{partial fraction decomposition!algebraic}%
+  \index{residue theorem!partial fractions}%
+  \index{rational functions!integration}%
+  Every rational function $P(x)/Q(x)$ with $\deg P<\deg Q$ decomposes
+  into partial fractions, each integrable in closed form (logarithms
+  and arctangents).  Over $\mathbb{C}$, the coefficients are residues
+  of the complex function $P(z)/Q(z)$, linking the algebraic
+  decomposition of G\&R~2.10 to the Cauchy residue theorem.
+
+\item \textbf{Ostrogradsky--Hermite method.}%
+  \index{Ostrogradsky--Hermite method}%
+  \index{rational part!of integral}%
+  \index{squarefree factorisation}%
+  The Ostrogradsky--Hermite method separates
+  $\int P/Q\,dx$ into a rational part plus a logarithmic part without
+  fully factoring~$Q(x)$, using only the squarefree decomposition.
+  This is more efficient than full partial fractions and is the basis
+  of modern computer algebra algorithms for rational integration.
+
+\item \textbf{Chebyshev's theorem on binomial integrals.}%
+  \index{Chebyshev's theorem!binomial integrals}%
+  \index{binomial integral!elementary conditions}%
+  Chebyshev (1853) proved that $\int x^{p}(a+bx^{r})^{q}\,dx$ is
+  elementary only when $(p+1)/r$, $q$, or $(p+1)/r+q$ is an integer,
+  providing a complete classification for the binomial integrals of
+  G\&R~2.11--2.13.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.14\quad Forms containing the binomial $1\pm x^n$}
 \subsubsection{2.15\quad Forms containing pairs of binomials: $a + bx$ and $\alpha +\beta x$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Scattering cross sections and angular integrals.}%
+  \index{scattering cross section!angular integral}%
+  \index{Rutherford scattering}%
+  \index{angular integration!rational}%
+  Rutherford scattering involves integrals of the form
+  $\int d(\cos\theta)/(1-\cos\theta)^{2}$, an instance of
+  $\int dx/(1\pm x)^{n}$ from G\&R~2.14.  More complex angular
+  distributions produce paired-binomial integrands when the
+  differential cross section involves two angular scales.
+
+\item \textbf{Voltage divider and impedance networks.}%
+  \index{voltage divider!integration}%
+  \index{impedance!paired binomials}%
+  \index{RC circuit!transfer function}%
+  Transfer functions for cascaded RC networks involve rational
+  expressions in two linear factors $a+bs$ and $\alpha+\beta s$.
+  Inverse Laplace transforms of such expressions use exactly the
+  paired-binomial decompositions catalogued in G\&R~2.15.
+
+\item \textbf{Chemical kinetics with competing reactions.}%
+  \index{chemical kinetics!competing reactions}%
+  \index{rate equations!partial fractions}%
+  \index{consecutive reactions}%
+  Consecutive first-order reactions $A\to B\to C$ with different rate
+  constants $k_{1}\neq k_{2}$ lead to integrals
+  $\int dt/[(k_{1}-k_{2})e^{-k_{1}t}+\cdots]$ whose rational
+  pre-images after substitution $u=e^{-t}$ involve paired binomials.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Cyclotomic polynomials and roots of unity.}%
+  \index{cyclotomic polynomials}%
+  \index{roots of unity!factorisation}%
+  \index{partial fractions!over cyclotomic fields}%
+  The factorisation $1-x^{n}=\prod_{d|n}\Phi_{d}(x)$ into cyclotomic
+  polynomials refines the integrands of G\&R~2.14 into irreducible
+  factors over~$\mathbb{Q}$.  The resulting partial fractions involve
+  logarithms and arctangents evaluated at roots of unity, connecting
+  indefinite integration to algebraic number theory.
+
+\item \textbf{Heaviside cover-up method.}%
+  \index{Heaviside cover-up method}%
+  \index{partial fractions!distinct linear factors}%
+  For distinct linear factors $(a+bx)(\alpha+\beta x)\cdots$, the
+  Heaviside cover-up method evaluates each partial-fraction coefficient
+  by substituting the root of the corresponding factor into the
+  remaining expression.  This is the practical algorithm behind the
+  formulas of G\&R~2.15.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.16\quad Forms containing the trinomial $a + bx^k + cx^{2k}$}
 \subsubsection{2.17\quad Forms containing the quadratic trinomial $a + bx + cx^2$ and powers of $x$}
 \subsubsection{2.18\quad Forms containing the quadratic trinomial $a + bx + cx^2$ and the binomial $\alpha +\beta x$}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Resonance curves and the damped harmonic oscillator.}%
+  \index{damped harmonic oscillator!integral}%
+  \index{resonance!quadratic denominator}%
+  \index{Lorentzian!integration}%
+  The steady-state response of a damped oscillator driven at frequency
+  $\omega$ involves integrals with denominator
+  $(\omega_{0}^{2}-\omega^{2})^{2}+4\gamma^{2}\omega^{2}$, a
+  quadratic trinomial in~$\omega^{2}$.  Completing the square and
+  applying the arctangent integral (G\&R~2.17) gives the Lorentzian
+  lineshape $\sim\arctan[(\omega^{2}-\omega_{0}^{2})/(2\gamma\omega)]$.
+
+\item \textbf{Relativistic kinematics.}%
+  \index{relativistic kinematics!quadratic forms}%
+  \index{rapidity!integration}%
+  \index{Lorentz transformation}%
+  Phase-space integrals in relativistic kinematics involve
+  $\int dp/\sqrt{p^{2}+m^{2}c^{2}}$, which after the substitution
+  $p=mc\sinh\phi$ reduces to the rapidity variable.  More general
+  two-body phase-space integrals produce quadratic trinomials in
+  the momentum transfer variable.
+
+\item \textbf{RLC circuit transient response.}%
+  \index{RLC circuit!transient response}%
+  \index{quadratic trinomial!circuit analysis}%
+  \index{overdamped and underdamped response}%
+  The characteristic equation of an RLC circuit
+  $Ls^{2}+Rs+1/C=0$ has roots that determine the transient
+  response.  Inverse Laplace transforms of $1/(Ls^{2}+Rs+1/C)$
+  use exactly the completing-the-square technique of G\&R~2.17,
+  yielding exponentially decaying sinusoids (underdamped) or pure
+  exponentials (overdamped).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Completing the square and the Euler substitutions.}%
+  \index{completing the square}%
+  \index{Euler substitutions}%
+  \index{quadratic form!canonical form}%
+  Completing the square reduces $a+bx+cx^{2}$ to
+  $c(x+b/2c)^{2}+(a-b^{2}/4c)$, unifying the integrals of G\&R~2.17
+  into the two standard forms $\int du/(u^{2}+k^{2})=\frac{1}{k}\arctan(u/k)$
+  and $\int du/(u^{2}-k^{2})=\frac{1}{2k}\ln|(u-k)/(u+k)|$.
+  This canonical reduction is the prototype of diagonalising a
+  quadratic form.
+
+\item \textbf{Discriminant and the nature of antiderivatives.}%
+  \index{discriminant!quadratic trinomial}%
+  \index{arctangent!from negative discriminant}%
+  \index{logarithm!from positive discriminant}%
+  The sign of the discriminant $\Delta=b^{2}-4ac$ determines whether
+  the antiderivative involves logarithms ($\Delta>0$, real roots),
+  arctangents ($\Delta<0$, complex conjugate roots), or degenerates to
+  a power-law integral ($\Delta=0$, repeated root).  This trichotomy
+  is the real-variable shadow of the factorisation over~$\mathbb{C}$.
+
+\item \textbf{Algebraic curves and genus.}%
+  \index{algebraic curves!rational parametrisation}%
+  \index{genus zero curves}%
+  \index{rational parametrisation}%
+  Every integral $\int R(x,\sqrt{ax^{2}+bx+c})\,dx$ with $R$ rational
+  can be evaluated in terms of elementary functions because the curve
+  $y^{2}=ax^{2}+bx+c$ is a conic (genus~0) admitting a rational
+  parametrisation.  The Euler substitutions of G\&R~2.25 implement
+  this parametrisation explicitly.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.2\quad Algebraic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.20\quad Introduction}
 \subsubsection{2.21\quad Forms containing the binomial $a + bx^k$ and $\sqrt{x}$}
 \subsubsection{2.22--2.23\quad Forms containing $\sqrt[n]{(a + bx)^k}$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Kepler's equation and orbital mechanics.}%
+  \index{Kepler's equation}%
+  \index{orbital mechanics!algebraic integrals}%
+  \index{eccentric anomaly}%
+  The radial equation of Keplerian orbits
+  $\int\frac{dr}{\sqrt{2(E-V(r))-\ell^{2}/r^{2}}}=t+C$ involves
+  square roots of quadratic and higher-degree polynomials in~$r$.
+  For inverse-square potentials $V=-k/r$, the substitution
+  $r=a(1-e\cos u)$ (eccentric anomaly) reduces the integral to
+  algebraic forms catalogued in G\&R~2.21--2.23.
+
+\item \textbf{Brachistochrone and variational problems.}%
+  \index{brachistochrone}%
+  \index{variational problems!algebraic integrands}%
+  \index{cycloid}%
+  The brachistochrone problem minimises $\int_{0}^{x_{1}}\sqrt{(1+y'^{2})/(2gy)}\,dx$,
+  whose Euler--Lagrange equation leads to an integral involving
+  $\sqrt{y/(a-y)}$.  This is a binomial-with-square-root form from
+  G\&R~2.21, and its evaluation yields the parametric cycloid solution.
+
+\item \textbf{Thomas--Fermi screening.}%
+  \index{Thomas--Fermi model}%
+  \index{electron screening}%
+  \index{power-law potentials!integration}%
+  The Thomas--Fermi equation for atomic screening involves integrals
+  $\int x^{p}(a+bx^{k})^{q}\,dx$ where the exponents arise from the
+  electron density expressed as a power of the electrostatic potential.
+  These are precisely the binomial integrals tabulated in G\&R~2.11--2.23.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Abel's theorem on algebraic integrability.}%
+  \index{Abel's theorem!algebraic integrals}%
+  \index{algebraic functions!integration}%
+  \index{Abelian integrals}%
+  Abel (1826) proved that $\int R(x,y)\,dx$ with $y$ algebraic over
+  $\mathbb{C}(x)$ can always be expressed as a sum of algebraic terms,
+  logarithms, and Abelian integrals (integrals on algebraic curves of
+  genus~$\geq 1$).  The formulas of G\&R~2.20--2.23 enumerate the
+  genus-0 cases where the result is fully elementary.
+
+\item \textbf{Rationalising substitutions.}%
+  \index{rationalising substitution}%
+  \index{substitution!$t=\sqrt[n]{a+bx}$}%
+  \index{rational function!after substitution}%
+  The substitution $t=\sqrt[n]{a+bx}$ converts integrals involving
+  $n$th roots into rational functions of~$t$, reducible by partial
+  fractions.  This is the standard technique behind every formula in
+  G\&R~2.22--2.23 and illustrates the principle that algebraic
+  integrals of genus-0 curves are always elementary.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.24\quad Forms containing $\sqrt{a + bx}$ and the binomial $\alpha +\beta x$}
 \subsubsection{2.25\quad Forms containing $\sqrt{a + bx + cx^2}$}
 \subsubsection{2.26\quad Forms containing $\sqrt{a + bx + cx^2}$ and integral powers of $x$}
 \subsubsection{2.27\quad Forms containing $\sqrt{a + cx^2}$ and integral powers of $x$}
 \subsubsection{2.28\quad Forms containing $\sqrt{a + bx + cx^2}$ and first- and second-degree polynomials}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Arc length and proper time.}%
+  \index{arc length!quadratic radical}%
+  \index{proper time!integration}%
+  \index{geodesic!arc length}%
+  The arc length $\int\sqrt{1+y'^{2}}\,dx$ and the relativistic
+  proper time $\int\sqrt{1-v^{2}/c^{2}}\,dt$ are prototypical
+  integrals involving $\sqrt{a+cx^{2}}$.  In general relativity, the
+  geodesic equation in Schwarzschild spacetime produces integrals
+  $\int dr/\sqrt{E^{2}-(1-r_{s}/r)(1+\ell^{2}/r^{2})}$ involving
+  square roots of polynomials in~$r$.
+
+\item \textbf{Central-force orbits.}%
+  \index{central-force problem!orbit integral}%
+  \index{orbit equation!quadratic radical}%
+  \index{Binet equation}%
+  The orbit equation $\theta=\int\frac{\ell\,dr}{r^{2}\sqrt{2m(E-V)-\ell^{2}/r^{2}}}$
+  for a central-force potential with $V(r)$ polynomial in $1/r$
+  yields square roots of quadratic trinomials upon substituting
+  $u=1/r$.  The conic-section orbits of the Kepler problem emerge from
+  the $\sqrt{a+bu+cu^{2}}$ integrals of G\&R~2.25.
+
+\item \textbf{Catenary and elastica.}%
+  \index{catenary}%
+  \index{elastica}%
+  \index{hanging chain}%
+  The shape of a hanging chain satisfies
+  $\int dy/\sqrt{1+(dy/dx)^{2}}=x/a$, a $\sqrt{a+cx^{2}}$ form
+  (G\&R~2.27).  The elastica (thin elastic rod under load) leads
+  to integrals $\int d\theta/\sqrt{a+b\cos\theta}$ that, after
+  half-angle substitution, become algebraic integrals of the type
+  in G\&R~2.25--2.28.
+
+\item \textbf{Charged particle in combined electric and magnetic fields.}%
+  \index{charged particle!combined fields}%
+  \index{drift velocity!integration}%
+  \index{$\mathbf{E}\times\mathbf{B}$ drift}%
+  The trajectory of a charged particle in crossed electric and
+  magnetic fields involves integrals
+  $\int dt/\sqrt{a+bt+ct^{2}}$ arising from the energy conservation
+  equation.  The quadratic-trinomial-under-radical forms of
+  G\&R~2.25--2.28 catalogue these antiderivatives.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Euler substitutions.}%
+  \index{Euler substitutions!three types}%
+  \index{quadratic radical!rationalisation}%
+  \index{conic!rational parametrisation}%
+  Every integral $\int R(x,\sqrt{ax^{2}+bx+c})\,dx$ is reducible to a
+  rational integral by one of Euler's three substitutions:
+  $\sqrt{ax^{2}+bx+c}=t\pm x\sqrt{a}$ (if $a>0$),
+  $=t\pm\sqrt{c}$ (if $c>0$), or
+  $=(x-\alpha)t$ (if $\alpha$ is a real root).  These implement the
+  rational parametrisation of the conic $y^{2}=ax^{2}+bx+c$ and
+  underlie every formula in G\&R~2.24--2.28.
+
+\item \textbf{Weierstrass substitution as a special case.}%
+  \index{Weierstrass substitution!special case}%
+  \index{half-angle substitution}%
+  \index{trigonometric substitution!and radicals}%
+  The trigonometric substitutions $x=a\sin\theta$, $x=a\tan\theta$,
+  $x=a\sec\theta$ that eliminate $\sqrt{a^{2}-x^{2}}$,
+  $\sqrt{a^{2}+x^{2}}$, $\sqrt{x^{2}-a^{2}}$ are special cases of
+  the Euler substitutions when $b=0$.  They reduce the integrals of
+  G\&R~2.27 to trigonometric antiderivatives (G\&R~2.5--2.6).
+
+\item \textbf{Differential Galois theory.}%
+  \index{differential Galois theory!algebraic integrals}%
+  \index{Picard--Vessiot extension}%
+  The fact that all integrals in G\&R~2.24--2.28 are elementary
+  (no special functions needed) can be proved systematically via
+  differential Galois theory: the differential Galois group of
+  $y'=R(x,\sqrt{ax^{2}+bx+c})$ is solvable, guaranteeing a
+  Liouvillian antiderivative.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.29\quad Integrals that can be reduced to elliptic or pseudo-elliptic integrals}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Pendulum period and elliptic integrals.}%
+  \index{pendulum!elliptic integral}%
+  \index{elliptic integral!physical origin}%
+  \index{large-amplitude oscillations}%
+  The exact period of a simple pendulum
+  $T=4\sqrt{\ell/g}\int_{0}^{\pi/2}d\theta/\sqrt{1-k^{2}\sin^{2}\theta}
+  =4\sqrt{\ell/g}\,K(k)$ is the complete elliptic integral of the first
+  kind with $k=\sin(\theta_{0}/2)$.  The corresponding indefinite
+  integral is the incomplete elliptic integral $F(\phi,k)$, the
+  prototype entry in G\&R~2.29.
+
+\item \textbf{Geodesics on an ellipsoid.}%
+  \index{geodesics!ellipsoid}%
+  \index{ellipsoid!geodesic}%
+  \index{Jacobi's theorem!geodesics}%
+  The geodesic equations on the surface of an ellipsoid reduce to
+  integrals involving $\sqrt{P(u)}$ where $P$ is a cubic or quartic
+  polynomial---elliptic integrals.  This is the classical result of
+  Jacobi (1839) and lies behind precise geodetic calculations on the
+  Earth's surface.
+
+\item \textbf{Nonlinear oscillators and Duffing's equation.}%
+  \index{Duffing equation}%
+  \index{nonlinear oscillator!elliptic integral}%
+  \index{anharmonic oscillator}%
+  The Duffing oscillator $\ddot{x}+\alpha x+\beta x^{3}=0$ conserves
+  energy $E=\tfrac{1}{2}\dot{x}^{2}+\tfrac{1}{2}\alpha x^{2}
+  +\tfrac{1}{4}\beta x^{4}$, so the period involves
+  $\int dx/\sqrt{E-\tfrac{1}{2}\alpha x^{2}-\tfrac{1}{4}\beta x^{4}}$,
+  an elliptic integral from G\&R~2.29.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Elliptic curves and genus-1 integrals.}%
+  \index{elliptic curves!genus one}%
+  \index{genus!elliptic integrals}%
+  \index{Weierstrass normal form}%
+  An integral $\int R(x,\sqrt{P(x)})\,dx$ with $P$ of degree~3 or~4
+  generically defines an elliptic curve of genus~1.  Such integrals
+  cannot be expressed in elementary functions (Liouville--Abel), and
+  their inversion leads to elliptic functions (G\&R~8.1).
+
+\item \textbf{Pseudo-elliptic integrals.}%
+  \index{pseudo-elliptic integrals}%
+  \index{algebraic miracle!pseudo-elliptic}%
+  \index{Abel's addition theorem!pseudo-elliptic}%
+  A pseudo-elliptic integral looks elliptic (involves $\sqrt{P(x)}$
+  with $\deg P\geq 3$) but is actually elementary due to hidden
+  algebraic relations.  Detecting these requires Abel's addition
+  theorem or Risch-type algorithms.  G\&R~2.29 includes both genuinely
+  elliptic and pseudo-elliptic cases, distinguished by the algebraic
+  structure of the integrand.
+
+\item \textbf{Hyperelliptic integrals and Abelian varieties.}%
+  \index{hyperelliptic integrals}%
+  \index{Abelian varieties}%
+  \index{Jacobian variety}%
+  When $\deg P\geq 5$, the integral $\int dx/\sqrt{P(x)}$ defines a
+  hyperelliptic curve of genus $g=\lfloor(\deg P-1)/2\rfloor$.
+  Inversion leads to Abelian functions on a $g$-dimensional torus
+  (the Jacobian variety), a vast generalisation of elliptic functions.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.3\quad The Exponential Function}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.31\quad Forms containing $e^{ax}$}
 \subsubsection{2.32\quad The exponential combined with rational functions of $x$}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Radioactive decay and reaction kinetics.}%
+  \index{radioactive decay!integration}%
+  \index{first-order kinetics}%
+  \index{exponential decay!antiderivative}%
+  First-order kinetics $dN/dt=-\lambda N$ gives $N(t)=N_{0}e^{-\lambda t}$
+  after separation and integration of $\int dN/N=-\lambda\int dt$.
+  The cumulative number of decays $\int_{0}^{t}|\dot{N}|\,dt'
+  =N_{0}(1-e^{-\lambda t})$ is the prototype of G\&R~2.31.  Bateman's
+  equations for decay chains involve sums of exponentials whose
+  coefficients require the rational-times-exponential integrals
+  of G\&R~2.32.
+
+\item \textbf{Quantum tunnelling amplitudes.}%
+  \index{quantum tunnelling!WKB integral}%
+  \index{WKB approximation}%
+  \index{transmission coefficient}%
+  The WKB tunnelling amplitude
+  $T\sim\exp\!\bigl(-\frac{2}{\hbar}\int_{x_{1}}^{x_{2}}
+  \sqrt{2m(V-E)}\,dx\bigr)$ involves an exponential of an integral.
+  When the barrier is approximated by polynomials, the inner integral
+  reduces to algebraic antiderivatives (G\&R~2.2), and the overall
+  expression involves exponentials combined with powers.
+
+\item \textbf{Damped oscillations and signal processing.}%
+  \index{damped oscillation!exponential integral}%
+  \index{signal processing!windowed integrals}%
+  \index{Gaussian window}%
+  Products $x^{n}e^{ax}$ arise when computing moments of exponentially
+  decaying signals.  The reduction formula
+  $\int x^{n}e^{ax}\,dx=\frac{x^{n}e^{ax}}{a}
+  -\frac{n}{a}\int x^{n-1}e^{ax}\,dx$ (G\&R~2.32) is used
+  repeatedly in signal processing to evaluate windowed integrals and
+  to derive the moments of the gamma distribution.
+
+\item \textbf{Partition functions in statistical mechanics.}%
+  \index{partition function!integration}%
+  \index{statistical mechanics!exponential integrals}%
+  \index{Boltzmann factor}%
+  The canonical partition function
+  $Z=\int e^{-\beta H(q,p)}\,dq\,dp$ involves exponentials of the
+  Hamiltonian.  For harmonic or polynomial potentials, the multidimensional
+  integral factorises into products of one-dimensional integrals of the
+  type $\int x^{n}e^{-ax^{2}}\,dx$, linking G\&R~2.31--2.32 to
+  the Gaussian integrals of G\&R~3.32.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The exponential function and Lie groups.}%
+  \index{exponential map!Lie group}%
+  \index{Lie group!exponential}%
+  \index{matrix exponential}%
+  The matrix exponential $e^{tA}=\sum_{n=0}^{\infty}(tA)^{n}/n!$ is
+  the solution to $\dot{X}=AX$, obtained by integrating the constant-coefficient
+  ODE.  The scalar integrals $\int e^{ax}\,dx=e^{ax}/a$ are the
+  one-dimensional case.  The Baker--Campbell--Hausdorff formula
+  $\ln(e^{A}e^{B})=A+B+\tfrac{1}{2}[A,B]+\cdots$ generalises the
+  addition rule $e^{a}e^{b}=e^{a+b}$ to non-commuting generators.
+
+\item \textbf{Laplace and Fourier transforms.}%
+  \index{Laplace transform!as indefinite integral}%
+  \index{Fourier transform!exponential kernel}%
+  \index{integral transform!exponential}%
+  The Laplace transform $\hat{f}(s)=\int_{0}^{\infty}f(t)e^{-st}\,dt$
+  converts convolutions to products and differential equations to
+  algebraic ones.  Its building blocks are the indefinite integrals
+  $\int t^{n}e^{-st}\,dt$ from G\&R~2.32, and its inversion (the
+  Bromwich integral) closes the circle back to exponential
+  antiderivatives.
+
+\item \textbf{Asymptotic expansions and Watson's lemma.}%
+  \index{Watson's lemma}%
+  \index{asymptotic expansion!Laplace integrals}%
+  \index{Laplace method}%
+  Watson's lemma gives the asymptotic expansion of
+  $\int_{0}^{\infty}t^{\alpha}e^{-\lambda t}f(t)\,dt$ as
+  $\lambda\to\infty$ by expanding $f$ and integrating term by term
+  using $\int t^{n+\alpha}e^{-\lambda t}\,dt=\Gamma(n+\alpha+1)/\lambda^{n+\alpha+1}$.
+  The individual antiderivatives are instances of G\&R~2.32.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.4\quad Hyperbolic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.41--2.43\quad Powers of $\sinh x$, $\cosh x$, $\tanh x$, and $\coth x$}
 \subsubsection{2.44--2.45\quad Rational functions of hyperbolic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Relativistic velocity addition and rapidity.}%
+  \index{rapidity!hyperbolic functions}%
+  \index{relativistic velocity addition}%
+  \index{Lorentz boost!rapidity}%
+  The rapidity $\phi=\operatorname{arctanh}(v/c)$ linearises Lorentz
+  boosts: rapidities add, $\phi_{12}=\phi_{1}+\phi_{2}$.  The
+  energy--momentum relations $E=mc^{2}\cosh\phi$,
+  $p=mc\sinh\phi$ make $\int\cosh\phi\,d\phi=\sinh\phi$ and
+  $\int\sinh\phi\,d\phi=\cosh\phi$ (G\&R~2.41) the basic kinematic
+  integrals of special relativity.
+
+\item \textbf{Catenary and suspension bridges.}%
+  \index{catenary!hyperbolic cosine}%
+  \index{suspension bridge!cable shape}%
+  \index{surface of revolution!catenoid}%
+  The catenary $y=a\cosh(x/a)$ is the shape of an ideal hanging chain
+  under uniform gravitational load.  Its arc length
+  $\int\sqrt{1+\sinh^{2}(x/a)}\,dx=a\sinh(x/a)$ and area of the
+  catenoid (minimal surface of revolution) both reduce to the
+  hyperbolic antiderivatives of G\&R~2.41.
+
+\item \textbf{Solitons and the $\operatorname{sech}^{2}$ potential.}%
+  \index{soliton!$\operatorname{sech}^2$ potential}%
+  \index{KdV equation}%
+  \index{reflectionless potential}%
+  The one-soliton solution of the Korteweg--de Vries equation is
+  $u(x,t)=-2\kappa^{2}\operatorname{sech}^{2}(\kappa(x-4\kappa^{2}t))$.
+  Energy and momentum integrals of this solution involve
+  $\int\operatorname{sech}^{2n}(x)\,dx$ and
+  $\int\operatorname{sech}^{2n}(x)\tanh^{m}(x)\,dx$, all catalogued
+  in G\&R~2.41--2.43.
+
+\item \textbf{Fermi--Dirac and Bose--Einstein integrals.}%
+  \index{Fermi--Dirac distribution!integration}%
+  \index{Bose--Einstein distribution}%
+  \index{polylogarithm!from hyperbolic integrals}%
+  Thermal occupation numbers $(e^{(\varepsilon-\mu)/kT}\pm1)^{-1}$
+  can be rewritten in terms of $\coth$ and $\tanh$.  Integrals of
+  rational functions of $\sinh$ and $\cosh$ from G\&R~2.44--2.45
+  appear in the thermodynamics of quantum gases, ultimately connecting
+  to polylogarithms and the Riemann zeta function.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hyperbolic--exponential duality.}%
+  \index{hyperbolic functions!exponential representation}%
+  \index{$\sinh$ and $\cosh$!as exponentials}%
+  \index{Osborn's rule}%
+  Since $\sinh x=(e^{x}-e^{-x})/2$ and $\cosh x=(e^{x}+e^{-x})/2$,
+  every hyperbolic antiderivative in G\&R~2.41--2.45 can be rewritten
+  as an exponential integral (G\&R~2.31--2.32) and vice versa.
+  Osborn's rule translates trigonometric identities to hyperbolic ones
+  by replacing $\sin\to i\sinh$, $\cos\to\cosh$, converting the
+  formulas of G\&R~2.5 to those of G\&R~2.4.
+
+\item \textbf{Weierstrass-type substitution for hyperbolics.}%
+  \index{Weierstrass substitution!hyperbolic}%
+  \index{$t=\tanh(x/2)$ substitution}%
+  \index{rational parametrisation!hyperbola}%
+  The substitution $t=\tanh(x/2)$ gives $\sinh x=2t/(1-t^{2})$,
+  $\cosh x=(1+t^{2})/(1-t^{2})$, $dx=2\,dt/(1-t^{2})$, reducing
+  rational functions of $\sinh$ and $\cosh$ to rational functions of~$t$.
+  This is the hyperbolic analogue of the Weierstrass substitution
+  $t=\tan(x/2)$ for trigonometric integrals (G\&R~2.55).
+
+\item \textbf{Reduction formulas and recursion relations.}%
+  \index{reduction formulas!hyperbolic powers}%
+  \index{recursion!hyperbolic integrals}%
+  The reduction formula $\int\sinh^{n}x\,dx
+  =\frac{\sinh^{n-1}x\cosh x}{n}-\frac{n-1}{n}\int\sinh^{n-2}x\,dx$
+  is a two-term recursion in~$n$, solved by the same techniques as
+  difference equations.  The closed forms involve binomial coefficients
+  and connect to the beta function $B(p,q)$ through the substitution
+  $u=\cosh x$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.46\quad Algebraic functions of hyperbolic functions}
 \subsubsection{2.47\quad Combinations of hyperbolic functions and powers}
 \subsubsection{2.48\quad Combinations of hyperbolic functions, exponentials, and powers}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Magnetic susceptibility and the Langevin function.}%
+  \index{Langevin function}%
+  \index{paramagnetism!Langevin model}%
+  \index{magnetic susceptibility}%
+  The Langevin function $\mathcal{L}(x)=\coth x-1/x$ describes
+  classical paramagnetism.  Thermodynamic quantities such as the
+  susceptibility involve integrals $\int x^{n}\coth(x)\,dx$ and
+  $\int x^{n}/\sinh(x)\,dx$, combinations of hyperbolic functions
+  and powers from G\&R~2.47.
+
+\item \textbf{Black-body radiation: Planck spectrum moments.}%
+  \index{Planck spectrum!integration}%
+  \index{black-body radiation}%
+  \index{Stefan--Boltzmann law!derivation}%
+  The Planck spectral density involves $x^{3}/(e^{x}-1)$,
+  expressible via $\coth(x/2)-1$.  Moments
+  $\int x^{n}/(e^{x}-1)\,dx$ are combinations of exponentials,
+  powers, and hyperbolic functions (G\&R~2.48) whose definite-integral
+  counterparts yield the Stefan--Boltzmann law and Wien's displacement
+  law.
+
+\item \textbf{Transmission-line theory.}%
+  \index{transmission line!hyperbolic functions}%
+  \index{characteristic impedance}%
+  \index{standing wave ratio}%
+  Voltage and current on a lossy transmission line are expressed in
+  terms of $\cosh(\gamma z)$ and $\sinh(\gamma z)$.  Power integrals
+  along the line involve products $\sinh(\gamma z)\cosh(\gamma z)$
+  and $x^{n}\sinh(\gamma x)$, catalogued in G\&R~2.46--2.48.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Bernoulli numbers from generating functions.}%
+  \index{Bernoulli numbers!generating function}%
+  \index{$x/\sinh x$ expansion}%
+  \index{generating function!Bernoulli numbers}%
+  The function $x/\sinh x=\sum_{n=0}^{\infty}(2-2^{2n})B_{2n}x^{2n}/(2n)!$
+  generates the Bernoulli numbers.  Term-by-term integration of this
+  expansion yields power series for the integrals
+  $\int x^{m}/\sinh^{n}x\,dx$, connecting G\&R~2.46--2.47 to
+  the number-theoretic properties of Bernoulli numbers and
+  values of the Riemann zeta function at even integers.
+
+\item \textbf{Elliptic-function degeneration.}%
+  \index{elliptic functions!degeneration to hyperbolic}%
+  \index{modular parameter!$k\to 1$}%
+  \index{Jacobi elliptic functions!limits}%
+  As the elliptic modulus $k\to 1$, the Jacobi elliptic functions
+  degenerate: $\operatorname{sn}(u,k)\to\tanh u$,
+  $\operatorname{cn}(u,k)\to\operatorname{sech}u$,
+  $\operatorname{dn}(u,k)\to\operatorname{sech}u$.
+  Consequently, the elliptic integrals of G\&R~2.58--2.62 reduce to
+  the hyperbolic integrals of G\&R~2.41--2.48 in this limit.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.5--2.6\quad Trigonometric Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.50\quad Introduction}
 \subsubsection{2.51--2.52\quad Powers of trigonometric functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Intensity patterns in optics.}%
+  \index{diffraction!intensity integral}%
+  \index{interference pattern}%
+  \index{Malus's law}%
+  Fraunhofer diffraction from a single slit gives an intensity
+  $I\propto\operatorname{sinc}^{2}(\beta)$.  Averaging over angles and
+  computing total power through apertures involves integrals
+  $\int\sin^{2n}\theta\,d\theta$ and $\int\cos^{2n}\theta\,d\theta$
+  (G\&R~2.51), evaluated by the standard reduction formulas.  Malus's
+  law $I=I_{0}\cos^{2}\theta$ for polarised light is the simplest case.
+
+\item \textbf{Action-angle variables in celestial mechanics.}%
+  \index{action-angle variables}%
+  \index{celestial mechanics!trigonometric integrals}%
+  \index{secular perturbation theory}%
+  In secular perturbation theory for planetary orbits, the disturbing
+  function is expanded in powers of $\sin(i)$ and $\cos(i)$ (orbital
+  inclination), and averaging over the fast angle yields integrals
+  $\int\sin^{m}\theta\cos^{n}\theta\,d\theta$ from G\&R~2.51--2.52.
+
+\item \textbf{Angular distribution in scattering.}%
+  \index{angular distribution!scattering}%
+  \index{partial-wave expansion}%
+  \index{Legendre polynomials!trigonometric powers}%
+  Scattering cross sections in partial-wave analysis involve integrals
+  of $P_{\ell}(\cos\theta)P_{\ell'}(\cos\theta)\sin\theta$ over the
+  solid angle.  Since Legendre polynomials are polynomials in
+  $\cos\theta$, these reduce to the power-of-cosine integrals of
+  G\&R~2.51--2.52.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Wallis's product and the beta function.}%
+  \index{Wallis product}%
+  \index{beta function!Wallis integral}%
+  \index{reduction formula!trigonometric powers}%
+  The definite integral $\int_{0}^{\pi/2}\sin^{n}\theta\,d\theta$
+  satisfies a two-term recursion whose ratio of consecutive values
+  yields Wallis's product $\pi/2=\prod_{n=1}^{\infty}4n^{2}/(4n^{2}-1)$.
+  The indefinite antiderivatives in G\&R~2.51 are the building blocks;
+  the connection to the beta function
+  $B(p,q)=2\int_{0}^{\pi/2}\sin^{2p-1}\theta\cos^{2q-1}\theta\,d\theta$
+  unifies these formulas.
+
+\item \textbf{Chebyshev polynomials and trigonometric identities.}%
+  \index{Chebyshev polynomials!from trigonometric powers}%
+  \index{trigonometric identities!power reduction}%
+  \index{linearisation formulas}%
+  The power-reduction formulas
+  $\cos^{n}\theta=\sum_{k}a_{k}\cos(k\theta)$ and their sine
+  analogues express powers as linear combinations of multiple-angle
+  functions.  These are equivalent to the expansion in Chebyshev
+  polynomials $T_{n}(\cos\theta)=\cos(n\theta)$, and they reduce
+  the integrals of G\&R~2.51--2.52 to those of G\&R~2.53--2.54.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.53--2.54\quad Sines and cosines of multiple angles and of linear and more complicated functions of the argument}
 \subsubsection{2.55--2.56\quad Rational functions of the sine and cosine}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Fourier analysis of periodic signals.}%
+  \index{Fourier series!coefficient integrals}%
+  \index{orthogonality!trigonometric system}%
+  \index{signal decomposition}%
+  The Fourier coefficients $a_{n}=\frac{1}{\pi}\int f(x)\cos(nx)\,dx$,
+  $b_{n}=\frac{1}{\pi}\int f(x)\sin(nx)\,dx$ are indefinite integrals
+  of products of sines and cosines at different frequencies (G\&R~2.53).
+  The orthogonality relation
+  $\int\sin(mx)\cos(nx)\,dx$ underlies the entire edifice of spectral
+  analysis, from acoustics to quantum mechanics.
+
+\item \textbf{Phase-sensitive detection (lock-in amplifiers).}%
+  \index{lock-in amplifier}%
+  \index{phase-sensitive detection}%
+  \index{product-to-sum formulas}%
+  A lock-in amplifier multiplies a signal by a reference sine wave
+  and integrates: $\int V(t)\sin(\omega_{r}t+\phi)\,dt$.  The
+  product-to-sum formula
+  $\sin(A)\sin(B)=\tfrac{1}{2}[\cos(A-B)-\cos(A+B)]$ (the identity
+  behind G\&R~2.53) isolates the component at the reference frequency
+  from broadband noise.
+
+\item \textbf{Geometric optics and ray tracing.}%
+  \index{Snell's law!integration}%
+  \index{ray tracing!trigonometric integrals}%
+  \index{graded-index fibre}%
+  Ray paths in graded-index optical fibres satisfy
+  $\int d\theta/(n^{2}(\theta)-\text{const})$, where $n(\theta)$ is a
+  trigonometric function of the ray angle.  Rational functions of
+  $\sin\theta$ and $\cos\theta$ arise naturally, and the Weierstrass
+  substitution $t=\tan(\theta/2)$ of G\&R~2.55 converts these to
+  rational integrals (G\&R~2.1).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The Weierstrass substitution.}%
+  \index{Weierstrass substitution!$t=\tan(x/2)$}%
+  \index{universal trigonometric substitution}%
+  \index{rational parametrisation!unit circle}%
+  The substitution $t=\tan(x/2)$ gives $\sin x=2t/(1+t^{2})$,
+  $\cos x=(1-t^{2})/(1+t^{2})$, $dx=2\,dt/(1+t^{2})$, converting
+  every rational function of $\sin x$ and $\cos x$ into a rational
+  function of~$t$.  This is the rational parametrisation of the unit
+  circle and the universal method behind G\&R~2.55--2.56.
+
+\item \textbf{Dirichlet kernel and summability.}%
+  \index{Dirichlet kernel}%
+  \index{Fej\'er kernel}%
+  \index{summability!trigonometric series}%
+  The Dirichlet kernel
+  $D_{N}(x)=\sum_{n=-N}^{N}e^{inx}=\sin((N+\tfrac{1}{2})x)/\sin(x/2)$
+  is a rational function of $\sin$ and $\cos$.  Its integral
+  $\int_{0}^{x}D_{N}(t)\,dt$ connects to the partial sums of Fourier
+  series and to the convergence theory of trigonometric series.
+
+\item \textbf{Eisenstein series and modular forms.}%
+  \index{Eisenstein series}%
+  \index{modular forms!trigonometric sums}%
+  \index{cotangent sums}%
+  Partial-fraction expansions of $\cot(\pi z)$ and
+  $\csc^{2}(\pi z)$ produce series that, when integrated, yield
+  the logarithmic integrals $\int\ln\sin x\,dx$ and related
+  expressions.  These connect to the Eisenstein series $G_{2k}(\tau)$
+  of modular form theory via the $q$-expansion.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.57\quad Integrals containing $\sqrt{a\pm b\sin x}$ or $\sqrt{a\pm b\cos x}$}
 \subsubsection{2.58--2.62\quad Integrals reducible to elliptic and pseudo-elliptic integrals}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Pendulum beyond small angles.}%
+  \index{pendulum!exact solution}%
+  \index{elliptic integral!from trigonometric radical}%
+  \index{Jacobi amplitude}%
+  The pendulum integral $\int d\theta/\sqrt{a-b\cos\theta}$ (G\&R~2.57)
+  is, after the substitution $\sin(\theta/2)=k\sin\phi$, exactly the
+  incomplete elliptic integral of the first kind $F(\phi,k)$.  The
+  inversion $\theta(t)=2\operatorname{am}(\omega t,k)$ gives the exact
+  angular motion in terms of the Jacobi amplitude function.
+
+\item \textbf{Magnetic field of a circular loop.}%
+  \index{magnetic field!circular loop}%
+  \index{Biot--Savart law!elliptic integral}%
+  \index{mutual inductance!elliptic integral}%
+  The Biot--Savart integral for the magnetic field of a circular
+  current loop involves $\int d\phi/\sqrt{a+b\cos\phi}$, an elliptic
+  integral from G\&R~2.57.  Mutual inductance between coaxial loops
+  (Neumann's formula) similarly reduces to complete elliptic integrals
+  $K(k)$ and $E(k)$.
+
+\item \textbf{Geodesics on surfaces of revolution.}%
+  \index{geodesics!surface of revolution}%
+  \index{Clairaut's relation}%
+  \index{torus!geodesics}%
+  Clairaut's relation $r\cos\alpha=\text{const}$ for geodesics on a
+  surface of revolution leads to integrals
+  $\int d\theta/\sqrt{f(\theta)-c^{2}}$ where $f$ involves
+  trigonometric functions of the latitude angle, producing
+  trigonometric-radical forms from G\&R~2.57 that are generically
+  elliptic.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Reduction to Legendre normal form.}%
+  \index{Legendre normal form!elliptic integral}%
+  \index{elliptic integrals!three kinds}%
+  \index{reduction to standard form}%
+  The integrals of G\&R~2.58--2.62 reduce, by linear-fractional or
+  trigonometric substitutions, to the three standard Legendre forms:
+  $F(\phi,k)$, $E(\phi,k)$, and $\Pi(\phi,n,k)$---elliptic integrals
+  of the first, second, and third kinds.  This reduction is the
+  classical programme of Legendre (1825) and Jacobi (1829).
+
+\item \textbf{Arithmetic-geometric mean and fast computation.}%
+  \index{arithmetic-geometric mean}%
+  \index{Gauss AGM}%
+  \index{elliptic integral!fast computation}%
+  The complete elliptic integral $K(k)=\pi/(2\,\mathrm{AGM}(1,k'))$
+  is computed to arbitrary precision by the arithmetic-geometric mean
+  iteration, converging quadratically.  This makes the evaluation of
+  the indefinite elliptic integrals in G\&R~2.58--2.62 practical for
+  numerical work.
+
+\item \textbf{Uniformisation of elliptic curves.}%
+  \index{uniformisation!elliptic curve}%
+  \index{Weierstrass $\wp$-function!uniformisation}%
+  \index{Abel--Jacobi map}%
+  Inverting the elliptic integral $u=\int_{z_{0}}^{z}R(t,\sqrt{P(t)})\,dt$
+  yields the Weierstrass $\wp$-function $z=\wp(u)$, which uniformises
+  the elliptic curve $y^{2}=P(x)$.  The Abel--Jacobi map
+  $z\mapsto u$ identifies the curve with the complex torus
+  $\mathbb{C}/\Lambda$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.63--2.65\quad Products of trigonometric functions and powers}
 \subsubsection{2.66\quad Combinations of trigonometric functions and exponentials}
 \subsubsection{2.67\quad Combinations of trigonometric and hyperbolic functions}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Multipole moments and radiation patterns.}%
+  \index{multipole expansion!angular integrals}%
+  \index{radiation pattern!trigonometric-power integrals}%
+  \index{antenna theory}%
+  The radiation power pattern of a multipole of order~$\ell$ is
+  $\int|Y_{\ell}^{m}(\theta,\phi)|^{2}\sin\theta\,d\theta$, which
+  reduces to $\int\sin^{2\ell+1}\theta\,P_{\ell}^{m}(\cos\theta)^{2}
+  \,d\theta$---a product of trigonometric functions and powers
+  (G\&R~2.63--2.65).  Antenna directivity and radar cross sections
+  involve the same type of integrals.
+
+\item \textbf{Damped oscillations: $e^{ax}\sin(bx)$ and $e^{ax}\cos(bx)$.}%
+  \index{damped oscillation!trig-exponential integral}%
+  \index{phasor method}%
+  \index{resonance!transient response}%
+  The transient response of any underdamped linear system is a sum of
+  terms $e^{-\gamma t}\sin(\omega t+\phi)$.  Integrals
+  $\int x^{n}e^{ax}\sin(bx)\,dx$ and $\int x^{n}e^{ax}\cos(bx)\,dx$
+  from G\&R~2.66 give the impulse response, step response, and energy
+  dissipated in such systems.  The phasor method---replacing
+  $\sin(bx)$ by $\operatorname{Im}(e^{ibx})$---unifies these into
+  complex-exponential integrals.
+
+\item \textbf{Waveguide mode coupling.}%
+  \index{waveguide!mode coupling}%
+  \index{coupled-mode theory}%
+  \index{trigonometric-hyperbolic products}%
+  In tapered or lossy waveguides, coupling between propagating and
+  evanescent modes involves overlap integrals of the form
+  $\int\sin(n\pi x/a)\sinh(\kappa x)\,dx$---products of trigonometric
+  and hyperbolic functions (G\&R~2.67).  These arise wherever
+  oscillatory and exponentially growing/decaying modes coexist, as in
+  optical couplers and tunnelling junctions.
+
+\item \textbf{AC circuit power with harmonics.}%
+  \index{AC circuits!power integral}%
+  \index{harmonic distortion!power}%
+  \index{$\sin\cdot\cos$ products}%
+  The average power in an AC circuit with harmonic distortion is
+  $P=\frac{1}{T}\int_{0}^{T}v(t)\,i(t)\,dt$, where $v$ and $i$
+  are sums of sinusoids at different harmonics.  The cross terms
+  involve products $\sin(m\omega t)\cos(n\omega t)$---the integrals
+  of G\&R~2.63 vanish for $m\neq n$ (orthogonality) and give the
+  per-harmonic power for $m=n$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Integration by parts and exponential-trigonometric integrals.}%
+  \index{integration by parts!exponential-trigonometric}%
+  \index{complex exponential method}%
+  \index{Euler's formula!integration}%
+  The integral $\int e^{ax}\sin(bx)\,dx$ is most elegantly evaluated
+  by writing $\sin(bx)=\operatorname{Im}(e^{ibx})$ and integrating
+  $\int e^{(a+ib)x}\,dx=e^{(a+ib)x}/(a+ib)$.  Separating real and
+  imaginary parts simultaneously gives both sine and cosine integrals.
+  This complex-exponential method extends to all formulas in
+  G\&R~2.66.
+
+\item \textbf{Orthogonality and Hilbert space structure.}%
+  \index{orthogonality!trigonometric functions}%
+  \index{$L^2$ inner product}%
+  \index{Hilbert space!trigonometric basis}%
+  The system $\{1,\cos(nx),\sin(nx)\}_{n\geq 1}$ is a complete
+  orthogonal basis for $L^{2}([0,2\pi])$, and the orthogonality
+  relations are verified by the product integrals of G\&R~2.53
+  and~2.63.  Completeness (Parseval's theorem) asserts that every
+  square-integrable function is determined by its Fourier coefficients.
+
+\item \textbf{Laplace transform of trigonometric functions.}%
+  \index{Laplace transform!of $\sin$ and $\cos$}%
+  \index{transfer function!trigonometric}%
+  The Laplace transforms $\mathcal{L}\{e^{at}\sin(bt)\}=b/((s-a)^{2}+b^{2})$
+  and $\mathcal{L}\{e^{at}\cos(bt)\}=(s-a)/((s-a)^{2}+b^{2})$ are
+  obtained by integrating the exponential-trigonometric products of
+  G\&R~2.66 from $0$ to $\infty$.  These are the transfer-function
+  building blocks for all second-order linear systems.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.7\quad Logarithms and Inverse-Hyperbolic Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.71\quad The logarithm}
 \subsubsection{2.72--2.73\quad Combinations of logarithms and algebraic functions}
 \subsubsection{2.74\quad Inverse hyperbolic functions}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Entropy and information theory.}%
+  \index{entropy!logarithmic integral}%
+  \index{Shannon entropy}%
+  \index{information theory!integration}%
+  The Shannon entropy $H=-\int p(x)\ln p(x)\,dx$ is the continuous
+  analogue of $-\sum p_{i}\ln p_{i}$.  Computing $H$ for standard
+  distributions (exponential, Gaussian, beta) requires the
+  antiderivatives $\int x^{n}\ln x\,dx$ and
+  $\int\ln(a+bx)\,dx$ from G\&R~2.71--2.72.  In statistical mechanics,
+  the Boltzmann entropy $S=k_{B}\ln\Omega$ connects the logarithm to
+  the second law of thermodynamics.
+
+\item \textbf{Rocket equation and logarithmic mass ratio.}%
+  \index{Tsiolkovsky rocket equation}%
+  \index{rocket equation!logarithmic}%
+  \index{mass ratio}%
+  The Tsiolkovsky rocket equation $\Delta v=v_{e}\ln(m_{0}/m_{f})$
+  follows from $\int dv=v_{e}\int dm/m$, the simplest logarithmic
+  integral.  Optimal staging problems involve $\int\ln(a+bx)\,dx$
+  and products of logarithms with polynomials (G\&R~2.72).
+
+\item \textbf{Electrostatic potential of line charges.}%
+  \index{electrostatic potential!line charge}%
+  \index{line charge!logarithmic potential}%
+  \index{capacitance!per unit length}%
+  The potential of an infinite line charge is
+  $\Phi=-(\lambda/2\pi\varepsilon_{0})\ln r$, and the capacitance per
+  unit length of coaxial conductors involves $\int dr/(r)=\ln r$.
+  More complex geometries produce integrals
+  $\int\ln(a+bx+cx^{2})\,dx$ from G\&R~2.72--2.73.
+
+\item \textbf{Relativistic Doppler effect and rapidity.}%
+  \index{Doppler effect!relativistic}%
+  \index{inverse hyperbolic functions!rapidity}%
+  \index{rapidity!inverse hyperbolic}%
+  The rapidity $\phi=\operatorname{arctanh}(v/c)
+  =\tfrac{1}{2}\ln[(1+v/c)/(1-v/c)]$ connects the inverse hyperbolic
+  functions of G\&R~2.74 to the logarithms of G\&R~2.71.  The
+  relativistic Doppler factor $\sqrt{(1+\beta)/(1-\beta)}=e^{\phi}$
+  shows that rapidity is the natural logarithmic measure of relativistic
+  velocity.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The logarithmic integral and prime number theorem.}%
+  \index{logarithmic integral $\operatorname{li}(x)$}%
+  \index{prime number theorem}%
+  \index{prime counting function}%
+  The logarithmic integral
+  $\operatorname{li}(x)=\int_{0}^{x}dt/\ln t$ approximates the prime
+  counting function $\pi(x)$, the central result of analytic number
+  theory.  The antiderivative $\int dx/\ln x$ is not elementary
+  (Liouville), illustrating the boundary between G\&R sections~2
+  (elementary antiderivatives) and~5 (special-function antiderivatives).
+
+\item \textbf{Polylogarithms and iterated integrals.}%
+  \index{polylogarithm!iterated integral}%
+  \index{iterated integrals}%
+  \index{dilogarithm}%
+  The dilogarithm $\operatorname{Li}_{2}(x)=-\int_{0}^{x}\ln(1-t)/t\,dt$
+  is an iterated integral of two logarithmic forms.  Higher
+  polylogarithms $\operatorname{Li}_{n}(x)$ arise from deeper iterations.
+  The basic logarithmic antiderivatives of G\&R~2.71--2.72 are the
+  building blocks of this hierarchy, which appears throughout
+  perturbative quantum field theory.
+
+\item \textbf{Inverse hyperbolic functions as logarithms.}%
+  \index{inverse hyperbolic functions!logarithmic form}%
+  \index{$\operatorname{arcsinh}$!$=\ln(x+\sqrt{x^2+1})$}%
+  \index{$\operatorname{arctanh}$!$=\frac{1}{2}\ln\frac{1+x}{1-x}$}%
+  The identities $\operatorname{arcsinh}(x)=\ln(x+\sqrt{x^{2}+1})$,
+  $\operatorname{arccosh}(x)=\ln(x+\sqrt{x^{2}-1})$, and
+  $\operatorname{arctanh}(x)=\tfrac{1}{2}\ln((1+x)/(1-x))$ show that
+  G\&R~2.74 is a notational variant of G\&R~2.71--2.73 combined with
+  algebraic functions.  The inverse hyperbolic notation is more natural
+  when the argument arises from a hyperbolic substitution.
+\end{enumerate}
+
+%% ===================================================================
 \subsection{2.8\quad Inverse Trigonometric Functions}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.81\quad Arcsines and arccosines}
 \subsubsection{2.82\quad The arcsecant, the arccosecant, the arctangent, and the arccotangent}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Phase shifts in scattering theory.}%
+  \index{phase shift!scattering}%
+  \index{scattering theory!arctangent}%
+  \index{Born approximation}%
+  The $s$-wave scattering phase shift is
+  $\delta_{0}(k)=\arctan(-ka)$ (scattering length~$a$), and higher
+  partial waves contribute $\delta_{\ell}(k)=\arctan(f_{\ell}(k))$.
+  Energy integrals of phase shifts, e.g.,
+  $\int\delta_{\ell}(k)\,dk$ and $\int k\,\arctan(k/k_{0})\,dk$,
+  involve the inverse-trigonometric integrals of G\&R~2.81--2.82.
+
+\item \textbf{Geometric optics: angles of refraction and reflection.}%
+  \index{Snell's law!arcsine}%
+  \index{refraction!arcsine integral}%
+  \index{critical angle}%
+  Snell's law $n_{1}\sin\theta_{1}=n_{2}\sin\theta_{2}$ gives
+  $\theta_{2}=\arcsin(n_{1}\sin\theta_{1}/n_{2})$.  Ray-tracing
+  through a graded-index medium integrates angle changes:
+  $\int\arcsin(n(x)/n_{0})\,dx$, an arcsine-with-algebraic-function
+  integral from G\&R~2.81.
+
+\item \textbf{Control theory: phase margin.}%
+  \index{phase margin!arctangent}%
+  \index{Bode plot!phase}%
+  \index{control theory!stability}%
+  The phase of a transfer function $G(i\omega)$ involves
+  $\arg(G)=\sum_{k}\arctan(\omega/\omega_{k})$.  The gain--phase
+  relation $\int_{0}^{\infty}\frac{d(\ln|G|)}{d\omega}\ln\omega\,d\omega
+  =\frac{\pi}{2}\arg(G)$ (Bode's integral) connects arctangent
+  functions to logarithmic integrals, intertwining G\&R~2.82 with
+  G\&R~2.71.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Inverse functions and integration by parts.}%
+  \index{inverse function!integration by parts}%
+  \index{integration by parts!inverse trigonometric}%
+  The standard technique $\int\arcsin x\,dx=x\arcsin x+\sqrt{1-x^{2}}+C$
+  uses integration by parts with $u=\arcsin x$, $dv=dx$.  This
+  illustrates the general principle: integrals of inverse functions
+  reduce via $\int f^{-1}(x)\,dx=xf^{-1}(x)-\int x\,d(f^{-1}(x))$
+  to integrals of the forward function.
+
+\item \textbf{Arctangent and the Gregory--Leibniz series.}%
+  \index{Gregory--Leibniz series}%
+  \index{arctangent!power series}%
+  \index{$\pi$!computation}%
+  The Maclaurin series $\arctan x=\sum_{n=0}^{\infty}(-1)^{n}x^{2n+1}/(2n+1)$
+  gives, at $x=1$, the Gregory--Leibniz series $\pi/4=1-1/3+1/5-\cdots$.
+  The integral representation $\arctan x=\int_{0}^{x}dt/(1+t^{2})$
+  connects G\&R~2.82 to the rational-function integrals of G\&R~2.17
+  and to Machin-type formulas for computing~$\pi$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{2.83\quad Combinations of arcsine or arccosine and algebraic functions}
 \subsubsection{2.84\quad Combinations of the arcsecant and arccosecant with powers of $x$}
 \subsubsection{2.85\quad Combinations of the arctangent and arccotangent with algebraic functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Probability distributions and the arcsine law.}%
+  \index{arcsine distribution}%
+  \index{random walk!arcsine law}%
+  \index{probability!inverse trigonometric}%
+  The arcsine distribution with density
+  $p(x)=1/(\pi\sqrt{x(1-x)})$ on $(0,1)$ has CDF
+  $F(x)=(2/\pi)\arcsin(\sqrt{x})$.  Its moments
+  $\int x^{n}\arcsin(\sqrt{x})\,dx$ are combinations of arcsine and
+  algebraic functions from G\&R~2.83, arising in the theory of random
+  walks and Brownian motion (L\'evy's arcsine law).
+
+\item \textbf{Antenna radiation resistance.}%
+  \index{antenna!radiation resistance}%
+  \index{radiation resistance!integral}%
+  \index{thin-wire antenna}%
+  The radiation resistance of a thin-wire antenna involves integrals
+  $\int_{0}^{L}\arctan(f(x))\cdot g(x)\,dx$ where $f$ and $g$ are
+  algebraic functions of the position along the wire.  These are
+  arctangent-with-algebraic-function integrals from G\&R~2.85.
+
+\item \textbf{Fluid flow past a wedge.}%
+  \index{wedge flow!inverse trigonometric}%
+  \index{potential flow!arctangent}%
+  \index{conformal mapping!wedge}%
+  The potential flow around a wedge of half-angle $\alpha$ involves
+  the complex potential $w=Az^{\pi/\alpha}$, whose streamlines are
+  curves $\psi=\text{const}$ given by arctangent expressions in the
+  Cartesian coordinates.  Integrated quantities such as pressure force
+  involve $\int x^{n}\arctan(y/x)\,dx$, forms from G\&R~2.85.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Clausen's integral and related functions.}%
+  \index{Clausen integral}%
+  \index{$\operatorname{Cl}_2(\theta)$}%
+  \index{dilogarithm!imaginary part}%
+  Clausen's integral
+  $\operatorname{Cl}_{2}(\theta)=-\int_{0}^{\theta}\ln|2\sin(t/2)|\,dt
+  =\sum_{n=1}^{\infty}\sin(n\theta)/n^{2}$ arises naturally when
+  integrating products of inverse trigonometric and algebraic functions,
+  as the boundary between elementary and non-elementary antiderivatives.
+  It is the imaginary part of the dilogarithm on the unit circle.
+
+\item \textbf{Moments of inverse trigonometric functions.}%
+  \index{moments!inverse trigonometric}%
+  \index{beta function!arctangent moments}%
+  \index{integration by parts!iterated}%
+  The integrals $\int x^{n}\arctan(x)\,dx$ (G\&R~2.85) evaluate to
+  polynomial-times-arctangent plus a rational correction, obtained by
+  iterated integration by parts.  These moments connect to the beta
+  function: $\int_{0}^{1}x^{n}\arctan(x)\,dx$ can be expressed in
+  terms of the digamma function $\psi(n)$ and Catalan's constant
+  $G=\sum(-1)^{k}/(2k+1)^{2}$.
+\end{enumerate}

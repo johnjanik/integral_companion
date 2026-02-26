@@ -1,71 +1,1770 @@
-%% Section 16 — Ordinary Differential Equations
+%% ============================================================
+%% 16  Ordinary Differential Equations
+%% ============================================================
 \section{16\quad Ordinary Differential Equations}
 
 \subsection{16.1--16.9\quad Results Relating to the Solution of Ordinary Differential Equations}
 
+%% -------------------------------------------------------------------
 \subsubsection{16.11\quad First-Order Equations}
+
+A first-order ordinary differential equation $y'=f(x,y)$ relates the
+derivative of an unknown function to the independent variable and the
+function itself.  The theory of such equations---existence, uniqueness,
+and continuous dependence on initial data---is the foundation of the
+entire subject.  The entries in G\&R~16.111--16.114 formalise these
+ideas: the solution concept, the initial value (Cauchy) problem,
+approximation methods, and the Lipschitz condition that guarantees
+uniqueness.
+
 \subsubsection{16.111\quad Solution of a first-order equation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Radioactive decay and exponential processes.}%
+  \index{radioactive decay!first-order ODE}%
+  \index{exponential decay}%
+  \index{half-life}%
+  The simplest first-order ODE $dN/dt=-\lambda N$ models radioactive
+  decay: $N(t)=N_{0}e^{-\lambda t}$.  The half-life
+  $t_{1/2}=\ln 2/\lambda$ follows immediately.  The same equation
+  governs RC circuit discharge, Beer--Lambert absorption, and first-order
+  chemical kinetics.
+
+\item \textbf{Newton's law of cooling.}%
+  \index{Newton's law of cooling}%
+  \index{heat transfer!lumped capacitance}%
+  \index{Biot number}%
+  $dT/dt=-h(T-T_{\mathrm{env}})$ gives exponential relaxation to
+  ambient temperature.  The validity of this lumped-capacitance model
+  requires $\mathrm{Bi}=hL/k\ll 1$ (Biot number), linking the ODE
+  solution to heat transfer theory.
+
+\item \textbf{Population dynamics and the logistic equation.}%
+  \index{logistic equation}%
+  \index{population dynamics}%
+  \index{carrying capacity}%
+  The logistic equation $dP/dt=rP(1-P/K)$ is a nonlinear first-order
+  ODE with exact solution
+  $P(t)=K/[1+(K/P_{0}-1)e^{-rt}]$, exhibiting sigmoidal growth
+  toward the carrying capacity $K$.  This models population saturation,
+  epidemic curves, and chemical autocatalysis.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Integral curves and the flow of a vector field.}%
+  \index{integral curves}%
+  \index{flow of a vector field!ODE}%
+  \index{phase portrait!first-order}%
+  A solution $y(x)$ is an integral curve of the direction field
+  $f(x,y)$.  The collection of all solutions defines a flow
+  $\phi_{t}:\mathbb{R}\to\mathbb{R}$, a one-parameter group of
+  diffeomorphisms (when $f$ is smooth).  Phase portraits visualise
+  the qualitative behaviour of solutions.
+
+\item \textbf{Picard--Lindel\"of existence and uniqueness theorem.}%
+  \index{Picard--Lindel\"of theorem}%
+  \index{existence and uniqueness!first-order ODE}%
+  \index{Banach fixed-point theorem!Picard iteration}%
+  If $f(x,y)$ is continuous in a rectangle about $(x_{0},y_{0})$ and
+  Lipschitz continuous in $y$, then the initial value problem
+  $y'=f(x,y)$, $y(x_{0})=y_{0}$ has a unique local solution.  The
+  proof constructs the solution as a fixed point of the Picard integral
+  operator $Ty(x)=y_{0}+\int_{x_{0}}^{x}f(t,y(t))\,dt$ using the
+  Banach contraction mapping theorem.
+
+\item \textbf{Peano's existence theorem.}%
+  \index{Peano existence theorem}%
+  \index{existence without uniqueness}%
+  \index{Arzel\`a--Ascoli theorem}%
+  If $f(x,y)$ is merely continuous (not necessarily Lipschitz), then
+  a solution still exists (Peano, 1890), but may not be unique.
+  The classical example $y'=y^{2/3}$, $y(0)=0$ admits both $y\equiv 0$
+  and $y=(x/3)^{3}$ as solutions.  The proof uses the Arzel\`{a}--Ascoli
+  compactness theorem on the sequence of Euler polygonal approximations.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.112\quad Cauchy problem}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Initial value problems in classical mechanics.}%
+  \index{Cauchy problem!classical mechanics}%
+  \index{initial conditions!position and velocity}%
+  \index{determinism!Laplacian}%
+  Newton's second law $m\ddot{x}=F(x,\dot{x},t)$, written as a
+  first-order system, is a Cauchy problem: given position and velocity
+  at time $t_{0}$, the trajectory is determined for all future (and
+  past) times.  This is the mathematical expression of Laplacian
+  determinism in classical physics.
+
+\item \textbf{Well-posedness in geophysical fluid dynamics.}%
+  \index{well-posedness!Hadamard}%
+  \index{weather prediction!initial conditions}%
+  \index{sensitive dependence!chaos}%
+  Hadamard's notion of well-posedness---existence, uniqueness, and
+  continuous dependence on initial data---is essential for weather
+  prediction.  Lorenz's discovery (1963) that atmospheric equations
+  exhibit sensitive dependence on initial conditions does not violate
+  well-posedness but limits practical prediction horizons, motivating
+  ensemble forecasting methods.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Continuous dependence on initial data.}%
+  \index{continuous dependence!initial data}%
+  \index{Gronwall's lemma!continuous dependence}%
+  \index{structural stability}%
+  If $y'=f(x,y)$ satisfies a Lipschitz condition with constant $L$,
+  then two solutions $y_{1}$, $y_{2}$ with initial data differing by
+  $\delta$ satisfy $|y_{1}(x)-y_{2}(x)|\leq\delta e^{L|x-x_{0}|}$.
+  This exponential bound, proved via Gronwall's lemma
+  (G\&R~16.211), quantifies both the stability of the Cauchy problem
+  and the growth of perturbations.
+
+\item \textbf{Smooth dependence on parameters.}%
+  \index{smooth dependence!on parameters}%
+  \index{sensitivity analysis!ODE}%
+  \index{variational equation}%
+  If $f(x,y;\mu)$ is smooth in a parameter $\mu$, then the solution
+  $y(x;\mu)$ is also smooth in $\mu$, and the sensitivity
+  $\partial y/\partial\mu$ satisfies the variational equation
+  $z'=f_{y}z+f_{\mu}$, a linear ODE along the reference solution.
+  This underpins sensitivity analysis and optimal control theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.113\quad Approximate solution to an equation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Euler's method and molecular dynamics.}%
+  \index{Euler method}%
+  \index{molecular dynamics!time stepping}%
+  \index{symplectic integrator}%
+  Euler's method $y_{n+1}=y_{n}+hf(x_{n},y_{n})$ is the simplest
+  numerical scheme.  In molecular dynamics, the Verlet (St\"{o}rmer)
+  integrator---a symplectic variant---preserves the Hamiltonian structure,
+  preventing artificial energy drift over billions of time steps in
+  $N$-body simulations.
+
+\item \textbf{Perturbation methods in celestial mechanics.}%
+  \index{perturbation methods!celestial mechanics}%
+  \index{Poincar\'e--Lindstedt method}%
+  \index{secular terms}%
+  When exact solutions are unavailable, perturbation expansions
+  $y=y_{0}+\varepsilon y_{1}+\varepsilon^{2}y_{2}+\cdots$ give
+  approximate solutions.  The Poincar\'{e}--Lindstedt method removes
+  secular terms (spurious growth) by simultaneously expanding the
+  frequency, a technique essential in planetary orbit calculations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Picard iteration as successive approximation.}%
+  \index{Picard iteration}%
+  \index{successive approximation}%
+  \index{contraction mapping!Picard}%
+  The Picard iterates $y_{n+1}(x)=y_{0}+\int_{x_{0}}^{x}f(t,y_{n}(t))\,dt$
+  converge uniformly to the exact solution under the Lipschitz condition.
+  The rate of convergence is geometric: the error after $n$ iterations
+  is $O(L^{n}|x-x_{0}|^{n}/n!)$, where $L$ is the Lipschitz constant.
+
+\item \textbf{Error analysis and order of convergence.}%
+  \index{order of convergence!numerical methods}%
+  \index{Runge--Kutta methods}%
+  \index{local truncation error}%
+  A numerical method has order $p$ if the local truncation error is
+  $O(h^{p+1})$ and the global error is $O(h^{p})$.  Euler's method has
+  order 1, the classical Runge--Kutta method has order 4, and adaptive
+  methods (Dormand--Prince) embed pairs of different orders to estimate
+  and control the error.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.114\quad Lipschitz continuity of a function}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Bounded force fields and physical regularity.}%
+  \index{Lipschitz continuity!physical interpretation}%
+  \index{force field!bounded gradient}%
+  \index{regularity!physical systems}%
+  The Lipschitz condition $|f(x,y_{1})-f(x,y_{2})|\leq L|y_{1}-y_{2}|$
+  means that the ``force'' $f$ does not change too abruptly.  In mechanical
+  systems, bounded stiffness (spring constant) guarantees Lipschitz
+  continuity.  Singularities such as the Coulomb potential $V\sim 1/r$
+  violate Lipschitz continuity at $r=0$, requiring regularisation or
+  collision handling in $N$-body codes.
+
+\item \textbf{Finite propagation speed.}%
+  \index{finite propagation speed}%
+  \index{Lipschitz continuity!signal propagation}%
+  \index{causality!Lipschitz bounds}%
+  In relativistic systems, Lipschitz bounds on the right-hand side of
+  evolution equations ensure finite propagation speed of disturbances,
+  consistent with the causality requirement that information cannot
+  travel faster than light.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lipschitz vs.\ H\"older and Sobolev regularity.}%
+  \index{Lipschitz continuity!vs.\ H\"older}%
+  \index{H\"older continuity}%
+  \index{Sobolev embedding}%
+  A Lipschitz function is H\"{o}lder continuous with exponent 1 and
+  is differentiable almost everywhere (Rademacher's theorem).  In
+  Sobolev space language, $\mathrm{Lip}(\Omega)=W^{1,\infty}(\Omega)$,
+  the space of functions with essentially bounded first derivatives.
+
+\item \textbf{Gronwall-type estimates and the Lipschitz constant.}%
+  \index{Lipschitz constant!role in estimates}%
+  \index{Gronwall's lemma!Lipschitz constant}%
+  \index{error propagation!ODE}%
+  The Lipschitz constant $L$ controls every quantitative estimate in
+  ODE theory: the radius of convergence of Picard iteration
+  ($\sim 1/L$), the exponential divergence rate of nearby trajectories
+  ($\sim e^{Lt}$), and the constants in Gronwall-type inequalities.
+  Computing tight Lipschitz bounds is essential for validated
+  numerics and interval arithmetic ODE solvers.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.21\quad Fundamental Inequalities and Related Results}
 \subsubsection{16.211\quad Gronwall's lemma}
+
+Gronwall's lemma (also Gronwall--Bellman inequality) states that if
+$u(t)\leq\alpha(t)+\int_{a}^{t}\beta(s)u(s)\,ds$ with $u,\beta\geq 0$
+and $\alpha$ non-decreasing, then
+$u(t)\leq\alpha(t)\exp\!\bigl(\int_{a}^{t}\beta(s)\,ds\bigr)$.
+This is the single most important tool in ODE theory for bounding
+solutions and proving uniqueness, continuous dependence, and stability.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stability of dynamical systems.}%
+  \index{Gronwall's lemma!stability}%
+  \index{Lyapunov stability!Gronwall bound}%
+  \index{orbital stability}%
+  Gronwall's lemma provides the fundamental estimate showing that
+  small perturbations to initial conditions or forcing terms grow at
+  most exponentially.  In orbital mechanics, this bounds the divergence
+  of nearby orbits and gives rigorous meaning to the notion that
+  circular orbits are Lyapunov stable under perturbation.
+
+\item \textbf{Error bounds for numerical integrators.}%
+  \index{numerical integration!error bounds}%
+  \index{Gronwall's lemma!numerical methods}%
+  \index{global error!accumulation}%
+  The global error of a numerical ODE solver is bounded using Gronwall's
+  lemma: if the local truncation error is $O(h^{p+1})$ per step, then
+  after $N=T/h$ steps the global error is $O(h^{p})$, because Gronwall's
+  exponential factor $e^{LT}$ bounds the accumulation of local errors.
+  This is the standard technique for proving convergence of Euler and
+  Runge--Kutta methods.
+
+\item \textbf{Continuous dependence in control theory.}%
+  \index{continuous dependence!control theory}%
+  \index{robustness!control systems}%
+  \index{model uncertainty}%
+  In robust control, Gronwall-type estimates quantify how much the
+  system trajectory can deviate when the plant model is uncertain.
+  The exponential bound $e^{LT}$ shows that the sensitivity grows
+  with both the Lipschitz constant of the dynamics and the time
+  horizon, motivating feedback to reduce effective $L$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Uniqueness of solutions.}%
+  \index{uniqueness!via Gronwall}%
+  \index{Gronwall's lemma!uniqueness proof}%
+  If two solutions $y_{1}$, $y_{2}$ of $y'=f(x,y)$ satisfy the same
+  initial condition, then $u=|y_{1}-y_{2}|$ satisfies
+  $u(t)\leq\int_{0}^{t}Lu(s)\,ds$.  Gronwall's lemma gives
+  $u(t)\leq 0\cdot e^{Lt}=0$, hence $y_{1}\equiv y_{2}$.  This is the
+  cleanest proof of uniqueness in the Picard--Lindel\"{o}f theorem.
+
+\item \textbf{Nonlinear generalisations and Bihari's inequality.}%
+  \index{Bihari's inequality}%
+  \index{Gronwall's lemma!nonlinear generalisation}%
+  \index{comparison principle}%
+  Bihari's inequality generalises Gronwall to
+  $u(t)\leq\alpha+\int_{a}^{t}\beta(s)\omega(u(s))\,ds$ with $\omega$
+  nonlinear and non-decreasing, yielding
+  $\Omega(u(t))\leq\Omega(\alpha)+\int_{a}^{t}\beta(s)\,ds$ where
+  $\Omega(v)=\int_{1}^{v}d\xi/\omega(\xi)$.  This handles
+  super-exponential growth and is used in blow-up analysis for
+  nonlinear ODEs.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.212\quad Comparison of approximate solutions of a differential equation}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Validated numerics and interval methods.}%
+  \index{validated numerics}%
+  \index{interval arithmetic!ODE}%
+  \index{computer-assisted proofs}%
+  Comparison of approximate solutions gives rigorous error bounds: if
+  $\tilde{y}$ is an approximate solution with residual
+  $\tilde{y}'-f(x,\tilde{y})=\delta(x)$, then
+  $|y(x)-\tilde{y}(x)|\leq\|\delta\|e^{LT}/L$.  This is the basis
+  of validated ODE solvers (VNODE, CAPD) that produce guaranteed
+  enclosures, used in computer-assisted proofs of chaotic dynamics
+  (e.g., Tucker's proof of the Lorenz attractor).
+
+\item \textbf{Model comparison in pharmacokinetics.}%
+  \index{pharmacokinetics!model comparison}%
+  \index{compartment models!ODE}%
+  \index{drug concentration!time course}%
+  In pharmacokinetics, different compartment models (one-compartment
+  vs.\ two-compartment) yield different approximate solutions for drug
+  concentration.  Comparison theorems bound the discrepancy between
+  models, informing clinical decisions about dosing intervals and
+  therapeutic windows.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{A posteriori error estimates.}%
+  \index{a posteriori error estimate!ODE}%
+  \index{defect!approximate solution}%
+  \index{backward error analysis}%
+  The defect (residual) of an approximate solution measures how well it
+  satisfies the equation.  A posteriori error estimates use the defect
+  and Gronwall's lemma to bound the true error without knowing the exact
+  solution.  This is complementary to backward error analysis, where the
+  approximate solution is shown to be the exact solution of a nearby
+  problem.
+
+\item \textbf{Shadowing lemma in dynamical systems.}%
+  \index{shadowing lemma}%
+  \index{pseudo-orbit}%
+  \index{hyperbolic dynamical systems}%
+  The shadowing lemma guarantees that every pseudo-orbit (approximate
+  solution with bounded defect per step) of a hyperbolic dynamical
+  system is uniformly close to a true orbit.  This justifies long-time
+  numerical simulations of chaotic systems: individual trajectories are
+  unreliable, but the computed orbit shadows a genuine one.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.31\quad First-Order Systems}
+
+The theory of a single first-order equation extends to systems
+$\mathbf{y}'=\mathbf{f}(x,\mathbf{y})$, where
+$\mathbf{y}\in\mathbb{R}^{n}$ is a vector.  Every higher-order ODE
+reduces to a first-order system (write $y_{1}=y$, $y_{2}=y'$, \ldots),
+so the system formulation is the natural general framework.  Linear
+systems $\mathbf{y}'=A(x)\mathbf{y}+\mathbf{g}(x)$ have a particularly
+clean theory based on the matrix exponential and fundamental matrices.
+
 \subsubsection{16.311\quad Solution of a system of equations}
 \subsubsection{16.312\quad Cauchy problem for a system}
 \subsubsection{16.313\quad Approximate solution to a system}
 \subsubsection{16.314\quad Lipschitz continuity of a vector}
 \subsubsection{16.315\quad Comparison of approximate solutions of a system}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Coupled oscillators and normal modes.}%
+  \index{coupled oscillators!system of ODEs}%
+  \index{normal modes!eigenvalue problem}%
+  \index{phonons}%
+  A chain of $n$ masses connected by springs yields $m_{i}\ddot{x}_{i}
+  =k_{i+1}(x_{i+1}-x_{i})-k_{i}(x_{i}-x_{i-1})$, a linear system
+  whose eigenvalues give the normal mode frequencies.  In the
+  infinite limit, this becomes the wave equation; the normal modes
+  become phonons in solid-state physics.
+
+\item \textbf{Predator--prey dynamics (Lotka--Volterra).}%
+  \index{Lotka--Volterra equations}%
+  \index{predator--prey model}%
+  \index{ecological dynamics}%
+  The Lotka--Volterra system $\dot{x}=\alpha x-\beta xy$,
+  $\dot{y}=\delta xy-\gamma y$ is a nonlinear first-order system
+  with a conserved quantity $H=\delta x-\gamma\ln x+\beta y-\alpha\ln y$,
+  giving closed orbits in phase space.  Extensions include competition,
+  mutualism, and food-web models in ecology.
+
+\item \textbf{Epidemiological models (SIR).}%
+  \index{SIR model}%
+  \index{epidemiology!ODE model}%
+  \index{basic reproduction number $R_0$}%
+  The SIR model $\dot{S}=-\beta SI$, $\dot{I}=\beta SI-\gamma I$,
+  $\dot{R}=\gamma I$ is a three-dimensional first-order system.  The
+  basic reproduction number $R_{0}=\beta S_{0}/\gamma$ determines
+  whether an epidemic occurs ($R_{0}>1$) or dies out ($R_{0}<1$),
+  a threshold phenomenon central to public health policy.
+
+\item \textbf{Orbital mechanics and the two-body problem.}%
+  \index{two-body problem!system of ODEs}%
+  \index{orbital mechanics}%
+  \index{Kepler problem!first-order system}%
+  The Kepler problem $\ddot{\mathbf{r}}=-GM\mathbf{r}/|\mathbf{r}|^{3}$,
+  written as a first-order system in $(\mathbf{r},\mathbf{v})$, has
+  exact solutions (conic sections) and conserved quantities (energy,
+  angular momentum, Laplace--Runge--Lenz vector).  The existence and
+  uniqueness theory for systems guarantees determinism of the two-body
+  problem away from collision.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Reduction of higher-order ODEs to systems.}%
+  \index{reduction to first-order system}%
+  \index{higher-order ODE!reduction}%
+  \index{state space!ODE}%
+  An $n$th-order ODE $y^{(n)}=F(x,y,y',\ldots,y^{(n-1)})$ is
+  equivalent to the first-order system $y_{k}'=y_{k+1}$ for
+  $k=1,\ldots,n-1$, $y_{n}'=F(x,y_{1},\ldots,y_{n})$.  This
+  reduction shows that all of ODE theory reduces to the study of
+  first-order systems.
+
+\item \textbf{Picard--Lindel\"of theorem for systems.}%
+  \index{Picard--Lindel\"of theorem!systems}%
+  \index{Lipschitz continuity!vector-valued}%
+  \index{existence and uniqueness!systems}%
+  The existence--uniqueness theorem extends to systems: if
+  $\mathbf{f}(x,\mathbf{y})$ is Lipschitz in $\mathbf{y}$ (in any
+  norm on $\mathbb{R}^{n}$), the Cauchy problem has a unique local
+  solution.  The Lipschitz constant is now the operator norm of the
+  Jacobian matrix $\partial\mathbf{f}/\partial\mathbf{y}$, connecting
+  ODE theory to matrix analysis.
+
+\item \textbf{Flow maps and one-parameter groups.}%
+  \index{flow map!ODE}%
+  \index{one-parameter group!diffeomorphisms}%
+  \index{dynamical systems!continuous}%
+  The solution map $\phi_{t}(\mathbf{y}_{0})=\mathbf{y}(t)$ satisfies
+  $\phi_{0}=\mathrm{id}$ and $\phi_{t+s}=\phi_{t}\circ\phi_{s}$
+  (for autonomous systems), making it a one-parameter group of
+  diffeomorphisms.  This is the starting point of the modern theory
+  of dynamical systems.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.316\quad First-order linear differential equation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{RC and RL circuits.}%
+  \index{RC circuit!first-order linear ODE}%
+  \index{RL circuit}%
+  \index{time constant}%
+  The voltage across a capacitor in an RC circuit satisfies
+  $RC\,dV/dt+V=V_{\mathrm{in}}(t)$, a first-order linear ODE with
+  integrating factor $e^{t/RC}$.  The time constant $\tau=RC$
+  characterises the transient response.  The analogous RL circuit
+  has $\tau=L/R$.
+
+\item \textbf{Mixing problems and compartment models.}%
+  \index{mixing problems}%
+  \index{compartment models!first-order}%
+  \index{dilution!first-order ODE}%
+  A tank with inflow rate $r_{\mathrm{in}}$, concentration $c_{\mathrm{in}}$,
+  and outflow rate $r_{\mathrm{out}}$ satisfies $dQ/dt=r_{\mathrm{in}}c_{\mathrm{in}}-r_{\mathrm{out}}Q/V(t)$,
+  a first-order linear ODE in the amount $Q$ of solute.
+  Chains of compartments model drug metabolism, tracer transport
+  in the environment, and chemical reactor networks.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Integrating factor method.}%
+  \index{integrating factor!first-order linear}%
+  \index{variation of constants!first-order}%
+  The general solution of $y'+p(x)y=q(x)$ is
+  $y(x)=e^{-P(x)}\!\left[C+\int q(x)e^{P(x)}\,dx\right]$ where
+  $P(x)=\int p(x)\,dx$.  The integrating factor $\mu=e^{P}$ converts
+  the left-hand side into the exact derivative $d(\mu y)/dx$.  This
+  is the prototype for variation of constants (Lagrange).
+
+\item \textbf{Bernoulli and Riccati reductions.}%
+  \index{Bernoulli equation}%
+  \index{Riccati equation!linearisation}%
+  \index{nonlinear ODE!reduction to linear}%
+  The Bernoulli equation $y'+p(x)y=q(x)y^{n}$ reduces to a linear
+  equation via $v=y^{1-n}$.  More generally, the Riccati equation
+  $y'=a(x)+b(x)y+c(x)y^{2}$ linearises to a second-order equation
+  $u''-[b+(c'/c)]u'+acu=0$ via $y=-u'/(cu)$, connecting first-order
+  nonlinear and second-order linear theories (see G\&R~16.514).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.317\quad Linear systems of differential equations}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Small oscillations and modal analysis.}%
+  \index{small oscillations}%
+  \index{modal analysis}%
+  \index{eigenfrequencies}%
+  \index{mass and stiffness matrices}%
+  The linearised equations of motion near equilibrium take the form
+  $M\ddot{\mathbf{q}}+C\dot{\mathbf{q}}+K\mathbf{q}=\mathbf{f}(t)$,
+  equivalently a $2n$-dimensional linear system
+  $\dot{\mathbf{x}}=A\mathbf{x}+\mathbf{b}$.  The eigenvalues of
+  $A$ give the natural frequencies and damping rates; the eigenvectors
+  give the mode shapes.  This is the foundation of structural dynamics,
+  vibration analysis, and seismic engineering.
+
+\item \textbf{Electrical network analysis.}%
+  \index{electrical networks!state-space}%
+  \index{state-space model}%
+  \index{SPICE simulation}%
+  A network of resistors, capacitors, and inductors yields a linear
+  system $\dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u}$,
+  $\mathbf{y}=C\mathbf{x}+D\mathbf{u}$ in the state-space formulation.
+  Circuit simulators (SPICE) solve this system numerically, using the
+  matrix exponential $e^{At}$ for the homogeneous response and
+  convolution for the driven response.
+
+\item \textbf{Quantum mechanics: time evolution and the Schr\"odinger equation.}%
+  \index{Schr\"odinger equation!time evolution}%
+  \index{time-evolution operator}%
+  \index{matrix exponential!quantum mechanics}%
+  The time-dependent Schr\"{o}dinger equation
+  $i\hbar\,d|\psi\rangle/dt=H|\psi\rangle$ is a linear system in
+  Hilbert space.  For a time-independent Hamiltonian, the solution is
+  $|\psi(t)\rangle=e^{-iHt/\hbar}|\psi(0)\rangle$, the matrix
+  exponential of $-iH/\hbar$.  The eigenvalues of $H$ are the
+  energy levels, and the eigenvectors are the stationary states.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Matrix exponential and fundamental matrix.}%
+  \index{matrix exponential!ODE systems}%
+  \index{fundamental matrix}%
+  \index{Peano--Baker series}%
+  For $\mathbf{y}'=A\mathbf{y}$ with constant $A$, the solution is
+  $\mathbf{y}(t)=e^{At}\mathbf{y}_{0}$ where
+  $e^{At}=\sum_{k=0}^{\infty}(At)^{k}/k!$.  For non-constant $A(t)$,
+  the fundamental matrix $\Phi(t)$ satisfies $\Phi'=A(t)\Phi$,
+  $\Phi(0)=I$, and is given by the Peano--Baker series (the
+  time-ordered exponential).
+
+\item \textbf{Jordan normal form and solution structure.}%
+  \index{Jordan normal form!ODE solution}%
+  \index{generalised eigenvectors}%
+  \index{polynomial$\times$exponential solutions}%
+  When $A$ is not diagonalisable, the Jordan form $A=PJP^{-1}$ gives
+  solutions involving $t^{k}e^{\lambda t}$ terms from Jordan blocks.
+  Each Jordan block of size $m$ for eigenvalue $\lambda$ contributes
+  $m$ linearly independent solutions
+  $e^{\lambda t}\mathbf{v}$, $e^{\lambda t}(t\mathbf{v}+\mathbf{w})$,
+  \ldots, where $\mathbf{v},\mathbf{w},\ldots$ are generalised
+  eigenvectors.
+
+\item \textbf{Variation of parameters for systems.}%
+  \index{variation of parameters!systems}%
+  \index{Duhamel's formula}%
+  \index{Green's matrix}%
+  The inhomogeneous system $\mathbf{y}'=A(t)\mathbf{y}+\mathbf{g}(t)$
+  has solution $\mathbf{y}(t)=\Phi(t)\mathbf{y}_{0}+\int_{0}^{t}\Phi(t)\Phi^{-1}(s)\mathbf{g}(s)\,ds$
+  (Duhamel's formula).  The kernel $\Phi(t)\Phi^{-1}(s)$ is the
+  Green's matrix of the system, the matrix analogue of the scalar
+  Green's function.
+
+\item \textbf{Floquet theory for periodic systems.}%
+  \index{Floquet theory}%
+  \index{periodic coefficients!ODE}%
+  \index{monodromy matrix}%
+  \index{Floquet multipliers}%
+  If $A(t+T)=A(t)$, then the fundamental matrix satisfies
+  $\Phi(t+T)=\Phi(t)M$ where $M=\Phi(T)$ is the monodromy matrix.
+  The eigenvalues of $M$ (Floquet multipliers) determine stability:
+  all $|\mu_{k}|<1$ gives asymptotic stability, any $|\mu_{k}|>1$
+  gives instability.  Floquet theory applies to parametric resonance
+  (Mathieu equation), Bloch waves in crystals, and periodic orbits
+  in celestial mechanics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.41\quad Some Special Types of Elementary Differential Equations}
 \subsubsection{16.411\quad Variables separable}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Free-fall and terminal velocity.}%
+  \index{free-fall!separable ODE}%
+  \index{terminal velocity}%
+  \index{drag force!velocity-dependent}%
+  The equation $m\,dv/dt=mg-bv^{2}$ for fall with quadratic drag
+  separates as $dv/(mg-bv^{2})=dt/m$.  Integration gives
+  $v(t)=v_{\mathrm{term}}\tanh(gt/v_{\mathrm{term}})$ with
+  $v_{\mathrm{term}}=\sqrt{mg/b}$, a result used in skydiving
+  calculations and atmospheric science.
+
+\item \textbf{Barometric formula and isothermal atmospheres.}%
+  \index{barometric formula}%
+  \index{isothermal atmosphere}%
+  \index{hydrostatic equilibrium}%
+  The hydrostatic equation $dP/dz=-\rho g=-Pg/(RT)$ for an
+  isothermal atmosphere is separable: $dP/P=-g\,dz/(RT)$, giving
+  $P(z)=P_{0}e^{-gz/(RT)}$.  This exponential pressure profile
+  is the starting point for atmospheric physics and altimetry.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Quadrature and implicit solutions.}%
+  \index{quadrature!separable ODE}%
+  \index{implicit solution}%
+  \index{singular solutions!separable ODE}%
+  A separable equation $g(y)\,dy=f(x)\,dx$ reduces to two
+  independent integrations: $\int g(y)\,dy=\int f(x)\,dx+C$.  The
+  solution may be implicit rather than explicit, and values where
+  $g(y)=0$ must be checked separately as they may yield singular
+  solutions (envelopes) not captured by the general solution.
+
+\item \textbf{Autonomous equations and phase line analysis.}%
+  \index{autonomous equation!first-order}%
+  \index{phase line}%
+  \index{equilibria!classification}%
+  An autonomous equation $y'=f(y)$ is separable with $dx=dy/f(y)$.
+  The qualitative behaviour is determined by the zeros of $f$ (equilibria):
+  $f'(y^{*})<0$ gives stable equilibrium, $f'(y^{*})>0$ gives unstable.
+  The phase line (one-dimensional phase portrait) provides a complete
+  qualitative picture without solving the equation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.412\quad Exact differential equations}
 \subsubsection{16.413\quad Conditions for an exact equation}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Thermodynamic state functions and exact differentials.}%
+  \index{exact differential!thermodynamics}%
+  \index{state function}%
+  \index{Maxwell relations!thermodynamics}%
+  \index{entropy!exact differential}%
+  In thermodynamics, $dU=T\,dS-P\,dV$ is an exact differential because
+  $U$ is a state function.  The condition
+  $(\partial T/\partial V)_{S}=-(\partial P/\partial S)_{V}$
+  (a Maxwell relation) is precisely the exactness condition
+  $\partial M/\partial y=\partial N/\partial x$ for $M\,dx+N\,dy=0$.
+  Heat $\delta Q=T\,dS$ is exact only when expressed in terms of entropy;
+  the distinction between exact and inexact differentials is fundamental
+  to the second law.
+
+\item \textbf{Conservative force fields and potential energy.}%
+  \index{conservative force!exact differential}%
+  \index{potential energy!exact differential}%
+  \index{work!path independence}%
+  A force field $\mathbf{F}=(M,N)$ is conservative if and only if
+  $M\,dx+N\,dy$ is an exact differential, i.e.,
+  $\partial M/\partial y=\partial N/\partial x$.  Then
+  $\mathbf{F}=-\nabla V$ for a potential $V$, and work is path-independent.
+  The failure of exactness characterises non-conservative forces
+  (friction, magnetic forces on moving charges).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Poincar\'e lemma and simply connected domains.}%
+  \index{Poincar\'e lemma!exact differentials}%
+  \index{simply connected domain}%
+  \index{closed form!exact}%
+  On a simply connected domain, the exactness condition
+  $\partial M/\partial y=\partial N/\partial x$ (closedness) implies
+  the existence of a potential $F$ with $dF=M\,dx+N\,dy$ (exactness).
+  On multiply connected domains, the integrability obstruction is
+  measured by de Rham cohomology $H^{1}$, and periods around holes
+  give topological invariants.
+
+\item \textbf{Integrating factors and Lie symmetries.}%
+  \index{integrating factor!existence}%
+  \index{Lie symmetry!integrating factor}%
+  \index{symmetry group!ODE}%
+  If $M\,dx+N\,dy=0$ is not exact, an integrating factor $\mu(x,y)$
+  makes $\mu M\,dx+\mu N\,dy=0$ exact.  The existence of $\mu$ is
+  guaranteed (locally), but finding it requires solving a PDE.
+  Lie's theory of symmetry groups provides a systematic method:
+  each one-parameter symmetry of the ODE yields an integrating factor,
+  and conversely \cite{Olver1993}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.414\quad Homogeneous differential equations}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Dimensional analysis and scaling laws.}%
+  \index{dimensional analysis!homogeneous ODE}%
+  \index{scaling laws}%
+  \index{self-similar solutions}%
+  A homogeneous ODE $y'=g(y/x)$ is invariant under the scaling
+  $x\to\lambda x$, $y\to\lambda y$.  This scale invariance is the
+  mathematical expression of dimensional analysis: if an ODE involves
+  only dimensionless combinations $y/x$, the solution must be
+  self-similar.  Self-similar solutions describe blast waves (Taylor--Sedov),
+  boundary layer profiles (Blasius), and gravitational collapse.
+
+\item \textbf{Polar coordinates and spiral trajectories.}%
+  \index{polar coordinates!homogeneous ODE}%
+  \index{spiral trajectories}%
+  \index{pursuit curves}%
+  The substitution $y=vx$ in a homogeneous equation yields a separable
+  equation in $v$.  Geometrically, the solutions are curves whose slope
+  depends only on the angle $\theta=\arctan(y/x)$, producing logarithmic
+  spirals, pursuit curves, and other scale-invariant trajectories.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Substitution $y=vx$ and reduction to quadrature.}%
+  \index{substitution $y=vx$!homogeneous ODE}%
+  \index{reduction to quadrature}%
+  The substitution $y=vx$ reduces $y'=g(y/x)$ to $v+xv'=g(v)$, hence
+  $dv/(g(v)-v)=dx/x$, a separable equation solvable by quadrature.
+  The back-substitution $v=y/x$ gives the solution in original variables.
+
+\item \textbf{Generalised homogeneity and M\"obius transformations.}%
+  \index{generalised homogeneity!ODE}%
+  \index{M\"obius transformation!ODE}%
+  \index{projective geometry!ODE}%
+  The equation $y'=(ay+bx+c)/(dy+ex+f)$ reduces to a homogeneous
+  equation by translating to eliminate the constants (if $ae-bd\neq 0$)
+  or by a linear substitution (if $ae-bd=0$).  This connects to
+  projective geometry: the general linear-fractional ODE is covariant
+  under M\"{o}bius transformations of the $(x,y)$-plane.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.51\quad Second-Order Equations}
 \subsubsection{16.511\quad Adjoint and self-adjoint equations}
+
+The general second-order linear ODE
+$a_{0}(x)y''+a_{1}(x)y'+a_{2}(x)y=0$ can be written in self-adjoint
+(Sturm--Liouville) form $[p(x)y']'+q(x)y=0$ by multiplication by
+an appropriate integrating factor.  The self-adjoint form is the natural
+setting for the oscillation and spectral theory that follows in
+G\&R~16.6--16.9.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Sturm--Liouville problems and quantum mechanics.}%
+  \index{Sturm--Liouville problem!quantum mechanics}%
+  \index{self-adjoint operator!quantum}%
+  \index{Schr\"odinger equation!Sturm--Liouville}%
+  \index{spectral theorem!physical interpretation}%
+  The time-independent Schr\"{o}dinger equation
+  $-\frac{\hbar^{2}}{2m}\psi''+V(x)\psi=E\psi$ is a Sturm--Liouville
+  problem with eigenvalue $E$.  Self-adjointness of the Hamiltonian
+  guarantees real eigenvalues (observable energies), orthogonal
+  eigenfunctions (quantum states), and completeness (any state is a
+  superposition of energy eigenstates).
+
+\item \textbf{Vibrating strings and membranes.}%
+  \index{vibrating string!Sturm--Liouville}%
+  \index{normal modes!Sturm--Liouville}%
+  \index{eigenvalue problem!vibrating string}%
+  The spatial part of the wave equation $[T(x)X']'+\omega^{2}\rho(x)X=0$
+  for a non-uniform string is a Sturm--Liouville problem.  The eigenvalues
+  $\omega_{n}^{2}$ are the squared natural frequencies, and the
+  eigenfunctions $X_{n}(x)$ are the mode shapes.  Self-adjointness
+  guarantees orthogonality of modes, the basis of Fourier analysis in
+  acoustics.
+
+\item \textbf{Heat conduction in non-uniform media.}%
+  \index{heat conduction!Sturm--Liouville}%
+  \index{thermal diffusivity!variable}%
+  \index{eigenfunction expansion!heat equation}%
+  Separation of the heat equation $\rho c\,\partial T/\partial t
+  =\nabla\cdot(k\nabla T)$ in one dimension yields the
+  Sturm--Liouville problem $[k(x)X']'+\lambda\rho(x)c(x)X=0$.
+  The eigenfunction expansion $T(x,t)=\sum c_{n}X_{n}(x)e^{-\lambda_{n}t}$
+  gives the transient temperature distribution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Self-adjointness and the spectral theorem.}%
+  \index{self-adjoint operator!spectral theorem}%
+  \index{spectral theorem!ODE}%
+  \index{eigenfunction expansion!Sturm--Liouville}%
+  A regular Sturm--Liouville operator $Ly=-[p(x)y']'-q(x)y$ on
+  $[a,b]$ with separated boundary conditions has a discrete spectrum
+  of real simple eigenvalues $\lambda_{1}<\lambda_{2}<\cdots\to\infty$,
+  and the eigenfunctions form a complete orthonormal basis of
+  $L^{2}([a,b];w)$ where $w$ is the weight function.  This is the
+  infinite-dimensional analogue of the spectral theorem for symmetric
+  matrices.
+
+\item \textbf{Green's functions for second-order operators.}%
+  \index{Green's function!second-order ODE}%
+  \index{boundary value problem!Green's function}%
+  \index{self-adjointness!Green's function symmetry}%
+  The Green's function $G(x,\xi)$ for $Ly=f$ with homogeneous
+  boundary conditions satisfies $LG=\delta(x-\xi)$ and gives the
+  solution as $y(x)=\int_{a}^{b}G(x,\xi)f(\xi)\,d\xi$.
+  Self-adjointness implies the symmetry $G(x,\xi)=G(\xi,x)$,
+  the ODE analogue of the reciprocity principle in physics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.512\quad Abel's identity}
+
+Abel's identity states that for a second-order linear ODE
+$y''+p(x)y'+q(x)y=0$, the Wronskian of any two solutions $y_{1},y_{2}$
+satisfies $W(x)=W(x_{0})\exp\!\left(-\int_{x_{0}}^{x}p(t)\,dt\right)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Conservation laws and Liouville's theorem.}%
+  \index{Abel's identity!Liouville's theorem}%
+  \index{Liouville's theorem!phase space}%
+  \index{phase space volume!conservation}%
+  Abel's identity is the one-dimensional case of Liouville's theorem:
+  the Wronskian is the phase-space volume element, and its exponential
+  change $\exp(-\int p\,dx)$ reflects dissipation ($p>0$) or growth
+  ($p<0$).  For Hamiltonian systems ($p=0$), the Wronskian is constant,
+  corresponding to conservation of phase-space volume.
+
+\item \textbf{Probability current in quantum mechanics.}%
+  \index{probability current!Wronskian}%
+  \index{Wronskian!quantum mechanics}%
+  \index{transmission coefficient}%
+  For the Schr\"{o}dinger equation $\psi''+k^{2}(x)\psi=0$ (with
+  $p=0$), the Wronskian $W[\psi,\psi^{*}]=2i\,\mathrm{Im}(\psi^{*}\psi')$
+  is proportional to the probability current $j$.
+  Abel's identity ($W=\mathrm{const}$) gives conservation of
+  probability current, the basis for computing transmission and
+  reflection coefficients in quantum scattering.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Linear independence and the Wronskian.}%
+  \index{Wronskian!linear independence}%
+  \index{linear independence!solutions}%
+  \index{Abel's identity!Wronskian non-vanishing}%
+  Abel's identity shows that the Wronskian of two solutions either
+  vanishes identically or never vanishes.  Thus $W(x_{0})\neq 0$ at one
+  point implies $W(x)\neq 0$ everywhere, proving linear independence.
+  Conversely, $W\equiv 0$ implies linear dependence---the solutions
+  are proportional.
+
+\item \textbf{Reduction of order.}%
+  \index{reduction of order}%
+  \index{d'Alembert's method}%
+  \index{second solution!from first}%
+  Given one solution $y_{1}$, Abel's identity yields the second
+  solution as $y_{2}(x)=y_{1}(x)\int\frac{W_{0}}{y_{1}^{2}(x)}
+  \exp\!\left(-\int p\,dx\right)dx$.  This is d'Alembert's reduction of
+  order method, fundamental for constructing second solutions of
+  Bessel, Legendre, and hypergeometric equations near singular points.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.513\quad Lagrange identity}
+
+The Lagrange identity for the operator $L[y]=(py')'+qy$ is
+$uL[v]-vL[u]=[p(uv'-vu')]'$, where the right-hand side is the
+derivative of the bilinear concomitant.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Reciprocity in Green's functions.}%
+  \index{Lagrange identity!reciprocity}%
+  \index{Green's function!reciprocity}%
+  \index{reciprocity principle}%
+  Integrating the Lagrange identity over $[a,b]$ and applying boundary
+  conditions gives Green's identity, which proves the symmetry
+  $G(x,\xi)=G(\xi,x)$ of the Green's function for self-adjoint
+  operators.  This symmetry is the mathematical basis of the reciprocity
+  principle: in acoustics, the response at $x$ due to a source at $\xi$
+  equals the response at $\xi$ due to a source at $x$.
+
+\item \textbf{Quantum mechanical scattering matrix symmetry.}%
+  \index{scattering matrix!symmetry}%
+  \index{time-reversal symmetry!S-matrix}%
+  \index{Lagrange identity!scattering}%
+  In one-dimensional scattering, the Lagrange identity for the
+  Schr\"{o}dinger equation yields relations between the transmission
+  and reflection amplitudes.  For real potentials (time-reversal
+  symmetric), it gives $|t|^{2}+|r|^{2}=1$ (unitarity of the
+  $S$-matrix) and the symmetry of the transmission coefficient for
+  left- and right-incidence.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Green's formula and boundary terms.}%
+  \index{Green's formula!Lagrange identity}%
+  \index{bilinear concomitant}%
+  \index{boundary conditions!self-adjoint}%
+  Integration of the Lagrange identity gives Green's formula
+  $\int_{a}^{b}(uLv-vLu)\,dx=[p(uv'-vu')]_{a}^{b}$.  The boundary
+  term vanishes for self-adjoint boundary conditions (separated or
+  periodic), establishing the symmetry
+  $\langle u,Lv\rangle=\langle Lu,v\rangle$.
+
+\item \textbf{Eigenvalue comparison and interlacing.}%
+  \index{eigenvalue interlacing!Lagrange identity}%
+  \index{minimax principle!ODE}%
+  The Lagrange identity is the starting point for proving that the
+  eigenvalues of a Sturm--Liouville problem with Dirichlet conditions
+  on $[a,b]$ interlace with those on any subinterval $[a,c]\subset[a,b]$.
+  This is the ODE counterpart of the Cauchy interlacing theorem for
+  matrices \cite{Teschl2012}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.514\quad The Riccati equation}
 \subsubsection{16.515\quad Solutions of the Riccati equation}
+
+The Riccati equation $y'=a(x)+b(x)y+c(x)y^{2}$ is the simplest
+first-order ODE that is not solvable by quadrature in general.  It
+occupies a central position in ODE theory because it linearises to a
+second-order equation and connects to projective geometry, optimal control,
+and matrix analysis.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Optimal control and the matrix Riccati equation.}%
+  \index{Riccati equation!optimal control}%
+  \index{matrix Riccati equation}%
+  \index{linear-quadratic regulator}%
+  \index{Kalman filter!Riccati equation}%
+  The linear-quadratic regulator (LQR) problem---minimising
+  $J=\int_{0}^{\infty}(\mathbf{x}^{T}Q\mathbf{x}+\mathbf{u}^{T}R\mathbf{u})\,dt$
+  subject to $\dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u}$---leads to
+  the algebraic matrix Riccati equation $A^{T}P+PA-PBR^{-1}B^{T}P+Q=0$.
+  The optimal feedback gain is $K=R^{-1}B^{T}P$.  The Kalman filter
+  (dual problem) involves the same Riccati equation with transposed
+  matrices.  These are the most important equations in modern
+  control theory \cite{Anderson2007}.
+
+\item \textbf{WKB approximation and the quantum Riccati equation.}%
+  \index{WKB approximation!Riccati equation}%
+  \index{semiclassical approximation}%
+  \index{eikonal equation}%
+  The substitution $\psi=\exp(\int w\,dx)$ in the Schr\"{o}dinger
+  equation $\psi''+k^{2}(x)\psi=0$ gives the Riccati equation
+  $w'+w^{2}+k^{2}=0$.  The WKB approximation is a systematic
+  expansion $w=\sum_{n}\hbar^{n}w_{n}$ of this Riccati equation
+  in powers of $\hbar$, with the leading term $w_{0}=\pm ik(x)$
+  giving the classical (eikonal) approximation.
+
+\item \textbf{Impedance and wave propagation.}%
+  \index{impedance!Riccati equation}%
+  \index{wave propagation!layered media}%
+  \index{reflection coefficient!Riccati}%
+  The input impedance $Z(x)$ of a non-uniform transmission line
+  satisfies a Riccati equation $dZ/dx=-i\omega L-i\omega CZ^{2}$
+  (in appropriate normalisation).  The reflection coefficient
+  $r=(Z-Z_{0})/(Z+Z_{0})$ also satisfies a Riccati equation,
+  used in the design of impedance-matching networks and anti-reflection
+  coatings in optics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Linearisation and the cross-ratio.}%
+  \index{Riccati equation!linearisation}%
+  \index{cross-ratio!Riccati equation}%
+  \index{projective line}%
+  The substitution $y=-u'/(cu)$ transforms the Riccati equation into
+  the second-order linear equation $u''-[b+(c'/c)]u'+acu=0$.
+  Conversely, the ratio $y=u_{1}/u_{2}$ of two solutions of a
+  second-order equation satisfies a Riccati equation.  The cross-ratio
+  of four particular solutions is constant---the Riccati equation
+  preserves the projective structure of the line.
+
+\item \textbf{Differential Galois theory.}%
+  \index{differential Galois theory}%
+  \index{Riccati equation!integrability}%
+  \index{Liouvillian solutions}%
+  A second-order linear ODE is solvable in terms of
+  Liouvillian functions (exponentials, integrals, algebraic functions)
+  if and only if its Riccati equation has an algebraic solution.  The
+  differential Galois group---an algebraic group acting on the solution
+  space---measures the ``complexity'' of the equation: solvability
+  corresponds to the Galois group being a solvable group
+  \cite{vanderPut2003}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.516\quad Solution of a second-order linear differential equation}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{The harmonic oscillator and its generalisations.}%
+  \index{harmonic oscillator!second-order ODE}%
+  \index{damped harmonic oscillator}%
+  \index{driven oscillator!resonance}%
+  The equation $m\ddot{x}+c\dot{x}+kx=F(t)$ (damped driven harmonic
+  oscillator) is the prototype second-order linear ODE.  Its solution
+  exhibits underdamping ($c^{2}<4mk$), critical damping ($c^{2}=4mk$),
+  and overdamping ($c^{2}>4mk$), and the driven response shows
+  resonance when the driving frequency matches the natural frequency.
+  The harmonic oscillator is ubiquitous: RLC circuits, acoustic
+  resonators, molecular vibrations, and the quantum harmonic oscillator
+  all share this equation.
+
+\item \textbf{Bessel, Legendre, and hypergeometric equations.}%
+  \index{Bessel equation!second-order linear}%
+  \index{Legendre equation}%
+  \index{hypergeometric equation}%
+  \index{special functions!from second-order ODEs}%
+  The classical special functions of G\&R sections 8--9 are solutions
+  of specific second-order linear ODEs: Bessel's equation
+  $x^{2}y''+xy'+(x^{2}-\nu^{2})y=0$, Legendre's equation
+  $(1-x^{2})y''-2xy'+\ell(\ell+1)y=0$, and the hypergeometric
+  equation $x(1-x)y''+[c-(a+b+1)x]y'-aby=0$.  The Frobenius method
+  constructs power series solutions around regular singular points.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Frobenius method and regular singular points.}%
+  \index{Frobenius method}%
+  \index{regular singular point}%
+  \index{indicial equation}%
+  At a regular singular point $x_{0}$, the Frobenius method seeks
+  solutions $y=\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n+r}$, where the
+  exponent $r$ satisfies the indicial equation.  When the two roots
+  differ by an integer, logarithmic terms may appear in the second
+  solution.  This method generates all classical special functions
+  and their series representations.
+
+\item \textbf{Monodromy and the Riemann--Hilbert problem.}%
+  \index{monodromy!second-order ODE}%
+  \index{Riemann--Hilbert problem}%
+  \index{Fuchsian equations}%
+  For a Fuchsian equation (all singular points regular), analytic
+  continuation of solutions around singular points defines the
+  monodromy representation $\pi_{1}(\mathbb{C}\setminus\{z_{k}\})
+  \to\mathrm{GL}(2,\mathbb{C})$.  The Riemann--Hilbert problem asks
+  whether every monodromy representation arises from a Fuchsian
+  equation (yes for $n\leq 3$ singular points; subtle for $n\geq 4$).
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.61--16.62\quad Oscillation and Non-Oscillation Theorems for Second-Order Equations}
+
+The oscillation theory of $y''+q(x)y=0$ studies whether solutions have
+infinitely many zeros (oscillatory) or finitely many (non-oscillatory) on
+a half-line $[a,\infty)$.  The sign and size of $q(x)$ determine the
+behaviour: roughly, $q>0$ promotes oscillation, $q<0$ promotes
+non-oscillation.  The results in G\&R~16.611--16.629 develop this
+theory systematically through comparison theorems, starting with Sturm's
+foundational work.
+
 \subsubsection{16.611\quad First basic comparison theorem}
 \subsubsection{16.622\quad Second basic comparison theorem}
 \subsubsection{16.623\quad Interlacing of zeros}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Zeros of Bessel functions and drum modes.}%
+  \index{Bessel functions!zeros}%
+  \index{drum modes!nodal lines}%
+  \index{zeros!Bessel functions}%
+  The modes of a circular drum are labelled by the zeros
+  $j_{\nu,k}$ of $J_{\nu}(x)$.  Sturm comparison with
+  $y''+y=0$ (whose solutions have zeros at spacing $\pi$) gives
+  bounds on the spacing of Bessel zeros: for large $x$,
+  $j_{\nu,k+1}-j_{\nu,k}\to\pi$, and the comparison theorems
+  give rigorous monotonicity and interlacing results
+  \cite{Watson1944}.
+
+\item \textbf{WKB turning points and connection formulas.}%
+  \index{WKB approximation!turning points}%
+  \index{turning point!oscillation}%
+  \index{connection formulas}%
+  \index{Airy function!turning point}%
+  Near a turning point $x_{0}$ where $k^{2}(x)$ changes sign, the
+  WKB approximation breaks down.  The oscillation theorems show that
+  solutions oscillate for $k^{2}>0$ and decay for $k^{2}<0$.  The
+  Airy function provides the local connection between these regimes,
+  and the Stokes phenomenon describes the exponentially small switching
+  between dominant and subdominant behaviours.
+
+\item \textbf{Quantum tunnelling and barrier penetration.}%
+  \index{quantum tunnelling}%
+  \index{barrier penetration}%
+  \index{oscillation!quantum mechanics}%
+  A quantum particle encountering a potential barrier $V(x)>E$ has a
+  non-oscillatory wavefunction in the classically forbidden region and
+  an oscillatory one outside.  The comparison theorems bound the
+  rate of decay inside the barrier, and the connection formulas give
+  the transmission coefficient
+  $T\sim\exp\!\left(-2\int_{x_{1}}^{x_{2}}\kappa(x)\,dx\right)$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Sturm comparison theorem (classical form).}%
+  \index{Sturm comparison theorem!classical}%
+  \index{comparison theorem!oscillation}%
+  \index{zeros!interlacing}%
+  If $q_{1}(x)\leq q_{2}(x)$ on $[a,b]$, then between consecutive
+  zeros of any solution of $y''+q_{1}y=0$, every solution of
+  $y''+q_{2}y=0$ has at least one zero.  Equivalently: more positive
+  $q$ means more oscillation (closer zeros).
+
+\item \textbf{Comparison with constant-coefficient equations.}%
+  \index{comparison!with constant coefficients}%
+  \index{oscillation frequency!bounds}%
+  If $\alpha^{2}\leq q(x)\leq\beta^{2}$, comparison with $y''+\alpha^{2}y=0$
+  and $y''+\beta^{2}y=0$ shows that the distance between consecutive zeros
+  of solutions of $y''+q(x)y=0$ lies in $[\pi/\beta,\pi/\alpha]$.  This gives
+  quantitative zero-spacing bounds without solving the equation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.624\quad Sturm separation theorem}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Nodal structure of quantum eigenstates.}%
+  \index{Sturm separation theorem!quantum nodes}%
+  \index{nodal theorem}%
+  \index{quantum number!nodes}%
+  The Sturm separation theorem implies that the zeros of linearly
+  independent solutions interlace.  For Sturm--Liouville eigenvalue
+  problems, this yields the oscillation theorem: the $n$th eigenfunction
+  has exactly $n-1$ zeros in the interior of the domain.  In quantum
+  mechanics, this is the nodal theorem: the ground state has no
+  interior nodes, the first excited state has one, etc.
+
+\item \textbf{Spectral gaps and band structure.}%
+  \index{spectral gaps!oscillation}%
+  \index{band structure!Hill's equation}%
+  \index{Bloch wave!oscillation count}%
+  For periodic potentials (Hill's equation), the oscillation count
+  of Bloch solutions determines the band index.  The Sturm separation
+  theorem ensures that bands do not cross, and the number of zeros
+  per period increases by one from band to band.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Disconjugacy and the separation theorem.}%
+  \index{disconjugacy}%
+  \index{Sturm separation theorem!disconjugacy}%
+  An equation is disconjugate on $[a,b]$ if no non-trivial solution
+  has two zeros.  Sturm's separation theorem shows this is equivalent
+  to the existence of a positive solution on $[a,b]$, which in turn
+  is equivalent to the first eigenvalue being positive---connecting
+  qualitative, analytic, and spectral properties.
+
+\item \textbf{Pr\"ufer substitution and rotation number.}%
+  \index{Pr\"ufer substitution}%
+  \index{rotation number}%
+  \index{polar coordinates!ODE}%
+  The Pr\"{u}fer substitution $y=r\sin\theta$, $y'=r\cos\theta$
+  transforms $y''+q(x)y=0$ into the system $\theta'=\cos^{2}\theta
+  +q\sin^{2}\theta$, $r'/r=\frac{1}{2}(1-q)\sin 2\theta$.  The angle
+  $\theta(x)$ monotonically counts zeros (each zero adds $\pi$ to
+  $\theta$), and the rotation number $\lim_{x\to\infty}\theta(x)/x$
+  encodes the oscillation rate.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.625\quad Sturm comparison theorem}
 \subsubsection{16.626\quad Szeg\"o's comparison theorem}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Frequency bounds for variable media.}%
+  \index{Sturm comparison theorem!frequency bounds}%
+  \index{variable media!oscillation}%
+  \index{inhomogeneous string}%
+  For a vibrating string with variable density $\rho(x)$, the Sturm
+  comparison theorem bounds the eigenfrequencies $\omega_{n}$ between
+  those of uniform strings with $\rho_{\min}$ and $\rho_{\max}$.
+  Szeg\"{o}'s refinement gives sharper bounds using integral averages
+  of $\rho$ rather than pointwise extremes.
+
+\item \textbf{Semiclassical eigenvalue estimates.}%
+  \index{semiclassical approximation!eigenvalue bounds}%
+  \index{Szeg\"o comparison theorem}%
+  \index{Bohr--Sommerfeld quantisation}%
+  Szeg\"{o}'s comparison theorem, which compares solutions based on
+  averages of the coefficient function rather than pointwise bounds,
+  connects to the Bohr--Sommerfeld quantisation rule
+  $\int_{x_{1}}^{x_{2}}k(x)\,dx=(n+\tfrac{1}{2})\pi$.  It provides
+  rigorous error estimates for semiclassical eigenvalue approximations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Comparison via Pr\"ufer angles.}%
+  \index{Pr\"ufer substitution!comparison}%
+  \index{Sturm comparison!Pr\"ufer proof}%
+  The Pr\"{u}fer formulation gives a transparent proof of the Sturm
+  comparison theorem: if $q_{1}\leq q_{2}$, then the Pr\"{u}fer angle
+  $\theta_{2}$ for the more oscillatory equation increases at least as
+  fast as $\theta_{1}$, so zeros of the second equation interlace
+  with (and occur at least as often as) zeros of the first.
+
+\item \textbf{Averaging and Szeg\"o's extension.}%
+  \index{Szeg\"o comparison!averaging}%
+  \index{integral comparison}%
+  Szeg\"{o}'s theorem replaces the pointwise condition $q_{1}\leq q_{2}$
+  with an integral condition: if $\int_{a}^{x}q_{1}\leq\int_{a}^{x}q_{2}$
+  for all $x$, then comparison still holds.  This is strictly weaker than
+  Sturm's condition and is useful when $q_{2}-q_{1}$ oscillates in sign
+  but has positive running average.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.627\quad Picone's identity}
-\subsubsection{16.628\quad Sturm-Picone theorem}
+\subsubsection{16.628\quad Sturm--Picone theorem}
+
+Picone's identity is
+$\frac{d}{dx}\left[\frac{y}{v}(pv'y-qy'v)\right]
+=(p-q)(y')^{2}+(P-Q)\left(\frac{y}{v}\right)^{2}v'^{2}
++q\left(y'-\frac{v'}{v}y\right)^{2}$,
+where $y$ and $v$ are solutions of different self-adjoint equations
+$[py']'+Py=0$ and $[qv']'+Qv=0$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Comparison of different physical systems.}%
+  \index{Picone's identity!physical comparison}%
+  \index{Sturm--Picone theorem!applications}%
+  \index{stiffness comparison}%
+  The Sturm--Picone theorem generalises the Sturm comparison theorem
+  to the self-adjoint form $[p(x)y']'+q(x)y=0$ with variable $p$.
+  This allows comparison of systems with different stiffness profiles
+  (variable $p$) as well as different restoring forces ($q$): for
+  instance, comparing oscillations of beams with different
+  cross-sectional profiles.
+
+\item \textbf{Spectral bounds for Sturm--Liouville operators.}%
+  \index{spectral bounds!Sturm--Picone}%
+  \index{eigenvalue bounds!comparison}%
+  The Sturm--Picone theorem gives eigenvalue comparison: if $p\leq P$
+  and $q\leq Q$, then the $n$th eigenvalue of $[Py']'+Qy+\lambda y=0$
+  is no larger than that of $[py']'+qy+\lambda y=0$.  This is used to
+  bound eigenvalues of complicated operators by comparison with simpler
+  ones.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Picone's identity as a Lagrangian tool.}%
+  \index{Picone's identity!variational}%
+  \index{Lagrangian!Picone identity}%
+  \index{Rayleigh quotient!comparison}%
+  Integrating Picone's identity over $[a,b]$ relates boundary terms
+  to an integral of non-negative quantities, yielding the Sturm--Picone
+  comparison theorem directly.  The identity can also be used to derive
+  Rayleigh quotient bounds on eigenvalues and to prove
+  Hardy-type inequalities.
+
+\item \textbf{Extensions to half-linear and $p$-Laplacian equations.}%
+  \index{half-linear equations}%
+  \index{$p$-Laplacian!oscillation}%
+  \index{Picone's identity!nonlinear extensions}%
+  Picone's identity has been extended to half-linear equations
+  $(|y'|^{p-2}y')'+q(x)|y|^{p-2}y=0$ (the eigenvalue equation of the
+  $p$-Laplacian), providing comparison and oscillation theorems for
+  nonlinear operators.  This has applications to the regularity theory
+  of quasilinear elliptic PDEs.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.629\quad Oscillation on the half line}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Scattering states vs.\ bound states.}%
+  \index{scattering states!oscillation}%
+  \index{bound states!non-oscillation}%
+  \index{essential spectrum!oscillation}%
+  In quantum mechanics, oscillatory solutions on $[0,\infty)$ correspond
+  to scattering states (continuous spectrum, $E>0$ for short-range
+  potentials), while non-oscillatory solutions correspond to bound
+  states (discrete spectrum, $E<0$).  The oscillation criteria on the
+  half line determine the threshold between discrete and continuous
+  spectrum.
+
+\item \textbf{Stability of the hydrogen atom.}%
+  \index{hydrogen atom!stability}%
+  \index{critical coupling!oscillation}%
+  \index{inverse-square potential}%
+  For the radial Schr\"{o}dinger equation with potential
+  $V(r)=-g/r^{2}$, Kneser-type oscillation criteria show that
+  solutions oscillate (infinitely many bound states) if and only if
+  $g>1/4$.  For the Coulomb potential $V=-e^{2}/r$, the centrifugal
+  term ensures non-oscillation at $r=0$ for each angular momentum
+  $\ell$, giving a discrete spectrum (hydrogen energy levels).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hille's oscillation criteria.}%
+  \index{Hille's oscillation criterion}%
+  \index{oscillation!half-line criteria}%
+  \index{critical constant $1/4$}%
+  For $y''+q(x)y=0$ on $[1,\infty)$, Hille (1948) showed:
+  (i)~if $\limsup_{x\to\infty}x\int_{x}^{\infty}q(t)\,dt>1$, then
+  solutions oscillate;
+  (ii)~if $x\int_{x}^{\infty}q(t)\,dt\leq 1/4$ for large $x$, then
+  solutions are non-oscillatory.  The critical constant $1/4$ is sharp,
+  as shown by the Euler equation $y''+\frac{1}{4x^{2}}y=0$ with
+  solution $y=\sqrt{x}\ln x$ (non-oscillatory but borderline).
+
+\item \textbf{Limit-point and limit-circle classification.}%
+  \index{limit-point!limit-circle}%
+  \index{Weyl's classification}%
+  \index{essential self-adjointness}%
+  Weyl's limit-point/limit-circle classification determines whether a
+  Sturm--Liouville operator is essentially self-adjoint on the
+  half-line.  In the limit-point case (typical for $q(x)\to+\infty$
+  or slowly), no boundary condition is needed at $\infty$; in the
+  limit-circle case, a boundary condition at $\infty$ is required.
+  Oscillation criteria help determine the classification: if all
+  solutions are $L^{2}$ near $\infty$, the equation is limit-circle
+  \cite{Teschl2012}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.71\quad Two Related Comparison Theorems}
 \subsubsection{16.711\quad Theorem 1}
 \subsubsection{16.712\quad Theorem 2}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Envelope estimates for wave amplitudes.}%
+  \index{envelope!wave amplitude}%
+  \index{amplitude bounds!comparison}%
+  \index{energy method!amplitude estimates}%
+  Comparison theorems for solutions of different equations provide
+  envelope bounds on wave amplitudes.  If the medium parameters change
+  slowly (adiabatically), the amplitude of a wave governed by
+  $y''+q(x)y=0$ can be bounded by comparing with constant-coefficient
+  equations above and below.  This gives rigorous WKB-type amplitude
+  estimates $|y|\sim q^{-1/4}$ without the full asymptotic machinery.
+
+\item \textbf{Bounding solutions in stability analysis.}%
+  \index{stability analysis!comparison bounds}%
+  \index{Lyapunov methods!comparison}%
+  \index{parametric excitation!bounds}%
+  In the stability analysis of linear systems with time-varying
+  coefficients (e.g., the Mathieu equation for parametric excitation),
+  comparison theorems bound the growth or decay of solutions.  If
+  $q(x)\geq q_{\min}>0$, all solutions are bounded, while if
+  $q(x)$ takes negative values, comparison with the worst-case
+  constant equation gives growth rate estimates.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Differential inequalities and maximum principles.}%
+  \index{differential inequalities}%
+  \index{maximum principle!ODE}%
+  \index{sub- and supersolutions}%
+  The comparison theorems of G\&R~16.71 are instances of the general
+  theory of differential inequalities: if $y''+q_{1}y\leq 0$ and
+  $u''+q_{2}u=0$ with $q_{1}\geq q_{2}$, then $y$ oscillates at
+  least as fast as $u$.  This is the ODE analogue of the maximum
+  principle for elliptic PDEs.
+
+\item \textbf{Sturm--Liouville eigenvalue monotonicity.}%
+  \index{eigenvalue monotonicity}%
+  \index{potential perturbation!eigenvalues}%
+  \index{domain monotonicity!eigenvalues}%
+  Comparison theorems imply that eigenvalues of $-y''+q(x)y=\lambda y$
+  are monotone in $q$: increasing the potential $q$ increases all
+  eigenvalues.  Similarly, eigenvalues are monotonically decreasing in
+  the length of the interval (domain monotonicity).  These monotonicity
+  results are proved by counting zeros using comparison.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.81--16.82\quad Non-Oscillatory Solutions}
 \subsubsection{16.811\quad Kneser's non-oscillation theorem}
+
+Kneser's theorem states that for $y''+q(x)y=0$ on $[1,\infty)$:
+if $x^{2}q(x)\leq 1/4$ for all large $x$, then the equation is
+non-oscillatory; if $x^{2}q(x)\geq c>1/4$ for all large $x$, then
+it is oscillatory.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Long-range vs.\ short-range potentials.}%
+  \index{Kneser's theorem!potentials}%
+  \index{long-range potential}%
+  \index{short-range potential}%
+  \index{Coulomb potential!oscillation}%
+  Kneser's theorem with $q(x)=E-V(x)$ distinguishes long-range and
+  short-range potentials in quantum scattering.  For a potential
+  decaying as $V(x)\sim -g/x^{2}$, the critical coupling $g=1/4$
+  separates the regime of finitely many bound states ($g<1/4$) from
+  infinitely many ($g>1/4$).  The Coulomb potential $V=-e^{2}/r$ is
+  long-range but the effective potential $V_{\mathrm{eff}}=
+  -e^{2}/r+\ell(\ell+1)\hbar^{2}/(2mr^{2})$ satisfies Kneser's
+  condition for non-oscillation at $r\to\infty$ when $E<0$.
+
+\item \textbf{Overdamped systems and exponential decay.}%
+  \index{overdamped systems}%
+  \index{exponential decay!non-oscillatory}%
+  \index{critical damping}%
+  Non-oscillatory solutions correspond physically to overdamped or
+  critically damped behaviour.  For a harmonic oscillator with increasing
+  damping, the transition from oscillatory to non-oscillatory is the
+  critical damping point.  Kneser-type criteria generalise this to
+  variable-coefficient systems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The Euler equation as the critical case.}%
+  \index{Euler equation!critical oscillation}%
+  \index{critical constant $1/4$!Kneser}%
+  \index{slowly varying solutions}%
+  The Euler equation $y''+\frac{c}{x^{2}}y=0$ has solutions
+  $y=x^{(1\pm\sqrt{1-4c})/2}$.  The critical case $c=1/4$ gives
+  $y=\sqrt{x}$ and $y=\sqrt{x}\ln x$---non-oscillatory but with
+  the slowest possible decay.  This is the boundary between power-law
+  solutions ($c<1/4$) and oscillatory solutions ($c>1/4$).
+
+\item \textbf{Non-oscillation and disconjugacy on $[0,\infty)$.}%
+  \index{disconjugacy!half-line}%
+  \index{non-oscillation!characterisations}%
+  \index{Hartman's theorem}%
+  Hartman's theorem characterises non-oscillation of $y''+q(x)y=0$ on
+  $[a,\infty)$ by the existence of a solution $y>0$ on $[a,\infty)$
+  (equivalently, a solution of the Riccati equation $w'+w^{2}+q=0$
+  on $[a,\infty)$).  This connects non-oscillation to the Riccati
+  equation theory of G\&R~16.514.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.822\quad Comparison theorem for non-oscillation}
 \subsubsection{16.823\quad Necessary and sufficient conditions for non-oscillation}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stability boundaries for variable-coefficient systems.}%
+  \index{stability boundary!non-oscillation}%
+  \index{parametric resonance!stability chart}%
+  \index{Mathieu equation!stability}%
+  The transition from non-oscillatory to oscillatory behaviour
+  corresponds to a stability boundary.  For the Mathieu equation
+  $y''+(a-2q\cos 2x)y=0$, the stability chart (Strutt diagram)
+  delineates regions of stable (bounded, possibly oscillatory) and
+  unstable (exponentially growing) solutions.  Non-oscillation criteria
+  determine the stable regions for the associated Hill equation.
+
+\item \textbf{Sub-barrier behaviour and evanescent waves.}%
+  \index{evanescent waves}%
+  \index{sub-barrier!non-oscillatory}%
+  \index{total internal reflection}%
+  In regions where $q(x)<0$ (classically forbidden, sub-barrier),
+  solutions are non-oscillatory and exponentially decaying.
+  Non-oscillation criteria quantify the decay rate, relevant for
+  tunnel diode design, evanescent wave coupling in fibre optics,
+  and total internal reflection.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Necessary and sufficient conditions.}%
+  \index{non-oscillation!necessary and sufficient}%
+  \index{Leighton--Wintner theorem}%
+  \index{integral conditions!oscillation}%
+  The Leighton--Wintner theorem gives a sufficient condition for
+  oscillation: if $\int_{a}^{\infty}q(x)\,dx=+\infty$, then
+  $y''+q(x)y=0$ is oscillatory.  Combining this with Kneser's
+  non-oscillation criterion provides sharp necessary and sufficient
+  conditions for many classes of coefficient functions.
+
+\item \textbf{Riccati equation and non-oscillation.}%
+  \index{Riccati equation!non-oscillation}%
+  \index{comparison!non-oscillatory solutions}%
+  Non-oscillation on $[a,\infty)$ is equivalent to the existence of a
+  solution of the Riccati inequality $w'+w^{2}+q(x)\leq 0$ on
+  $[a,\infty)$.  Comparison theorems for non-oscillation then reduce to
+  comparison of the corresponding Riccati equations, providing a unified
+  framework linking the oscillation theory of G\&R~16.6 with the Riccati
+  theory of G\&R~16.5.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.91\quad Some Growth Estimates for Solutions of Second-Order Equations}
 \subsubsection{16.911\quad Strictly increasing and decreasing solutions}
 \subsubsection{16.912\quad General result on dominant and subdominant solutions}
 \subsubsection{16.913\quad Estimate of dominant solution}
+
+The asymptotic behaviour of solutions of $y''+q(x)y=0$ as $x\to\infty$
+is characterised by the dominant and subdominant solutions.  If $q(x)<0$
+for large $x$, one solution grows and one decays; the growing one is
+\emph{dominant} and the decaying one is \emph{subdominant}.  The ratio of
+any two linearly independent solutions diverges, and the dominant solution
+is the one selected by generic initial conditions.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Tunnelling wavefunctions and asymptotic decay.}%
+  \index{tunnelling!subdominant solution}%
+  \index{wavefunction!asymptotic decay}%
+  \index{bound state!exponential tail}%
+  The bound-state wavefunction of the Schr\"{o}dinger equation must be
+  the subdominant solution as $x\to\infty$ (otherwise it would be
+  non-normalisable).  The quantisation condition arises from matching
+  the subdominant solution at $+\infty$ with the subdominant at
+  $-\infty$ through the oscillatory region---this is the essence of the
+  WKB quantisation rule and the exact quantisation via Stokes graphs.
+
+\item \textbf{Amplification in parametrically excited systems.}%
+  \index{parametric excitation!growth}%
+  \index{Mathieu equation!growth estimates}%
+  \index{dominant solution!parametric resonance}%
+  In the unstable regions of the Mathieu equation, the dominant
+  solution grows exponentially.  Growth estimates bound the Floquet
+  exponent $\mu$ (the rate of exponential growth per period),
+  critical for determining the onset of parametric instability in
+  mechanical systems, Faraday waves, and Paul traps for ions.
+
+\item \textbf{Stokes phenomenon in asymptotic analysis.}%
+  \index{Stokes phenomenon}%
+  \index{asymptotic series!Stokes lines}%
+  \index{dominant/subdominant!Stokes switching}%
+  The Stokes phenomenon is the sudden switching of the coefficient
+  of the subdominant solution as a Stokes line is crossed in the
+  complex plane.  This is intimately connected to growth estimates:
+  the subdominant solution is exponentially smaller than the dominant,
+  so its coefficient is ambiguous to the accuracy of the asymptotic
+  expansion of the dominant solution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Dichotomy and exponential splitting.}%
+  \index{exponential dichotomy}%
+  \index{dominant/subdominant!dichotomy}%
+  \index{stable and unstable manifolds}%
+  The existence of dominant and subdominant solutions is an instance of
+  exponential dichotomy: the solution space splits into subspaces of
+  exponentially growing and decaying solutions.  For systems
+  $\mathbf{y}'=A(x)\mathbf{y}$, exponential dichotomy is the key
+  hypothesis for the existence of bounded solutions of
+  inhomogeneous equations (roughness theorem).
+
+\item \textbf{Asymptotic integration (Levinson's theorem).}%
+  \index{Levinson's theorem!asymptotic integration}%
+  \index{asymptotic integration}%
+  \index{perturbation!asymptotic}%
+  Levinson's theorem (1948) states that if $A(x)\to A_{0}$ as
+  $x\to\infty$ and the eigenvalues of $A_{0}$ have distinct real parts,
+  then the system $\mathbf{y}'=A(x)\mathbf{y}$ has a fundamental matrix
+  asymptotic to $e^{A_{0}x}$.  This provides the rigorous foundation
+  for the WKB approximation and the asymptotic classification of
+  solutions into dominant and subdominant.
+
+\item \textbf{Liouville--Green (LG) approximation.}%
+  \index{Liouville--Green approximation}%
+  \index{WKB approximation!rigorous}%
+  \index{phase-amplitude method}%
+  For $y''+\lambda^{2}q(x)y=0$ with $q>0$ and $\lambda\to\infty$, the
+  Liouville--Green approximation gives
+  $y\sim q^{-1/4}\exp\!\left(\pm\lambda\int q^{1/2}\,dx\right)$ with
+  rigorous error bounds $O(1/\lambda)$.  The growth estimate is
+  controlled by $\int q^{1/2}\,dx$, the ``optical path length'' through
+  the medium.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.914\quad A theorem due to Lyapunov}
 
+Lyapunov's inequality states that if $y''+q(x)y=0$ has a non-trivial
+solution vanishing at both $x=a$ and $x=b$ ($a<b$), then
+$\int_{a}^{b}q(x)\,dx>\frac{4}{b-a}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Lower bounds on eigenvalues.}%
+  \index{Lyapunov's inequality!eigenvalue bounds}%
+  \index{eigenvalue!lower bound}%
+  \index{quantum well!eigenvalue estimate}%
+  For the eigenvalue problem $y''+\lambda q(x)y=0$, $y(a)=y(b)=0$,
+  Lyapunov's inequality gives
+  $\lambda_{1}\int_{a}^{b}q(x)\,dx>4/(b-a)$, hence a lower bound on
+  the first eigenvalue.  For a quantum well of width $L$, this gives
+  $E_{1}>4\hbar^{2}/(2mL^{2})\cdot(1/\int_{0}^{L}1\,dx)
+  =2\hbar^{2}/(mL^{2})$, within a factor of $\pi^{2}/2$ of the exact
+  value.
+
+\item \textbf{Stability criteria for Hill's equation.}%
+  \index{Hill's equation!Lyapunov stability}%
+  \index{stability criterion!Lyapunov inequality}%
+  \index{periodic orbit!stability}%
+  For Hill's equation $y''+[a+q(x)]y=0$ with $q$ periodic of period $T$,
+  Lyapunov's inequality applied to each half-period gives stability
+  criteria: if $\int_{0}^{T}q(x)\,dx$ is too small, no solution can
+  have two zeros in one period, ensuring stability.  This provides
+  simple, computable stability tests for periodic orbits.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Sharpness and generalisations.}%
+  \index{Lyapunov's inequality!sharpness}%
+  \index{Lyapunov's inequality!generalisations}%
+  \index{de La Vall\'ee-Poussin inequality}%
+  The constant $4/(b-a)$ in Lyapunov's inequality is sharp, attained
+  in the limit by the constant-coefficient equation $y''+\pi^{2}/(b-a)^{2}y=0$.
+  Generalisations replace $4/(b-a)$ with larger constants involving
+  higher moments of $q$ or weighted integrals, and extend to systems,
+  higher-order equations, and fractional differential operators.
+
+\item \textbf{Disconjugacy and de La Vall\'ee-Poussin criterion.}%
+  \index{de La Vall\'ee-Poussin!disconjugacy}%
+  \index{disconjugacy!Lyapunov inequality}%
+  The contrapositive of Lyapunov's inequality gives a disconjugacy
+  criterion: if $\int_{a}^{b}q^{+}(x)\,dx\leq 4/(b-a)$, then no
+  non-trivial solution has two zeros in $[a,b]$.  This is a key tool
+  in boundary value problem theory, where disconjugacy ensures
+  unique solvability of two-point boundary value problems.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.92\quad Boundedness Theorems}
 \subsubsection{16.921\quad All solutions of the equation}
 \subsubsection{16.922\quad If all solutions of the equation}
 \subsubsection{16.923\quad If $a(x)\to \infty$ monotonically as $x\to \infty$, then all solutions of}
 \subsubsection{16.924\quad Consider the equation}
 
+The boundedness theorems address the question: under what conditions on
+$q(x)$ are all solutions of $y''+q(x)y=0$ bounded as $x\to\infty$?
+This is a more delicate question than oscillation, as oscillatory solutions
+may still be unbounded.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Stability of oscillations with varying frequency.}%
+  \index{bounded oscillations}%
+  \index{variable frequency!stability}%
+  \index{adiabatic invariant}%
+  For $y''+\omega^{2}(x)y=0$ with slowly varying $\omega(x)$, the
+  adiabatic invariant $E(x)/\omega(x)$ (energy divided by frequency)
+  is approximately constant, giving amplitude
+  $|y|\sim\omega^{-1/2}$.  This is bounded if $\omega\to\infty$
+  (solutions actually decay) and unbounded if $\omega\to 0$.
+  The boundedness theorems make this precise when $\omega$ varies
+  non-monotonically.
+
+\item \textbf{Quantum mechanics: normalisation and scattering.}%
+  \index{normalisation!boundedness}%
+  \index{scattering!bounded solutions}%
+  \index{Jost solutions}%
+  Bounded solutions of the Schr\"{o}dinger equation on $[0,\infty)$
+  at energy $E>0$ correspond to scattering states.  The Jost solution
+  $f(k,x)\sim e^{ikx}$ as $x\to\infty$ is bounded, and its behaviour
+  at $x=0$ determines the scattering phase shift $\delta(k)$.
+  Boundedness criteria determine which energies belong to the
+  absolutely continuous spectrum.
+
+\item \textbf{Suppression of parametric resonance.}%
+  \index{parametric resonance!suppression}%
+  \index{increasing stiffness!boundedness}%
+  \index{WKB!boundedness}%
+  The result that all solutions of $y''+a(x)y=0$ are bounded when
+  $a(x)\to\infty$ monotonically (G\&R~16.923) explains why a stiffening
+  spring suppresses unbounded growth: the increasing natural frequency
+  prevents resonance accumulation.  The amplitude decreases as
+  $a^{-1/4}$ (WKB estimate), confirmed by the rigorous boundedness
+  theorem.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Energy method and Sonin--P\'olya theorem.}%
+  \index{Sonin--P\'olya theorem}%
+  \index{energy method!boundedness}%
+  \index{amplitude monotonicity}%
+  The Sonin--P\'{o}lya theorem states that the successive maxima of
+  $|y|$ for $y''+q(x)y=0$ are non-increasing when $q(x)$ is
+  non-decreasing.  This is proved by the energy method: define
+  $E=y'^{2}+q(x)y^{2}$; then $E'=q'y^{2}\geq 0$ when $q'\geq 0$,
+  but the maxima of $|y|$ are $|y_{\max}|=\sqrt{E/q}$, which decreases
+  when $q$ grows faster than $E$.
+
+\item \textbf{Wintner's boundedness theorem.}%
+  \index{Wintner's theorem!boundedness}%
+  \index{bounded solutions!sufficient conditions}%
+  \index{integral conditions!boundedness}%
+  Wintner's theorem gives conditions on $q$ ensuring all solutions are
+  bounded: if $q(x)>0$ for large $x$ and $\int^{\infty}|q'|/q^{3/2}<\infty$,
+  then all solutions are bounded and behave like $q^{-1/4}\sin$ or $\cos$
+  of $\int q^{1/2}\,dx$.  The condition $|q'|/q^{3/2}\in L^{1}$ quantifies
+  ``slowly varying $q$'' and is the rigorous version of the WKB
+  validity condition.
+
+\item \textbf{Cesaro means and generalised boundedness.}%
+  \index{Ces\`aro means!boundedness}%
+  \index{generalised boundedness}%
+  \index{Hartman--Wintner theorem}%
+  Hartman and Wintner showed that if $q(x)\to+\infty$ and $q$ has
+  bounded variation on each interval $[n,n+1]$, then solutions are
+  bounded.  More refined results use Ces\`{a}ro means of $q$: even if
+  $q$ oscillates, its average growth determines boundedness of solutions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{16.93\quad Growth of maxima of $|y|$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Amplitude modulation and beats.}%
+  \index{amplitude modulation!ODE}%
+  \index{beats!envelope growth}%
+  \index{envelope!growth of maxima}%
+  The successive maxima of $|y|$ form the ``envelope'' of the
+  oscillation.  In physical systems with slowly varying parameters, the
+  envelope evolves on a slow time scale.  Beating between two close
+  frequencies produces a sinusoidal envelope
+  $A(t)=2|\cos(\Delta\omega\,t/2)|$, while parametric driving can
+  produce exponentially growing envelopes in unstable regimes.
+
+\item \textbf{Seismic wave amplification.}%
+  \index{seismic waves!amplitude growth}%
+  \index{site amplification}%
+  \index{impedance contrast!amplification}%
+  Seismic waves propagating upward through layers of decreasing
+  impedance $\rho c$ are amplified: the maxima of $|y|$ grow as
+  $(\rho c)^{-1/2}$.  Growth-of-maxima estimates quantify site
+  amplification factors, critical for earthquake engineering and
+  building codes.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Pr\"ufer analysis of amplitude growth.}%
+  \index{Pr\"ufer substitution!amplitude}%
+  \index{amplitude function!Pr\"ufer}%
+  \index{growth rate!maxima}%
+  In the Pr\"{u}fer substitution $y=r\sin\theta$, the amplitude $r(x)$
+  satisfies $(\ln r)'=\frac{1}{2}(1-q)\sin 2\theta$.  The maxima of
+  $|y|$ occur when $\theta=\pi/2+n\pi$ (where $y'=0$), and their
+  growth is controlled by the integral $\int(1-q)\sin 2\theta\,dx$
+  between successive maxima.  Averaging gives envelope growth
+  proportional to $q^{-1/4}$ for slowly varying $q$.
+
+\item \textbf{Asymptotic distribution of maxima.}%
+  \index{asymptotic distribution!maxima}%
+  \index{Sonin--P\'olya theorem!growth}%
+  \index{Liouville--Green!amplitude}%
+  For $y''+q(x)y=0$ with $q(x)\to+\infty$, the Sonin--P\'{o}lya
+  theorem guarantees that successive maxima of $|y|$ are non-increasing.
+  The Liouville--Green approximation refines this: the $n$th maximum
+  is approximately $q(x_{n})^{-1/4}$ where $x_{n}$ is the location of
+  the $n$th maximum.  The spacing between consecutive maxima is
+  approximately $\pi/q(x_{n})^{1/2}$, decreasing as $q$ grows.
+\end{enumerate}

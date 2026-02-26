@@ -1,55 +1,898 @@
-%% Sections 8–9 — Special Functions
+%% ============================================================
+%% 8–9  Special Functions
+%% ============================================================
 \section{8--9\quad Special Functions}
 
+The special functions catalogued in G\&R sections 8--9 arise as
+solutions to the differential equations produced by separation of
+variables (Section~10), as building blocks for the integral tables
+of Sections~3--7, and as the fundamental objects of analytic number
+theory, combinatorics, and mathematical physics.  This companion
+section surveys their origins, interconnections, and applications.
+
+%% ============================================================
 \subsection{8.1\quad Elliptic Integrals and Functions}
+%% ============================================================
+
+%% -------------------------------------------------------------------
 \subsubsection{8.11\quad Elliptic integrals}
 \subsubsection{8.12\quad Functional relations between elliptic integrals}
+
+The incomplete elliptic integrals of the first, second, and third kinds
+are $F(\varphi,k)=\int_{0}^{\varphi}(1-k^{2}\sin^{2}\theta)^{-1/2}\,d\theta$,
+$E(\varphi,k)=\int_{0}^{\varphi}(1-k^{2}\sin^{2}\theta)^{1/2}\,d\theta$,
+and $\Pi(n;\varphi,k)=\int_{0}^{\varphi}(1-n\sin^{2}\theta)^{-1}
+(1-k^{2}\sin^{2}\theta)^{-1/2}\,d\theta$.  Their complete forms
+($\varphi=\pi/2$) are $K(k)$, $E(k)$, and $\Pi(n;k)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Nonlinear pendulum and Josephson junctions.}%
+  \index{elliptic integral!first kind}%
+  \index{pendulum!nonlinear}%
+  \index{Josephson junction!pendulum analogy}%
+  \index{complete elliptic integral}%
+  The period of a simple pendulum of amplitude $\varphi_{0}$ is
+  $T=4\sqrt{\ell/g}\,K(\sin(\varphi_{0}/2))$, the first application of
+  complete elliptic integrals in physics.  The same equation describes
+  the phase dynamics of a Josephson junction
+  $\ddot{\phi}+\omega_{J}^{2}\sin\phi=I/I_{c}$, where $K(k)$
+  determines the period of libration (below critical current) and the
+  incomplete integral $F$ gives the time evolution.
+
+\item \textbf{Arc length of an ellipse and planetary orbits.}%
+  \index{ellipse!arc length}%
+  \index{elliptic integral!second kind}%
+  \index{planetary orbit!arc length}%
+  The arc length of the ellipse $x^{2}/a^{2}+y^{2}/b^{2}=1$ is
+  $L=4aE(e)$ where $e=\sqrt{1-b^{2}/a^{2}}$ is the eccentricity.
+  The perimeter is not expressible in elementary functions---this is
+  the historical origin of the name ``elliptic integral.''  Kepler's
+  equation $M=E-e\sin E$ for planetary motion involves the same
+  integrals when computing arc-length along the orbit.
+
+\item \textbf{Mutual inductance and magnetic fields.}%
+  \index{mutual inductance!elliptic integrals}%
+  \index{Neumann formula!elliptic integral}%
+  \index{magnetic field!coaxial coils}%
+  The mutual inductance of two coaxial circular coils is
+  $M=\mu_{0}\sqrt{R_{1}R_{2}}\,[(2/k-k)K(k)-2E(k)/k]$ (Neumann's
+  formula), involving both $K$ and $E$.  Off-axis fields require the
+  third kind $\Pi$.  These formulas are used in MRI coil design,
+  wireless power transfer, and tokamak magnetic confinement.
+
+\item \textbf{Landen and Gauss transformations.}%
+  \index{Landen transformation}%
+  \index{Gauss transformation!elliptic integrals}%
+  \index{arithmetic--geometric mean}%
+  The Landen transformation $K(k)=\frac{1+k_{1}}{1}K(k_{1})$ with
+  $k_{1}=(1-k')/(1+k')$ halves the modulus in each step, converging
+  quadratically to $K=\pi/(2M(1,k'))$ via the arithmetic--geometric
+  mean $M(a,b)$.  This gives an algorithm computing $K$ (and hence
+  $\pi$) to $n$ digits in $O(\log n)$ AGM iterations.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Elliptic curves and the addition law.}%
+  \index{elliptic curve!addition law}%
+  \index{addition theorem!elliptic integrals}%
+  \index{Euler's addition theorem}%
+  Euler's addition theorem for elliptic integrals
+  $F(\varphi_{1},k)+F(\varphi_{2},k)=F(\varphi_{3},k)$ (where
+  $\varphi_{3}$ is a rational function of $\sin\varphi_{1},\sin\varphi_{2}$)
+  is the analytic statement of the group law on the elliptic curve.
+  This connects the functional relations of G\&R~8.12 to the algebraic
+  geometry of elliptic curves.
+
+\item \textbf{Modular equations and Ramanujan's theories.}%
+  \index{modular equations}%
+  \index{Ramanujan!elliptic integrals}%
+  \index{singular moduli}%
+  The relation $K(k')/K(k)=\sqrt{n}$ for specific $k$ (singular moduli)
+  yields algebraic equations of degree depending on $n$, called modular
+  equations.  Ramanujan discovered spectacular identities for $1/\pi$ using
+  singular moduli, and the theory of complex multiplication connects
+  these to class field theory over imaginary quadratic fields.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.13\quad Elliptic functions}
 \subsubsection{8.14\quad Jacobian elliptic functions}
 \subsubsection{8.15\quad Properties of Jacobian elliptic functions and functional relationships between them}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Exact solutions of nonlinear oscillators.}%
+  \index{Jacobian elliptic functions}%
+  \index{nonlinear oscillator!exact solution}%
+  \index{cnoidal waves}%
+  \index{Duffing oscillator}%
+  The Duffing oscillator $\ddot{x}+\alpha x+\beta x^{3}=0$ has exact
+  solutions in terms of Jacobi $\operatorname{cn}$ (cnoidal functions)
+  or $\operatorname{sn}$ depending on the signs of $\alpha,\beta$.
+  Cnoidal waves in shallow water (KdV equation) are periodic solutions
+  expressed through $\operatorname{cn}^{2}$, interpolating between
+  sinusoidal waves ($k\to 0$) and solitary waves ($k\to 1$).
+
+\item \textbf{Conformal mapping of polygonal domains.}%
+  \index{conformal mapping!Schwarz--Christoffel}%
+  \index{Schwarz--Christoffel!elliptic functions}%
+  \index{rectangular waveguide}%
+  The Schwarz--Christoffel mapping of the upper half-plane to a
+  rectangle involves $\operatorname{sn}^{-1}$, and the ratio of
+  sides is $K'/K$.  This maps boundary value problems on rectangular
+  and L-shaped domains to half-plane problems, with applications to
+  waveguide modes, electrostatic fields, and fluid flow past
+  obstacles.
+
+\item \textbf{Soliton solutions in nonlinear field theory.}%
+  \index{soliton!elliptic function}%
+  \index{kink solution}%
+  \index{sine-Gordon equation!kink}%
+  \index{instanton!elliptic function}%
+  The kink solution of the sine-Gordon equation $\phi_{tt}-\phi_{xx}
+  +\sin\phi=0$ is $\phi=4\arctan(e^{(x-vt)/\sqrt{1-v^{2}}})$.
+  Periodic (multi-kink) solutions involve Jacobi elliptic functions.
+  In quantum field theory, instantons in the double-well potential are
+  expressed through $\operatorname{tanh}$ (the $k\to 1$ limit of
+  $\operatorname{sn}$), connecting elliptic functions to tunnelling
+  amplitudes.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Doubly periodic meromorphic functions.}%
+  \index{doubly periodic functions}%
+  \index{meromorphic functions!elliptic}%
+  \index{Liouville's theorem!elliptic functions}%
+  An elliptic function is a meromorphic function on $\mathbb{C}$ doubly
+  periodic with periods $2K$ and $2iK'$.  Liouville's theorem
+  (for elliptic functions): a non-constant elliptic function has at
+  least two poles per period parallelogram, and the sum of residues
+  is zero.  The Jacobi functions $\operatorname{sn}$, $\operatorname{cn}$,
+  $\operatorname{dn}$ are the simplest order-2 elliptic functions with
+  prescribed pole structure.
+
+\item \textbf{Addition theorems and algebraic structure.}%
+  \index{addition theorem!Jacobi functions}%
+  \index{elliptic function!addition theorem}%
+  The addition theorem $\operatorname{sn}(u+v)
+  =\frac{\operatorname{sn}u\operatorname{cn}v\operatorname{dn}v
+  +\operatorname{sn}v\operatorname{cn}u\operatorname{dn}u}
+  {1-k^{2}\operatorname{sn}^{2}u\operatorname{sn}^{2}v}$ encodes
+  the group law on the elliptic curve.  The denominator's structure
+  (a polynomial in $\operatorname{sn}^{2}$) reflects the algebraic
+  geometry: the elliptic curve is a group variety, and all algebraic
+  relations among the Jacobi functions follow from the curve equation
+  $\operatorname{sn}^{2}+\operatorname{cn}^{2}=1$,
+  $k^{2}\operatorname{sn}^{2}+\operatorname{dn}^{2}=1$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.16\quad The Weierstrass function $\wp(u)$}
 \subsubsection{8.17\quad The functions $\zeta(u)$ and $\sigma(u)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Lattice sums and Green's functions on a torus.}%
+  \index{Weierstrass $\wp$-function}%
+  \index{lattice sums!Weierstrass}%
+  \index{Green's function!torus}%
+  \index{Ewald summation}%
+  The Weierstrass $\wp$-function is the Green's function for the
+  Laplacian on a flat torus: $-\nabla^{2}G=\delta-1/|\text{cell}|$
+  with $G\sim\wp(z)$ plus constants.  The associated $\zeta$-function
+  appears in Ewald summation for computing electrostatic energies
+  of periodic charge distributions in crystals and molecular simulations.
+
+\item \textbf{Integrable systems and the Calogero--Moser model.}%
+  \index{Calogero--Moser system!Weierstrass}%
+  \index{integrable system!elliptic}%
+  \index{Lax pair!elliptic}%
+  The elliptic Calogero--Moser system describes $n$ particles on a line
+  with pairwise interaction $V(x)=\wp(x)$.  The system is completely
+  integrable (Lax pair construction), and its solutions are expressed
+  through the $\sigma$-function.  Degenerations $\wp\to 1/\sinh^{2}$
+  and $\wp\to 1/x^{2}$ recover the trigonometric and rational
+  Calogero--Moser systems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Uniformisation of elliptic curves.}%
+  \index{uniformisation!Weierstrass}%
+  \index{elliptic curve!Weierstrass form}%
+  \index{modular discriminant}%
+  The map $z\mapsto(\wp(z),\wp'(z))$ uniformises the elliptic curve
+  $y^{2}=4x^{3}-g_{2}x-g_{3}$ (Weierstrass normal form), providing a
+  bijection $\mathbb{C}/\Lambda\xrightarrow{\sim}E(\mathbb{C})$.
+  The modular discriminant $\Delta=g_{2}^{3}-27g_{3}^{2}$ detects
+  when the curve degenerates (nodal or cuspidal singularity).
+
+\item \textbf{Modular forms from Eisenstein series.}%
+  \index{Eisenstein series!modular forms}%
+  \index{modular forms!Eisenstein}%
+  \index{weight $2k$ forms}%
+  The invariants $g_{2}=60\sum_{\omega\neq 0}\omega^{-4}$ and
+  $g_{3}=140\sum_{\omega\neq 0}\omega^{-6}$ (sums over the lattice
+  $\Lambda$) are Eisenstein series of weights 4 and 6.  They generate
+  the ring of modular forms $M_{*}(\mathrm{SL}_{2}(\mathbb{Z}))
+  =\mathbb{C}[g_{2},g_{3}]$, connecting the Weierstrass theory to the
+  arithmetic of modular forms.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.18--8.19\quad Theta functions}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Partition functions and statistical mechanics.}%
+  \index{theta functions}%
+  \index{partition function!theta function}%
+  \index{Ising model!theta functions}%
+  \index{lattice models!theta functions}%
+  The Jacobi theta function
+  $\theta_{3}(z|\tau)=\sum_{n=-\infty}^{\infty}q^{n^{2}}e^{2niz}$
+  ($q=e^{i\pi\tau}$) is the partition function of a free boson on a
+  circle.  In statistical mechanics, theta functions appear in
+  exact solutions of lattice models (Baxter's solution of the
+  eight-vertex model) and in one-loop string amplitudes.
+
+\item \textbf{Heat kernel on a circle.}%
+  \index{heat kernel!theta function}%
+  \index{Jacobi identity!theta functions}%
+  \index{Poisson summation!heat kernel}%
+  The heat kernel on $S^{1}$ is $K(x,t)=\sum_{n}e^{-n^{2}t+inx}
+  =\theta_{3}(x/2|it/\pi)$.  The Jacobi imaginary transformation
+  $\theta_{3}(z|\tau)=(-i\tau)^{-1/2}e^{z^{2}/(i\pi\tau)}
+  \theta_{3}(z/\tau|-1/\tau)$ is the Poisson summation formula in
+  disguise, converting the large-$t$ expansion (few terms) to the
+  small-$t$ expansion (many terms), essential in spectral geometry and
+  zeta-function regularisation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Jacobi triple product and combinatorics.}%
+  \index{Jacobi triple product}%
+  \index{partition function!number theory}%
+  \index{Euler's pentagonal theorem}%
+  The Jacobi triple product identity
+  $\sum_{n=-\infty}^{\infty}z^{n}q^{n^{2}}
+  =\prod_{m=1}^{\infty}(1-q^{2m})(1+zq^{2m-1})(1+z^{-1}q^{2m-1})$
+  connects theta functions to infinite products.  Specialisations give
+  Euler's pentagonal theorem, Ramanujan's partition identities, and the
+  denominator formula for affine Lie algebras.
+
+\item \textbf{Abelian varieties and higher-dimensional theta functions.}%
+  \index{abelian variety!theta function}%
+  \index{Riemann theta function}%
+  \index{Siegel modular forms}%
+  The Riemann theta function
+  $\Theta(\mathbf{z}|\Omega)=\sum_{\mathbf{n}\in\mathbb{Z}^{g}}
+  e^{i\pi\mathbf{n}^{T}\Omega\mathbf{n}+2\pi i\mathbf{n}^{T}\mathbf{z}}$
+  ($\Omega$ a $g\times g$ period matrix) generalises theta functions to
+  $g$-dimensional abelian varieties.  These appear in the algebro-geometric
+  solution of integrable PDEs (KP hierarchy) and in Siegel modular forms.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.2\quad The Exponential Integral Function and Functions Generated by It}
+%% ============================================================
+
 \subsubsection{8.21\quad The exponential integral function $\operatorname{Ei}(x)$}
 \subsubsection{8.22\quad The hyperbolic sine integral $\operatorname{shi} x$ and the hyperbolic cosine integral $\operatorname{chi} x$}
 \subsubsection{8.23\quad The sine integral and the cosine integral: $\operatorname{si} x$ and $\operatorname{ci} x$}
 \subsubsection{8.24\quad The logarithm integral $\operatorname{li}(x)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Radiation and antenna theory.}%
+  \index{exponential integral!$\operatorname{Ei}(x)$}%
+  \index{sine integral!antenna theory}%
+  \index{cosine integral!antenna theory}%
+  \index{dipole antenna!radiation pattern}%
+  The radiation resistance and directivity of a centre-fed dipole
+  antenna of length $2L$ involve $\operatorname{Si}(x)$,
+  $\operatorname{Ci}(x)$, and $\operatorname{Ei}(x)$ evaluated at
+  $x=kL$.  The sine integral appears in the Fourier transform of
+  the rectangular function, connecting antenna patterns to sinc-function
+  diffraction.
+
+\item \textbf{Nuclear physics: Coulomb integrals.}%
+  \index{Coulomb integral!exponential integral}%
+  \index{nuclear physics!Coulomb}%
+  \index{Bethe formula!stopping power}%
+  The Bethe formula for the stopping power of charged particles in
+  matter involves $\operatorname{Ei}(-x)$ through the integration of
+  the Coulomb cross-section over impact parameters.  The logarithm
+  integral $\operatorname{li}(x)$ also appears in the high-energy
+  asymptotics of scattering amplitudes (Regge theory).
+
+\item \textbf{Heat conduction and diffusion.}%
+  \index{exponential integral!heat conduction}%
+  \index{line source!heat equation}%
+  \index{Theis equation!groundwater}%
+  The temperature field due to an instantaneous line source in an
+  infinite medium is $T(r,t)\propto\operatorname{Ei}(-r^{2}/(4\alpha t))$,
+  the well-known ``well function'' in groundwater hydrology
+  (Theis equation).  The exponential integral appears in all
+  cylindrically symmetric diffusion problems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Prime number theorem and $\operatorname{li}(x)$.}%
+  \index{logarithm integral!prime counting}%
+  \index{prime number theorem}%
+  \index{$\pi(x)$!logarithmic integral}%
+  \index{Riemann hypothesis!$\operatorname{li}(x)$}%
+  The prime counting function $\pi(x)\sim\operatorname{li}(x)
+  =\int_{2}^{x}dt/\ln t$ (the prime number theorem).  The error term
+  $|\pi(x)-\operatorname{li}(x)|=O(\sqrt{x}\ln x)$ is equivalent to
+  the Riemann hypothesis.  Ramanujan's formula
+  $\operatorname{li}(x)=\sum_{k=1}^{\infty}\frac{(\ln x)^{k}}{k\cdot k!}
+  +\ln\ln x+\gamma$ gives a rapidly convergent series for computation.
+
+\item \textbf{Asymptotic expansions and Stokes phenomenon.}%
+  \index{exponential integral!asymptotics}%
+  \index{Stokes phenomenon!exponential integral}%
+  \index{asymptotic expansion!$\operatorname{Ei}$}%
+  The asymptotic expansion
+  $\operatorname{Ei}(x)\sim\frac{e^{x}}{x}\sum_{n=0}^{\infty}\frac{n!}{x^{n}}$
+  is divergent but Borel summable.  The Stokes phenomenon at $\arg x=\pi$
+  (where $\operatorname{Ei}\to E_{1}$) is the simplest instance of
+  Stokes switching, used as a pedagogical model for resurgence and
+  trans-series in quantum field theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.25\quad The probability integral $\Phi(x)$, the Fresnel integrals $S(x)$ and $C(x)$, the error function $\operatorname{erf}(x)$, and the complementary error function $\operatorname{erfc}(x)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gaussian statistics and the error function.}%
+  \index{error function!$\operatorname{erf}(x)$}%
+  \index{Gaussian distribution}%
+  \index{probability integral}%
+  \index{central limit theorem!error function}%
+  $\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}}\,dt$
+  gives the cumulative distribution of the standard Gaussian.  The
+  complementary error function
+  $\operatorname{erfc}(x)=1-\operatorname{erf}(x)$ governs tail
+  probabilities and bit-error rates in digital communications.  The
+  central limit theorem ensures that $\operatorname{erf}$ appears
+  whenever independent random effects are summed.
+
+\item \textbf{Diffusion and the Green's function.}%
+  \index{diffusion equation!error function}%
+  \index{Green's function!diffusion}%
+  \index{complementary error function}%
+  The solution to $\partial_{t}u=D\partial_{x}^{2}u$ with step-function
+  initial conditions is $u(x,t)=\frac{1}{2}\operatorname{erfc}(x/\sqrt{4Dt})$.
+  The complementary error function describes the concentration profile
+  in Fick's diffusion, dopant profiles in semiconductor fabrication, and
+  heat penetration into a half-space.
+
+\item \textbf{Fresnel integrals and wave optics.}%
+  \index{Fresnel integrals}%
+  \index{Cornu spiral}%
+  \index{diffraction!Fresnel}%
+  \index{near-field diffraction}%
+  The Fresnel integrals $C(x)=\int_{0}^{x}\cos(\pi t^{2}/2)\,dt$ and
+  $S(x)=\int_{0}^{x}\sin(\pi t^{2}/2)\,dt$ describe Fresnel
+  (near-field) diffraction.  The Cornu spiral $C(x)+iS(x)$ in the
+  complex plane gives a geometric construction of diffraction patterns
+  at straight edges, slits, and zone plates.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gaussian integrals and the $\Gamma(1/2)$ identity.}%
+  \index{Gaussian integral}%
+  \index{$\Gamma(1/2)=\sqrt{\pi}$}%
+  \index{polar coordinates!Gaussian integral}%
+  The identity $\int_{-\infty}^{\infty}e^{-x^{2}}\,dx=\sqrt{\pi}$
+  (proved by squaring and converting to polar coordinates) is the
+  single most important definite integral in mathematics.  It gives
+  $\Gamma(1/2)=\sqrt{\pi}$, normalises the Gaussian density, and
+  generates all moments $\int x^{2n}e^{-x^{2}}\,dx
+  =(2n)!\sqrt{\pi}/(4^{n}n!)$ by differentiation.
+
+\item \textbf{Fresnel integrals and stationary phase.}%
+  \index{Fresnel integral!stationary phase}%
+  \index{stationary phase!quadratic}%
+  \index{oscillatory integral!Fresnel}%
+  The Fresnel integrals are the model oscillatory integrals for the
+  stationary phase method: $\int_{-\infty}^{\infty}e^{i\lambda x^{2}}\,dx
+  =\sqrt{\pi/\lambda}\,e^{i\pi/4}$.  The $e^{i\pi/4}$ phase factor
+  (Maslov index) appears in every application of stationary phase,
+  from geometric optics to the path integral of quantum mechanics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.26\quad Lobachevskiy's function $L(x)$}
 
+\paragraph{Physics and mathematics applications.}
+\begin{enumerate}
+\item \textbf{Volumes in hyperbolic geometry.}%
+  \index{Lobachevsky function}%
+  \index{hyperbolic geometry!volumes}%
+  \index{Clausen function}%
+  \index{hyperbolic manifold!volume}%
+  Lobachevskiy's function $L(x)=-\int_{0}^{x}\ln|2\sin t|\,dt$ (also
+  written as $\frac{1}{2}\mathrm{Cl}_{2}(2x)$, the Clausen function)
+  gives volumes of ideal tetrahedra in hyperbolic 3-space.  The volume
+  of a hyperbolic 3-manifold is a sum of values of $L$ at rational
+  multiples of $\pi$, appearing in the Bloch--Wigner dilogarithm and
+  in Thurston's geometrisation program.  In physics, the same
+  function computes one-loop Feynman diagram contributions in
+  conformal field theory.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.3\quad Euler's Integrals of the First and Second Kinds}
+%% ============================================================
+
 \subsubsection{8.31\quad The gamma function (Euler's integral of the second kind): $\Gamma(z)$}
 \subsubsection{8.32\quad Representation of the gamma function as series and products}
 \subsubsection{8.33\quad Functional relations involving the gamma function}
+
+The gamma function $\Gamma(z)=\int_{0}^{\infty}t^{z-1}e^{-t}\,dt$
+(for $\mathrm{Re}\,z>0$) extends the factorial to complex arguments:
+$\Gamma(n+1)=n!$.  Its key functional relations are the recurrence
+$\Gamma(z+1)=z\Gamma(z)$, the reflection formula
+$\Gamma(z)\Gamma(1-z)=\pi/\sin(\pi z)$, and the duplication formula
+$\Gamma(z)\Gamma(z+\frac{1}{2})=\sqrt{\pi}\,\Gamma(2z)/2^{2z-1}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Dimensional regularisation in quantum field theory.}%
+  \index{gamma function!$\Gamma(z)$}%
+  \index{dimensional regularisation!gamma function}%
+  \index{Feynman integrals!gamma function}%
+  \index{renormalisation!poles of $\Gamma$}%
+  In dimensional regularisation, Feynman loop integrals in $d=4-2\varepsilon$
+  dimensions produce $\Gamma(\varepsilon)$,
+  $\Gamma(-1+\varepsilon)$, etc., whose poles at $\varepsilon=0$ are
+  the ultraviolet divergences.  The Laurent expansion
+  $\Gamma(\varepsilon)=1/\varepsilon-\gamma+O(\varepsilon)$ gives the
+  divergent and finite parts.  The functional relations
+  (G\&R~8.33) are used to simplify products of gamma functions from
+  multi-loop diagrams \cite{tHooftVeltman1972}.
+
+\item \textbf{Statistical mechanics: ideal gas and Bose--Einstein condensation.}%
+  \index{ideal gas!gamma function}%
+  \index{Bose--Einstein condensation!gamma function}%
+  \index{polylogarithm!Bose--Einstein}%
+  The partition function of an ideal gas in $d$ dimensions involves
+  $\Gamma(d/2)$ through the volume of a $d$-dimensional sphere
+  $V_{d}=\pi^{d/2}/\Gamma(d/2+1)$.  The critical temperature of
+  Bose--Einstein condensation is
+  $T_{c}\propto[\Gamma(d/2)\zeta(d/2)]^{-2/d}$, connecting the gamma
+  function to the zeta function and phase transitions \cite{Pathria2011}.
+
+\item \textbf{Veneziano amplitude and string theory.}%
+  \index{Veneziano amplitude!gamma function}%
+  \index{string theory!gamma function}%
+  \index{beta function!Veneziano}%
+  The Veneziano amplitude $A(s,t)=\Gamma(-\alpha(s))\Gamma(-\alpha(t))
+  /\Gamma(-\alpha(s)-\alpha(t))=B(-\alpha(s),-\alpha(t))$ for meson
+  scattering launched string theory.  The poles of $\Gamma(-\alpha(s))$
+  at $\alpha(s)=0,1,2,\ldots$ correspond to the infinite tower of
+  string resonances \cite{Veneziano1968}.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Weierstrass product and Hadamard factorisation.}%
+  \index{Weierstrass product!gamma function}%
+  \index{Hadamard factorisation}%
+  \index{entire function!order}%
+  The Weierstrass product $1/\Gamma(z)=ze^{\gamma z}\prod_{n=1}^{\infty}
+  (1+z/n)e^{-z/n}$ is the prototypical Hadamard factorisation of an
+  entire function of order 1.  This connects the gamma function to the
+  theory of entire functions, the Phragm\'{e}n--Lindel\"{o}f principle,
+  and the distribution of zeros.
+
+\item \textbf{Stirling's formula and asymptotic analysis.}%
+  \index{Stirling's formula}%
+  \index{asymptotic expansion!gamma function}%
+  \index{saddle-point method!gamma function}%
+  Stirling's formula $\Gamma(z)\sim\sqrt{2\pi}\,z^{z-1/2}e^{-z}
+  (1+1/(12z)+\cdots)$ is proved by the saddle-point method applied to
+  the integral representation, the canonical example of asymptotic
+  analysis.  The full asymptotic series is divergent but Borel summable,
+  with optimal truncation giving exponentially small error.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.34\quad The logarithm of the gamma function}
 \subsubsection{8.35\quad The incomplete gamma function}
 \subsubsection{8.36\quad The psi function $\psi(x)$}
 \subsubsection{8.37\quad The function $\beta(x)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Digamma function in renormalisation.}%
+  \index{psi function!$\psi(x)$}%
+  \index{digamma function!renormalisation}%
+  \index{anomalous dimension!digamma}%
+  \index{harmonic sums!digamma}%
+  The digamma function $\psi(z)=\Gamma'(z)/\Gamma(z)$ appears
+  ubiquitously in quantum field theory: the one-loop anomalous
+  dimensions in QCD involve $\psi(j)$ evaluated at integer spin $j$,
+  giving harmonic sums $H_{j}=\sum_{k=1}^{j}1/k=\psi(j+1)+\gamma$.
+  The polygamma functions $\psi^{(n)}$ appear at higher loop orders.
+
+\item \textbf{Incomplete gamma and chi-squared distribution.}%
+  \index{incomplete gamma function}%
+  \index{chi-squared distribution}%
+  \index{regularised incomplete gamma}%
+  \index{statistical testing!$p$-value}%
+  The regularised incomplete gamma function
+  $P(a,x)=\gamma(a,x)/\Gamma(a)
+  =\frac{1}{\Gamma(a)}\int_{0}^{x}t^{a-1}e^{-t}\,dt$ gives the CDF of the
+  gamma distribution and, for $a=k/2$, $x=\chi^{2}/2$, the chi-squared
+  distribution used in statistical hypothesis testing.  Efficient
+  algorithms for $P(a,x)$ are the workhorse of statistical software.
+
+\item \textbf{Casimir energy via zeta-function regularisation.}%
+  \index{Casimir energy!log gamma}%
+  \index{zeta-function regularisation!log gamma}%
+  \index{functional determinant}%
+  The functional determinant of the Laplacian on a manifold is
+  $\det\Delta=e^{-\zeta_{\Delta}'(0)}$, where $\zeta_{\Delta}(s)
+  =\sum\lambda_{n}^{-s}$ is the spectral zeta function.  For the
+  circle $S^{1}$, $\zeta'(0)$ involves $\ln\Gamma$ at rational
+  arguments, connecting Casimir energies to the Barnes $G$-function
+  and multiple gamma functions \cite{Elizalde1995}.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Binet's representation and Stirling's series.}%
+  \index{Binet's representation!log gamma}%
+  \index{Stirling's series!coefficients}%
+  \index{Bernoulli numbers!Stirling coefficients}%
+  Binet's representation $\ln\Gamma(z)=(z-\frac{1}{2})\ln z-z
+  +\frac{1}{2}\ln(2\pi)+\int_{0}^{\infty}(\frac{1}{e^{t}-1}-\frac{1}{t}
+  +\frac{1}{2})e^{-zt}\frac{dt}{t}$ gives the exact integral form
+  of Stirling's series.  The asymptotic expansion involves Bernoulli
+  numbers: $\ln\Gamma(z)\sim\cdots+\sum_{n=1}^{\infty}
+  \frac{B_{2n}}{2n(2n-1)z^{2n-1}}$.
+
+\item \textbf{Gauss's digamma theorem.}%
+  \index{Gauss digamma theorem}%
+  \index{$\psi$ at rationals}%
+  \index{Dirichlet $L$-function!digamma}%
+  Gauss's theorem gives $\psi(p/q)$ for rational $p/q$ in terms of
+  elementary functions, logarithms, and trigonometric sums.  This
+  connects to Dirichlet $L$-functions and class numbers of quadratic
+  fields via $L(1,\chi)=-\frac{1}{q}\sum_{a=1}^{q}\chi(a)\psi(a/q)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.38\quad The beta function (Euler's integral of the first kind): $\operatorname{B}(x,y)$}
 \subsubsection{8.39\quad The incomplete beta function $\operatorname{B}_x(p,q)$}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Selberg integral and random matrix theory.}%
+  \index{beta function!$\operatorname{B}(x,y)$}%
+  \index{Selberg integral!beta function}%
+  \index{random matrix!beta function}%
+  \index{Dyson's Coulomb gas}%
+  The Selberg integral
+  $\int_{[0,1]^{n}}\prod t_{i}^{a-1}(1-t_{i})^{b-1}
+  \prod_{i<j}|t_{i}-t_{j}|^{2c}\,d\mathbf{t}
+  =\prod_{j=0}^{n-1}\frac{\Gamma(a+jc)\Gamma(b+jc)\Gamma(1+(j+1)c)}
+  {\Gamma(a+b+(n-1+j)c)\Gamma(1+c)}$ is a multi-dimensional beta
+  function.  It computes the normalisation of the Dyson $\beta$-ensemble
+  in random matrix theory and appears in conformal field theory
+  correlation functions \cite{Selberg1944}.
+
+\item \textbf{Incomplete beta and Bayesian statistics.}%
+  \index{incomplete beta function}%
+  \index{Bayesian statistics!beta distribution}%
+  \index{beta distribution}%
+  \index{conjugate prior}%
+  The regularised incomplete beta function
+  $I_{x}(a,b)=B_{x}(a,b)/B(a,b)$ is the CDF of the beta distribution.
+  In Bayesian inference, the beta distribution $\mathrm{Beta}(\alpha,\beta)$
+  is the conjugate prior for the binomial likelihood, and the posterior
+  update involves $I_{x}$.  The $F$-distribution and Student's
+  $t$-distribution are also expressible through $I_{x}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Beta function and the relation $\operatorname{B}(x,y)=\Gamma(x)\Gamma(y)/\Gamma(x+y)$.}%
+  \index{beta function!gamma relation}%
+  \index{convolution!beta function}%
+  The relation $B(x,y)=\Gamma(x)\Gamma(y)/\Gamma(x+y)$ is proved by
+  expressing $\Gamma(x)\Gamma(y)$ as a double integral and changing to
+  polar coordinates.  This identity is the continuous analogue of the
+  binomial coefficient identity $\binom{m+n}{m}=(m+n)!/(m!n!)$ and
+  connects to the convolution formula for gamma distributions.
+
+\item \textbf{Beta integrals and periods.}%
+  \index{beta integral!periods}%
+  \index{periods!algebraic geometry}%
+  \index{Euler--Gauss hypergeometric}%
+  The beta function $B(a,b)=\int_{0}^{1}t^{a-1}(1-t)^{b-1}\,dt$
+  is the simplest period integral.  The Euler integral representation
+  of the hypergeometric function
+  ${}_{2}F_{1}(a,b;c;z)=\frac{1}{B(b,c-b)}\int_{0}^{1}
+  t^{b-1}(1-t)^{c-b-1}(1-zt)^{-a}\,dt$ is a twisted beta integral,
+  connecting periods of algebraic varieties to hypergeometric functions.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.4--8.5\quad Bessel Functions and Functions Associated with Them}
+%% ============================================================
+
 \subsubsection{8.40\quad Definitions}
 \subsubsection{8.41\quad Integral representations of the functions $J_{\nu}(z)$ and $N_{\nu}(z)$}
 \subsubsection{8.42\quad Integral representations of the functions $H_{\nu}^{(1)}(z)$ and $H_{\nu}^{(2)}(z)$}
 \subsubsection{8.43\quad Integral representations of the functions $I_{\nu}(z)$ and $K_{\nu}(z)$}
+
+The Bessel functions of the first kind $J_{\nu}(z)$, second kind
+$N_{\nu}(z)$ (or $Y_{\nu}$), and third kind $H_{\nu}^{(1,2)}(z)$
+(Hankel functions) are solutions of Bessel's equation
+$z^{2}w''+zw'+(z^{2}-\nu^{2})w=0$.  The modified Bessel functions
+$I_{\nu}(z)$ and $K_{\nu}(z)$ solve the modified equation
+$z^{2}w''+zw'-(z^{2}+\nu^{2})w=0$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Cylindrical waveguides and optical fibres.}%
+  \index{Bessel functions!waveguide}%
+  \index{optical fibre!Bessel modes}%
+  \index{cylindrical waveguide}%
+  \index{cutoff frequency!Bessel zeros}%
+  The TE and TM modes of a circular waveguide are
+  $E_{z}\propto J_{m}(k_{\perp}\rho)e^{im\phi}$, with cutoff
+  frequencies determined by the zeros $j_{mn}$ of $J_{m}$ or $J_{m}'$.
+  In optical fibres, the guided modes in the core involve $J_{m}$ and
+  the evanescent field in the cladding involves $K_{m}$.  The Hankel
+  functions $H_{m}^{(1,2)}$ give outgoing and incoming cylindrical
+  waves, used in scattering problems.
+
+\item \textbf{Vibrating circular membrane (drumhead).}%
+  \index{vibrating membrane!Bessel functions}%
+  \index{drumhead!Bessel modes}%
+  \index{Chladni patterns}%
+  The modes of a circular membrane clamped at the boundary are
+  $u_{mn}(r,\theta,t)=J_{m}(j_{mn}r/a)\cos(m\theta)\cos(\omega_{mn}t)$,
+  with frequencies $\omega_{mn}=j_{mn}c/a$.  The nodal lines
+  (Chladni patterns) are circles and radii, determined by the zeros
+  of $J_{m}$.
+
+\item \textbf{Heat conduction in cylinders and nuclear fuel rods.}%
+  \index{heat conduction!cylinder}%
+  \index{Bessel functions!heat equation}%
+  \index{nuclear fuel rod!temperature}%
+  The steady-state temperature in a cylinder with internal heat
+  generation is $T(r)=T_{s}+\frac{q'''}{4k}(a^{2}-r^{2})$ for
+  uniform generation, and involves $I_{0}(r)$ for exponentially
+  distributed sources.  The modified Bessel functions $I_{\nu}$ and
+  $K_{\nu}$ appear in all cylindrical heat conduction and diffusion
+  problems with exponential or oscillatory source terms.
+
+\item \textbf{Quantum scattering: partial wave expansion.}%
+  \index{partial wave expansion!Bessel}%
+  \index{scattering!Bessel functions}%
+  \index{phase shift!Bessel functions}%
+  \index{spherical Bessel functions}%
+  In three-dimensional quantum scattering, the partial wave expansion
+  involves spherical Bessel functions
+  $j_{\ell}(kr)=\sqrt{\pi/(2kr)}J_{\ell+1/2}(kr)$.  The phase shifts
+  $\delta_{\ell}$ are determined by matching $j_{\ell}$ (free
+  particle) to solutions of the radial Schr\"{o}dinger equation
+  at the boundary of the potential.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hankel transform and radial Fourier transform.}%
+  \index{Hankel transform}%
+  \index{Fourier transform!radial}%
+  \index{Bessel function!integral transform}%
+  The Hankel transform $\tilde{f}(k)=\int_{0}^{\infty}f(r)J_{\nu}(kr)r\,dr$
+  is the radial part of the $n$-dimensional Fourier transform (with
+  $\nu=n/2-1$).  It is self-reciprocal: $f(r)=\int_{0}^{\infty}
+  \tilde{f}(k)J_{\nu}(kr)k\,dk$.  The Hankel transform diagonalises
+  the radial Laplacian and is the natural tool for solving PDEs with
+  circular or spherical symmetry.
+
+\item \textbf{Integral representations and saddle-point asymptotics.}%
+  \index{integral representation!Bessel}%
+  \index{saddle-point method!Bessel}%
+  \index{Debye asymptotics!Bessel}%
+  Bessel's integral $J_{\nu}(z)=\frac{1}{2\pi}\int_{-\pi}^{\pi}
+  e^{i(z\sin\theta-\nu\theta)}\,d\theta$ and the Sommerfeld integral
+  give $J_{\nu}$ as oscillatory integrals amenable to saddle-point
+  analysis.  The Debye asymptotic expansion
+  $J_{\nu}(\nu\sec\beta)\sim(\frac{2}{\pi\nu\tan\beta})^{1/2}
+  \cos(\nu\tan\beta-\nu\beta-\pi/4)$ follows from the saddle-point
+  method applied to the integral representation \cite{Watson1944}.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.44\quad Series representation}
 \subsubsection{8.45\quad Asymptotic expansions of Bessel functions}
 \subsubsection{8.46\quad Bessel functions of order equal to an integer plus one-half}
 \subsubsection{8.47--8.48\quad Functional relations}
 \subsubsection{8.49\quad Differential equations leading to Bessel functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Recurrence relations and ladder operators.}%
+  \index{Bessel function!recurrence relations}%
+  \index{ladder operators!Bessel}%
+  \index{raising and lowering!Bessel}%
+  The recurrence relations $J_{\nu-1}+J_{\nu+1}=2\nu J_{\nu}/z$ and
+  $J_{\nu-1}-J_{\nu+1}=2J_{\nu}'$ act as raising and lowering operators
+  on the order $\nu$.  In the quantum theory of angular momentum, these
+  become the ladder operators $L_{\pm}$ that step between $m$-values,
+  connecting the Bessel function recurrences to the representation theory
+  of $\mathrm{SO}(3)$.
+
+\item \textbf{Equations reducible to Bessel's equation.}%
+  \index{Airy equation!Bessel reduction}%
+  \index{cylindrical functions!generalisations}%
+  \index{Kelvin functions}%
+  Many physical equations reduce to Bessel's via substitutions: the
+  Airy equation $y''-xy=0$ gives $y=\sqrt{x}\,J_{\pm 1/3}(2x^{3/2}/3)$;
+  the equation for vibrations of a conical shell gives Bessel functions
+  of imaginary argument (Kelvin functions
+  $\operatorname{ber}_{\nu}+i\operatorname{bei}_{\nu}
+  =J_{\nu}(xe^{3\pi i/4})$).  The catalogue of equations leading to
+  Bessel functions (G\&R~8.49) covers all these reductions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Addition theorem and Graf's formula.}%
+  \index{addition theorem!Bessel}%
+  \index{Graf's addition theorem}%
+  \index{translation!Bessel functions}%
+  Graf's addition theorem $J_{\nu}(w)e^{i\nu\chi}
+  =\sum_{m}J_{\nu+m}(u)J_{m}(v)e^{im\alpha}$ (where $w,\chi$ are
+  determined by $u,v,\alpha$) gives the translation formula for Bessel
+  functions.  This is essential for multipole re-expansion in
+  electromagnetic scattering (the $T$-matrix method) and for fast
+  multipole algorithms in computational physics.
+
+\item \textbf{Generating function and Fourier--Bessel series.}%
+  \index{generating function!Bessel}%
+  \index{Fourier--Bessel series}%
+  \index{Kapteyn series}%
+  The generating function $e^{z(t-1/t)/2}=\sum_{n}J_{n}(z)t^{n}$ is
+  the Jacobi--Anger expansion, connecting Bessel functions to Fourier
+  series.  Fourier--Bessel series $f(r)=\sum c_{n}J_{\nu}(j_{\nu,n}r/a)$
+  are the radial analogue of Fourier sine/cosine series, used for
+  boundary value problems on discs and cylinders.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.51--8.52\quad Series of Bessel functions}
 \subsubsection{8.53\quad Expansion in products of Bessel functions}
 \subsubsection{8.54\quad The zeros of Bessel functions}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Zeros and eigenfrequencies.}%
+  \index{Bessel zeros!eigenfrequencies}%
+  \index{McMahon expansion}%
+  \index{Rayleigh's conjecture}%
+  The zeros $j_{\nu,n}$ of $J_{\nu}$ determine the eigenfrequencies
+  of circular membranes, cylindrical waveguides, and quantum dots.
+  McMahon's asymptotic expansion
+  $j_{\nu,n}\sim(n+\nu/2-1/4)\pi-\frac{4\nu^{2}-1}{8\pi(n+\nu/2-1/4)}
+  +\cdots$ gives accurate approximations for large $n$.  Rayleigh's
+  conjecture that the lowest eigenfrequency is minimised by the disc
+  among all membranes of given area (Faber--Krahn inequality) is
+  proved using properties of $j_{0,1}$.
+
+\item \textbf{Neumann series and scattering amplitudes.}%
+  \index{Neumann series!Bessel}%
+  \index{scattering amplitude!Bessel series}%
+  \index{partial wave!series}%
+  Scattering amplitudes are expanded as Neumann series (series in
+  products of Bessel functions) when the scatterer has cylindrical or
+  spherical symmetry.  The convergence rate of these series determines
+  the number of partial waves needed for accurate scattering
+  cross-sections.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Completeness of the Bessel system.}%
+  \index{Bessel functions!completeness}%
+  \index{Fourier--Bessel expansion}%
+  \index{Dini's expansion}%
+  The system $\{J_{\nu}(j_{\nu,n}r/a)\}_{n=1}^{\infty}$ is complete
+  and orthogonal in $L^{2}([0,a];r\,dr)$ for $\nu>-1$, the Dini
+  expansion.  This is the Sturm--Liouville completeness theorem
+  applied to Bessel's equation on $[0,a]$, providing the analogue of
+  Fourier series for radially symmetric problems.
+
+\item \textbf{Distribution of Bessel zeros and analytic number theory.}%
+  \index{Bessel zeros!distribution}%
+  \index{analytic number theory!Bessel zeros}%
+  \index{Weil's explicit formula}%
+  The distribution of Bessel zeros is governed by the same
+  asymptotic formulas (Weyl's law) as eigenvalues of the Laplacian.
+  Weil's explicit formula in analytic number theory relates sums over
+  zeros of $L$-functions to sums over primes, in formal analogy with
+  the trace formula relating Bessel zeros to the geometry of the disc.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.55\quad Struve functions}
 \subsubsection{8.56\quad Thomson functions and their generalizations}
 \subsubsection{8.57\quad Lommel functions}
 \subsubsection{8.58\quad Anger and Weber functions $J_{\nu}(z)$ and $\mathbf{E}_{\nu}(z)$}
 \subsubsection{8.59\quad Neumann's and Schl\"afli's polynomials: $O_{n}(z)$ and $S_{n}(z)$}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Struve functions in acoustics and hydrodynamics.}%
+  \index{Struve functions}%
+  \index{acoustics!piston radiation}%
+  \index{radiation impedance!Struve}%
+  The radiation impedance of a circular piston in a baffle is
+  $Z=\rho c[1-2J_{1}(2ka)/(2ka)+i\,2\mathbf{H}_{1}(2ka)/(2ka)]$,
+  involving both Bessel and Struve functions.  The Struve function
+  $\mathbf{H}_{\nu}$ is the particular solution of the inhomogeneous
+  Bessel equation $z^{2}w''+zw'+(z^{2}-\nu^{2})w=z^{\nu+1}f(z)$.
+
+\item \textbf{Thomson (Kelvin) functions in eddy currents.}%
+  \index{Thomson functions!eddy currents}%
+  \index{Kelvin functions!skin effect}%
+  \index{eddy currents!Thomson functions}%
+  \index{skin depth}%
+  The functions $\operatorname{ber}_{\nu}(x)$ and
+  $\operatorname{bei}_{\nu}(x)$ (real and imaginary parts of
+  $J_{\nu}(xe^{3\pi i/4})$) arise in eddy current problems:
+  the current distribution in a cylindrical conductor carrying AC
+  is $J\propto\operatorname{ber}_{0}(r/\delta)
+  +i\operatorname{bei}_{0}(r/\delta)$ where $\delta$ is the skin
+  depth.  The generalisations $\operatorname{ker}_{\nu}$,
+  $\operatorname{kei}_{\nu}$ (from $K_{\nu}$) appear in the external
+  field.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lommel functions and diffraction theory.}%
+  \index{Lommel functions!diffraction}%
+  \index{Lommel's series}%
+  \index{Fresnel diffraction!Lommel}%
+  The Lommel functions $U_{\nu}(w,z)$ and $V_{\nu}(w,z)$ are series of
+  Bessel functions that solve inhomogeneous Bessel equations.  They
+  appear in Lommel's theory of Fresnel diffraction by a circular
+  aperture, where the diffraction pattern is expressed as a combination
+  of $U_{0}$, $U_{1}$, $V_{0}$, $V_{1}$.
+
+\item \textbf{Anger--Weber functions and non-integer order.}%
+  \index{Anger function}%
+  \index{Weber function}%
+  \index{non-integer order!Bessel-type}%
+  The Anger function $\mathbf{J}_{\nu}(z)=\frac{1}{\pi}\int_{0}^{\pi}
+  \cos(\nu\theta-z\sin\theta)\,d\theta$ coincides with $J_{\nu}$ when
+  $\nu$ is an integer.  For non-integer $\nu$, $\mathbf{J}_{\nu}$ and
+  the Weber function $\mathbf{E}_{\nu}$ provide solutions of the
+  inhomogeneous Bessel equation with different forcing terms.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.6\quad Mathieu Functions}
+%% ============================================================
+
 \subsubsection{8.60\quad Mathieu's equation}
 \subsubsection{8.61\quad Periodic Mathieu functions}
 \subsubsection{8.62\quad Recursion relations for the coefficients $A_{2r}^{(2n)}$, $A_{2r+1}^{(2n+1)}$, $B_{2r+1}^{(2n+1)}$, $B_{2r+2}^{(2n+2)}$}
@@ -59,7 +902,78 @@
 \subsubsection{8.66\quad Representation of Mathieu functions as series of Bessel functions}
 \subsubsection{8.67\quad The general theory}
 
+Mathieu's equation $y''+(a-2q\cos 2x)y=0$ arises from separation of the
+Helmholtz equation in elliptic coordinates.  The eigenvalues $a_{n}(q)$
+(for even periodic solutions $\operatorname{ce}_{n}$) and $b_{n}(q)$
+(for odd periodic solutions $\operatorname{se}_{n}$) define the
+characteristic curves (Strutt diagram) that determine the stability
+regions.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Paul trap and ion confinement.}%
+  \index{Mathieu functions}%
+  \index{Paul trap!Mathieu equation}%
+  \index{ion trap!stability}%
+  \index{Strutt diagram!Paul trap}%
+  The motion of a charged particle in a Paul (radiofrequency
+  quadrupole) trap satisfies the Mathieu equation with $a$ and $q$
+  depending on the DC and AC voltages.  Stable confinement requires
+  $(a,q)$ to lie in the first stability region of the Strutt diagram.
+  Mass spectrometry uses this: scanning $q$ ejects ions of successive
+  mass-to-charge ratios.
+
+\item \textbf{Parametric resonance and Faraday waves.}%
+  \index{parametric resonance!Mathieu equation}%
+  \index{Faraday waves}%
+  \index{stability regions!Mathieu}%
+  \index{Kapitza pendulum}%
+  Parametric excitation of a swing, Faraday surface waves on a
+  vertically vibrated fluid, and the Kapitza inverted pendulum all
+  reduce to the Mathieu equation.  The instability tongues
+  (Arnold tongues) emanating from $a=n^{2}$ at $q=0$ determine
+  the parametric resonance conditions: driving at twice the natural
+  frequency is the primary instability ($n=1$).
+
+\item \textbf{Electromagnetic wave propagation in periodic media.}%
+  \index{Bragg diffraction!Mathieu}%
+  \index{photonic crystal!Mathieu equation}%
+  \index{Bloch waves!Mathieu}%
+  \index{band gaps!Mathieu equation}%
+  The propagation of electromagnetic waves in a medium with periodic
+  dielectric constant $\varepsilon(x)=\bar{\varepsilon}+\delta\varepsilon
+  \cos(2\pi x/\Lambda)$ reduces to the Mathieu equation.  The stop
+  bands (spectral gaps) correspond to the instability regions, and the
+  Bloch wave solutions are Mathieu functions.  This is the one-dimensional
+  model for photonic crystals and Bragg diffraction.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hill's equation and Floquet theory.}%
+  \index{Hill's equation!general}%
+  \index{Floquet theory!Mathieu}%
+  \index{Hill's determinant}%
+  Mathieu's equation is the simplest Hill equation (periodic
+  coefficients).  Hill's infinite determinant gives the characteristic
+  equation for the Floquet exponents, and the eigenvalue curves
+  $a_{n}(q)$ are the spectral bands of the periodic Schr\"{o}dinger
+  operator.  The gap widths decrease exponentially as $q^{n}$ for
+  large $n$ (WKB tunnelling between wells).
+
+\item \textbf{Continued fractions for eigenvalues.}%
+  \index{continued fractions!Mathieu eigenvalues}%
+  \index{three-term recurrence!Mathieu}%
+  The Fourier coefficients of Mathieu functions satisfy a three-term
+  recurrence whose characteristic equation is an infinite continued
+  fraction.  Truncation gives efficient numerical algorithms for
+  computing $a_{n}(q)$ and $b_{n}(q)$ to arbitrary precision.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.7--8.8\quad Associated Legendre Functions}
+%% ============================================================
+
 \subsubsection{8.70\quad Introduction}
 \subsubsection{8.71\quad Integral representations}
 \subsubsection{8.72\quad Asymptotic series for large values of $|\nu|$}
@@ -69,69 +983,866 @@
 \subsubsection{8.77\quad Series representation}
 \subsubsection{8.78\quad The zeros of associated Legendre functions}
 \subsubsection{8.79\quad Series of associated Legendre functions}
+
+The associated Legendre functions $P_{\nu}^{\mu}(z)$ and
+$Q_{\nu}^{\mu}(z)$ are solutions of the associated Legendre equation
+$(1-z^{2})w''-2zw'+[\nu(\nu+1)-\mu^{2}/(1-z^{2})]w=0$, which arises
+from separation of the Laplacian in spherical coordinates.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Spherical harmonics and angular momentum.}%
+  \index{associated Legendre functions}%
+  \index{spherical harmonics!Legendre}%
+  \index{angular momentum!eigenfunctions}%
+  \index{orbital angular momentum}%
+  The spherical harmonics
+  $Y_{\ell}^{m}(\theta,\phi)=N_{\ell m}P_{\ell}^{m}(\cos\theta)e^{im\phi}$
+  are products of associated Legendre functions and exponentials.  They
+  are the eigenfunctions of $\mathbf{L}^{2}$ and $L_{z}$ with
+  eigenvalues $\ell(\ell+1)\hbar^{2}$ and $m\hbar$, forming the basis
+  for expanding any angular-dependent quantity in physics: atomic
+  orbitals, gravitational multipoles, radiation patterns, and CMB
+  anisotropy.
+
+\item \textbf{Gravitational and magnetic field models.}%
+  \index{gravitational potential!Legendre expansion}%
+  \index{geomagnetic field!spherical harmonics}%
+  \index{multipole expansion!Legendre}%
+  The Earth's gravitational potential is expanded as
+  $\Phi=\frac{GM}{r}\sum_{\ell=0}^{\infty}\sum_{m=0}^{\ell}
+  (a/r)^{\ell}P_{\ell}^{m}(\cos\theta)(C_{\ell m}\cos m\phi
+  +S_{\ell m}\sin m\phi)$.  The coefficients $C_{\ell m}$, $S_{\ell m}$
+  encode the mass distribution (oblateness $J_{2}=-C_{20}$, etc.)
+  and are determined by satellite tracking.  The same expansion
+  describes the geomagnetic field (International Geomagnetic
+  Reference Field).
+
+\item \textbf{Scattering and the addition theorem.}%
+  \index{scattering!Legendre expansion}%
+  \index{addition theorem!spherical harmonics}%
+  \index{Clebsch--Gordan coefficients}%
+  The scattering amplitude $f(\theta)=\sum_{\ell}(2\ell+1)f_{\ell}
+  P_{\ell}(\cos\theta)$ is a Legendre series.  The addition theorem
+  $P_{\ell}(\cos\gamma)=\frac{4\pi}{2\ell+1}\sum_{m}
+  Y_{\ell}^{m*}(\theta',\phi')Y_{\ell}^{m}(\theta,\phi)$ relates
+  the angle $\gamma$ between two directions to the individual
+  angular coordinates.  Coupling two angular momenta involves
+  Clebsch--Gordan coefficients, which are related to $3j$-symbols
+  and integrals of triple products of $Y_{\ell}^{m}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Orthogonal polynomials on the sphere.}%
+  \index{orthogonal polynomials!sphere}%
+  \index{spherical harmonics!completeness}%
+  \index{Laplace--Beltrami operator}%
+  The spherical harmonics are eigenfunctions of the Laplace--Beltrami
+  operator on $S^{2}$ with eigenvalues $-\ell(\ell+1)$.  They form a
+  complete orthonormal system on $L^{2}(S^{2})$ and the space of
+  degree-$\ell$ spherical harmonics has dimension $2\ell+1$, a fact
+  equivalent to the $(2\ell+1)$-dimensional irreducible representation
+  of $\mathrm{SO}(3)$.
+
+\item \textbf{Mehler--Fock transform and conical functions.}%
+  \index{Mehler--Fock transform}%
+  \index{conical functions!Mehler--Fock}%
+  \index{Legendre function!complex order}%
+  The Mehler--Fock transform expands functions on $[1,\infty)$ in terms
+  of $P_{-1/2+i\tau}(\cosh r)$ (conical functions), the continuous
+  analogue of the Legendre polynomial expansion.  This is the Fourier
+  analysis on the hyperbolic plane $\mathbb{H}^{2}$ and appears in
+  scattering from conical geometries and cosmological models.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.81\quad Associated Legendre functions with integer indices}
 \subsubsection{8.82--8.83\quad Legendre functions}
 \subsubsection{8.84\quad Conical functions}
 \subsubsection{8.85\quad Toroidal functions}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Electrostatics of toroidal geometries.}%
+  \index{toroidal functions}%
+  \index{toroidal coordinates!electrostatics}%
+  \index{toroidal solenoid!magnetic field}%
+  The potential of a charged conducting torus is expressed in terms of
+  toroidal functions $P_{n-1/2}^{m}(\cosh\eta)$ and
+  $Q_{n-1/2}^{m}(\cosh\eta)$.  These are Legendre functions of
+  half-integer degree with argument on $(1,\infty)$.  Toroidal
+  harmonics also give the magnetic field of a toroidal solenoid
+  (tokamak geometry).
+
+\item \textbf{Conical functions and diffraction by wedges.}%
+  \index{conical functions!diffraction}%
+  \index{wedge diffraction!Sommerfeld}%
+  \index{Sommerfeld!wedge diffraction}%
+  Diffraction of waves by a wedge of half-angle $\alpha$ involves
+  conical functions $P_{-1/2+i\tau}^{m}(\cos\theta)$ with continuous
+  index $\tau$.  Sommerfeld's exact solution for the perfectly conducting
+  wedge uses these functions, and the far-field diffraction coefficient
+  is expressed through Legendre function asymptotics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Spectral theory on hyperbolic manifolds.}%
+  \index{hyperbolic manifold!spectral theory}%
+  \index{Selberg trace formula!Legendre}%
+  \index{automorphic forms}%
+  On hyperbolic surfaces $\Gamma\backslash\mathbb{H}^{2}$, the Laplacian
+  eigenfunctions are automorphic forms with eigenvalues
+  $\lambda=1/4+\tau^{2}$.  The point-pair invariant kernel involves
+  $P_{-1/2+i\tau}(\cosh d)$, and the Selberg trace formula relates the
+  eigenvalue spectrum to the lengths of closed geodesics, a deep
+  connection between analysis and geometry.
+\end{enumerate}
+
+%% ============================================================
 \subsection{8.9\quad Orthogonal Polynomials}
+%% ============================================================
+
 \subsubsection{8.90\quad Introduction}
 \subsubsection{8.91\quad Legendre polynomials}
 \subsubsection{8.919\quad Series of products of Legendre and Chebyshev polynomials}
 \subsubsection{8.92\quad Series of Legendre polynomials}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Legendre polynomials and multipole expansions.}%
+  \index{Legendre polynomials}%
+  \index{multipole expansion!Legendre polynomials}%
+  \index{electrostatic potential!Legendre}%
+  \index{generating function!Legendre}%
+  The generating function $1/\sqrt{1-2xt+t^{2}}=\sum_{n=0}^{\infty}
+  P_{n}(x)t^{n}$ gives the Coulomb potential expansion when
+  $x=\cos\gamma$ and $t=r_{<}/r_{>}$.  Legendre polynomials are the
+  zonal spherical harmonics $P_{\ell}(\cos\theta)=Y_{\ell}^{0}
+  \sqrt{4\pi/(2\ell+1)}$, the axially symmetric case of the general
+  spherical harmonic expansion.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Gaussian quadrature.}%
+  \index{Gaussian quadrature!Legendre}%
+  \index{numerical integration!Gauss--Legendre}%
+  \index{quadrature!optimal}%
+  The zeros of $P_{n}$ are the nodes of Gauss--Legendre quadrature:
+  $\int_{-1}^{1}f(x)\,dx\approx\sum_{i=1}^{n}w_{i}f(x_{i})$, exact
+  for polynomials of degree $\leq 2n-1$.  This optimal quadrature rule
+  generalises to Gauss--Jacobi, Gauss--Laguerre, and Gauss--Hermite
+  for other weight functions, all using zeros of the corresponding
+  orthogonal polynomials.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.93\quad Gegenbauer polynomials $C_{n}^{\lambda}(t)$}
 \subsubsection{8.94\quad The Chebyshev polynomials $T_{n}(x)$ and $U_{n}(x)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Chebyshev spectral methods in CFD.}%
+  \index{Gegenbauer polynomials}%
+  \index{Chebyshev polynomials}%
+  \index{spectral methods!Chebyshev}%
+  \index{computational fluid dynamics!spectral}%
+  Chebyshev polynomials $T_{n}(\cos\theta)=\cos(n\theta)$ are the
+  optimal polynomials for interpolation and differentiation on
+  $[-1,1]$: Chebyshev nodes minimise the Runge phenomenon.
+  Chebyshev spectral methods achieve exponential convergence for
+  smooth solutions and are the method of choice for high-accuracy
+  computational fluid dynamics, weather prediction, and stellar
+  structure models.
+
+\item \textbf{Gegenbauer polynomials and $d$-dimensional harmonics.}%
+  \index{Gegenbauer polynomials!$d$-dimensional}%
+  \index{ultraspherical polynomials}%
+  \index{harmonic analysis!higher dimensions}%
+  The Gegenbauer (ultraspherical) polynomials $C_{n}^{\lambda}$ with
+  $\lambda=(d-2)/2$ are the zonal spherical harmonics in
+  $d$ dimensions.  The Funk--Hecke formula
+  $\int_{S^{d-1}}f(\mathbf{x}\cdot\mathbf{y})Y_{\ell}(\mathbf{y})\,d\sigma
+  =\lambda_{\ell}Y_{\ell}(\mathbf{x})$ uses $C_{\ell}^{(d-2)/2}$ to
+  compute the eigenvalues $\lambda_{\ell}$ of convolution operators
+  on the sphere.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Minimax approximation and Chebyshev nodes.}%
+  \index{Chebyshev nodes!minimax}%
+  \index{Lebesgue constant!Chebyshev}%
+  \index{polynomial interpolation!optimal}%
+  Among all monic polynomials of degree $n$, $T_{n}(x)/2^{n-1}$ has
+  the smallest supremum norm on $[-1,1]$ (Chebyshev's theorem).
+  Interpolation at Chebyshev nodes $x_{k}=\cos((2k-1)\pi/(2n))$ has
+  Lebesgue constant $\Lambda_{n}\sim(2/\pi)\ln n$, nearly optimal.
+
+\item \textbf{Connection coefficients and linearisation.}%
+  \index{connection coefficients!orthogonal polynomials}%
+  \index{linearisation!Gegenbauer}%
+  \index{Clebsch--Gordan!Gegenbauer}%
+  The product $C_{m}^{\lambda}(x)C_{n}^{\lambda}(x)=\sum_{k}
+  c_{mnk}^{\lambda}C_{k}^{\lambda}(x)$ (linearisation formula) and
+  the expansion of $C_{n}^{\mu}$ in terms of $C_{k}^{\lambda}$
+  (connection coefficients) are the polynomial analogues of
+  Clebsch--Gordan decompositions.  These are computed from the
+  three-term recurrence and appear in spectral methods for nonlinear
+  PDEs.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.95\quad The Hermite polynomials $H_{n}(x)$}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quantum harmonic oscillator.}%
+  \index{Hermite polynomials}%
+  \index{quantum harmonic oscillator!Hermite}%
+  \index{coherent states!Hermite}%
+  \index{creation and annihilation operators}%
+  The energy eigenstates of the quantum harmonic oscillator are
+  $\psi_{n}(x)\propto H_{n}(x/\sigma)e^{-x^{2}/(2\sigma^{2})}$
+  with $\sigma=\sqrt{\hbar/(m\omega)}$.  The Hermite polynomials
+  satisfy $H_{n}'=2nH_{n-1}$ and $H_{n+1}=2xH_{n}-2nH_{n-1}$,
+  encoding the action of the creation and annihilation operators
+  $a^{\dagger}$ and $a$.  Coherent states $|\alpha\rangle$
+  are generating-function superpositions
+  $\sum(\alpha^{n}/\sqrt{n!})|n\rangle$.
+
+\item \textbf{Gauss--Hermite quadrature and quantum chemistry.}%
+  \index{Gauss--Hermite quadrature}%
+  \index{quantum chemistry!Gaussian basis}%
+  \index{molecular integrals!Hermite Gaussians}%
+  Molecular orbital integrals over Gaussian basis functions
+  $g(\mathbf{r})=x^{a}y^{b}z^{c}e^{-\alpha r^{2}}$ (Hermite
+  Gaussians) are evaluated using Gauss--Hermite quadrature or the
+  Obara--Saika recurrence, both intimately connected to the Hermite
+  polynomial recurrence.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hermite expansion and the Ornstein--Uhlenbeck semigroup.}%
+  \index{Hermite expansion!Wiener chaos}%
+  \index{Ornstein--Uhlenbeck semigroup}%
+  \index{Wiener chaos!Hermite}%
+  \index{Mehler kernel}%
+  The Hermite polynomials are the eigenfunctions of the
+  Ornstein--Uhlenbeck operator
+  $Lf=-f''+xf'$ with eigenvalue $n$.  The Mehler kernel
+  $K(\rho;x,y)=\frac{1}{\sqrt{1-\rho^{2}}}
+  \exp(-\frac{\rho^{2}(x^{2}+y^{2})-2\rho xy}{2(1-\rho^{2})})$
+  is the heat kernel of $L$.  The Wiener chaos decomposition
+  $L^{2}(\gamma)=\bigoplus\mathcal{H}_{n}$ (where $\gamma$ is the
+  Gaussian measure) uses Hermite polynomials as the basis.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{8.96\quad Jacobi's polynomials}
 \subsubsection{8.97\quad The Laguerre polynomials}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Hydrogen atom radial wavefunctions.}%
+  \index{Laguerre polynomials}%
+  \index{hydrogen atom!Laguerre}%
+  \index{radial wavefunction!Laguerre}%
+  \index{associated Laguerre polynomials}%
+  The radial wavefunctions of the hydrogen atom are
+  $R_{n\ell}(r)\propto(r/a_{0})^{\ell}L_{n-\ell-1}^{2\ell+1}(2r/(na_{0}))
+  e^{-r/(na_{0})}$, where $L_{n}^{\alpha}$ are the associated
+  Laguerre polynomials and $a_{0}$ is the Bohr radius.  The
+  orthogonality $\int_{0}^{\infty}x^{\alpha}e^{-x}L_{m}^{\alpha}(x)
+  L_{n}^{\alpha}(x)\,dx=\frac{\Gamma(n+\alpha+1)}{n!}\delta_{mn}$
+  gives the normalisation.
+
+\item \textbf{Jacobi polynomials and quantum groups.}%
+  \index{Jacobi polynomials}%
+  \index{quantum groups!Jacobi}%
+  \index{Heckman--Opdam polynomials}%
+  \index{root systems!orthogonal polynomials}%
+  The Jacobi polynomials $P_{n}^{(\alpha,\beta)}(x)$ are orthogonal on
+  $[-1,1]$ with weight $(1-x)^{\alpha}(1+x)^{\beta}$.  They include
+  Legendre ($\alpha=\beta=0$), Chebyshev ($\alpha=\beta=\pm 1/2$), and
+  Gegenbauer ($\alpha=\beta$) as special cases.  In the theory of quantum
+  groups and root systems, multivariable Jacobi polynomials
+  (Heckman--Opdam, Macdonald) generalise these to higher rank.
+
+\item \textbf{Gauss--Laguerre quadrature and Laplace inversion.}%
+  \index{Gauss--Laguerre quadrature}%
+  \index{Laplace transform!numerical inversion}%
+  \index{semi-infinite interval!quadrature}%
+  Gauss--Laguerre quadrature $\int_{0}^{\infty}e^{-x}f(x)\,dx
+  \approx\sum w_{i}f(x_{i})$ (nodes are zeros of $L_{n}$) is used for
+  numerical Laplace transform inversion (Weeks' method) and for
+  integrals over semi-infinite domains arising in quantum mechanics,
+  radiative transfer, and financial mathematics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Classical orthogonal polynomials: the Askey scheme.}%
+  \index{Askey scheme}%
+  \index{classical orthogonal polynomials}%
+  \index{hypergeometric representation}%
+  All classical orthogonal polynomials are hypergeometric:
+  $P_{n}^{(\alpha,\beta)}={n+\alpha\choose n}
+  {}_{2}F_{1}(-n,n+\alpha+\beta+1;\alpha+1;(1-x)/2)$ and
+  $L_{n}^{\alpha}=\frac{(\alpha+1)_{n}}{n!}{}_{1}F_{1}(-n;\alpha+1;x)$.
+  The Askey scheme organises all classical families by limit relations
+  (Jacobi $\to$ Laguerre $\to$ Hermite under scaling), and extends
+  to $q$-analogues (Askey--Wilson, $q$-Racah) fundamental in
+  combinatorics and quantum groups.
+
+\item \textbf{Three-term recurrence and the Favard theorem.}%
+  \index{three-term recurrence!orthogonal polynomials}%
+  \index{Favard's theorem}%
+  \index{Jacobi matrix!orthogonal polynomials}%
+  Every sequence of orthogonal polynomials satisfies a three-term
+  recurrence $xp_{n}=a_{n}p_{n+1}+b_{n}p_{n}+a_{n-1}p_{n-1}$
+  (Favard's theorem).  The recurrence coefficients $a_{n},b_{n}$ define
+  the Jacobi (tridiagonal) matrix whose spectral measure is the
+  orthogonality measure.  This connects orthogonal polynomials to
+  random matrix theory (the eigenvalue distribution of tridiagonal
+  random matrices is the $\beta$-ensemble).
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.1\quad Hypergeometric Functions}
+%% ============================================================
+
 \subsubsection{9.10\quad Definition}
 \subsubsection{9.11\quad Integral representations}
 \subsubsection{9.12\quad Representation of elementary functions in terms of a hypergeometric functions}
 \subsubsection{9.13\quad Transformation formulas and the analytic continuation of functions defined by hypergeometric series}
 \subsubsection{9.14\quad A generalized hypergeometric series}
+
+The Gauss hypergeometric function
+${}_{2}F_{1}(a,b;c;z)=\sum_{n=0}^{\infty}\frac{(a)_{n}(b)_{n}}{(c)_{n}n!}z^{n}$
+(where $(a)_{n}=a(a+1)\cdots(a+n-1)$ is the Pochhammer symbol) unifies a
+vast class of special functions: Legendre, Jacobi, Gegenbauer, and
+Chebyshev polynomials are all special cases, and elementary functions
+($\ln$, $\arcsin$, $(1+z)^{a}$) are degenerate cases.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Exact solutions of the Schr\"odinger equation.}%
+  \index{hypergeometric function!${}_{2}F_{1}$}%
+  \index{Schr\"odinger equation!hypergeometric solutions}%
+  \index{P\"oschl--Teller potential}%
+  \index{Eckart potential}%
+  The Schr\"{o}dinger equation with the P\"{o}schl--Teller, Eckart,
+  Morse, and Rosen--Morse potentials all have solutions in terms of
+  ${}_{2}F_{1}$.  The general rule is that potentials expressible as
+  rational functions of $e^{x}$ or $\tanh x$ reduce to the
+  hypergeometric equation via appropriate substitutions.
+
+\item \textbf{Conformal field theory and crossing symmetry.}%
+  \index{conformal field theory!hypergeometric}%
+  \index{crossing symmetry!hypergeometric}%
+  \index{conformal blocks}%
+  \index{operator product expansion}%
+  Four-point correlation functions in two-dimensional conformal field
+  theory are expressed through hypergeometric functions of the
+  cross-ratio $z$.  The transformation formulas of G\&R~9.13
+  (Euler, Pfaff, Kummer) implement crossing symmetry---the physical
+  requirement that the amplitude is independent of the order in which
+  operators are fused.
+
+\item \textbf{Generalised hypergeometric functions in Feynman integrals.}%
+  \index{generalised hypergeometric function!${}_{p}F_{q}$}%
+  \index{Feynman integrals!hypergeometric}%
+  \index{Appell functions!Feynman diagrams}%
+  Multi-loop Feynman integrals often evaluate to generalised
+  hypergeometric functions ${}_{p}F_{q}$ and their multivariate
+  extensions (Appell $F_{1}$--$F_{4}$, Lauricella, Horn).  The
+  integral representations of G\&R~9.11 provide the Mellin--Barnes
+  representations used to derive these identifications.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{The hypergeometric differential equation and monodromy.}%
+  \index{hypergeometric equation!monodromy}%
+  \index{Schwarz triangle map}%
+  \index{Riemann--Hilbert!hypergeometric}%
+  The equation $z(1-z)w''+[c-(a+b+1)z]w'-abw=0$ has regular singular
+  points at $0,1,\infty$ with exponent differences $1-c$, $c-a-b$,
+  $a-b$.  The Schwarz triangle map $s(z)=w_{1}/w_{2}$ maps the upper
+  half-plane to a circular triangle, and the monodromy group is a
+  subgroup of $\mathrm{PSL}(2,\mathbb{C})$ determined by the exponents.
+
+\item \textbf{Euler's transformation and analytic continuation.}%
+  \index{Euler transformation!hypergeometric}%
+  \index{analytic continuation!hypergeometric}%
+  \index{Kummer's transformations}%
+  The series ${}_{2}F_{1}(a,b;c;z)$ converges for $|z|<1$.  Euler's
+  integral representation
+  ${}_{2}F_{1}=\frac{\Gamma(c)}{\Gamma(b)\Gamma(c-b)}
+  \int_{0}^{1}t^{b-1}(1-t)^{c-b-1}(1-zt)^{-a}\,dt$ provides analytic
+  continuation to $\mathbb{C}\setminus[1,\infty)$.  The 24 Kummer
+  solutions and their connection formulas give the function on the
+  entire Riemann sphere.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{9.15\quad The hypergeometric differential equation}
 \subsubsection{9.16\quad Riemann's differential equation}
 \subsubsection{9.17\quad Representing the solutions to certain second-order differential equations using a Riemann scheme}
 \subsubsection{9.18\quad Hypergeometric functions of two variables}
 \subsubsection{9.19\quad A hypergeometric function of several variables}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Riemann's $P$-symbol and physical ODEs.}%
+  \index{Riemann $P$-symbol}%
+  \index{Fuchsian equation!Riemann scheme}%
+  \index{Heun equation}%
+  Riemann's scheme $P\{z_{1},z_{2},z_{3};\alpha_{i},\beta_{i};z\}$ encodes
+  the singular points and exponents of a Fuchsian equation.
+  The Heun equation (four regular singular points) arises in
+  the Kerr black hole perturbation theory, the hydrogen molecule
+  ion $H_{2}^{+}$, and crystallographic band theory---all cases
+  beyond the three-singularity hypergeometric equation.
+
+\item \textbf{Appell functions in multiparticle scattering.}%
+  \index{Appell functions!scattering}%
+  \index{two-variable hypergeometric}%
+  \index{Feynman parameter!Appell}%
+  The Appell functions $F_{1}$--$F_{4}$ and the Lauricella functions
+  $F_{D}^{(n)}$ appear in Feynman integrals with multiple mass scales.
+  The system of PDEs they satisfy (a generalisation of the
+  hypergeometric equation to several variables) provides recurrence
+  relations and analytic continuation formulas for evaluating these
+  integrals in different kinematic regions.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Riemann's approach to the hypergeometric equation.}%
+  \index{Riemann!hypergeometric approach}%
+  \index{monodromy!Riemann scheme}%
+  \index{accessory parameter}%
+  Riemann showed that a second-order Fuchsian equation with three
+  regular singularities is completely determined (up to M\"{o}bius
+  transformation) by the exponent differences at each singular point.
+  For four or more singularities (Heun and beyond), ``accessory
+  parameters'' appear, and the problem of determining the monodromy
+  from the equation becomes much harder (the Riemann--Hilbert problem).
+
+\item \textbf{GKZ hypergeometric systems.}%
+  \index{GKZ hypergeometric system}%
+  \index{$A$-hypergeometric functions}%
+  \index{toric varieties!hypergeometric}%
+  Gel'fand, Kapranov, and Zelevinsky unified all classical
+  hypergeometric functions (Gauss, Appell, Lauricella, Horn) as
+  solutions of a single class of systems of PDEs determined by a
+  lattice $A\subset\mathbb{Z}^{n}$ and a parameter vector $\beta$.
+  The GKZ system connects hypergeometric functions to toric geometry,
+  mirror symmetry, and the computation of periods of algebraic varieties.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.2\quad Confluent Hypergeometric Functions}
+%% ============================================================
+
 \subsubsection{9.20\quad Introduction}
 \subsubsection{9.21\quad The functions $\Phi(\alpha,\gamma;z)$ and $\Psi(\alpha,\gamma;z)$}
 \subsubsection{9.22--9.23\quad The Whittaker functions $M_{\lambda,\mu}(z)$ and $W_{\lambda,\mu}(z)$}
+
+The confluent hypergeometric function (Kummer's function)
+$\Phi(\alpha,\gamma;z)={}_{1}F_{1}(\alpha;\gamma;z)$ satisfies
+$zw''+(\gamma-z)w'-\alpha w=0$, obtained by merging two singularities
+of the hypergeometric equation ($z=1$ and $z=\infty$ coalesce).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Hydrogen atom: Coulomb wavefunctions.}%
+  \index{confluent hypergeometric!Coulomb}%
+  \index{Coulomb wavefunction}%
+  \index{Whittaker functions!hydrogen}%
+  \index{Sommerfeld parameter}%
+  The radial wavefunctions of the hydrogen atom are
+  $R_{n\ell}\propto e^{-\rho/2}\rho^{\ell}\,{}_{1}F_{1}(-n+\ell+1;
+  2\ell+2;\rho)$ with $\rho=2r/(na_{0})$.  The Whittaker function
+  $W_{-n,\ell+1/2}(\rho)$ gives the bound-state radial function
+  directly.  Coulomb scattering wavefunctions involve ${}_{1}F_{1}$
+  with complex parameters (Sommerfeld--Maue functions).
+
+\item \textbf{Morse oscillator and molecular spectroscopy.}%
+  \index{Morse potential!confluent hypergeometric}%
+  \index{molecular vibrations!Morse}%
+  \index{diatomic molecule!energy levels}%
+  The Morse potential $V(r)=D_{e}(1-e^{-a(r-r_{e})})^{2}$ has exact
+  solutions in terms of ${}_{1}F_{1}$ (equivalently, associated
+  Laguerre polynomials).  The finite number of bound states
+  $N=\lfloor(2mD_{e})^{1/2}/(a\hbar)-1/2\rfloor$ gives the vibrational
+  spectrum of diatomic molecules, accounting for anharmonicity.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Stokes phenomenon and connection formulas.}%
+  \index{Stokes phenomenon!confluent hypergeometric}%
+  \index{connection formulas!Kummer}%
+  \index{irregular singular point}%
+  The confluent hypergeometric equation has a regular singularity at
+  $z=0$ and an irregular singularity at $z=\infty$.  The Stokes
+  phenomenon: the asymptotic expansion of $\Phi(\alpha,\gamma;z)$
+  switches form as $\arg z$ crosses the Stokes lines.  The connection
+  formula $\Phi(\alpha,\gamma;z)=\frac{\Gamma(\gamma)}{\Gamma(\alpha)}
+  e^{z}z^{\alpha-\gamma}[1+O(1/z)]
+  +\frac{\Gamma(\gamma)}{\Gamma(\gamma-\alpha)}(-z)^{-\alpha}[1+O(1/z)]$
+  gives both exponentially large and small contributions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{9.24--9.25\quad Parabolic cylinder functions $D_{p}(z)$}
 \subsubsection{9.26\quad Confluent hypergeometric series of two variables}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quantum mechanics in uniform fields.}%
+  \index{parabolic cylinder functions}%
+  \index{uniform electric field!quantum}%
+  \index{WKB!parabolic cylinder}%
+  \index{Landau levels!parabolic cylinder}%
+  The Schr\"{o}dinger equation for a particle in a uniform electric
+  field (Stark effect) or a harmonic potential $V=\frac{1}{2}m\omega^{2}x^{2}$
+  leads to the parabolic cylinder equation $w''+(p+\frac{1}{2}-z^{2}/4)w=0$
+  with solutions $D_{p}(z)$.  For integer $p$, $D_{n}(z)$ reduces to
+  $H_{n}(z/\sqrt{2})e^{-z^{2}/4}$ (Hermite functions), recovering
+  the harmonic oscillator.  The Landau levels of a charged particle
+  in a magnetic field also involve parabolic cylinder functions.
+
+\item \textbf{Tunnelling rates and the Gamow factor.}%
+  \index{tunnelling!parabolic barrier}%
+  \index{Gamow factor}%
+  \index{parabolic barrier!transmission}%
+  The transmission coefficient through a parabolic potential barrier
+  $V(x)=V_{0}-\frac{1}{2}m\omega^{2}x^{2}$ is
+  $T=1/(1+e^{-2\pi(E-V_{0})/(\hbar\omega)})$, derived from the
+  connection formulas of the parabolic cylinder functions.  This
+  is the exact result that the WKB tunnelling formula approximates.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hermite functions and the Fourier transform.}%
+  \index{Hermite functions!Fourier eigenfunctions}%
+  \index{Fourier transform!eigenfunctions}%
+  \index{Mehler's formula}%
+  The Hermite functions $\psi_{n}(x)=H_{n}(x)e^{-x^{2}/2}$ are
+  eigenfunctions of the Fourier transform:
+  $\hat{\psi}_{n}=(-i)^{n}\psi_{n}$.  The parabolic cylinder functions
+  $D_{n}$ generalise this to non-integer $n$, and Mehler's formula
+  $\sum_{n}\frac{w^{n}}{n!}\psi_{n}(x)\psi_{n}(y)
+  =\frac{1}{\sqrt{1-w^{2}}}\exp(-\frac{w^{2}(x^{2}+y^{2})-2wxy}
+  {2(1-w^{2})})$ is the generating kernel.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.3\quad Meijer's $G$-Function}
+%% ============================================================
+
 \subsubsection{9.30\quad Definition}
 \subsubsection{9.31\quad Functional relations}
 \subsubsection{9.32\quad A differential equation for the G-function}
 \subsubsection{9.33\quad Series of G-functions}
 \subsubsection{9.34\quad Connections with other special functions}
 
+The Meijer $G$-function
+$G_{p,q}^{m,n}\!\left(z\,\middle|\,\begin{smallmatrix}a_{1},\ldots,a_{p}\\
+b_{1},\ldots,b_{q}\end{smallmatrix}\right)
+=\frac{1}{2\pi i}\int_{\mathcal{L}}\frac{\prod_{j=1}^{m}\Gamma(b_{j}-s)
+\prod_{j=1}^{n}\Gamma(1-a_{j}+s)}{\prod_{j=m+1}^{q}\Gamma(1-b_{j}+s)
+\prod_{j=n+1}^{p}\Gamma(a_{j}-s)}z^{s}\,ds$ is a master function
+defined by a Mellin--Barnes integral that includes essentially all
+classical special functions as special cases.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Unified evaluation of Feynman integrals.}%
+  \index{Meijer $G$-function}%
+  \index{Feynman integrals!Meijer $G$}%
+  \index{Mellin--Barnes!Meijer $G$}%
+  \index{master integral!$G$-function}%
+  Many one-loop and some multi-loop Feynman integrals evaluate to
+  Meijer $G$-functions.  The Mellin--Barnes representation
+  of Feynman parameter integrals naturally produces $G$-functions, and
+  the functional relations of G\&R~9.31 simplify products and
+  convolutions of these results.
+
+\item \textbf{Wireless communication channel capacity.}%
+  \index{wireless communication!$G$-function}%
+  \index{fading channel!capacity}%
+  \index{MIMO!capacity}%
+  The capacity of MIMO wireless channels in Rayleigh fading is expressed
+  through the Meijer $G$-function, because the eigenvalue distribution
+  of the channel matrix involves products of gamma functions
+  (the Wishart distribution) that are naturally expressed as
+  Mellin--Barnes integrals.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Closure under integral transforms.}%
+  \index{Meijer $G$-function!closure}%
+  \index{integral transform!$G$-function}%
+  \index{Fox $H$-function}%
+  The Meijer $G$-function is closed under Mellin, Laplace, Hankel, and
+  other integral transforms: the transform of a $G$-function is another
+  $G$-function with shifted parameters.  This makes $G$-functions the
+  natural language for integral table identities.  The Fox $H$-function
+  extends this further to allow arbitrary powers of gamma functions in
+  the Mellin--Barnes integrand.
+
+\item \textbf{Computer algebra and symbolic integration.}%
+  \index{computer algebra!$G$-function}%
+  \index{symbolic integration!Meijer $G$}%
+  \index{Risch algorithm!special functions}%
+  Modern computer algebra systems (Mathematica, Maple) use the Meijer
+  $G$-function as a backend for symbolic integration: the integral of a
+  product of special functions is computed by expressing each as a
+  $G$-function and applying the known $G$-function convolution formulas.
+  This automates much of the table-lookup that G\&R provides manually.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.4\quad MacRobert's $E$-Function}
+%% ============================================================
+
 \subsubsection{9.41\quad Representation by means of multiple integrals}
 \subsubsection{9.42\quad Functional relations}
 
+\paragraph{Physics and mathematics applications.}
+\begin{enumerate}
+\item \textbf{MacRobert's $E$-function as a precursor of the $G$-function.}%
+  \index{MacRobert $E$-function}%
+  \index{generalised hypergeometric!MacRobert}%
+  MacRobert's $E$-function $E(p;a_{r}:q;b_{s}:z)$ was introduced to
+  extend the generalised hypergeometric series ${}_{p}F_{q}$ beyond
+  its radius of convergence.  It is now largely superseded by the Meijer
+  $G$-function, into which it embeds as a special case (G\&R~9.34).
+  The multiple integral representations (G\&R~9.41) provide alternative
+  evaluation paths in cases where Mellin--Barnes integration is difficult.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.5\quad Riemann's Zeta Functions $\zeta(z,q)$ and $\zeta(z)$, and the Functions $\Phi(z,s,v)$ and $\xi(s)$}
+%% ============================================================
+
 \subsubsection{9.51\quad Definition and integral representations}
 \subsubsection{9.52\quad Representation as a series or as an infinite product}
 \subsubsection{9.53\quad Functional relations}
 \subsubsection{9.54\quad Singular points and zeros}
+
+The Riemann zeta function $\zeta(s)=\sum_{n=1}^{\infty}n^{-s}$
+($\mathrm{Re}\,s>1$) extends to a meromorphic function on $\mathbb{C}$
+with a simple pole at $s=1$.  The Hurwitz zeta function
+$\zeta(s,q)=\sum_{n=0}^{\infty}(n+q)^{-s}$ generalises to
+non-integer shift $q$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Casimir effect and zeta-function regularisation.}%
+  \index{Riemann zeta function!$\zeta(s)$}%
+  \index{Casimir effect!zeta regularisation}%
+  \index{zeta-function regularisation!physics}%
+  \index{vacuum energy!Casimir}%
+  The Casimir energy between parallel plates is
+  $E=\frac{1}{2}\sum_{\mathbf{n}}\omega_{\mathbf{n}}$, a divergent
+  sum regularised as $E(s)=\frac{1}{2}\sum\omega_{\mathbf{n}}^{1-2s}$
+  and analytically continued to $s=0$.  For one-dimensional modes,
+  $E\propto\zeta(-1)=-1/12$; for three-dimensional, the result involves
+  Epstein zeta functions (multi-dimensional generalisations).  The
+  attractive Casimir force $F=-\pi^{2}\hbar c/(240 d^{4})$ per unit
+  area has been experimentally confirmed \cite{Elizalde1995}.
+
+\item \textbf{Bose--Einstein and Fermi--Dirac integrals.}%
+  \index{Bose--Einstein integral!zeta function}%
+  \index{Fermi--Dirac integral!polylogarithm}%
+  \index{polylogarithm!statistical mechanics}%
+  \index{Sommerfeld expansion}%
+  The Bose--Einstein and Fermi--Dirac integrals
+  $\int_{0}^{\infty}\frac{x^{s-1}}{e^{x}\mp 1}\,dx
+  =\Gamma(s)\cdot\begin{cases}\zeta(s)&(\text{Bose})\\
+  (1-2^{1-s})\zeta(s)&(\text{Fermi})\end{cases}$ connect the zeta
+  function to quantum statistical mechanics.  The Sommerfeld
+  expansion of the Fermi function uses $\zeta(2k)$ coefficients.
+
+\item \textbf{Blackbody radiation and $\zeta(4)$.}%
+  \index{blackbody radiation!$\zeta(4)$}%
+  \index{Stefan--Boltzmann constant}%
+  \index{$\zeta(4)=\pi^4/90$}%
+  The Stefan--Boltzmann constant
+  $\sigma=2\pi^{5}k_{B}^{4}/(15c^{2}h^{3})$ involves
+  $\zeta(4)=\pi^{4}/90$ from the integral
+  $\int_{0}^{\infty}x^{3}/(e^{x}-1)\,dx=\Gamma(4)\zeta(4)=\pi^{4}/15$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Functional equation and analytic continuation.}%
+  \index{functional equation!zeta function}%
+  \index{analytic continuation!zeta function}%
+  \index{Riemann xi function}%
+  The functional equation $\zeta(s)=2^{s}\pi^{s-1}\sin(\pi s/2)
+  \Gamma(1-s)\zeta(1-s)$ relates values at $s$ and $1-s$.  The
+  completed zeta function $\xi(s)=\frac{1}{2}s(s-1)\pi^{-s/2}
+  \Gamma(s/2)\zeta(s)$ satisfies $\xi(s)=\xi(1-s)$ and is entire of
+  order 1.
+
+\item \textbf{Euler product and prime distribution.}%
+  \index{Euler product!zeta function}%
+  \index{prime distribution!zeta function}%
+  \index{Riemann hypothesis}%
+  The Euler product $\zeta(s)=\prod_{p}(1-p^{-s})^{-1}$ encodes the
+  fundamental theorem of arithmetic.  The zeros of $\zeta$ on the
+  critical line $\mathrm{Re}\,s=1/2$ (Riemann hypothesis) control the
+  error term in the prime number theorem.  Over $10^{13}$ zeros have
+  been verified on the critical line.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{9.55\quad The Lerch function $\Phi(z,s,v)$}
 \subsubsection{9.56\quad The function $\xi(s)$}
 
+\paragraph{Physics and mathematics applications.}
+\begin{enumerate}
+\item \textbf{Lerch transcendent and polylogarithm.}%
+  \index{Lerch transcendent}%
+  \index{polylogarithm!Lerch generalisation}%
+  \index{Dirichlet $L$-function!Lerch}%
+  The Lerch transcendent
+  $\Phi(z,s,v)=\sum_{n=0}^{\infty}z^{n}(n+v)^{-s}$ unifies the
+  Hurwitz zeta function ($z=1$), the polylogarithm
+  $\mathrm{Li}_{s}(z)=z\Phi(z,s,1)$, and the Dirichlet $L$-functions
+  $L(s,\chi)=\sum\chi(n)n^{-s}$.  Its functional equation
+  generalises that of $\zeta(s)$ and connects to the theory of
+  automorphic forms.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.6\quad Bernoulli Numbers and Polynomials, Euler Numbers}
+%% ============================================================
+
 \subsubsection{9.61\quad Bernoulli numbers}
 \subsubsection{9.62\quad Bernoulli polynomials}
 \subsubsection{9.63\quad Euler numbers}
 \subsubsection{9.64\quad The functions $\nu(x)$, $\nu(x,\alpha)$, $\mu(x,\beta)$, $\mu(x,\beta,\alpha)$, and $\lambda(x,y)$}
 \subsubsection{9.65\quad Euler polynomials}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Bernoulli numbers in the Euler--Maclaurin formula.}%
+  \index{Bernoulli numbers}%
+  \index{Euler--Maclaurin formula}%
+  \index{lattice sums!Euler--Maclaurin}%
+  \index{Casimir energy!Bernoulli numbers}%
+  The Euler--Maclaurin formula
+  $\sum_{k=a}^{b}f(k)=\int_{a}^{b}f(x)\,dx+\frac{f(a)+f(b)}{2}
+  +\sum_{k=1}^{p}\frac{B_{2k}}{(2k)!}(f^{(2k-1)}(b)-f^{(2k-1)}(a))+R$
+  uses Bernoulli numbers $B_{2k}$ as coefficients.  This is the
+  fundamental tool for converting sums to integrals (and vice versa)
+  in statistical mechanics, number theory, and numerical analysis.
+  The Casimir energy $\zeta(-1)=-B_{2}/2=-1/12$ and
+  $\zeta(-3)=B_{4}/4=1/120$ are Bernoulli number evaluations.
+
+\item \textbf{Cumulant expansion and Bernoulli polynomials.}%
+  \index{Bernoulli polynomials!cumulants}%
+  \index{cumulant expansion}%
+  \index{cluster expansion!statistical mechanics}%
+  The generating function $te^{xt}/(e^{t}-1)=\sum B_{n}(x)t^{n}/n!$
+  connects Bernoulli polynomials to cumulant generating functions in
+  probability.  In statistical mechanics, the cluster (virial) expansion
+  of the equation of state involves Bernoulli-type coefficients
+  relating the fugacity series to the density series.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Zeta values and Bernoulli numbers.}%
+  \index{zeta values!Bernoulli numbers}%
+  \index{$\zeta(2n)$!Bernoulli formula}%
+  \index{Kummer congruences}%
+  Euler's formula $\zeta(2n)=(-1)^{n+1}(2\pi)^{2n}B_{2n}/(2(2n)!)$
+  gives all even zeta values in terms of Bernoulli numbers.  The
+  Kummer congruences $B_{m}/(m)\equiv B_{n}/(n)\pmod{p}$ for
+  $m\equiv n\pmod{p-1}$ connect Bernoulli numbers to $p$-adic
+  $L$-functions and Iwasawa theory.
+
+\item \textbf{Euler numbers and alternating permutations.}%
+  \index{Euler numbers!alternating permutations}%
+  \index{tangent numbers}%
+  \index{secant numbers}%
+  \index{combinatorics!Euler numbers}%
+  The Euler numbers $E_{n}$ (defined by $\sec t=\sum E_{2n}t^{2n}/(2n)!$)
+  count the number of alternating permutations of $\{1,\ldots,n\}$.
+  The tangent numbers $T_{n}=(-1)^{n-1}2^{2n}(2^{2n}-1)B_{2n}/(2n)$
+  give $\tan t=\sum T_{n}t^{2n-1}/(2n-1)!$.  These connect the
+  analysis of special functions to enumerative combinatorics.
+\end{enumerate}
+
+%% ============================================================
 \subsection{9.7\quad Constants}
+%% ============================================================
+
 \subsubsection{9.71\quad Bernoulli numbers}
 \subsubsection{9.72\quad Euler numbers}
 \subsubsection{9.73\quad Euler's and Catalan's constants}
 \subsubsection{9.74\quad Stirling numbers}
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Euler's constant $\gamma$ in physics.}%
+  \index{Euler--Mascheroni constant!$\gamma$}%
+  \index{dimensional regularisation!$\gamma$}%
+  \index{Bethe logarithm}%
+  \index{renormalisation!Euler's constant}%
+  The Euler--Mascheroni constant $\gamma=0.5772\ldots$ appears in the
+  Laurent expansion $\Gamma(\varepsilon)=1/\varepsilon-\gamma+O(\varepsilon)$,
+  and hence in every one-loop calculation in dimensional regularisation.
+  The Bethe logarithm for the Lamb shift of hydrogen involves $\gamma$
+  through the asymptotic expansion of the digamma function.
+
+\item \textbf{Catalan's constant in lattice statistics.}%
+  \index{Catalan's constant!$G$}%
+  \index{lattice Green's function}%
+  \index{random walk!lattice}%
+  Catalan's constant $G=\sum_{n=0}^{\infty}(-1)^{n}/(2n+1)^{2}
+  =0.9159\ldots$ appears in the lattice Green's function of the
+  square lattice, in the entropy of ice models (Lieb's square ice),
+  and in the probability of return of a random walk on $\mathbb{Z}^{2}$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Stirling numbers and combinatorial identities.}%
+  \index{Stirling numbers!first kind}%
+  \index{Stirling numbers!second kind}%
+  \index{combinatorial identities!Stirling}%
+  \index{Bell polynomials}%
+  The Stirling numbers of the first kind $s(n,k)$ (coefficients of
+  falling factorials) and second kind $S(n,k)$ (partitions of a set into
+  blocks) connect polynomial bases: $x^{n}=\sum_{k}S(n,k)(x)_{k}$ and
+  $(x)_{n}=\sum_{k}s(n,k)x^{k}$.  They appear in moment-cumulant
+  relations, normal ordering of quantum operators
+  ($a^{\dagger n}a^{n}=\sum S(n,k)(a^{\dagger}a)_{k}$), and asymptotic
+  expansions of the gamma function.
+
+\item \textbf{Irrationality and transcendence.}%
+  \index{irrationality!$\gamma$}%
+  \index{transcendence!constants}%
+  \index{Ap\'ery's theorem!$\zeta(3)$}%
+  While $\pi$ and $e$ are transcendental and $\zeta(3)$ is irrational
+  (Ap\'{e}ry, 1978), the irrationality of $\gamma$ remains one of the
+  most important open problems in number theory.  Catalan's constant
+  $G=\beta(2)$ (Dirichlet beta function at 2) is also not known to be
+  irrational.  These constants, tabulated in G\&R~9.73, are testing
+  grounds for transcendence methods.
+\end{enumerate}

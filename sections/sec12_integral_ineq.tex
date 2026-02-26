@@ -1,35 +1,1361 @@
-%% Section 12 — Integral Inequalities
+%% ============================================================
+%% 12  Integral Inequalities
+%% ============================================================
 \section{12\quad Integral Inequalities}
 
+The integral inequalities of this section are the continuous analogues of
+the algebraic inequalities of Section~11, and many are proved by passage
+to the limit from their discrete counterparts.  They are the fundamental
+tools of real and functional analysis: H\"{o}lder, Minkowski, and
+Cauchy--Schwarz establish the triangle inequality in $L^{p}$ spaces;
+Jensen's inequality is the master tool for convexity arguments; and
+Bessel's inequality and Parseval's theorem connect function norms to
+Fourier coefficients.
+
+%% -------------------------------------------------------------------
 \subsection{12.11\quad Mean Value Theorems}
 \subsubsection{12.111\quad First mean value theorem}
+
+The first mean value theorem for integrals states that if $f$ is
+continuous on $[a,b]$ and $g$ is integrable and does not change sign,
+then $\int_{a}^{b}f(x)g(x)\,dx=f(c)\int_{a}^{b}g(x)\,dx$ for some
+$c\in[a,b]$.  When $g\equiv 1$, this reduces to the familiar
+$\int_{a}^{b}f(x)\,dx=f(c)(b-a)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Average values of physical quantities.}%
+  \index{mean value theorem!first integral}%
+  \index{average value!integral}%
+  \index{root-mean-square!mean value}%
+  The mean value theorem gives the ``average'' of a continuous quantity
+  over an interval: $\bar{f}=\frac{1}{b-a}\int_{a}^{b}f(x)\,dx$.
+  In thermodynamics, the mean temperature of a rod, the average
+  velocity of gas molecules (Maxwell distribution), and the DC
+  component of an AC signal are all instances of this average.
+
+\item \textbf{Centre of mass and moments.}%
+  \index{centre of mass!mean value theorem}%
+  \index{moments!integral}%
+  \index{weighted average!physical}%
+  The weighted mean value theorem (with $g=\rho$ a mass density) gives
+  $\bar{x}=\int x\,\rho(x)\,dx/\int\rho(x)\,dx$, the centre of mass.
+  Higher moments $\int(x-\bar{x})^{n}\rho\,dx$ give the variance
+  (spread), skewness, and kurtosis of the distribution, fundamental in
+  both classical mechanics and probability theory.
+
+\item \textbf{Effective medium approximations.}%
+  \index{effective medium!mean value}%
+  \index{homogenisation!mean value}%
+  \index{composite material!average properties}%
+  In homogenisation theory, the effective conductivity of a composite
+  material is related to the spatial average of the local conductivity
+  $\bar{\sigma}=\frac{1}{|V|}\int_{V}\sigma(\mathbf{x})\,d^{3}x$.
+  The mean value theorem guarantees that this average lies between the
+  minimum and maximum local values, providing the simplest bounds on
+  effective properties.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Proof of the fundamental theorem of calculus.}%
+  \index{fundamental theorem of calculus}%
+  \index{mean value theorem!fundamental theorem}%
+  \index{antiderivative!existence}%
+  The first mean value theorem is the key step in proving the
+  fundamental theorem of calculus: if $F(x)=\int_{a}^{x}f(t)\,dt$ with
+  $f$ continuous, then $F'(x)=f(x)$.  The proof uses
+  $[F(x+h)-F(x)]/h=f(c_{h})$ for some $c_{h}$ between $x$ and $x+h$,
+  and continuity gives $f(c_{h})\to f(x)$ as $h\to 0$.
+
+\item \textbf{Integral form of the remainder in Taylor's theorem.}%
+  \index{Taylor's theorem!integral remainder}%
+  \index{remainder estimate!mean value}%
+  \index{Lagrange remainder}%
+  The mean value theorem applied to
+  $R_{n}(x)=\frac{1}{n!}\int_{a}^{x}(x-t)^{n}f^{(n+1)}(t)\,dt$ gives
+  the Lagrange form of the remainder
+  $R_{n}=f^{(n+1)}(c)(x-a)^{n+1}/(n+1)!$, the standard tool for
+  bounding truncation errors in series expansions.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.112\quad Second mean value theorem}
+
+The second mean value theorem (Bonnet's theorem): if $f$ is monotone
+on $[a,b]$ and $g$ is integrable, then
+$\int_{a}^{b}f(x)g(x)\,dx=f(a)\int_{a}^{\xi}g(x)\,dx
++f(b)\int_{\xi}^{b}g(x)\,dx$ for some $\xi\in[a,b]$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Slowly varying envelope approximation.}%
+  \index{second mean value theorem}%
+  \index{slowly varying envelope}%
+  \index{amplitude modulation!mean value}%
+  \index{adiabatic approximation}%
+  When a slowly varying amplitude $f(x)$ multiplies a rapidly
+  oscillating carrier $g(x)=\cos(\omega x)$, the second mean value
+  theorem justifies pulling $f$ outside the integral at a suitable
+  evaluation point.  This underpins the slowly varying envelope
+  approximation in nonlinear optics and the adiabatic approximation
+  in quantum mechanics.
+
+\item \textbf{Stationary phase heuristic.}%
+  \index{stationary phase!mean value}%
+  \index{oscillatory integrals!cancellation}%
+  \index{Fresnel integrals!stationary phase}%
+  The second mean value theorem explains why oscillatory integrals
+  $\int f(x)e^{i\omega\phi(x)}\,dx$ are small when $\omega$ is large:
+  the monotone $f$ can be pulled outside at a point, and the remaining
+  $\int e^{i\omega\phi}\,dx$ cancels by rapid oscillation.  The dominant
+  contribution comes from stationary points where $\phi'=0$, the basis
+  of the stationary phase method.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Dirichlet's test for convergence of integrals.}%
+  \index{Dirichlet's test!integral convergence}%
+  \index{Abel's test!integral convergence}%
+  \index{conditional convergence!integral}%
+  The second mean value theorem is the principal tool for proving
+  Dirichlet's test: if $f(x)\to 0$ monotonically as $x\to\infty$ and
+  $\int_{a}^{X}g(x)\,dx$ is bounded, then $\int_{a}^{\infty}f(x)g(x)\,dx$
+  converges.  This proves, for instance, the convergence of
+  $\int_{1}^{\infty}\sin(x)/x\,dx$.
+
+\item \textbf{Du Bois-Reymond's theorem and Fourier analysis.}%
+  \index{du Bois-Reymond theorem}%
+  \index{Fourier series!pointwise convergence}%
+  \index{Dini's test}%
+  The second mean value theorem is used in proving localisation
+  theorems for Fourier series: the behaviour of $\sum\hat{f}(n)e^{inx}$
+  near $x_{0}$ depends only on $f$ in a neighbourhood of $x_{0}$.
+  Du Bois-Reymond's refinement and Dini's test for pointwise
+  convergence of Fourier series both rely on this theorem.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.113\quad First mean value theorem for infinite integrals}
 \subsubsection{12.114\quad Second mean value theorem for infinite integrals}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Asymptotic evaluation of integrals.}%
+  \index{mean value theorem!infinite integrals}%
+  \index{asymptotic evaluation!integrals}%
+  \index{Laplace's method!mean value}%
+  The mean value theorems for improper integrals justify asymptotic
+  methods: if $f(x)$ has a sharp peak and $g(x)$ varies slowly, then
+  $\int_{0}^{\infty}f(x)g(x)\,dx\approx g(c)\int_{0}^{\infty}f(x)\,dx$.
+  This is the heuristic behind Laplace's method and Watson's lemma,
+  where the ``sharp peak'' is $e^{-\lambda\phi(x)}$ for large $\lambda$.
+
+\item \textbf{Kramers--Kronig relations and dispersion.}%
+  \index{Kramers--Kronig relations}%
+  \index{dispersion relations}%
+  \index{causality!integral inequalities}%
+  The Kramers--Kronig relations $\mathrm{Re}\,\chi(\omega)
+  =\frac{1}{\pi}\mathrm{P.V.}\!\int_{-\infty}^{\infty}
+  \frac{\mathrm{Im}\,\chi(\omega')}{\omega'-\omega}\,d\omega'$
+  are principal value integrals whose convergence is established
+  using the second mean value theorem for infinite integrals applied
+  to the monotone factor $1/(\omega'-\omega)$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Abel--Dirichlet test for improper integrals.}%
+  \index{Abel--Dirichlet test!improper integrals}%
+  \index{convergence!improper integrals}%
+  \index{conditional convergence!improper integral}%
+  The second mean value theorem for infinite integrals provides the
+  foundation for convergence tests of improper integrals.  The
+  Abel--Dirichlet test states that $\int_{a}^{\infty}f(x)g(x)\,dx$
+  converges if $f\to 0$ monotonically and $G(X)=\int_{a}^{X}g\,dx$ is
+  bounded, or if $f$ is bounded and monotone and $\int_{a}^{\infty}g\,dx$
+  converges.
+
+\item \textbf{Improper Riemann vs.\ Lebesgue integrals.}%
+  \index{improper integral!Riemann vs.\ Lebesgue}%
+  \index{Lebesgue integral!conditional convergence}%
+  \index{absolute vs.\ conditional convergence}%
+  The mean value theorems for infinite integrals apply to conditionally
+  convergent integrals (e.g., $\int_{0}^{\infty}\sin(x)/x\,dx=\pi/2$),
+  which exist as improper Riemann integrals but not as Lebesgue
+  integrals.  This distinction is important in Fourier analysis, where
+  the Fourier transform of an $L^{1}$ function converges absolutely
+  but the inverse transform may require principal value interpretation.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{12.21\quad Differentiation of Definite Integral Containing a Parameter}
 \subsubsection{12.211\quad Differentiation when limits are finite}
+
+The Leibniz integral rule: if $f(x,t)$ and $\partial f/\partial t$ are
+continuous on $[a(t),b(t)]\times[t_{0},t_{1}]$, then
+$\frac{d}{dt}\int_{a(t)}^{b(t)}f(x,t)\,dx
+=\int_{a(t)}^{b(t)}\frac{\partial f}{\partial t}\,dx
++f(b(t),t)\,b'(t)-f(a(t),t)\,a'(t)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Reynolds transport theorem.}%
+  \index{Leibniz integral rule}%
+  \index{Reynolds transport theorem!Leibniz rule}%
+  \index{material derivative!integral}%
+  \index{conservation laws!Leibniz rule}%
+  The Leibniz rule is the one-dimensional form of the Reynolds transport
+  theorem $\frac{d}{dt}\int_{V(t)}f\,dV=\int_{V}\partial_{t}f\,dV
+  +\oint_{S}f\mathbf{v}\cdot d\mathbf{S}$.  The boundary terms
+  $f(b,t)b'(t)-f(a,t)a'(t)$ represent flux through moving boundaries,
+  fundamental for deriving conservation laws in fluid mechanics,
+  thermodynamics, and continuum mechanics.
+
+\item \textbf{Feynman's technique for evaluating integrals.}%
+  \index{Feynman's technique!differentiation under integral}%
+  \index{differentiation under integral sign}%
+  \index{parameter integral!Feynman}%
+  Feynman's ``trick'' of differentiating under the integral sign
+  introduces a parameter to evaluate definite integrals.  A classic
+  example: to compute $I=\int_{0}^{\infty}e^{-x^{2}}\,dx$, consider
+  $F(\alpha)=\int_{0}^{\infty}e^{-\alpha x^{2}}\,dx=\sqrt{\pi/(4\alpha)}$
+  and evaluate at $\alpha=1$.  More generally,
+  $\int_{0}^{\infty}\frac{\sin x}{x}\,dx$ is evaluated by
+  differentiating $F(\alpha)=\int_{0}^{\infty}\frac{e^{-\alpha x}\sin x}{x}\,dx$
+  with respect to $\alpha$.
+
+\item \textbf{Sensitivity analysis in engineering models.}%
+  \index{sensitivity analysis!integral}%
+  \index{adjoint method!sensitivity}%
+  \index{design optimisation}%
+  In structural and aerodynamic optimisation, the objective function
+  $J(\mu)=\int_{\Omega(\mu)}f(x;\mu)\,dx$ depends on a design
+  parameter $\mu$.  The Leibniz rule gives
+  $dJ/d\mu=\int_{\Omega}\partial_{\mu}f\,dx+\oint_{\partial\Omega}
+  f\,V_{n}\,dS$, the shape derivative used in adjoint-based
+  optimisation of aircraft wings, turbine blades, and drug delivery
+  systems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Dominated convergence and uniform convergence.}%
+  \index{dominated convergence!differentiation}%
+  \index{uniform convergence!differentiation under integral}%
+  \index{Lebesgue!differentiation under integral}%
+  The Leibniz rule with fixed limits ($a'=b'=0$) holds under the
+  weaker hypothesis that $|\partial_{t}f(x,t)|\leq g(x)$ with
+  $g\in L^{1}$ (Lebesgue dominated convergence theorem), extending
+  the classical result from continuous $\partial_{t}f$ to the
+  measure-theoretic setting.
+
+\item \textbf{Generating functions and integral representations.}%
+  \index{generating function!integral}%
+  \index{integral representation!from Leibniz rule}%
+  \index{special functions!parameter differentiation}%
+  Repeated differentiation of parameter integrals generates families of
+  special functions: $\Gamma^{(n)}(s)=\int_{0}^{\infty}(\ln t)^{n}\,
+  t^{s-1}e^{-t}\,dt$, the polygamma functions.  Euler's integral
+  $B(a,b)=\int_{0}^{1}x^{a-1}(1-x)^{b-1}\,dx$ yields the digamma
+  function upon differentiation: $\partial_{a}\ln B(a,b)=\psi(a)-\psi(a+b)$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.212\quad Differentiation when a limit is infinite}
 
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Laplace and Fourier transform derivatives.}%
+  \index{differentiation!Laplace transform}%
+  \index{Fourier transform!parameter derivative}%
+  \index{moment generation!differentiation}%
+  The Laplace transform $F(s)=\int_{0}^{\infty}e^{-st}f(t)\,dt$
+  satisfies $F'(s)=-\int_{0}^{\infty}te^{-st}f(t)\,dt
+  =-\mathcal{L}\{tf(t)\}$---differentiation with respect to the
+  parameter $s$ under an infinite integral.  This generates the moment
+  formula $\mathbb{E}[X^{n}]=(-1)^{n}F^{(n)}(0)$ for the Laplace
+  transform of a probability density.
+
+\item \textbf{Regularisation in quantum field theory.}%
+  \index{regularisation!parameter differentiation}%
+  \index{Schwinger parametrisation}%
+  \index{dimensional regularisation!differentiation}%
+  Schwinger's parametrisation
+  $1/A^{n}=\frac{1}{\Gamma(n)}\int_{0}^{\infty}\alpha^{n-1}e^{-\alpha A}\,d\alpha$
+  converts propagator products to Gaussian integrals in momentum space.
+  Differentiation with respect to masses or external momenta under
+  the infinite integral generates Feynman diagram derivatives, essential
+  for computing renormalisation group functions and anomalous dimensions
+  \cite{Schwinger1951}.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Conditions for interchange of limit and differentiation.}%
+  \index{interchange!limit and derivative}%
+  \index{uniform convergence!infinite integral}%
+  \index{dominated convergence!infinite integral}%
+  The Leibniz rule for $\frac{d}{dt}\int_{a}^{\infty}f(x,t)\,dx
+  =\int_{a}^{\infty}\partial_{t}f(x,t)\,dx$ requires justification:
+  either $\partial_{t}f$ converges uniformly in $t$ (classical) or
+  $|\partial_{t}f|\leq g(x)\in L^{1}$ (Lebesgue).  Failure of these
+  conditions leads to anomalous results, and verifying them is a key
+  step in rigorous asymptotic analysis.
+
+\item \textbf{Analytic continuation via parameter integrals.}%
+  \index{analytic continuation!parameter integral}%
+  \index{Riemann zeta function!integral representation}%
+  \index{gamma function!analytic continuation}%
+  The integral $\Gamma(s)=\int_{0}^{\infty}t^{s-1}e^{-t}\,dt$ defines
+  an analytic function for $\mathrm{Re}\,s>0$, and differentiation
+  under the integral sign shows analyticity: $\Gamma$ is holomorphic
+  wherever the integral converges.  Analytic continuation to the
+  entire complex plane (minus the non-positive integers) uses
+  related techniques.  The Riemann zeta function
+  $\zeta(s)=\frac{1}{\Gamma(s)}\int_{0}^{\infty}\frac{t^{s-1}}{e^{t}-1}\,dt$
+  is similarly extended.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{12.31\quad Integral Inequalities}
-\subsubsection{12.311\quad Cauchy-Schwarz-Buniakowsky inequality for integrals}
+
+\subsubsection{12.311\quad Cauchy--Schwarz--Buniakowsky inequality for integrals}
+
+$\left(\int_{a}^{b}f(x)g(x)\,dx\right)^{\!2}\leq
+\int_{a}^{b}f(x)^{2}\,dx\cdot\int_{a}^{b}g(x)^{2}\,dx$, with equality
+iff $f$ and $g$ are proportional a.e.  This is the integral form of the
+Cauchy--Schwarz inequality and the statement that the $L^{2}$ inner
+product satisfies $|\langle f,g\rangle|\leq\|f\|\|g\|$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Heisenberg uncertainty principle.}%
+  \index{Cauchy--Schwarz inequality!integral}%
+  \index{Heisenberg uncertainty principle!proof}%
+  \index{Robertson uncertainty relation}%
+  \index{quantum mechanics!uncertainty}%
+  The Robertson uncertainty relation
+  $\Delta A\,\Delta B\geq\tfrac{1}{2}|\langle[A,B]\rangle|$ is
+  proved by applying Cauchy--Schwarz in $L^{2}$:
+  $|\langle\psi|[A,B]|\psi\rangle|^{2}
+  \leq 4\langle(A-\bar{A})^{2}\rangle\langle(B-\bar{B})^{2}\rangle$.
+  For $A=x$, $B=-i\hbar\,d/dx$, this gives
+  $\Delta x\,\Delta p\geq\hbar/2$.  Equality holds for Gaussian
+  wave packets---the minimum-uncertainty states.
+
+\item \textbf{Schwarz inequality in electrodynamics.}%
+  \index{Schwarz inequality!electrodynamics}%
+  \index{antenna!radiation bound}%
+  \index{electromagnetic energy!Schwarz bound}%
+  The total radiated power $P=\oint|\mathbf{S}|\,dA$ and the directivity
+  $D=4\pi\max|\mathbf{S}|/P$ of an antenna are related by Schwarz-type
+  bounds.  The Schwarz inequality applied to the current distribution
+  gives fundamental limits on antenna gain and bandwidth (Chu's limit).
+
+\item \textbf{Variational bounds on ground state energy.}%
+  \index{variational bound!Schwarz inequality}%
+  \index{ground state!upper bound}%
+  \index{trial function!optimisation}%
+  The Cauchy--Schwarz inequality underpins the Rayleigh--Ritz variational
+  method: $E_{0}\leq\langle\psi|H|\psi\rangle/\langle\psi|\psi\rangle$
+  for any trial $\psi$.  The quality of the bound depends on how close
+  the trial function is to the true ground state, measured by the
+  Cauchy--Schwarz ``angle'' $\cos\theta
+  =|\langle\psi|\psi_{0}\rangle|/(\|\psi\|\|\psi_{0}\|)$.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Triangle inequality in $L^{2}$ and Hilbert space.}%
+  \index{triangle inequality!$L^2$}%
+  \index{Hilbert space!triangle inequality}%
+  \index{$L^2$ space!completeness}%
+  The Cauchy--Schwarz inequality proves the triangle inequality
+  $\|f+g\|_{2}\leq\|f\|_{2}+\|g\|_{2}$, establishing that $L^{2}$
+  is a normed space.  Completeness of $L^{2}$ (Fischer--Riesz theorem)
+  makes it a Hilbert space, the arena for spectral theory, Fourier
+  analysis, and quantum mechanics.
+
+\item \textbf{Cauchy--Schwarz as a special case of H\"older.}%
+  \index{Cauchy--Schwarz!H\"older special case}%
+  \index{H\"older's inequality!$p=q=2$}%
+  The Cauchy--Schwarz inequality is H\"{o}lder's inequality with
+  $p=q=2$.  It is the only case yielding an inner product, and hence
+  the only $L^{p}$ space that is a Hilbert space.  This ``accident''
+  is responsible for the special role of $L^{2}$ in mathematics and
+  physics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.312\quad H\"older's inequality for integrals}
+
+For $1\leq p\leq\infty$ with $1/p+1/q=1$ (conjugate exponents):
+$\int_{a}^{b}|f(x)g(x)|\,dx\leq\|f\|_{p}\|g\|_{q}
+=\left(\int|f|^{p}\right)^{1/p}\left(\int|g|^{q}\right)^{1/q}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Interpolation of $L^{p}$ norms and kinetic theory.}%
+  \index{H\"older's inequality!integral}%
+  \index{interpolation!$L^p$ norms}%
+  \index{kinetic theory!moment bounds}%
+  \index{Boltzmann equation!moment estimates}%
+  H\"{o}lder's inequality gives the interpolation
+  $\|f\|_{r}\leq\|f\|_{p}^{\theta}\|f\|_{q}^{1-\theta}$ for
+  $1/r=\theta/p+(1-\theta)/q$.  In kinetic theory, this bounds
+  higher moments of the velocity distribution $f(\mathbf{v})$ in terms
+  of lower moments, yielding a priori estimates for solutions of the
+  Boltzmann equation.
+
+\item \textbf{Convolution inequalities and signal processing.}%
+  \index{convolution inequality!Young}%
+  \index{signal processing!$L^p$ bounds}%
+  \index{Young's convolution inequality}%
+  H\"{o}lder's inequality is the key step in proving Young's
+  convolution inequality $\|f*g\|_{r}\leq\|f\|_{p}\|g\|_{q}$ where
+  $1/r=1/p+1/q-1$.  This bounds the output of a linear filter in terms
+  of the input and impulse response, fundamental in signal processing
+  and PDE theory.
+
+\item \textbf{Sobolev embedding and regularity.}%
+  \index{Sobolev embedding!H\"older}%
+  \index{regularity!Sobolev}%
+  \index{elliptic regularity}%
+  H\"{o}lder's inequality is used throughout Sobolev space theory: the
+  Sobolev embedding $W^{k,p}(\Omega)\hookrightarrow L^{q}(\Omega)$
+  (for $1/q=1/p-k/n>0$) and the Morrey inequality
+  $W^{1,p}\hookrightarrow C^{0,\alpha}$ (for $p>n$) both rely on
+  H\"{o}lder estimates.  These embeddings govern the regularity of
+  solutions to elliptic PDEs.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Duality of $L^{p}$ spaces.}%
+  \index{duality!$L^p$ spaces}%
+  \index{$L^p$ space!dual}%
+  \index{Riesz representation!$L^p$ dual}%
+  H\"{o}lder's inequality shows that every $g\in L^{q}$ defines a
+  bounded linear functional on $L^{p}$ via $\phi_{g}(f)=\int fg$.
+  The Riesz representation theorem proves the converse: $(L^{p})^{*}
+  \cong L^{q}$ for $1\leq p<\infty$.  This duality is the foundation
+  of weak solutions, distribution theory, and reflexivity of Banach
+  spaces.
+
+\item \textbf{H\"older's inequality and convexity.}%
+  \index{H\"older's inequality!log-convexity}%
+  \index{log-convexity!$L^p$ norms}%
+  \index{Riesz--Thorin theorem}%
+  The map $p\mapsto\ln\|f\|_{p}$ is convex (Lyapunov's inequality for
+  norms), proved via H\"{o}lder.  The Riesz--Thorin interpolation
+  theorem---if a linear operator is bounded $L^{p_{i}}\to L^{q_{i}}$
+  for $i=0,1$, then it is bounded for all intermediate exponents---is
+  the deep generalisation, with H\"{o}lder's inequality as the
+  bilinear case.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.313\quad Minkowski's inequality for integrals}
+
+$\|f+g\|_{p}\leq\|f\|_{p}+\|g\|_{p}$ for $1\leq p\leq\infty$.
+This is the triangle inequality in $L^{p}$, establishing that
+$\|\cdot\|_{p}$ is indeed a norm.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Superposition bounds in wave mechanics.}%
+  \index{Minkowski's inequality!integral}%
+  \index{superposition!$L^p$ bound}%
+  \index{wave mechanics!Minkowski}%
+  Minkowski's inequality bounds the norm of a superposition:
+  $\|f_{1}+f_{2}+\cdots+f_{n}\|_{p}\leq\sum\|f_{k}\|_{p}$.
+  For $p=2$, this bounds the total energy of superposed waves;
+  for $p=\infty$, it bounds the peak amplitude.  The inequality is
+  tight only for constructive interference (all components in phase).
+
+\item \textbf{Triangle inequality for probability metrics.}%
+  \index{Wasserstein distance!Minkowski}%
+  \index{probability metric!triangle inequality}%
+  \index{optimal transport!Minkowski inequality}%
+  The $p$-Wasserstein distance between probability measures
+  $W_{p}(\mu,\nu)=(\inf_{\gamma}\int\|x-y\|^{p}\,d\gamma)^{1/p}$
+  satisfies the triangle inequality by Minkowski's inequality.  This
+  makes $(L^{p},W_{p})$ a metric space on probability distributions,
+  the mathematical framework for optimal transport theory.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{$L^{p}$ spaces as Banach spaces.}%
+  \index{$L^p$ space!Banach space}%
+  \index{Minkowski's inequality!$L^p$ norm}%
+  \index{Fischer--Riesz theorem}%
+  Minkowski's inequality provides the triangle inequality axiom,
+  completing the proof that $L^{p}([a,b])$ is a normed space for
+  $1\leq p\leq\infty$.  The Fischer--Riesz theorem establishes
+  completeness, making $L^{p}$ a Banach space.  For $0<p<1$,
+  Minkowski's inequality reverses, so $\|\cdot\|_{p}$ is not a norm
+  but a quasi-norm.
+
+\item \textbf{Minkowski's integral inequality.}%
+  \index{Minkowski's integral inequality}%
+  \index{norm of integral!Minkowski}%
+  \index{convolution!Minkowski bound}%
+  The continuous form of Minkowski's inequality states
+  $\left\|\int f(x,y)\,dy\right\|_{p,x}\leq\int\|f(x,y)\|_{p,x}\,dy$:
+  the $L^{p}$ norm of an integral is at most the integral of the $L^{p}$
+  norms.  This is used to bound convolution operators and integral
+  transforms in $L^{p}$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.314\quad Chebyshev's inequality for integrals}
+
+If $f$ and $g$ are both non-decreasing (or both non-increasing) on
+$[a,b]$, then
+$\frac{1}{b-a}\int_{a}^{b}f(x)g(x)\,dx\geq
+\frac{1}{b-a}\int_{a}^{b}f(x)\,dx\cdot\frac{1}{b-a}\int_{a}^{b}g(x)\,dx$
+(the functions are ``positively correlated'').
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Positive correlations in statistical mechanics.}%
+  \index{Chebyshev's inequality!integral}%
+  \index{positive correlation!Chebyshev}%
+  \index{FKG inequality}%
+  \index{statistical mechanics!correlation}%
+  Chebyshev's integral inequality is the prototype for correlation
+  inequalities in statistical mechanics.  The FKG inequality
+  (Fortuin--Kasteleyn--Ginibre, 1971) generalises it to lattice systems:
+  for ferromagnetic models, increasing observables are positively
+  correlated $\langle fg\rangle\geq\langle f\rangle\langle g\rangle$.
+  This is fundamental to the rigorous theory of phase transitions.
+
+\item \textbf{Covariance and risk in finance.}%
+  \index{covariance!Chebyshev inequality}%
+  \index{co-monotonic risks}%
+  \index{financial mathematics!correlation}%
+  For co-monotonic random variables (both increasing functions of a
+  common factor), Chebyshev's inequality gives
+  $\mathrm{Cov}(X,Y)\geq 0$.  In finance, this bounds the
+  diversification benefit of a portfolio: perfectly correlated
+  assets provide no diversification, and the inequality quantifies
+  the worst case.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Rearrangement inequalities and Hardy--Littlewood.}%
+  \index{rearrangement inequality!integral}%
+  \index{Hardy--Littlewood rearrangement!integral}%
+  \index{symmetric decreasing rearrangement}%
+  Chebyshev's inequality is the continuous analogue of the discrete
+  rearrangement inequality.  The Hardy--Littlewood rearrangement
+  inequality $\int fg\leq\int f^{*}g^{*}$ (where $f^{*}$ is the
+  symmetric decreasing rearrangement) extends this to higher dimensions
+  and is the key tool for proving sharp Sobolev and isoperimetric
+  inequalities.
+
+\item \textbf{Correlation inequalities in probability.}%
+  \index{Harris inequality}%
+  \index{association!positive}%
+  \index{monotone functions!correlation}%
+  Chebyshev's inequality generalises to the Harris--FKG inequality
+  for product measures: if $f$ and $g$ are both monotone
+  non-decreasing in each coordinate, then $\mathbb{E}[fg]\geq
+  \mathbb{E}[f]\mathbb{E}[g]$.  This is used in percolation theory,
+  random graph theory, and combinatorial probability.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.315\quad Young's inequality for integrals}
+
+Young's inequality $ab\leq a^{p}/p+b^{q}/q$ for $a,b\geq 0$ and
+conjugate exponents $1/p+1/q=1$ is the pointwise inequality underlying
+H\"{o}lder.  The integral form gives convolution bounds and connects to
+the Legendre transform.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Legendre transform and thermodynamic potentials.}%
+  \index{Young's inequality!integral}%
+  \index{Legendre transform!Young's inequality}%
+  \index{thermodynamic potentials}%
+  \index{convex conjugate}%
+  Young's inequality $ab\leq f(a)+f^{*}(b)$ where
+  $f^{*}(b)=\sup_{a}(ab-f(a))$ is the Legendre--Fenchel transform is
+  the mathematical basis of the Legendre transform between
+  thermodynamic potentials: internal energy $U(S,V)$ and Helmholtz
+  free energy $F(T,V)=\sup_{S}(TS-U)$ are convex conjugates, and
+  Young's inequality gives $TS\leq U+F$.
+
+\item \textbf{Young's convolution inequality in physics.}%
+  \index{Young's convolution inequality!physics}%
+  \index{linear response!convolution bound}%
+  \index{impulse response!$L^p$ bound}%
+  For a linear system with impulse response $h(t)$, the output
+  $y=h*u$ satisfies $\|y\|_{r}\leq\|h\|_{p}\|u\|_{q}$ (Young's
+  convolution inequality, $1/r=1/p+1/q-1$).  This bounds the output
+  in any $L^{r}$ norm in terms of the input and the impulse response,
+  a universal tool in linear system analysis.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Proof of H\"older's inequality.}%
+  \index{Young's inequality!proof of H\"older}%
+  \index{H\"older's inequality!proof via Young}%
+  \index{AM-GM!Young's inequality}%
+  H\"{o}lder's inequality follows from integrating Young's pointwise
+  inequality $|f(x)g(x)|\leq|f(x)|^{p}/p+|g(x)|^{q}/q$ after
+  normalising $\|f\|_{p}=\|g\|_{q}=1$.  Young's inequality itself is
+  a consequence of the concavity of $\ln$ (the weighted AM-GM
+  inequality): $a^{1/p}b^{1/q}\leq a/p+b/q$.
+
+\item \textbf{Orlicz spaces and generalised Young functions.}%
+  \index{Orlicz spaces}%
+  \index{Young function}%
+  \index{generalised H\"older}%
+  A Young function $\Phi$ (convex, $\Phi(0)=0$, $\Phi(x)/x\to\infty$)
+  and its complementary function $\Psi=\Phi^{*}$ satisfy the
+  generalised Young inequality $ab\leq\Phi(a)+\Psi(b)$, leading to
+  the Orlicz space $L^{\Phi}$ and generalised H\"{o}lder inequality
+  $\int|fg|\leq 2\|f\|_{\Phi}\|g\|_{\Psi}$.  Orlicz spaces extend
+  $L^{p}$ theory to non-power-law growth, used in PDE theory for
+  exponential-type nonlinearities.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.316\quad Steffensen's inequality for integrals}
+
+If $f$ is non-increasing on $[a,b]$ and $0\leq g\leq 1$ with
+$\lambda=\int_{a}^{b}g(x)\,dx$, then
+$\int_{b-\lambda}^{b}f(x)\,dx\leq\int_{a}^{b}f(x)g(x)\,dx
+\leq\int_{a}^{a+\lambda}f(x)\,dx$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Optimal resource allocation.}%
+  \index{Steffensen's inequality}%
+  \index{resource allocation!Steffensen}%
+  \index{weighted integral!bounds}%
+  Steffensen's inequality bounds the weighted integral $\int fg$ by
+  integrals of $f$ over intervals of length $\lambda=\int g$.
+  Physically, this says that concentrating a weight function $g$ on the
+  region where $f$ is largest gives the maximum weighted average---a
+  basic principle of optimal resource allocation and matched filtering.
+
+\item \textbf{Probability and tail bounds.}%
+  \index{tail bounds!Steffensen}%
+  \index{probability!Steffensen inequality}%
+  \index{order statistics!bounds}%
+  For a probability density $f$ and an event indicator
+  $g=\mathbf{1}_{A}$ with $P(A)=\lambda$, Steffensen's inequality
+  gives bounds on the expected value of $f$ over the event $A$ in
+  terms of the integral of $f$ over the optimal interval of
+  length~$\lambda$, yielding tail bounds related to order statistics.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Refinement of the first mean value theorem.}%
+  \index{Steffensen's inequality!mean value refinement}%
+  \index{weighted mean value!Steffensen}%
+  Steffensen's inequality refines the first mean value theorem: instead
+  of just asserting $\int fg=f(c)\int g$ for some $c$, it gives
+  explicit two-sided bounds showing that $c$ lies in the interval where
+  $f$ takes its largest values (for non-increasing $f$).
+
+\item \textbf{Discrete analogue and Abel summation.}%
+  \index{Abel summation!Steffensen}%
+  \index{discrete Steffensen inequality}%
+  The discrete Steffensen inequality bounds partial sums of a
+  non-increasing sequence weighted by coefficients $0\leq g_{k}\leq 1$.
+  It is closely related to Abel summation by parts and is used in number
+  theory (partial summation in analytic number theory) and combinatorics.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.317\quad Gram's inequality for integrals}
+
+For functions $f_{1},\ldots,f_{n}\in L^{2}[a,b]$, the Gram determinant
+$G=\det[\langle f_{i},f_{j}\rangle]\geq 0$, with $G=0$ iff the
+functions are linearly dependent.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Linear independence of quantum states.}%
+  \index{Gram determinant}%
+  \index{Gram matrix!quantum states}%
+  \index{linear independence!quantum}%
+  \index{overlap matrix}%
+  The Gram matrix $S_{ij}=\langle\phi_{i}|\phi_{j}\rangle$ (overlap
+  matrix) of a set of quantum states determines their linear
+  independence: $\det S>0$ iff the states span an $n$-dimensional
+  subspace.  In computational chemistry, the Gram matrix of the
+  atomic orbital basis set governs the conditioning of the secular
+  equation $HC=SCE$ (Roothaan equations).
+
+\item \textbf{Antenna array and beamforming.}%
+  \index{beamforming!Gram matrix}%
+  \index{antenna array!independence}%
+  \index{spatial correlation!Gram determinant}%
+  The Gram matrix of the spatial response vectors of an antenna array
+  determines the effective number of independent channels (degrees of
+  freedom).  When the Gram determinant is small, the channels are nearly
+  linearly dependent, limiting the capacity of MIMO communication systems.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hadamard's inequality and volume interpretation.}%
+  \index{Hadamard's inequality!Gram determinant}%
+  \index{parallelepiped!volume}%
+  \index{Gram determinant!volume}%
+  The Gram determinant $G(f_{1},\ldots,f_{n})=\det[\langle f_{i},f_{j}\rangle]$
+  equals the squared volume of the parallelepiped spanned by
+  $f_{1},\ldots,f_{n}$ in $L^{2}$.  Hadamard's inequality $G\leq
+  \prod\|f_{i}\|^{2}$ (with equality iff the $f_{i}$ are orthogonal)
+  bounds this volume by the product of the edge lengths.
+
+\item \textbf{Best approximation and the normal equations.}%
+  \index{best approximation!Gram matrix}%
+  \index{normal equations!Gram matrix}%
+  \index{Gram--Schmidt!Gram determinant}%
+  The best $L^{2}$ approximation to a function $f$ from
+  $\mathrm{span}\{f_{1},\ldots,f_{n}\}$ satisfies the normal equations
+  $Gc=b$ where $G_{ij}=\langle f_{i},f_{j}\rangle$ and
+  $b_{i}=\langle f,f_{i}\rangle$.  The Gram determinant measures the
+  stability of this system: near-zero $G$ means the basis is
+  nearly dependent and the approximation is ill-conditioned.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.318\quad Ostrowski's inequality for integrals}
 
+If $f$ is differentiable on $(a,b)$ with $|f'(x)|\leq M$, then
+$\left|f(x)-\frac{1}{b-a}\int_{a}^{b}f(t)\,dt\right|
+\leq M(b-a)\left[\frac{1}{4}+\frac{(x-\frac{a+b}{2})^{2}}{(b-a)^{2}}\right]$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Quadrature error bounds.}%
+  \index{Ostrowski's inequality}%
+  \index{quadrature error!Ostrowski}%
+  \index{numerical integration!error bound}%
+  \index{midpoint rule!error}%
+  Ostrowski's inequality bounds the error of approximating an integral
+  by a single function evaluation: $|\int f\,dx-(b-a)f(x)|$.  The
+  optimal evaluation point is the midpoint $x=(a+b)/2$, giving the
+  midpoint rule with error bounded by $M(b-a)^{2}/4$.  Composite
+  versions give error bounds for numerical quadrature rules used in
+  engineering computations.
+
+\item \textbf{Sampling theorem and reconstruction error.}%
+  \index{sampling theorem!error bound}%
+  \index{signal reconstruction!Ostrowski}%
+  \index{bandwidth!smoothness}%
+  For a band-limited signal (bounded derivative), Ostrowski's inequality
+  bounds the error of reconstructing the signal average from a single
+  sample.  The bound $M\cdot\Delta t/4$ (for midpoint sampling with
+  interval $\Delta t$) gives a quantitative sampling error estimate
+  complementary to the Shannon--Nyquist theorem.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Generalisations and optimal constants.}%
+  \index{Ostrowski's inequality!generalisations}%
+  \index{Gr\"uss inequality}%
+  \index{integral inequality!sharp constants}%
+  Ostrowski's inequality has been generalised to functions with
+  bounded $n$th derivatives, to weighted integrals, and to functions
+  of bounded variation.  The related Gr\"{u}ss inequality bounds
+  $|\frac{1}{b-a}\int fg-\frac{1}{b-a}\int f\cdot\frac{1}{b-a}\int g|
+  \leq\frac{1}{4}(\sup f-\inf f)(\sup g-\inf g)$ and is used in
+  bounding covariance-type quantities.
+
+\item \textbf{Quadrature formula error analysis.}%
+  \index{quadrature!error analysis}%
+  \index{Peano kernel!error representation}%
+  \index{trapezoidal rule!error}%
+  The Peano kernel theorem provides a systematic framework for
+  quadrature error bounds: $E[f]=\int_{a}^{b}K(t)f^{(n)}(t)\,dt$
+  where $K$ is the Peano kernel.  Ostrowski-type inequalities are
+  special cases where $n=1$ and the kernel is explicitly computed.
+  For higher-order rules (Simpson, Gauss), the Peano kernel gives
+  sharper bounds.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{12.41\quad Convexity and Jensen's Inequality}
 \subsubsection{12.411\quad Jensen's inequality}
+
+If $\varphi$ is convex and $f$ is integrable with respect to a
+probability measure $\mu$ on $[a,b]$, then
+$\varphi\!\left(\int f\,d\mu\right)\leq\int\varphi(f)\,d\mu$.
+For concave $\varphi$, the inequality reverses.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Second law of thermodynamics and Gibbs inequality.}%
+  \index{Jensen's inequality!integral}%
+  \index{Gibbs inequality!Jensen}%
+  \index{entropy!concavity}%
+  \index{second law of thermodynamics}%
+  \index{Kullback--Leibler divergence}%
+  The Gibbs inequality $D_{\mathrm{KL}}(p\|q)
+  =\int p\ln(p/q)\,dx\geq 0$ (non-negativity of Kullback--Leibler
+  divergence) is Jensen's inequality applied to $\varphi(x)=-\ln x$
+  (convex) with $f=q/p$ under the measure $p\,dx$.  This proves that
+  entropy increases toward the equilibrium distribution---the second
+  law of thermodynamics in information-theoretic form.
+
+\item \textbf{Quantum Jensen inequality and von Neumann entropy.}%
+  \index{von Neumann entropy}%
+  \index{quantum Jensen inequality}%
+  \index{strong subadditivity!entropy}%
+  For a convex function $\varphi$ and a density matrix $\rho=\sum p_{i}|\psi_{i}\rangle\langle\psi_{i}|$,
+  the quantum Jensen inequality gives
+  $\varphi(\mathrm{tr}(A\rho))\leq\mathrm{tr}(\varphi(A)\rho)$.
+  Applied to $\varphi(x)=-x\ln x$, this yields concavity of the von
+  Neumann entropy $S(\rho)=-\mathrm{tr}(\rho\ln\rho)$, from which
+  strong subadditivity follows.
+
+\item \textbf{Mean-field theory and convexity bounds.}%
+  \index{mean-field theory!Jensen}%
+  \index{Bogoliubov inequality}%
+  \index{variational free energy}%
+  The Bogoliubov inequality $F\leq F_{0}+\langle H-H_{0}\rangle_{0}$
+  is Jensen's inequality applied to $\varphi(x)=e^{-\beta x}$ (convex),
+  bounding the free energy of an interacting system by a solvable
+  reference system.  This is the mathematical basis of all mean-field
+  theories (Hartree--Fock, Weiss, Bragg--Williams).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{AM-GM as a special case of Jensen.}%
+  \index{AM-GM inequality!Jensen proof}%
+  \index{Jensen's inequality!implies AM-GM}%
+  \index{convexity!implications}%
+  With $\varphi(x)=-\ln x$ (convex) and the counting measure,
+  Jensen gives $-\ln(\frac{1}{n}\sum a_{i})\leq\frac{1}{n}\sum(-\ln a_{i})$,
+  i.e., the arithmetic mean exceeds the geometric mean.  More
+  generally, Jensen's inequality with $\varphi(x)=x^{p}$ gives the
+  power mean inequality, with $\varphi(x)=e^{x}$ gives the
+  exponential convexity, and with $\varphi(x)=-x\ln x$ gives the
+  entropy bound.
+
+\item \textbf{Concentration inequalities and large deviations.}%
+  \index{concentration inequalities!Jensen}%
+  \index{large deviations!Jensen}%
+  \index{Chernoff bound!Jensen}%
+  \index{moment generating function!bound}%
+  The Chernoff bound $P(X\geq t)\leq e^{-st}\mathbb{E}[e^{sX}]$
+  follows from Markov's inequality applied to $e^{sX}$, and the
+  exponential moment $\mathbb{E}[e^{sX}]$ is bounded using Jensen.
+  The large deviation rate function
+  $I(x)=\sup_{s}(sx-\ln\mathbb{E}[e^{sX}])$ is the Legendre
+  transform of the log-moment generating function, a convex
+  analysis construction intimately tied to Jensen's inequality.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.412\quad Carleman's inequality for integrals}
 
+The integral form of Carleman's inequality states
+$\int_{0}^{\infty}\exp\!\left(\frac{1}{x}\int_{0}^{x}\ln f(t)\,dt\right)\,dx
+\leq e\int_{0}^{\infty}f(x)\,dx$ for $f\geq 0$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Geometric means of spectra.}%
+  \index{Carleman's inequality!integral}%
+  \index{geometric mean!spectral}%
+  \index{spectral density!geometric mean}%
+  Carleman's inequality bounds the integral of the running geometric
+  mean of a spectral density $f(\omega)$ by a constant times the total
+  spectral power.  In information theory, the entropy power inequality
+  $N(X+Y)\geq N(X)+N(Y)$ (where $N(X)=e^{2h(X)}/(2\pi e)$ and $h$
+  is differential entropy) is related via the geometric-arithmetic mean
+  structure that Carleman's inequality captures.
+
+\item \textbf{Szeg\H{o}'s theorem and prediction theory.}%
+  \index{Szeg\"o's theorem!Carleman}%
+  \index{prediction theory!Szeg\"o}%
+  \index{spectral factorisation}%
+  Szeg\"{o}'s theorem states that the geometric mean of the spectral
+  density $\exp(\frac{1}{2\pi}\int_{0}^{2\pi}\ln f(\theta)\,d\theta)$
+  determines the best linear prediction error of a stationary process.
+  Carleman-type inequalities bound this geometric mean and ensure the
+  integrability conditions needed for Szeg\"{o}'s limit theorem.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Hardy's inequality and Carleman as a limit.}%
+  \index{Hardy's inequality!Carleman limit}%
+  \index{Carleman's inequality!from Hardy}%
+  \index{sharp constant!Carleman}%
+  Carleman's inequality (discrete form:
+  $\sum_{n=1}^{\infty}(a_{1}\cdots a_{n})^{1/n}\leq e\sum a_{n}$)
+  is the limiting case $p\to\infty$ of Hardy's inequality
+  $\sum(\frac{1}{n}\sum_{k=1}^{n}a_{k})^{p}\leq(p/(p-1))^{p}\sum a_{k}^{p}$,
+  since $(p/(p-1))^{p}\to e$.  The constant $e$ is sharp.
+
+\item \textbf{P\'olya's inequality and geometric means.}%
+  \index{P\'olya's inequality}%
+  \index{geometric mean!integral inequality}%
+  \index{log-integrability}%
+  Carleman's inequality implies that if $f\in L^{1}(0,\infty)$ with
+  $f\geq 0$, then the running geometric mean
+  $G(x)=\exp(\frac{1}{x}\int_{0}^{x}\ln f)$ satisfies
+  $\int_{0}^{\infty}G(x)\,dx\leq e\int_{0}^{\infty}f$.  The sharp
+  constant $e$ cannot be improved, and the inequality fails without
+  the non-negativity assumption.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsection{12.51\quad Fourier Series and Related Inequalities}
-\subsubsection{12.511\quad Riemann-Lebesgue lemma}
+\subsubsection{12.511\quad Riemann--Lebesgue lemma}
+
+If $f\in L^{1}(\mathbb{R})$, then $\hat{f}(\xi)=\int f(x)e^{-2\pi ix\xi}\,dx
+\to 0$ as $|\xi|\to\infty$.  For Fourier coefficients:
+$\hat{f}(n)=\int_{0}^{1}f(x)e^{-2\pi inx}\,dx\to 0$ as $|n|\to\infty$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{High-frequency damping in physical systems.}%
+  \index{Riemann--Lebesgue lemma}%
+  \index{high-frequency damping}%
+  \index{Fourier coefficients!decay}%
+  \index{spectral leakage}%
+  The Riemann--Lebesgue lemma states that the Fourier transform of an
+  integrable function decays to zero at high frequencies.  Physically,
+  no finite-energy signal can maintain constant spectral power at
+  arbitrarily high frequencies---the spectrum must roll off.  The rate
+  of decay ($|\hat{f}(\xi)|\sim|\xi|^{-k}$ for $f\in C^{k-1}$) links
+  smoothness to spectral decay: smoother signals have faster spectral
+  roll-off.
+
+\item \textbf{Radiation patterns and diffraction.}%
+  \index{diffraction!Fourier transform}%
+  \index{radiation pattern!far-field}%
+  \index{Fraunhofer diffraction}%
+  The far-field diffraction pattern of an aperture is the Fourier
+  transform of the aperture function.  The Riemann--Lebesgue lemma
+  guarantees that the diffracted intensity vanishes at extreme angles,
+  and the rate of decay determines the side-lobe structure of antenna
+  patterns and optical diffraction.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Pointwise convergence of Fourier series.}%
+  \index{Fourier series!pointwise convergence}%
+  \index{Dirichlet conditions}%
+  \index{localisation principle}%
+  The Riemann--Lebesgue lemma is the key ingredient in proving
+  pointwise convergence of Fourier series under Dirichlet conditions
+  (piecewise smooth $f$): the partial sums
+  $S_{N}(x)=\sum_{-N}^{N}\hat{f}(n)e^{2\pi inx}$ converge because
+  the oscillatory integral involving the Dirichlet kernel vanishes
+  by Riemann--Lebesgue at non-singular points.
+
+\item \textbf{Distribution theory and tempered distributions.}%
+  \index{tempered distributions}%
+  \index{Schwartz space}%
+  \index{Fourier transform!distributions}%
+  The Riemann--Lebesgue lemma fails for distributions: the Fourier
+  transform of a Dirac delta is $\hat{\delta}(\xi)=1$ (does not
+  decay).  The Schwartz space of rapidly decreasing functions and the
+  tempered distributions $\mathcal{S}'$ provide the correct framework
+  where the Fourier transform is a bijection $\mathcal{S}'\to\mathcal{S}'$.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.512\quad Dirichlet lemma}
+
+The Dirichlet kernel $D_{N}(x)=\sum_{n=-N}^{N}e^{2\pi inx}
+=\frac{\sin((2N+1)\pi x)}{\sin(\pi x)}$ satisfies
+$\int_{0}^{1}D_{N}(x)\,dx=1$.  The $N$th partial sum of the Fourier
+series is $S_{N}f(x)=(f*D_{N})(x)$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Gibbs phenomenon and signal processing.}%
+  \index{Dirichlet kernel}%
+  \index{Gibbs phenomenon}%
+  \index{signal processing!Gibbs overshoot}%
+  \index{ringing artifact}%
+  At a jump discontinuity, the partial sums $S_{N}f$ overshoot by
+  approximately $9\%$ of the jump (Gibbs phenomenon), and this
+  overshoot does not diminish as $N\to\infty$.  In signal processing,
+  this produces ``ringing'' near sharp transitions.  Windowing
+  (Hanning, Blackman) and the Fej\'{e}r kernel (Ces\`{a}ro means)
+  eliminate the Gibbs overshoot at the cost of reduced resolution.
+
+\item \textbf{Spectral analysis and frequency resolution.}%
+  \index{spectral analysis!Dirichlet kernel}%
+  \index{frequency resolution}%
+  \index{windowing!spectral analysis}%
+  The Dirichlet kernel is the frequency-domain representation of a
+  rectangular window of length $2N+1$.  Its main lobe width
+  $\Delta\omega\approx 2\pi/(2N+1)$ determines the frequency
+  resolution of the discrete Fourier transform, and the slowly
+  decaying side lobes cause spectral leakage---the fundamental
+  trade-off between resolution and leakage in spectral estimation.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Convergence and divergence of Fourier series.}%
+  \index{Fourier series!convergence}%
+  \index{Dirichlet kernel!convergence}%
+  \index{du Bois-Reymond!divergent Fourier series}%
+  \index{Carleson's theorem}%
+  The representation $S_{N}f=f*D_{N}$ reduces Fourier convergence
+  to the behaviour of the convolution.  The Dirichlet kernel is not
+  an approximate identity (its $L^{1}$ norm
+  $\|D_{N}\|_{1}\sim\frac{4}{\pi^{2}}\ln N\to\infty$), which is
+  why the Fourier series of a continuous function can diverge at a
+  point (du Bois-Reymond, 1876).  Carleson's theorem (1966) shows
+  that for $f\in L^{2}$, convergence holds almost everywhere.
+
+\item \textbf{Fej\'er kernel and Ces\`aro summability.}%
+  \index{Fej\'er kernel}%
+  \index{Ces\`aro summability!Fourier series}%
+  \index{approximate identity}%
+  The Fej\'{e}r kernel
+  $F_{N}(x)=\frac{1}{N+1}\sum_{k=0}^{N}D_{k}(x)
+  =\frac{1}{N+1}\frac{\sin^{2}((N+1)\pi x)}{\sin^{2}(\pi x)}\geq 0$
+  is an approximate identity ($F_{N}\geq 0$, $\int F_{N}=1$,
+  $F_{N}$ concentrates at 0).  Fej\'{e}r's theorem: the Ces\`{a}ro
+  means $\sigma_{N}f=f*F_{N}$ converge uniformly for continuous $f$,
+  providing a constructive proof of the Weierstrass approximation
+  theorem.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.513\quad Parseval's theorem for trigonometric Fourier series}
+
+$\frac{1}{2}a_{0}^{2}+\sum_{n=1}^{\infty}(a_{n}^{2}+b_{n}^{2})
+=\frac{1}{\pi}\int_{-\pi}^{\pi}|f(x)|^{2}\,dx$, or equivalently
+$\sum_{n=-\infty}^{\infty}|\hat{f}(n)|^{2}=\int_{0}^{1}|f(x)|^{2}\,dx$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Energy conservation in Fourier analysis.}%
+  \index{Parseval's theorem!trigonometric}%
+  \index{energy conservation!Fourier}%
+  \index{power spectral density!Parseval}%
+  \index{Rayleigh's theorem}%
+  Parseval's theorem states that the total energy of a signal equals
+  the sum of the energies in each frequency component:
+  $\int|f(t)|^{2}\,dt=\sum|\hat{f}(n)|^{2}$.  This is energy
+  conservation in the frequency domain, the discrete version of
+  Rayleigh's (Plancherel's) theorem.  The power spectral density
+  $S(\omega)=|\hat{f}(\omega)|^{2}$ gives the energy distribution
+  per unit frequency.
+
+\item \textbf{Blackbody radiation and Planck's law.}%
+  \index{blackbody radiation!Parseval}%
+  \index{Planck's law!Fourier modes}%
+  \index{Stefan--Boltzmann law}%
+  The total energy of blackbody radiation is the sum over all modes:
+  $U=\sum_{\mathbf{n}}\hbar\omega_{\mathbf{n}}/
+  (e^{\hbar\omega_{\mathbf{n}}/k_{B}T}-1)$.  Parseval's theorem
+  applied to the electromagnetic field in a cavity relates the
+  total energy to the integral of the spectral energy density, giving
+  the Stefan--Boltzmann law $U\propto T^{4}$.
+
+\item \textbf{Noise power and Parseval's theorem.}%
+  \index{noise power!Parseval}%
+  \index{white noise!flat spectrum}%
+  \index{spectral density!noise}%
+  For a stationary random process, the Wiener--Khinchin theorem
+  gives $R(\tau)=\int S(\omega)e^{i\omega\tau}\,d\omega$ and
+  $R(0)=\int S(\omega)\,d\omega=\mathbb{E}[|X|^{2}]$ (total noise
+  power).  This is Parseval's theorem for the autocorrelation
+  function and its Fourier transform (the power spectral density).
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Completeness of trigonometric system.}%
+  \index{completeness!trigonometric system}%
+  \index{orthonormal basis!$L^2$}%
+  \index{isometry!Fourier}%
+  Parseval's theorem is equivalent to the completeness of the
+  trigonometric system $\{e^{2\pi inx}\}_{n\in\mathbb{Z}}$ in
+  $L^{2}[0,1]$: the Fourier coefficient map $f\mapsto\{\hat{f}(n)\}$
+  is an isometric isomorphism $L^{2}[0,1]\cong\ell^{2}(\mathbb{Z})$.
+  This is the Hilbert space version of the statement that every
+  $L^{2}$ function is the ``sum'' of its Fourier series.
+
+\item \textbf{Basel problem and zeta function values.}%
+  \index{Basel problem!Parseval}%
+  \index{zeta function!Parseval's theorem}%
+  \index{$\zeta(2)=\pi^2/6$}%
+  Applying Parseval's theorem to $f(x)=x$ on $[-\pi,\pi]$:
+  $\sum_{n=1}^{\infty}1/n^{2}=\pi^{2}/6$ (the Basel problem, solved
+  by Euler 1735).  More generally, Parseval applied to polynomial $f$
+  gives $\zeta(2k)$ as a rational multiple of $\pi^{2k}$, connecting
+  Fourier analysis to number theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.514\quad Integral representation of the $n^{\text{th}}$ partial sum}
+
+$S_{N}f(x)=\frac{1}{\pi}\int_{-\pi}^{\pi}f(t)D_{N}(x-t)\,dt$, the
+convolution of $f$ with the Dirichlet kernel.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Linear filtering as convolution.}%
+  \index{linear filtering!convolution}%
+  \index{partial sum!convolution representation}%
+  \index{ideal low-pass filter}%
+  The partial sum $S_{N}f=f*D_{N}$ is the output of an ideal low-pass
+  filter with cutoff at frequency $N$: it passes all harmonics up to
+  $|n|\leq N$ and rejects higher ones.  The Dirichlet kernel is the
+  impulse response of this filter, and the Gibbs phenomenon is the
+  ringing inherent in an ideal brick-wall filter.
+
+\item \textbf{Truncation of multipole expansions.}%
+  \index{multipole expansion!truncation}%
+  \index{partial sum!multipole}%
+  \index{convergence!multipole series}%
+  In gravitational and electrostatic problems, the potential is
+  expanded in spherical harmonics:
+  $\Phi=\sum_{\ell=0}^{\infty}\sum_{m}a_{\ell m}Y_{\ell}^{m}/r^{\ell+1}$.
+  The $N$th partial sum truncates at $\ell=N$, and the convolution
+  representation quantifies the approximation error in terms of the
+  smoothness of the source distribution.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Summability methods and approximate identities.}%
+  \index{summability methods}%
+  \index{approximate identity!Fourier}%
+  \index{Abel summability}%
+  \index{Poisson kernel}%
+  Replacing $D_{N}$ by different kernels gives summability methods:
+  the Fej\'{e}r kernel (Ces\`{a}ro), the Poisson kernel
+  $P_{r}(\theta)=\sum r^{|n|}e^{in\theta}=(1-r^{2})/(1-2r\cos\theta+r^{2})$
+  (Abel summability), and the de la Vall\'{e}e-Poussin kernel
+  (smooth cutoff).  Each is an approximate identity, and the
+  convolution with $f$ converges to $f$ in the appropriate sense.
+
+\item \textbf{Uniform boundedness and the Banach--Steinhaus theorem.}%
+  \index{Banach--Steinhaus theorem}%
+  \index{uniform boundedness!Fourier}%
+  \index{Lebesgue constants}%
+  The operators $S_{N}:L^{1}\to L^{1}$ have norms
+  $\|S_{N}\|=\|D_{N}\|_{1}\sim\frac{4}{\pi^{2}}\ln N$, which diverge.
+  By the Banach--Steinhaus (uniform boundedness) theorem, there
+  exists a continuous function whose Fourier series diverges at a
+  point.  The constants $L_{N}=\|D_{N}\|_{1}$ (Lebesgue constants)
+  are a fundamental quantity in approximation theory.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.515\quad Generalized Fourier series}
+
+If $\{\phi_{n}\}$ is a complete orthonormal system in $L^{2}[a,b]$
+(with respect to a weight $w$), then $f=\sum_{n}\langle f,\phi_{n}\rangle\phi_{n}$
+with convergence in $L^{2}$.  The generalised Fourier coefficients
+are $c_{n}=\langle f,\phi_{n}\rangle=\int_{a}^{b}f(x)\overline{\phi_{n}(x)}w(x)\,dx$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Eigenfunction expansions in quantum mechanics.}%
+  \index{generalised Fourier series}%
+  \index{eigenfunction expansion!quantum}%
+  \index{complete set of states}%
+  \index{spectral decomposition!physical}%
+  The expansion of a quantum state in energy eigenstates
+  $|\psi\rangle=\sum c_{n}|n\rangle$ with
+  $c_{n}=\langle n|\psi\rangle$ is a generalised Fourier series.
+  The eigenstates form a complete orthonormal set (by the spectral
+  theorem for self-adjoint operators), and $|c_{n}|^{2}$ gives the
+  probability of measuring energy $E_{n}$.
+
+\item \textbf{Spherical harmonic expansions.}%
+  \index{spherical harmonics!expansion}%
+  \index{multipole expansion!generalised Fourier}%
+  \index{cosmic microwave background!spherical harmonics}%
+  The spherical harmonics $Y_{\ell}^{m}(\theta,\phi)$ are the
+  orthonormal eigenfunctions on the sphere $S^{2}$.  The expansion
+  $f(\theta,\phi)=\sum_{\ell,m}a_{\ell m}Y_{\ell}^{m}$ is used for
+  gravitational fields (geoid), the cosmic microwave background
+  (CMB power spectrum $C_{\ell}=\langle|a_{\ell m}|^{2}\rangle$),
+  and molecular orbital shapes.
+
+\item \textbf{Normal modes of vibrating systems.}%
+  \index{normal modes!generalised Fourier}%
+  \index{vibrating membrane!eigenfunction expansion}%
+  \index{modal analysis!Fourier series}%
+  The displacement of a vibrating membrane is expanded in normal
+  modes: $u(x,y,t)=\sum c_{mn}\phi_{mn}(x,y)\cos(\omega_{mn}t+\delta_{mn})$.
+  The eigenfunctions $\phi_{mn}$ are determined by the geometry
+  (Bessel functions for circular membranes, sines for rectangular ones),
+  and the coefficients $c_{mn}$ are the generalised Fourier coefficients
+  of the initial displacement.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Abstract Hilbert space and orthonormal bases.}%
+  \index{orthonormal basis!Hilbert space}%
+  \index{separable Hilbert space}%
+  \index{isomorphism!$L^2 \cong \ell^2$}%
+  Any separable Hilbert space $H$ has a countable orthonormal basis
+  $\{e_{n}\}$, and the map $x\mapsto\{\langle x,e_{n}\rangle\}$ is
+  an isometric isomorphism $H\cong\ell^{2}$.  This is the abstract
+  version of the generalised Fourier series: every element of $H$ is
+  the ``sum'' of its Fourier coefficients.
+
+\item \textbf{Sturm--Liouville eigenfunctions and completeness.}%
+  \index{Sturm--Liouville!completeness}%
+  \index{eigenfunction!completeness}%
+  \index{spectral theorem!Sturm--Liouville}%
+  The eigenfunctions of a regular Sturm--Liouville problem form a
+  complete orthogonal set in $L^{2}([a,b];w)$.  This is the
+  foundational completeness theorem that justifies generalised Fourier
+  expansions.  The proof uses the resolvent compactness of the
+  inverse operator and the spectral theorem for compact self-adjoint
+  operators.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.516\quad Bessel's inequality for generalized Fourier series}
+
+For any orthonormal system $\{\phi_{n}\}$ (not necessarily complete) and
+$f\in L^{2}$, $\sum_{n}|\langle f,\phi_{n}\rangle|^{2}\leq\|f\|^{2}$.
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Energy partition among modes.}%
+  \index{Bessel's inequality!generalised Fourier}%
+  \index{energy partition!modes}%
+  \index{equipartition!Bessel bound}%
+  Bessel's inequality states that the total energy in the first $N$
+  modes $\sum_{n=1}^{N}|c_{n}|^{2}$ cannot exceed the total energy
+  $\|f\|^{2}$.  In the equipartition theorem of statistical mechanics,
+  each quadratic degree of freedom carries average energy $\frac{1}{2}k_{B}T$,
+  but Bessel's inequality constrains how energy can be distributed
+  among the modes of a finite-energy system.
+
+\item \textbf{Truncation error in modal expansions.}%
+  \index{truncation error!modal expansion}%
+  \index{Bessel's inequality!truncation}%
+  \index{finite element!modal truncation}%
+  The error of retaining only $N$ terms in a modal expansion is
+  $\|f-\sum_{n=1}^{N}c_{n}\phi_{n}\|^{2}=\|f\|^{2}-\sum_{n=1}^{N}|c_{n}|^{2}$,
+  which is non-negative by Bessel's inequality and decreases
+  monotonically as $N$ increases.  Convergence to zero (Parseval
+  equality) requires completeness of the orthonormal system.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Best approximation property.}%
+  \index{best approximation!Bessel's inequality}%
+  \index{orthogonal projection!Bessel}%
+  \index{Fourier coefficients!optimality}%
+  The partial sum $S_{N}f=\sum_{n=1}^{N}c_{n}\phi_{n}$ minimises
+  $\|f-\sum a_{n}\phi_{n}\|^{2}$ over all choices of coefficients
+  $a_{n}$: the Fourier coefficients $c_{n}=\langle f,\phi_{n}\rangle$
+  give the best $L^{2}$ approximation from $\mathrm{span}\{\phi_{1},\ldots,\phi_{N}\}$.
+  Bessel's inequality is the statement that this minimum is
+  non-negative.
+
+\item \textbf{Bessel's inequality vs.\ Parseval's equality.}%
+  \index{Parseval's equality!vs.\ Bessel}%
+  \index{completeness!Bessel vs.\ Parseval}%
+  \index{incomplete orthonormal system}%
+  Bessel's inequality becomes Parseval's equality
+  ($\sum|c_{n}|^{2}=\|f\|^{2}$) if and only if the orthonormal system
+  is complete.  A strict inequality $\sum|c_{n}|^{2}<\|f\|^{2}$ means
+  that $f$ has a component orthogonal to all $\phi_{n}$---the system
+  ``misses'' part of $f$.  This is the criterion for completeness:
+  $\{\phi_{n}\}$ is complete iff Bessel's inequality is always an
+  equality.
+\end{enumerate}
+
+%% -------------------------------------------------------------------
 \subsubsection{12.517\quad Parseval's theorem for generalized Fourier series}
+
+If $\{\phi_{n}\}$ is a complete orthonormal system, then
+$\sum_{n}|\langle f,\phi_{n}\rangle|^{2}=\|f\|^{2}$ (Parseval's
+equality) and $\sum_{n}\langle f,\phi_{n}\rangle
+\overline{\langle g,\phi_{n}\rangle}=\langle f,g\rangle$ (generalised
+Parseval relation).
+
+\paragraph{Physics applications.}
+\begin{enumerate}
+\item \textbf{Completeness relations in quantum mechanics.}%
+  \index{Parseval's theorem!generalised}%
+  \index{completeness relation!quantum}%
+  \index{resolution of the identity}%
+  \index{closure relation}%
+  The resolution of the identity $\sum_{n}|n\rangle\langle n|=I$
+  is the operator form of Parseval's theorem.  It guarantees that the
+  probability interpretation is consistent:
+  $\sum_{n}|\langle n|\psi\rangle|^{2}=\langle\psi|\psi\rangle=1$
+  for a normalised state.  The continuous version
+  $\int|k\rangle\langle k|\,dk=I$ applies to scattering states.
+
+\item \textbf{Plancherel theorem and spectral analysis.}%
+  \index{Plancherel theorem}%
+  \index{spectral analysis!Parseval}%
+  \index{Fourier transform!$L^2$ isometry}%
+  The Plancherel theorem $\int|f(x)|^{2}\,dx=\int|\hat{f}(\xi)|^{2}\,d\xi$
+  is Parseval's theorem for the continuous Fourier transform, stating
+  that the Fourier transform is a unitary operator on $L^{2}$.
+  This extends to all locally compact abelian groups (Pontryagin
+  duality), unifying Fourier analysis on $\mathbb{R}$, $\mathbb{Z}$,
+  $\mathbb{T}$, and $\mathbb{Z}/n\mathbb{Z}$.
+
+\item \textbf{Wiener--Khinchin theorem and stochastic processes.}%
+  \index{Wiener--Khinchin theorem!Parseval}%
+  \index{autocorrelation!power spectrum}%
+  \index{stochastic process!spectral representation}%
+  For a wide-sense stationary process, the Wiener--Khinchin theorem
+  states that the autocorrelation $R(\tau)$ and the power spectral
+  density $S(\omega)$ are Fourier transform pairs:
+  $R(\tau)=\int S(\omega)e^{i\omega\tau}\,d\omega$.  Parseval's
+  theorem gives $R(0)=\mathbb{E}[|X|^{2}]=\int S(\omega)\,d\omega$:
+  total power equals the integral of the spectral density.
+\end{enumerate}
+
+\paragraph{Mathematics applications.}
+\begin{enumerate}
+\item \textbf{Isomorphism $L^{2}\cong\ell^{2}$ and abstract harmonic analysis.}%
+  \index{isomorphism!$L^2 \cong \ell^2$!Parseval}%
+  \index{abstract harmonic analysis}%
+  \index{Peter--Weyl theorem}%
+  Parseval's equality establishes the isometric isomorphism between
+  $L^{2}$ (functions) and $\ell^{2}$ (coefficient sequences) via the
+  Fourier coefficient map.  The Peter--Weyl theorem extends this to
+  compact groups: the matrix coefficients of irreducible representations
+  form a complete orthonormal system in $L^{2}(G)$, unifying Fourier
+  analysis on circles, spheres, and rotation groups.
+
+\item \textbf{Reproducing kernel Hilbert spaces.}%
+  \index{reproducing kernel Hilbert space}%
+  \index{kernel!reproducing}%
+  \index{RKHS}%
+  In a reproducing kernel Hilbert space with kernel
+  $K(x,y)=\sum_{n}\phi_{n}(x)\overline{\phi_{n}(y)}$, Parseval's
+  theorem gives $K(x,y)=\langle K_{y},K_{x}\rangle$ and the
+  reproducing property $f(x)=\langle f,K_{x}\rangle$.  This connects
+  Parseval's theorem to kernel methods in machine learning (support
+  vector machines, Gaussian processes) and to the sampling theorem in
+  signal processing.
+\end{enumerate}
